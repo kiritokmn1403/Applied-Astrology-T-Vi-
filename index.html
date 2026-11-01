@@ -1,321 +1,1016 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="celestial-dark" data-font-size="normal">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title data-i18n="app_title">Tử Vi Ứng Dụng - Bửu Đình</title>
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="icon" type="image/png" href="assets/logo_128.png">
   <style>
-    :root {
-      --bg-primary: #0a0518;
-      --bg-secondary: #140b2b;
-      --bg-card: rgba(28, 16, 56, 0.7);
-      --border-gold: rgba(245, 158, 11, 0.4);
-      --border-glow: rgba(139, 92, 246, 0.3);
+    /* ====================================================================
+       THEMES & PALETTES - TỬ VI HOÀNG GIA & TINH TÚ
+       ==================================================================== */
+    :root, [data-theme="celestial-dark"] {
+      --bg-base: #070913;
+      --bg-surface: #0e1326;
+      --bg-card: rgba(18, 24, 48, 0.85);
+      --bg-card-hover: rgba(26, 35, 71, 0.95);
+      --border-gold: #d4af37;
+      --border-gold-subtle: rgba(212, 175, 55, 0.25);
+      --border-glow: rgba(139, 92, 246, 0.35);
       --gold-primary: #f59e0b;
-      --gold-light: #fde68a;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
+      --gold-light: #fef08a;
+      --gold-gradient: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #b45309 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
       --accent-purple: #8b5cf6;
       --accent-cyan: #38bdf8;
+      
+      /* Ngũ Hành Tinh Đẩu */
+      --ele-kim: #f1f5f9;
+      --ele-moc: #10b981;
+      --ele-thuy: #38bdf8;
+      --ele-hoa: #f43f5e;
+      --ele-tho: #fbbf24;
+      
       --sat-tinh: #ef4444;
       --cat-tinh: #10b981;
       --chinh-tinh: #fbbf24;
-      --glass-blur: blur(12px);
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --glass-blur: blur(14px);
     }
 
-    [data-theme="light"] {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #ede9fe;
-      --bg-card: rgba(255, 255, 255, 0.85);
-      --border-gold: rgba(217, 119, 6, 0.5);
-      --border-glow: rgba(124, 58, 237, 0.2);
+    [data-theme="royal-gold"] {
+      --bg-base: #120e06;
+      --bg-surface: #1f180a;
+      --bg-card: rgba(36, 28, 12, 0.9);
+      --bg-card-hover: rgba(54, 42, 18, 0.95);
+      --border-gold: #fbbf24;
+      --border-gold-subtle: rgba(251, 191, 36, 0.3);
+      --text-main: #fffbeb;
+      --text-muted: #d97706;
+      --gold-primary: #fbbf24;
+      --gold-light: #fef3c7;
+    }
+
+    [data-theme="ivory-light"] {
+      --bg-base: #f8fafc;
+      --bg-surface: #f1f5f9;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-hover: #ffffff;
+      --border-gold: #b45309;
+      --border-gold-subtle: rgba(180, 83, 9, 0.2);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
       --gold-primary: #b45309;
       --gold-light: #78350f;
-      --text-main: #1e1b4b;
-      --text-muted: #4b5563;
-      --accent-purple: #6d28d9;
-      --accent-cyan: #0284c7;
-      --sat-tinh: #dc2626;
-      --cat-tinh: #059669;
-      --chinh-tinh: #b45309;
+      --ele-kim: #475569;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    body { background-color: var(--bg-primary); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+    [data-theme="imperial-red"] {
+      --bg-base: #18080a;
+      --bg-surface: #260c10;
+      --bg-card: rgba(45, 14, 19, 0.9);
+      --border-gold: #f59e0b;
+      --text-main: #fff1f2;
+      --text-muted: #fda4af;
+    }
 
-    /* Header */
-    header {
-      background: var(--bg-card);
-      backdrop-filter: var(--glass-blur);
-      border-bottom: 1px solid var(--border-gold);
-      padding: 10px 20px;
+    /* Font Scaling */
+    [data-font-size="compact"] { font-size: 13px; }
+    [data-font-size="normal"] { font-size: 14.5px; }
+    [data-font-size="large"] { font-size: 16px; }
+
+    /* Reset & Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Be Vietnam Pro", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ====================================================================
+       HEADER BAR
+       ==================================================================== */
+    header.app-header {
+      background: var(--bg-surface);
+      border-bottom: 2px solid var(--border-gold-subtle);
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand img { width: 44px; height: 44px; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6)); }
-    .brand-title h1 { font-size: 1.15rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; }
-    .brand-title p { font-size: 0.72rem; color: var(--text-muted); }
-    .header-controls { display: flex; align-items: center; gap: 10px; }
 
-    select, button, input {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-gold);
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .brand-logo-frame {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, #2d124d 0%, #0d061a 100%);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-titles h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-titles p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons & Select Inputs */
+    .app-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-gold-subtle);
       color: var(--text-main);
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 0.85rem;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-    button { cursor: pointer; background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(139,92,246,0.2)); font-weight: 600; }
-    button:hover { background: linear-gradient(135deg, rgba(245,158,11,0.4), rgba(139,92,246,0.4)); border-color: var(--gold-light); }
-    .btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; font-weight: 700; border: none; }
-    .btn-gold:hover { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
-
-    /* Nav Tabs */
-    nav.nav-tabs {
-      display: flex;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-glow);
-      overflow-x: auto;
-    }
-    .nav-tab {
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
       font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .app-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--border-gold);
+      transform: translateY(-1px);
+    }
+
+    .app-btn.btn-gold {
+      background: var(--gold-gradient);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    }
+
+    .app-btn.btn-gold:hover {
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.5);
+    }
+
+    .app-btn.btn-active {
+      background: #f59e0b;
+      color: #000;
+      border-color: #f59e0b;
+    }
+
+    .app-select {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--text-main);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* ====================================================================
+       NAVIGATION TABS
+       ==================================================================== */
+    nav.app-tabs {
+      background: var(--bg-surface);
+      display: flex;
+      border-bottom: 1px solid var(--border-gold-subtle);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav.app-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 11px 18px;
       color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
       border-bottom: 3px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       white-space: nowrap;
       transition: all 0.2s;
     }
-    .nav-tab.active {
+
+    .tab-btn:hover {
       color: var(--gold-light);
+    }
+
+    .tab-btn.active {
+      color: var(--gold-primary);
       border-bottom-color: var(--gold-primary);
       background: rgba(245, 158, 11, 0.08);
     }
 
-    /* Main Container */
-    main { flex: 1; padding: 16px; max-width: 1400px; margin: 0 auto; width: 100%; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.25s ease-in; }
+    /* ====================================================================
+       MAIN CONTENT CONTAINER
+       ==================================================================== */
+    main.app-main {
+      flex: 1;
+      padding: 14px;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .tab-view { display: none; }
+    .tab-view.active { display: block; animation: tabFade 0.2s ease-in; }
 
-    /* Chart Input Form */
-    .form-card {
+    @keyframes tabFade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card Panels */
+    .app-card {
       background: var(--bg-card);
       backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--border-gold);
+      border: 1px solid var(--border-gold-subtle);
       border-radius: 10px;
       padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+      box-shadow: var(--card-shadow);
     }
-    .form-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 140px; }
-    .form-group label { font-size: 0.78rem; font-weight: 600; color: var(--gold-light); }
 
-    /* Traditional Tử Vi 12 Palaces Grid Layout */
-    .chart-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(4, minmax(130px, 1fr));
+    /* ====================================================================
+       FORM LẬP LÁ SỐ
+       ==================================================================== */
+    .chart-form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .form-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .form-item label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .form-input {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--text-main);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--border-gold);
+    }
+
+    /* ====================================================================
+       QUICK PALACE BAR (MOBILE CHOOSER)
+       ==================================================================== */
+    .palace-quick-nav {
+      display: flex;
       gap: 6px;
-      background: var(--bg-secondary);
-      padding: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .palace-quick-nav::-webkit-scrollbar { display: none; }
+
+    .palace-chip {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .palace-chip.active, .palace-chip:hover {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--border-gold);
+      color: var(--gold-light);
+    }
+
+    /* ====================================================================
+       TRADITIONAL 12 PALACES BOARD (BÀN VUÔNG 4x4)
+       ==================================================================== */
+    .board-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+    }
+
+    .tuvi-grid-board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      grid-template-rows: repeat(4, minmax(140px, auto));
+      gap: 6px;
+      background: var(--bg-surface);
       border: 2px solid var(--border-gold);
       border-radius: 10px;
-      min-height: 600px;
+      padding: 8px;
+      min-width: 540px; /* Đảm bảo ô cung không bao giờ bị nát chữ */
     }
 
-    /* Palace Cell */
-    .palace-cell {
+    /* Palace Coordinates (Thập Nhị Cung) */
+    .pos-5  { grid-column: 1; grid-row: 1; } /* Tị */
+    .pos-6  { grid-column: 2; grid-row: 1; } /* Ngọ */
+    .pos-7  { grid-column: 3; grid-row: 1; } /* Mùi */
+    .pos-8  { grid-column: 4; grid-row: 1; } /* Thân */
+    .pos-9  { grid-column: 4; grid-row: 2; } /* Dậu */
+    .pos-10 { grid-column: 4; grid-row: 3; } /* Tuất */
+    .pos-11 { grid-column: 4; grid-row: 4; } /* Hợi */
+    .pos-0  { grid-column: 3; grid-row: 4; } /* Tí */
+    .pos-1  { grid-column: 2; grid-row: 4; } /* Sửu */
+    .pos-2  { grid-column: 1; grid-row: 4; } /* Dần */
+    .pos-3  { grid-column: 1; grid-row: 3; } /* Mão */
+    .pos-4  { grid-column: 1; grid-row: 2; } /* Thìn */
+
+    /* Palace Box Item */
+    .palace-item {
       background: var(--bg-card);
-      border: 1px solid var(--border-glow);
+      border: 1px solid var(--border-gold-subtle);
       border-radius: 6px;
-      padding: 8px;
+      padding: 6px 8px;
       display: flex;
       flex-direction: column;
       position: relative;
       cursor: pointer;
-      transition: all 0.2s;
-      overflow: hidden;
+      transition: all 0.2s ease;
+      min-height: 140px;
     }
-    .palace-cell:hover {
-      border-color: var(--gold-primary);
+
+    .palace-item:hover {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
       transform: scale(1.01);
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
       z-index: 2;
     }
-    .palace-cell.active-palace {
+
+    .palace-item.is-selected {
       border: 2px solid var(--gold-primary);
       background: rgba(245, 158, 11, 0.12);
     }
 
-    /* Grid Coordinates Mapping */
-    /* Row 1: Tị (5), Ngọ (6), Mùi (7), Thân (8) */
-    .cell-5 { grid-column: 1; grid-row: 1; }
-    .cell-6 { grid-column: 2; grid-row: 1; }
-    .cell-7 { grid-column: 3; grid-row: 1; }
-    .cell-8 { grid-column: 4; grid-row: 1; }
-    /* Right column: Dậu (9), Tuất (10) */
-    .cell-9 { grid-column: 4; grid-row: 2; }
-    .cell-10 { grid-column: 4; grid-row: 3; }
-    /* Bottom row: Hợi (11), Tí (0), Sửu (1), Dần (2) */
-    .cell-11 { grid-column: 4; grid-row: 4; }
-    .cell-0 { grid-column: 3; grid-row: 4; }
-    .cell-1 { grid-column: 2; grid-row: 4; }
-    .cell-2 { grid-column: 1; grid-row: 4; }
-    /* Left column: Mão (3), Thìn (4) */
-    .cell-3 { grid-column: 1; grid-row: 3; }
-    .cell-4 { grid-column: 1; grid-row: 2; }
+    .palace-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 3px;
+      margin-bottom: 4px;
+    }
+
+    .p-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .p-name {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+
+    .p-canchi {
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .badge-label {
+      font-size: 0.65rem;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-menh { background: #f59e0b; color: #000; }
+    .badge-than { background: #ef4444; color: #fff; }
+    .badge-tt { background: #7c3aed; color: #fff; }
+
+    /* Stars In Palace */
+    .stars-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.76rem;
+      line-height: 1.35;
+    }
+
+    .star-entry {
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .star-entry.chinh {
+      font-weight: 800;
+      color: var(--gold-primary);
+    }
+
+    .star-entry.cat {
+      color: var(--cat-tinh);
+      font-weight: 600;
+    }
+
+    .star-entry.sat {
+      color: var(--sat-tinh);
+      font-weight: 600;
+    }
+
+    .brightness-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0 2px;
+      border-radius: 2px;
+      margin-left: 2px;
+    }
+    .b-M { color: #f59e0b; } /* Miếu */
+    .b-V { color: #10b981; } /* Vượng */
+    .b-Đ { color: #38bdf8; } /* Đắc */
+    .b-B { color: #94a3b8; } /* Bình */
+    .b-H { color: #ef4444; } /* Hãm */
+
+    /* Tứ Hóa Badges */
+    .hoa-loc   { background: #10b981; color: #000; font-size: 0.65rem; padding: 0 3px; border-radius: 2px; font-weight: 700; }
+    .hoa-quyen { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 0 3px; border-radius: 2px; font-weight: 700; }
+    .hoa-khoa  { background: #3b82f6; color: #fff; font-size: 0.65rem; padding: 0 3px; border-radius: 2px; font-weight: 700; }
+    .hoa-ky    { background: #6b21a8; color: #fff; font-size: 0.65rem; padding: 0 3px; border-radius: 2px; font-weight: 700; }
+
+    .palace-bot-bar {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px dashed rgba(212, 175, 55, 0.15);
+      padding-top: 3px;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
 
     /* Central Celestial Board (Thiên Bàn) */
-    .cell-thien-ban {
+    .central-thien-ban {
       grid-column: 2 / span 2;
       grid-row: 2 / span 2;
-      background: radial-gradient(circle, rgba(45,18,77,0.85) 0%, rgba(10,5,24,0.95) 100%);
+      background: radial-gradient(circle, rgba(42, 18, 77, 0.9) 0%, rgba(10, 6, 22, 0.98) 100%);
       border: 2px solid var(--border-gold);
       border-radius: 8px;
-      padding: 16px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
     }
 
-    .thien-ban-title { font-size: 1.2rem; font-weight: 800; color: var(--gold-light); margin-bottom: 6px; letter-spacing: 1px; }
-    .thien-ban-profile { font-size: 0.85rem; line-height: 1.6; color: var(--text-main); }
-    .thien-ban-profile b { color: var(--gold-primary); }
+    .thien-ban-bg-taiji {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      opacity: 0.12;
+      pointer-events: none;
+      animation: spinTaiji 60s linear infinite;
+    }
 
-    /* Stars styling */
-    .palace-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(245,158,11,0.25); padding-bottom: 4px; margin-bottom: 4px; }
-    .palace-name { font-size: 0.85rem; font-weight: 700; color: var(--gold-light); }
-    .palace-chi { font-size: 0.72rem; color: var(--accent-cyan); font-weight: 600; }
-    .palace-van { font-size: 0.7rem; color: var(--text-muted); }
-    .badge-than { background: #dc2626; color: #fff; font-size: 0.65rem; padding: 1px 4px; border-radius: 3px; font-weight: 700; }
-    .badge-tt { background: #b45309; color: #fff; font-size: 0.65rem; padding: 1px 3px; border-radius: 2px; }
+    @keyframes spinTaiji {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-    .stars-list { display: flex; flex-direction: column; gap: 2px; font-size: 0.75rem; flex: 1; }
-    .star-chinh { color: var(--chinh-tinh); font-weight: 700; }
-    .star-cat { color: var(--cat-tinh); font-weight: 500; }
-    .star-sat { color: var(--sat-tinh); font-weight: 500; }
+    .tb-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
 
-    /* Commentary Modal / Drawer */
-    .drawer-card {
+    .tb-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 14px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--text-main);
+      z-index: 1;
+    }
+
+    .tb-info-grid b { color: var(--gold-primary); }
+
+    /* ====================================================================
+       SIDE-BY-SIDE / DeX LAYOUT
+       ==================================================================== */
+    .main-grid-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .main-grid-layout.dex-layout {
+        display: grid;
+        grid-template-columns: 1.7fr 1.1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Commentary Drawer */
+    .commentary-box {
       background: var(--bg-card);
-      border: 1px solid var(--border-gold);
+      border: 1px solid var(--border-gold-subtle);
       border-radius: 10px;
-      padding: 16px;
-      margin-top: 16px;
-      max-height: 350px;
+      padding: 14px;
+      max-height: 620px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .commentary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-gold-subtle);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .commentary-content {
+      flex: 1;
+      overflow-y: auto;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .commentary-item-card {
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 3px solid var(--gold-primary);
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* ====================================================================
+       KHO SÁCH BỬU ĐÌNH (TAB 2)
+       ==================================================================== */
+    .library-search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .library-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+      max-height: 640px;
       overflow-y: auto;
     }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-gold); padding-bottom: 8px; margin-bottom: 12px; }
-    .commentary-body { font-size: 0.9rem; line-height: 1.7; color: var(--text-main); }
-    .commentary-item { background: rgba(0,0,0,0.2); padding: 10px; border-left: 3px solid var(--gold-primary); margin-bottom: 8px; border-radius: 4px; }
 
-    /* Library Tab */
-    .library-layout { display: flex; flex-direction: column; gap: 14px; }
-    .search-box { display: flex; gap: 10px; }
-    .search-box input { flex: 1; padding: 10px 14px; font-size: 0.95rem; }
-    .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; max-height: 650px; overflow-y: auto; }
-    .lib-card { background: var(--bg-card); border: 1px solid var(--border-glow); padding: 14px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-    .lib-card:hover { border-color: var(--gold-primary); transform: translateY(-2px); }
-    .lib-card h4 { color: var(--gold-light); margin-bottom: 6px; font-size: 0.95rem; }
-    .lib-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .lib-entry-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: 8px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-    /* AI Chat Tab */
-    .chat-container { display: flex; flex-direction: column; height: 600px; background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 10px; overflow: hidden; }
-    .chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-    .chat-msg { max-width: 80%; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; line-height: 1.5; }
-    .msg-user { align-self: flex-end; background: linear-gradient(135deg, #7c3aed, #4c1d95); color: #fff; }
-    .msg-ai { align-self: flex-start; background: rgba(30, 20, 60, 0.85); border: 1px solid var(--border-gold); color: var(--text-main); }
-    .chat-input-bar { display: flex; gap: 10px; padding: 12px; background: var(--bg-secondary); border-top: 1px solid var(--border-gold); }
-    .chat-input-bar input { flex: 1; }
+    .lib-entry-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+    }
 
-    /* DeX / Wide Screen View */
-    @media (min-width: 1024px) {
-      .dex-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 20px; }
-      .dex-chart-area { min-width: 0; }
-      .dex-side-area { min-width: 0; }
+    .lib-entry-card h4 {
+      color: var(--gold-light);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .lib-entry-card p {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ====================================================================
+       TRỢ LÝ AI (TAB 3)
+       ==================================================================== */
+    .ai-chat-box {
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .ai-messages-scroll {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg-bubble {
+      max-width: 82%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .msg-bubble.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      color: #fff;
+    }
+
+    .msg-bubble.ai {
+      align-self: flex-start;
+      background: rgba(18, 24, 48, 0.9);
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--text-main);
+    }
+
+    .ai-input-bar {
+      display: flex;
+      gap: 10px;
+      padding: 12px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-gold-subtle);
+    }
+
+    /* ====================================================================
+       SETTINGS MODAL STYLING (MANAGED BY SETTINGS.JS)
+       ==================================================================== */
+    .settings-modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .settings-modal-backdrop.active {
+      display: flex;
+      animation: modalFade 0.2s ease-out;
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .settings-modal-content {
+      background: var(--bg-surface);
+      border: 2px solid var(--border-gold);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+    }
+
+    .settings-modal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-gold-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+    }
+
+    .settings-title-group h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .settings-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .settings-modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .setting-group-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .setting-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .setting-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .setting-select {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--text-main);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .setting-toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Switch Toggle */
+    .switch-toggle {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .switch-toggle input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #334155;
+      transition: .3s;
+      border-radius: 26px;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider { background-color: var(--gold-primary); }
+    input:checked + .slider:before { transform: translateX(22px); }
+
+    .settings-action-btn {
+      background: var(--gold-gradient);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .settings-action-btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-gold-subtle);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .vpn-status-text {
+      font-size: 0.82rem;
+      color: var(--cat-tinh);
+      font-weight: 600;
+    }
+
+    .settings-about-box {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-gold-subtle);
+      padding-top: 12px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header>
-    <div class="brand">
-      <img src="assets/logo.svg" alt="Applied Astrology Logo">
-      <div class="brand-title">
-        <h1 data-i18n="app_title">Tử Vi Ứng Dụng - Bửu Đình</h1>
-        <p data-i18n="app_subtitle">Hệ Thống Lập & Giải Lá Số Tử Vi Phương Đông</p>
+  <!-- ==================================================================
+       HEADER BAR
+       ================================================================== -->
+  <header class="app-header">
+    <div class="brand-wrap" onclick="switchTab('chartTab')">
+      <div class="brand-logo-frame">
+        <!-- SVG Vector Embedded Fallback Guaranteed Never to Break -->
+        <svg id="headerSvgLogo" viewBox="0 0 100 100" width="36" height="36">
+          <circle cx="50" cy="50" r="46" fill="#140826" stroke="#f59e0b" stroke-width="2"/>
+          <!-- Yin Yang -->
+          <path d="M50 8 A42 42 0 0 1 50 92 A21 21 0 0 1 50 50 A21 21 0 0 0 50 8 Z" fill="#f59e0b"/>
+          <path d="M50 92 A42 42 0 0 1 50 8 A21 21 0 0 1 50 50 A21 21 0 0 0 50 92 Z" fill="#0b0416"/>
+          <circle cx="50" cy="29" r="6" fill="#0b0416"/>
+          <circle cx="50" cy="71" r="6" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <h1 data-i18n="app_title">Tử Vi Ứng Dụng</h1>
+        <p data-i18n="app_subtitle">Kế thừa tác phẩm Bửu Đình - Bản quyền số v0.0.1</p>
       </div>
     </div>
-    <div class="header-controls">
-      <select id="langSelect" onchange="changeLanguage(this.value)">
-        <option value="vi">Tiếng Việt (VN)</option>
-        <option value="en">English (US)</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
+
+    <div class="header-actions">
+      <!-- Quick Language Select (19 languages routed to settings.js) -->
+      <select id="headerLangSelect" class="app-select" onchange="AppSettings.setLanguage(this.value)">
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+        <option value="fr">Français</option>
       </select>
-      <button onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌓</button>
-      <button onclick="toggleDeXMode()" class="btn-gold" title="Chế độ DeX">🖥️ DeX</button>
+
+      <!-- DeX Toggle Button -->
+      <button id="headerDexBtn" class="app-btn" onclick="AppSettings.toggleDeXMode()" title="Chế độ Samsung DeX / Desktop">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span>DeX</span>
+      </button>
+
+      <!-- Dedicated Settings Button -->
+      <button class="app-btn btn-gold" onclick="AppSettings.openModal()" title="Cài Đặt Hệ Thống">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <!-- Navigation Tabs -->
-  <nav class="nav-tabs">
-    <div class="nav-tab active" onclick="switchTab('chartTab', this)" data-i18n="tab_chart">Lập Lá Số</div>
-    <div class="nav-tab" onclick="switchTab('libraryTab', this)" data-i18n="tab_library">Kho Sách Bửu Đình</div>
-    <div class="nav-tab" onclick="switchTab('aiTab', this)" data-i18n="tab_ai">Trợ Lý AI Luận Giải</div>
-    <div class="nav-tab" onclick="switchTab('readerTab', this)" data-i18n="tab_reader">Đọc Sách & PDF</div>
-    <div class="nav-tab" onclick="switchTab('settingsTab', this)" data-i18n="tab_settings">Cài Đặt</div>
+  <!-- ==================================================================
+       NAVIGATION TABS
+       ================================================================== -->
+  <nav class="app-tabs">
+    <div class="tab-btn active" onclick="switchTab('chartTab', this)">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+      <span data-i18n="tab_chart">Lập Lá Số</span>
+    </div>
+    <div class="tab-btn" onclick="switchTab('libraryTab', this)">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span data-i18n="tab_library">Kho Sách Bửu Đình</span>
+    </div>
+    <div class="tab-btn" onclick="switchTab('aiTab', this)">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <span data-i18n="tab_ai">Trợ Lý AI Luận Giải</span>
+    </div>
+    <div class="tab-btn" onclick="switchTab('readerTab', this)">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      <span data-i18n="tab_reader">Đọc Sách & PDF</span>
+    </div>
+    <div class="tab-btn" onclick="AppSettings.openModal()">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      <span data-i18n="tab_settings">Cài Đặt</span>
+    </div>
   </nav>
 
-  <!-- Main Work Area -->
-  <main>
+  <!-- ==================================================================
+       MAIN BODY
+       ================================================================== -->
+  <main class="app-main">
+    
     <!-- TAB 1: LẬP LÁ SỐ TỬ VI -->
-    <div id="chartTab" class="tab-content active">
-      <!-- Input Form -->
-      <div class="form-card">
-        <div class="form-row">
-          <div class="form-group" style="flex: 2;">
+    <section id="chartTab" class="tab-view active">
+      <!-- Input Card -->
+      <div class="app-card">
+        <div class="chart-form-row">
+          <div class="form-item" style="flex: 2;">
             <label data-i18n="lbl_name">Họ và Tên</label>
-            <input type="text" id="custName" value="Nguyễn Văn An">
+            <input type="text" id="custName" class="form-input" value="Nguyễn Văn An">
           </div>
-          <div class="form-group">
+          <div class="form-item">
             <label data-i18n="lbl_gender">Giới Tính</label>
-            <select id="custGender">
-              <option value="Nam" data-i18n="lbl_male">Nam</option>
-              <option value="Nữ" data-i18n="lbl_female">Nữ</option>
+            <select id="custGender" class="form-input">
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
             </select>
           </div>
-          <div class="form-group">
-            <label data-i18n="lbl_calendar">Lịch</label>
-            <select id="calendarType">
-              <option value="solar" data-i18n="lbl_solar">Dương Lịch</option>
-              <option value="lunar" data-i18n="lbl_lunar">Âm Lịch</option>
+          <div class="form-item">
+            <label data-i18n="lbl_calendar">Lịch Dương/Âm</label>
+            <select id="calendarType" class="form-input">
+              <option value="solar">Dương Lịch</option>
+              <option value="lunar">Âm Lịch</option>
             </select>
           </div>
-          <div class="form-group" style="flex: 1.5;">
+          <div class="form-item" style="flex: 1.5;">
             <label data-i18n="lbl_dob">Ngày Sinh</label>
-            <input type="date" id="custDob" value="1995-08-15">
+            <input type="date" id="custDob" class="form-input" value="1995-08-15">
           </div>
-          <div class="form-group">
-            <label data-i18n="lbl_tob">Giờ Sinh</label>
-            <select id="custHour">
+          <div class="form-item">
+            <label data-i18n="lbl_tob">Giờ Sinh (Chi)</label>
+            <select id="custHour" class="form-input">
               <option value="23">Tí (23:00 - 00:59)</option>
               <option value="1">Sửu (01:00 - 02:59)</option>
               <option value="3">Dần (03:00 - 04:59)</option>
@@ -330,322 +1025,403 @@
               <option value="21">Hợi (21:00 - 22:59)</option>
             </select>
           </div>
-          <button class="btn-gold" onclick="generateChart()" data-i18n="btn_calculate">Lập Lá Số Tử Vi</button>
-          <button onclick="exportChartPng()" data-i18n="btn_export_png">📷 Xuất Ảnh</button>
-          <button onclick="shareChartQr()" data-i18n="btn_share_qr">📱 QR Code</button>
+          <button class="app-btn btn-gold" onclick="generateChart()" style="height: 38px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span data-i18n="btn_calculate">Lập Lá Số Tử Vi</span>
+          </button>
+          <button class="app-btn" onclick="window.print()" style="height: 38px;" title="Xuất Bản In / PDF">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>In / PDF</span>
+          </button>
         </div>
       </div>
 
-      <!-- Chart & Details Side-by-side Layout (DeX Ready) -->
-      <div id="dexContainer" class="dex-layout">
-        <!-- 12 Palaces Grid -->
-        <div class="dex-chart-area">
-          <div id="tuViGrid" class="chart-container">
-            <!-- Populated dynamically by JS -->
+      <!-- Quick Palace Navigation Bar for Phone/Mobile -->
+      <div class="palace-quick-nav" id="palaceQuickBar">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Main Side-by-Side DeX / Wide Screen View -->
+      <div id="dexContainer" class="main-grid-layout dex-layout">
+        <!-- 12 Palaces Board -->
+        <div class="board-wrapper">
+          <div id="tuViGrid" class="tuvi-grid-board">
+            <!-- Dynamic 12 Palaces + Central Celestial Board -->
           </div>
         </div>
 
-        <!-- Commentary & Explanation Area -->
-        <div class="dex-side-area">
-          <div class="drawer-card" style="max-height: 600px;">
-            <div class="drawer-header">
+        <!-- Right Side: Bửu Đình Commentary Drawer -->
+        <div class="commentary-box">
+          <div class="commentary-header">
+            <div>
               <h3 id="commentaryTitle" style="color: var(--gold-light);" data-i18n="lbl_explanation">Bình Giải Bửu Đình</h3>
-              <span id="selectedPalaceName" style="color: var(--accent-cyan); font-weight: 700;">Cung Mệnh</span>
+              <span id="selectedPalaceName" style="color: var(--accent-cyan); font-weight: 800; font-size: 0.95rem;">Cung Mệnh</span>
             </div>
-            <div id="commentaryContent" class="commentary-body">
-              <p style="color: var(--text-muted);" data-i18n="lbl_select_palace">Bấm vào từng Cung hoặc từng Sao để tra cứu bình giải chi tiết</p>
-            </div>
+            <button class="app-btn" onclick="askAiAboutPalace()">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Hỏi AI</span>
+            </button>
+          </div>
+          <div id="commentaryContent" class="commentary-content">
+            <p style="color: var(--text-muted);">Bấm vào bất kỳ Cung nào trên lá số để tra cứu bình giải chi tiết theo di huấn của cụ Bửu Đình.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- TAB 2: KHO SÁCH BỬU ĐÌNH -->
-    <div id="libraryTab" class="tab-content">
-      <div class="library-layout">
-        <div class="search-box">
-          <input type="text" id="libSearchInput" placeholder="Tìm kiếm sao, cung, bí quyết Bửu Đình (ví dụ: Tử Vi, Lộc Tồn, Mệnh Vô Chính Diệu)..." onkeyup="searchLibrary()">
-          <button class="btn-gold" onclick="searchLibrary()">Tìm Kiếm</button>
-        </div>
-        <div id="libraryResults" class="library-grid">
-          <!-- Populated from buudinh_tuvi_database.json -->
-        </div>
+    <section id="libraryTab" class="tab-view">
+      <div class="library-search-bar">
+        <input type="text" id="libSearchInput" class="form-input" style="flex:1;" placeholder="Tìm kiếm sao, cung vị, khẩu quyết Bửu Đình (ví dụ: Tử Vi, Lộc Tồn, Thất Sát, Mệnh Vô Chính Diệu)..." onkeyup="searchLibrary()">
+        <button class="app-btn btn-gold" onclick="searchLibrary()">Tìm Kiếm</button>
       </div>
-    </div>
+      <div id="libraryResults" class="library-cards-grid">
+        <!-- Populated from Database -->
+      </div>
+    </section>
 
     <!-- TAB 3: TRỢ LÝ AI LUẬN GIẢI -->
-    <div id="aiTab" class="tab-content">
-      <div class="chat-container">
-        <div class="chat-messages" id="chatMessages">
-          <div class="chat-msg msg-ai">
-            Chào bạn! Tôi là <b>Trợ lý AI Tử Vi Ứng Dụng Bửu Đình</b>. Tôi có thể giúp bạn luận giải lá số, phân tích tính chất cung Mệnh, Thân, các đại vận 10 năm và các bộ sao tương hợp/xung sát theo phương pháp cụ Bửu Đình. Bạn muốn xem phần nào trên lá số hiện tại?
+    <section id="aiTab" class="tab-view">
+      <div class="ai-chat-box">
+        <div class="ai-messages-scroll" id="chatMessages">
+          <div class="msg-bubble ai">
+            Kính chào quý bạn! Tôi là <b>Trợ Lý AI Tử Vi Bửu Đình</b>. Dựa trên triết lý ứng dụng thực tiễn của cụ Bửu Đình, tôi sẵn sàng phân tích thế đứng của 14 chính tinh, vị trí Tứ Hóa, đại vận 10 năm và cách cục riêng biệt trên lá số của bạn. Bạn muốn tôi làm rõ cung vị nào trước?
           </div>
         </div>
-        <div class="chat-input-bar">
-          <input type="text" id="aiInput" placeholder="Nhập câu hỏi luận giải (ví dụ: Hãy luận giải tổng quan cung Mệnh và sự nghiệp)..." onkeypress="if(event.key==='Enter') sendAiMessage()">
-          <button class="btn-gold" onclick="sendAiMessage()" data-i18n="ai_send">Gửi</button>
+        <div class="ai-input-bar">
+          <input type="text" id="aiInput" class="form-input" style="flex:1;" placeholder="Nhập câu hỏi luận giải (ví dụ: Phân tích cung Mệnh và công danh của tôi)..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+          <button class="app-btn btn-gold" onclick="sendAiMessage()">Gửi Hỏi</button>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- TAB 4: ĐỌC SÁCH & PDF -->
-    <div id="readerTab" class="tab-content">
-      <div class="form-card" style="min-height: 550px; display: flex; flex-direction: column;">
-        <h3 style="color: var(--gold-light); margin-bottom: 12px;">Bộ Sách Điện Tử & Luận Thuyết Tử Vi Bửu Đình</h3>
-        <p style="color: var(--text-muted); margin-bottom: 16px;">Tích hợp trình đọc văn bản nghiên cứu chuyên sâu, trích lục trọn bộ tác phẩm của Bửu Đình.</p>
-        <div style="flex: 1; background: var(--bg-secondary); border-radius: 8px; padding: 20px; overflow-y: auto; line-height: 1.8;">
-          <h2 style="color: var(--gold-primary); margin-bottom: 10px;">LỜI MỞ ĐẦU: TỬ VI ỨNG DỤNG</h2>
-          <p>Tử Vi là môn học đúc kết quy luật vận động của đời người dựa trên Thiên bàn và Địa bàn. Phương pháp của cụ Bửu Đình chú trọng tính hành động, thực tiễn và tinh thần gánh vác trách nhiệm của các vì sao (đặc biệt là sao Tử Vi, Cự Môn, Thái Dương, Thiên Phủ).</p>
+    <section id="readerTab" class="tab-view">
+      <div class="app-card" style="min-height: 580px; display: flex; flex-direction: column;">
+        <h3 style="color: var(--gold-light); margin-bottom: 8px;">Toàn Tập Luận Thuyết Tử Vi Ứng Dụng - Bửu Đình</h3>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Văn bản nghiên cứu học thuật trích lục từ nguyên tác Flash SWF của tác giả Bửu Đình.</p>
+        <div style="flex: 1; background: var(--bg-surface); border-radius: 8px; padding: 22px; overflow-y: auto; line-height: 1.85;">
+          <h2 style="color: var(--gold-primary); margin-bottom: 12px;">I. LỜI TỰA: TINH THẦN TỬ VI ỨNG DỤNG</h2>
+          <p>Tử Vi là tấm gương phản chiếu vị thế và trách nhiệm của mỗi cá nhân trong dòng chảy sinh hóa của vũ trụ. Khác với lối đoán mệnh thụ động, phương pháp của cụ Bửu Đình chủ trương <b>"Ứng Dụng"</b> - tức là thấu hiểu sở trường, sở đoản, nhận diện thời thế của từng đại vận để có hành động tích cực, làm chủ cuộc đời.</p>
           <br>
-          <h3 style="color: var(--accent-cyan); margin-bottom: 8px;">NGUYÊN TẮC LUẬN ĐOÁN</h3>
-          <p>1. Xem Mệnh trước xem Thân sau, phối hợp tam phương tứ chính.<br>
-          2. Coi trọng các sao Tứ Hóa: Hóa Lộc, Hóa Quyền, Hóa Khoa, Hóa Kỵ.<br>
-          3. Không phán xét phiến diện một sao mà phải xem toàn bộ chòm sao hội tụ.</p>
+          <h3 style="color: var(--accent-cyan); margin-bottom: 8px;">II. NGUYÊN TẮC LUẬN ĐOÁN CỐT LÕI</h3>
+          <p>1. <b>Tam Phương Tứ Chính</b>: Không bao giờ nhìn một cung đơn lẻ. Cung Mệnh luôn phải phối chiếu với Quan Lộc, Tài Bạch và Thiên Di.<br>
+          2. <b>Tứ Hóa Vi Tiên</b>: Hóa Lộc là cơ hội và thành quả; Hóa Quyền là quyền biến và hành động; Hóa Khoa là trí tuệ và giải cứu; Hóa Kỵ là trắc trở, bài học và sự trói buộc.<br>
+          3. <b>Bát Quái & Cục Số</b>: Cục là môi trường ngoài (sinh khắc với Ngũ Hành Bản Mệnh). Mệnh sinh Cục là người tận tụy cống hiến; Cục sinh Mệnh là người được thời thế ưu ái.</p>
         </div>
       </div>
-    </div>
-
-    <!-- TAB 5: CÀI ĐẶT -->
-    <div id="settingsTab" class="tab-content">
-      <div class="form-card">
-        <h3 style="color: var(--gold-light); margin-bottom: 16px;">Cài Đặt Hệ Thống</h3>
-        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 500px;">
-          <div>
-            <label style="color: var(--text-muted); display: block; margin-bottom: 6px;">Ngôn Ngữ Ứng Dụng</label>
-            <select id="settingsLangSelect" style="width: 100%;" onchange="changeLanguage(this.value)">
-              <option value="vi">Tiếng Việt (Mặc định)</option>
-              <option value="en">English (US)</option>
-              <option value="zh">中文 (Chinese)</option>
-              <option value="ja">日本語 (Japanese)</option>
-              <option value="fr">Français (French)</option>
-            </select>
-          </div>
-          <div>
-            <label style="color: var(--text-muted); display: block; margin-bottom: 6px;">Sao lưu & Đồng bộ Đám mây</label>
-            <button onclick="alert('Đã kết nối Google Drive / OneDrive!')">☁️ Đồng Bộ Dữ Liệu</button>
-          </div>
-          <div>
-            <label style="color: var(--text-muted); display: block; margin-bottom: 6px;">Kiểm tra Module Mạng & VPN Độc Lập</label>
-            <button onclick="checkVpnStatus()">🛡️ Kiểm Tra VPN / DNS Bên Ngoài</button>
-            <span id="vpnStatus" style="margin-left: 10px; font-size: 0.85rem; color: var(--cat-tinh);"></span>
-          </div>
-          <div style="margin-top: 20px; border-top: 1px solid var(--border-gold); padding-top: 14px; font-size: 0.82rem; color: var(--text-muted);">
-            <b>Applied Astrology (Tử Vi Ứng Dụng)</b> - Phiên bản: 0.0.1<br>
-            Tác quyền dữ liệu: Bửu Đình | Visicons Open Project
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <!-- Script Libraries -->
+  <!-- ==================================================================
+       SCRIPTS & LOGIC
+       ================================================================== -->
   <script src="tuvi_engine.js"></script>
   <script src="i18n.js"></script>
+  <script src="settings.js"></script>
   <script>
     let currentChart = null;
     let buuDinhDb = null;
+    let selectedPalace = null;
 
-    // Load Buu Dinh Database
-    fetch('assets/buudinh_tuvi_database.json')
-      .then(r => r.json())
-      .then(data => {
-        buuDinhDb = data;
-        renderLibraryInitial();
-      })
-      .catch(err => console.log('Db load notice:', err));
+    // Load Database with Multi-Path Fallback
+    function loadAstrologyDatabase() {
+      const paths = ['assets/buudinh_tuvi_database.json', 'buudinh_tuvi_database.json'];
+      function tryFetch(idx) {
+        if (idx >= paths.length) {
+          console.warn('[Db] Using bundled memory fallback');
+          initFallbackDatabase();
+          return;
+        }
+        fetch(paths[idx])
+          .then(r => r.json())
+          .then(data => {
+            buuDinhDb = data;
+            console.log('[Db] Database loaded successfully from:', paths[idx]);
+            renderLibraryInitial();
+          })
+          .catch(() => tryFetch(idx + 1));
+      }
+      tryFetch(0);
+    }
 
+    function initFallbackDatabase() {
+      buuDinhDb = {
+        stars: {
+          'TỬ VI': [
+            'Tử Vi là Đế Tinh, chủ về quyền quý, tài lãnh đạo và sự bao dung. Đứng ở Ngọ, Dần, Thân là miếu địa rực rỡ.',
+            'Tử Vi gặp Thất Sát đồng cung tại Tị, Hợi là cách Đế Tướng tương phùng, gánh vác việc lớn.'
+          ],
+          'THIÊN PHỦ': [
+            'Thiên Phủ là Nam Đẩu Chủ, kho chứa trời ban, chủ về thận trọng, tài chính và hậu thuẫn vững chắc.',
+            'Thiên Phủ cần tránh Không Kiếp triệt hạ kho lẫm.'
+          ],
+          'THÁI DƯƠNG': [
+            'Thái Dương là ánh hào quang quang minh chính đại, chủ về sự cống hiến, danh vọng và người cha/chồng.',
+            'Thái Dương ở Dần Mão Thìn Tị Ngọ là đắc cách thanh danh lừng lẫy.'
+          ],
+          'VŨ KHÚC': [
+            'Vũ Khúc là tài tinh quả quyết, hành động thực tế, không chuộng hư danh.'
+          ]
+        },
+        palaces: {
+          'MỆNH': ['Cung Mệnh thể hiện cốt cách, bản lĩnh và năng lực nội tại của thân chủ suốt cuộc đời.'],
+          'QUAN LỘC': ['Cung Quan thể hiện con đường sự nghiệp, cách thức làm việc và sự thăng tiến.'],
+          'TÀI BẠCH': ['Cung Tài biểu hiện khả năng tích lũy, quản trị tài sản và nguồn tiền bạc.']
+        },
+        principles: [
+          'Phương pháp Bửu Đình nhấn mạnh tinh thần hành động tự lực cánh sinh.',
+          'Mệnh tốt không bằng Thân tốt, Thân tốt không bằng Hạn tốt.'
+        ]
+      };
+      renderLibraryInitial();
+    }
+
+    // Switch Tabs
     function switchTab(tabId, el) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
       if (el) el.classList.add('active');
     }
 
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-    }
-
-    function toggleDeXMode() {
-      const el = document.getElementById('dexContainer');
-      el.classList.toggle('dex-layout');
-    }
-
-    function changeLanguage(lang) {
-      document.getElementById('langSelect').value = lang;
-      document.getElementById('settingsLangSelect').value = lang;
-      setLanguage(lang);
-      if (currentChart) renderChart(currentChart);
-    }
-
+    // Generate Chart
     function generateChart() {
-      const name = document.getElementById('custName').value;
+      const name = document.getElementById('custName').value.trim() || 'Thân Chủ';
       const gender = document.getElementById('custGender').value;
       const dob = document.getElementById('custDob').value;
       const h = parseInt(document.getElementById('custHour').value, 10);
       const isLunar = (document.getElementById('calendarType').value === 'lunar');
 
       const parts = dob.split('-');
-      const y = parseInt(parts[0], 10);
-      const m = parseInt(parts[1], 10);
-      const d = parseInt(parts[2], 10);
+      const y = parseInt(parts[0], 10) || 1995;
+      const m = parseInt(parts[1], 10) || 8;
+      const d = parseInt(parts[2], 10) || 15;
 
       currentChart = new TuViChart(name, gender, y, m, d, h, 0, isLunar);
       renderChart(currentChart);
     }
 
+    // Render Chart Visuals
     function renderChart(chart) {
       const grid = document.getElementById('tuViGrid');
       grid.innerHTML = '';
-
       const data = chart.exportData();
 
-      // Render 12 Palaces
-      // Mapping Chi to visual grid classes:
-      // Tị(5), Ngọ(6), Mùi(7), Thân(8), Dậu(9), Tuất(10), Hợi(11), Tí(0), Sửu(1), Dần(2), Mão(3), Thìn(4)
+      // Render 12 Palaces in Traditional Coordinates (pos-0 to pos-11)
       data.palaces.forEach(p => {
         const cell = document.createElement('div');
-        cell.className = `palace-cell cell-${p.chiIdx}`;
-        cell.onclick = () => showPalaceDetails(p);
+        cell.className = `palace-item pos-${p.chiIdx}`;
+        cell.id = `palace_cell_${p.chiIdx}`;
+        cell.onclick = () => selectPalace(p);
 
         const isMenh = (p.chiIdx === chart.menhChiIdx);
         const isThan = p.isThan;
 
         let badges = '';
-        if (isMenh) badges += `<span class="badge-than" style="background:#f59e0b; color:#000;">MỆNH</span> `;
-        if (isThan) badges += `<span class="badge-than">THÂN</span> `;
-        if (p.tuanTriet.length > 0) badges += `<span class="badge-tt">${p.tuanTriet.join('/')}</span>`;
+        if (isMenh) badges += `<span class="badge-label badge-menh">MỆNH</span> `;
+        if (isThan) badges += `<span class="badge-label badge-than">THÂN</span> `;
+        if (p.tuanTriet.length > 0) badges += `<span class="badge-label badge-tt">${p.tuanTriet.join('/')}</span>`;
 
-        let chinhTinhHtml = p.chinhTinh.map(s => `<div class="star-chinh">★ ${s.name} (${s.element})</div>`).join('') || '<div style="color:var(--text-muted); font-style:italic;">Vô chính diệu</div>';
-        let phuTotHtml = p.phuTinhTot.map(s => `<div class="star-cat">• ${s.name}</div>`).join('');
-        let phuXauHtml = p.phuTinhXau.map(s => `<div class="star-sat">✖ ${s.name}</div>`).join('');
+        // Major Stars with Ngũ Hành & Brightness
+        let chinhTinhHtml = '';
+        if (p.chinhTinh.length > 0) {
+          chinhTinhHtml = p.chinhTinh.map(s => {
+            const bClass = `b-${s.brightness || 'V'}`;
+            return `<div class="star-entry chinh" style="color: var(--ele-${s.eleKey || 'tho'});">
+              ★ ${s.name} <span class="brightness-tag ${bClass}">[${s.brightness || 'V'}]</span>
+            </div>`;
+          }).join('');
+        } else {
+          chinhTinhHtml = `<div class="star-entry" style="color:var(--text-muted); font-style:italic;">(Vô chính diệu)</div>`;
+        }
+
+        // Minor Good Stars & Tứ Hóa
+        let phuTotHtml = p.phuTinhTot.map(s => {
+          if (s.cssClass) {
+            return `<div class="star-entry"><span class="${s.cssClass}">[${s.name}]</span></div>`;
+          }
+          return `<div class="star-entry cat">• ${s.name}</div>`;
+        }).join('');
+
+        // Minor Bad/Sát Stars
+        let phuXauHtml = p.phuTinhXau.map(s => {
+          return `<div class="star-entry sat">✖ ${s.name}</div>`;
+        }).join('');
 
         cell.innerHTML = `
-          <div class="palace-header">
-            <span class="palace-name">${p.name} ${badges}</span>
-            <span class="palace-chi">${p.chi}</span>
+          <div class="palace-top-bar">
+            <div class="p-title-wrap">
+              <span class="p-name">${p.name}</span>
+              ${badges}
+            </div>
+            <span class="p-canchi">${p.canChi}</span>
           </div>
-          <div class="stars-list">
+          <div class="stars-block">
             ${chinhTinhHtml}
             ${phuTotHtml}
             ${phuXauHtml}
           </div>
-          <div class="palace-van">Đại vận: <b>${p.daiVan}</b></div>
+          <div class="palace-bot-bar">
+            <span>Đại vận: <b>${p.daiVan}</b></span>
+            <span>Chi: <b>${p.chi}</b></span>
+          </div>
         `;
         grid.appendChild(cell);
       });
 
-      // Render Center Board (Thiên Bàn)
+      // Render Central Celestial Board (Thiên Bàn)
       const thienBan = document.createElement('div');
-      thienBan.className = 'cell-thien-ban';
+      thienBan.className = 'central-thien-ban';
       thienBan.innerHTML = `
-        <div class="thien-ban-title">${chart.name.toUpperCase()}</div>
-        <div class="thien-ban-profile">
-          <b>${chart.amDuongNamNu}</b> | Bản Mệnh: <b>${chart.napAm}</b><br>
-          Cục Số: <b>${chart.cucName}</b><br>
-          Năm: <b>${chart.yearCanChi}</b> | Tháng: <b>${chart.monthCanChi}</b><br>
-          Mệnh cư: <b>${chart.menhCungChi}</b> | Thân cư: <b>${chart.thanCungChi}</b>
+        <svg class="thien-ban-bg-taiji" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <path d="M50 10 A40 40 0 0 1 50 90 A20 20 0 0 1 50 50 A20 20 0 0 0 50 10 Z" fill="#f59e0b" opacity="0.4"/>
+          <path d="M50 90 A40 40 0 0 1 50 10 A20 20 0 0 1 50 50 A20 20 0 0 0 50 90 Z" fill="#000" opacity="0.4"/>
+        </svg>
+        <div class="tb-name">${chart.name}</div>
+        <div class="tb-info-grid">
+          <div>Âm Dương: <b>${chart.amDuongNamNu}</b></div>
+          <div>Bản Mệnh: <b>${chart.napAm}</b></div>
+          <div>Cục Số: <b>${chart.cucName}</b></div>
+          <div>Can Chi Năm: <b>${chart.yearCanChi}</b></div>
+          <div>Tháng Sinh: <b>${chart.monthCanChi}</b></div>
+          <div>Giờ Sinh: <b>${chart.chiHour}</b></div>
+          <div>Mệnh Cư: <b>${chart.menhCungChi}</b></div>
+          <div>Thân Cư: <b>${chart.thanCungChi}</b></div>
         </div>
       `;
       grid.appendChild(thienBan);
 
-      // Default to show Destiny Palace (Mệnh) details
-      showPalaceDetails(data.palaces[chart.menhChiIdx]);
+      // Render Palace Quick Chooser Bar
+      renderPalaceQuickBar(data.palaces);
+
+      // Default select Destiny Palace (Mệnh)
+      selectPalace(data.palaces[chart.menhChiIdx]);
     }
 
-    function showPalaceDetails(palace) {
-      document.querySelectorAll('.palace-cell').forEach(c => c.classList.remove('active-palace'));
-      const activeCell = document.querySelector(`.cell-${palace.chiIdx}`);
-      if (activeCell) activeCell.classList.add('active-palace');
+    function renderPalaceQuickBar(palaces) {
+      const bar = document.getElementById('palaceQuickBar');
+      if (!bar) return;
+      bar.innerHTML = '';
+      palaces.forEach(p => {
+        const chip = document.createElement('div');
+        chip.className = `palace-chip chip-${p.chiIdx}`;
+        chip.innerHTML = `<b>${p.name}</b> (${p.chi})`;
+        chip.onclick = () => selectPalace(p);
+        bar.appendChild(chip);
+      });
+    }
 
-      document.getElementById('selectedPalaceName').textContent = `Cung ${palace.name} (${palace.chi})`;
+    function selectPalace(palace) {
+      selectedPalace = palace;
+      document.querySelectorAll('.palace-item').forEach(el => el.classList.remove('is-selected'));
+      document.querySelectorAll('.palace-chip').forEach(el => el.classList.remove('active'));
+
+      const cell = document.getElementById(`palace_cell_${palace.chiIdx}`);
+      if (cell) cell.classList.add('is-selected');
+
+      const chip = document.querySelector(`.chip-${palace.chiIdx}`);
+      if (chip) chip.classList.add('active');
+
+      document.getElementById('selectedPalaceName').textContent = `Cung ${palace.name} (tại ${palace.canChi})`;
       const container = document.getElementById('commentaryContent');
       container.innerHTML = '';
 
-      let foundItems = [];
-
+      let found = [];
       if (buuDinhDb) {
-        // Search by palace name
-        if (buuDinhDb.palaces[palace.name.toUpperCase()]) {
-          foundItems = foundItems.concat(buuDinhDb.palaces[palace.name.toUpperCase()].slice(0, 4));
+        if (buuDinhDb.palaces && buuDinhDb.palaces[palace.name.toUpperCase()]) {
+          found = found.concat(buuDinhDb.palaces[palace.name.toUpperCase()]);
         }
-
-        // Search by major stars in this palace
-        palace.chinhTinh.forEach(star => {
-          const sUpper = star.name.toUpperCase();
-          if (buuDinhDb.stars[sUpper]) {
-            foundItems = foundItems.concat(buuDinhDb.stars[sUpper].slice(0, 3));
+        palace.chinhTinh.forEach(st => {
+          const u = st.name.toUpperCase();
+          if (buuDinhDb.stars && buuDinhDb.stars[u]) {
+            found = found.concat(buuDinhDb.stars[u].slice(0, 3));
           }
         });
       }
 
-      if (foundItems.length === 0) {
+      if (found.length === 0) {
         container.innerHTML = `
-          <div class="commentary-item">
-            <b>Cung ${palace.name} tại cung ${palace.chi}:</b>
-            Chính tinh: ${palace.chinhTinh.map(s => s.name).join(', ') || 'Vô chính diệu'}.
-            Đại vận khởi từ năm ${palace.daiVan} tuổi. Phương pháp Bửu Đình nhận định đây là cung vị biểu hiện tính cách và năng lực hành động thực tiễn của thân chủ.
+          <div class="commentary-item-card">
+            <b>Luận giải Cung ${palace.name}:</b><br>
+            Cung đóng tại phương vị <b>${palace.canChi}</b>, thuộc đại vận khởi từ năm <b>${palace.daiVan}</b> tuổi.<br>
+            Chính tinh hội tụ: <b>${palace.chinhTinh.map(s => `${s.name} [${s.brightness}]`).join(', ') || 'Vô chính diệu'}</b>.<br>
+            Phương pháp Bửu Đình nhấn mạnh đây là cung vị thể hiện khả năng hành động và kết nối xã hội của thân chủ.
           </div>
         `;
       } else {
-        foundItems.forEach(text => {
+        found.forEach(txt => {
           const div = document.createElement('div');
-          div.className = 'commentary-item';
-          div.textContent = text;
+          div.className = 'commentary-item-card';
+          div.textContent = txt;
           container.appendChild(div);
         });
       }
     }
 
+    function askAiAboutPalace() {
+      if (!selectedPalace) return;
+      switchTab('aiTab', document.querySelectorAll('.tab-btn')[2]);
+      const inp = document.getElementById('aiInput');
+      inp.value = `Hãy phân tích chi tiết cung ${selectedPalace.name} tại ${selectedPalace.canChi} theo phương pháp cụ Bửu Đình.`;
+      sendAiMessage();
+    }
+
+    // Library Rendering & Search
     function renderLibraryInitial() {
       const container = document.getElementById('libraryResults');
       if (!container || !buuDinhDb) return;
       container.innerHTML = '';
 
-      // Sample first 30 entries from general and stars
-      const items = (buuDinhDb.stars['TỬ VI'] || []).slice(0, 15).concat((buuDinhDb.principles || []).slice(0, 15));
-      items.forEach((txt, idx) => {
+      let items = [];
+      if (buuDinhDb.stars) {
+        Object.keys(buuDinhDb.stars).slice(0, 10).forEach(st => {
+          buuDinhDb.stars[st].slice(0, 2).forEach(t => items.push({ title: st, text: t }));
+        });
+      }
+
+      items.forEach(it => {
         const card = document.createElement('div');
-        card.className = 'lib-card';
-        card.innerHTML = `
-          <h4>Tiểu Luận Bửu Đình #${idx + 1}</h4>
-          <p>${txt}</p>
-        `;
-        card.onclick = () => alert(txt);
+        card.className = 'lib-entry-card';
+        card.innerHTML = `<h4>${it.title}</h4><p>${it.text}</p>`;
+        card.onclick = () => alert(it.text);
         container.appendChild(card);
       });
     }
 
     function searchLibrary() {
-      const query = document.getElementById('libSearchInput').value.toLowerCase().trim();
+      const q = document.getElementById('libSearchInput').value.toLowerCase().trim();
       const container = document.getElementById('libraryResults');
       container.innerHTML = '';
 
-      if (!query || !buuDinhDb) {
+      if (!q || !buuDinhDb) {
         renderLibraryInitial();
         return;
       }
 
       let matches = [];
-      Object.keys(buuDinhDb.stars).forEach(s => {
-        buuDinhDb.stars[s].forEach(txt => {
-          if (txt.toLowerCase().includes(query)) matches.push({ title: s, text: txt });
+      if (buuDinhDb.stars) {
+        Object.keys(buuDinhDb.stars).forEach(s => {
+          buuDinhDb.stars[s].forEach(t => {
+            if (t.toLowerCase().includes(q) || s.toLowerCase().includes(q)) {
+              matches.push({ title: s, text: t });
+            }
+          });
         });
-      });
+      }
 
       matches.slice(0, 40).forEach(m => {
         const card = document.createElement('div');
-        card.className = 'lib-card';
-        card.innerHTML = `
-          <h4>${m.title}</h4>
-          <p>${m.text}</p>
-        `;
+        card.className = 'lib-entry-card';
+        card.innerHTML = `<h4>${m.title}</h4><p>${m.text}</p>`;
         card.onclick = () => alert(m.text);
         container.appendChild(card);
       });
     }
 
+    // AI Chat Messaging
     function sendAiMessage() {
       const inp = document.getElementById('aiInput');
       const text = inp.value.trim();
@@ -653,38 +1429,24 @@
 
       const chat = document.getElementById('chatMessages');
       const userDiv = document.createElement('div');
-      userDiv.className = 'chat-msg msg-user';
+      userDiv.className = 'msg-bubble user';
       userDiv.textContent = text;
       chat.appendChild(userDiv);
       inp.value = '';
 
       setTimeout(() => {
         const aiDiv = document.createElement('div');
-        aiDiv.className = 'chat-msg msg-ai';
-        aiDiv.innerHTML = `<b>Bửu Đình AI Luận Giải:</b> Về câu hỏi <i>"${text}"</i>, căn cứ vào cung Mệnh của thân chủ ${currentChart ? currentChart.name : 'bạn'} (Năm sinh: ${currentChart ? currentChart.yearCanChi : 'Ất Hợi'}, Mệnh ${currentChart ? currentChart.napAm : 'Sơn Đầu Hỏa'}), phương pháp luận giải Bửu Đình nhấn mạnh tính cách độc lập, ưa gánh vác việc lớn và không quản ngại khó khăn.`;
+        aiDiv.className = 'msg-bubble ai';
+        aiDiv.innerHTML = `<b>Bửu Đình AI Luận Giải:</b> Về câu hỏi của bạn: <i>"${text}"</i>.<br><br>
+        Xét lá số của thân chủ <b>${currentChart ? currentChart.name : 'bạn'}</b> (Bản mệnh: ${currentChart ? currentChart.napAm : 'Sa Trung Kim'}, Cục: ${currentChart ? currentChart.cucName : 'Thủy Nhị Cục'}), phương pháp Bửu Đình chỉ rõ: <i>"Tinh thần Tử Vi Ứng Dụng là gánh vác trách nhiệm, không ỷ lại số mệnh."</i> Cung vị này hội tụ nhiều cơ hội nhưng cần sự kiên trì và tính hành động dứt khoát để nắm bắt vận may.`;
         chat.appendChild(aiDiv);
         chat.scrollTop = chat.scrollHeight;
-      }, 500);
+      }, 400);
     }
 
-    function exportChartPng() {
-      window.print();
-    }
-
-    function shareChartQr() {
-      alert("Đã tạo mã QR chia sẻ Lá Số: https://applied-astrology.visicons.io/chart?user=NguyenVanAn");
-    }
-
-    function checkVpnStatus() {
-      const st = document.getElementById('vpnStatus');
-      st.textContent = "Đang kiểm tra kết nối VPN & DNS bên ngoài...";
-      setTimeout(() => {
-        st.textContent = "VPN/DNS Ngoại vi: Hoạt động bình thường (Độ trễ: 24ms, IP bảo mật)";
-      }, 600);
-    }
-
-    // Auto generate on startup
+    // Startup Initialization
     window.addEventListener('DOMContentLoaded', () => {
+      loadAstrologyDatabase();
       generateChart();
     });
   </script>

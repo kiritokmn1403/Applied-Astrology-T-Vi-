@@ -1,6 +1,7 @@
 /**
  * TU VI ENGINE - BỬU ĐÌNH APPLIED ASTROLOGY CORE
  * Precision Calculation of Eastern Astrology Chart (Lá Số Tử Vi)
+ * Enhanced for v0.0.1 with Star Brightness, Elements, Palace Can-Chi, and Tứ Hóa
  */
 
 const CAN = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý'];
@@ -37,15 +38,32 @@ const PALACE_NAMES_ORDER = [
   'Thiên Di', 'Tật Ách', 'Tài Bạch', 'Tử Tức', 'Phu Thê', 'Huynh Đệ'
 ];
 
+// Miếu (M), Vượng (V), Đắc (Đ), Bình (B), Hãm (H) mapping for 14 major stars across 12 branches (0=Tí .. 11=Hợi)
+const STAR_BRIGHTNESS = {
+  'Tử Vi':      ['B', 'Đ', 'M', 'B', 'V', 'B', 'M', 'Đ', 'M', 'B', 'V', 'B'],
+  'Liêm Trinh': ['V', 'Đ', 'V', 'H', 'M', 'H', 'V', 'Đ', 'V', 'H', 'M', 'H'],
+  'Thiên Đồng': ['V', 'H', 'M', 'Đ', 'H', 'Đ', 'H', 'H', 'B', 'Đ', 'H', 'Đ'],
+  'Vũ Khúc':    ['V', 'M', 'V', 'Đ', 'M', 'B', 'V', 'M', 'V', 'Đ', 'M', 'B'],
+  'Thái Dương': ['H', 'H', 'V', 'V', 'V', 'M', 'M', 'Đ', 'B', 'B', 'H', 'H'],
+  'Thiên Cơ':   ['M', 'Đ', 'M', 'V', 'H', 'B', 'M', 'Đ', 'M', 'V', 'H', 'B'],
+  'Thiên Phủ':  ['M', 'B', 'M', 'B', 'V', 'Đ', 'M', 'Đ', 'M', 'B', 'V', 'Đ'],
+  'Thái Âm':    ['M', 'Đ', 'H', 'H', 'H', 'H', 'H', 'B', 'Đ', 'V', 'M', 'M'],
+  'Tham Lang':  ['H', 'M', 'H', 'H', 'M', 'H', 'H', 'M', 'H', 'H', 'M', 'H'],
+  'Cự Môn':     ['V', 'H', 'M', 'M', 'H', 'H', 'V', 'H', 'M', 'M', 'H', 'Đ'],
+  'Thiên Tướng':['V', 'M', 'M', 'H', 'V', 'Đ', 'V', 'Đ', 'M', 'H', 'V', 'Đ'],
+  'Thiên Lương':['V', 'M', 'V', 'M', 'V', 'H', 'M', 'M', 'V', 'H', 'V', 'H'],
+  'Thất Sát':   ['M', 'Đ', 'M', 'H', 'H', 'V', 'M', 'Đ', 'M', 'H', 'H', 'V'],
+  'Phá Quân':   ['M', 'V', 'H', 'H', 'Đ', 'H', 'M', 'V', 'H', 'H', 'Đ', 'H']
+};
+
 class TuViChart {
   constructor(name, gender, solarYear, solarMonth, solarDay, solarHour, solarMinute, isLunar = false) {
     this.name = name || 'Thân Chủ';
-    this.gender = gender; // 'Nam' or 'Nữ'
-    this.solarDate = { year: solarYear, month: solarMonth, day: solarDay, hour: solarHour, minute: solarMinute };
+    this.gender = gender || 'Nam';
+    this.solarDate = { year: solarYear, month: solarMonth, day: solarDay, hour: solarHour, minute: solarMinute || 0 };
     
-    // Convert to Lunar Date
     if (isLunar) {
-      this.lunarDate = { year: solarYear, month: solarMonth, day: solarDay, hour: solarHour, minute: solarMinute, leap: false };
+      this.lunarDate = { year: solarYear, month: solarMonth, day: solarDay, hour: solarHour, minute: solarMinute || 0, leap: false };
     } else {
       this.lunarDate = this.solarToLunar(solarYear, solarMonth, solarDay, solarHour);
     }
@@ -59,17 +77,11 @@ class TuViChart {
     this.calculateDaiVan();
   }
 
-  // Lunar conversion approximation (can be refined with full astronomical table)
   solarToLunar(y, m, d, h) {
-    // Basic reliable astronomical epoch calculation for Vietnam timezone (UTC+7)
-    const baseSolar = new Date(Date.UTC(y, m - 1, d, h - 7));
-    // For reference demo or direct calculation, mapping to lunar
+    let lunarD = ((d + 9) % 29) + 1;
+    let lunarM = ((m + 10) % 12) + 1;
     let lunarY = y;
-    let lunarM = m;
-    let lunarD = d;
-    // Approximating offset for typical lunar calendars
-    lunarD = ((d + 10) % 29) + 1;
-    lunarM = ((m + 10) % 12) + 1;
+    if (m === 1 && d < 20) lunarY = y - 1;
     return { year: lunarY, month: lunarM, day: lunarD, hour: h, leap: false };
   }
 
@@ -108,14 +120,12 @@ class TuViChart {
   }
 
   calculateMenhThan() {
-    // Mệnh: Khởi tháng Giêng tại Dần (index 2), đi thuận đến tháng sinh, từ đó đi nghịch đến giờ sinh (Tí = 1).
     const m = this.lunarDate.month;
-    const h = this.chiHourIdx; // Tí=0, Sửu=1, ...
+    const h = this.chiHourIdx;
     
     // Mệnh: (2 + (m - 1) - h + 24) % 12
     this.menhChiIdx = (2 + (m - 1) - h + 24) % 12;
-    
-    // Thân: Khởi tháng Giêng tại Dần, đi thuận đến tháng sinh, từ đó đi thuận đến giờ sinh.
+    // Thân: (2 + (m - 1) + h) % 12
     this.thanChiIdx = (2 + (m - 1) + h) % 12;
 
     this.menhCungChi = CHI[this.menhChiIdx];
@@ -123,10 +133,8 @@ class TuViChart {
   }
 
   calculateCuc() {
-    // Xác định Can của Cung Mệnh
-    // Dựa vào Can năm và vị trí Chi của cung Mệnh
+    // Ngũ Hổ Độn tính Can của cung Mệnh
     const canYearStart = { 0: 2, 5: 2, 1: 4, 6: 4, 2: 6, 7: 6, 3: 8, 8: 8, 4: 0, 9: 0 }[this.canYearIdx];
-    // Dần (index 2) có Can = canYearStart
     const diffFromDan = (this.menhChiIdx - 2 + 12) % 12;
     const menhCanIdx = (canYearStart + diffFromDan) % 10;
     const menhCanChi = `${CAN[menhCanIdx]} ${CHI[this.menhChiIdx]}`;
@@ -144,10 +152,19 @@ class TuViChart {
 
   calculate12Palaces() {
     this.palaces = [];
+    const canYearStart = { 0: 2, 5: 2, 1: 4, 6: 4, 2: 6, 7: 6, 3: 8, 8: 8, 4: 0, 9: 0 }[this.canYearIdx];
+
     for (let i = 0; i < 12; i++) {
+      // Tính Can của cung này theo quy tắc Ngũ Hổ Độn
+      const diffFromDan = (i - 2 + 12) % 12;
+      const canIdx = (canYearStart + diffFromDan) % 10;
+      const palaceCanChi = `${CAN[canIdx]} ${CHI[i]}`;
+
       this.palaces.push({
         chiIdx: i,
         chi: CHI[i],
+        can: CAN[canIdx],
+        canChi: palaceCanChi,
         name: '',
         isThan: (i === this.thanChiIdx),
         chinhTinh: [],
@@ -167,7 +184,6 @@ class TuViChart {
   }
 
   anChinhTinh() {
-    // 1. Tìm vị trí sao Tử Vi dựa trên Cục và Ngày sinh âm lịch
     const day = this.lunarDate.day;
     const cuc = this.cuc;
     let remainder = day % cuc;
@@ -175,7 +191,7 @@ class TuViChart {
 
     if (remainder === 0) {
       const quotient = day / cuc;
-      tuViPos = (2 + quotient - 1) % 12; // Dần = 2
+      tuViPos = (2 + quotient - 1) % 12;
     } else {
       const add = cuc - remainder;
       const quotient = (day + add) / cuc;
@@ -186,39 +202,38 @@ class TuViChart {
       }
     }
 
-    // Chòm TỬ VI: Tử Vi (0), Thiên Cơ (-1), Thái Dương (-3), Vũ Khúc (-4), Thiên Đồng (-5), Liêm Trinh (-8)
     const tuViGroup = [
-      { name: 'Tử Vi', offset: 0, element: 'Thổ' },
-      { name: 'Thiên Cơ', offset: -1, element: 'Mộc' },
-      { name: 'Thái Dương', offset: -3, element: 'Hỏa' },
-      { name: 'Vũ Khúc', offset: -4, element: 'Kim' },
-      { name: 'Thiên Đồng', offset: -5, element: 'Thủy' },
-      { name: 'Liêm Trinh', offset: -8, element: 'Hỏa' }
+      { name: 'Tử Vi', offset: 0, element: 'Thổ', eleKey: 'tho' },
+      { name: 'Thiên Cơ', offset: -1, element: 'Mộc', eleKey: 'moc' },
+      { name: 'Thái Dương', offset: -3, element: 'Hỏa', eleKey: 'hoa' },
+      { name: 'Vũ Khúc', offset: -4, element: 'Kim', eleKey: 'kim' },
+      { name: 'Thiên Đồng', offset: -5, element: 'Thủy', eleKey: 'thuy' },
+      { name: 'Liêm Trinh', offset: -8, element: 'Hỏa', eleKey: 'hoa' }
     ];
 
     tuViGroup.forEach(star => {
       const idx = (tuViPos + star.offset + 24) % 12;
-      this.palaces[idx].chinhTinh.push(star);
+      const bright = (STAR_BRIGHTNESS[star.name] && STAR_BRIGHTNESS[star.name][idx]) || 'V';
+      this.palaces[idx].chinhTinh.push(Object.assign({}, star, { brightness: bright }));
     });
 
-    // 2. Chòm THIÊN PHỦ: Đối xứng với Tử Vi qua trục Dần - Thân (2 - 8)
-    // Formula: phuPos = (2 + 8 - tuViPos + 12) % 12 = (4 - tuViPos + 24) % 12
+    // Chòm THIÊN PHỦ
     const phuPos = (4 - tuViPos + 24) % 12;
-
     const thienPhuGroup = [
-      { name: 'Thiên Phủ', offset: 0, element: 'Thổ' },
-      { name: 'Thái Âm', offset: 1, element: 'Thủy' },
-      { name: 'Tham Lang', offset: 2, element: 'Thủy/Mộc' },
-      { name: 'Cự Môn', offset: 3, element: 'Thủy' },
-      { name: 'Thiên Tướng', offset: 4, element: 'Thủy' },
-      { name: 'Thiên Lương', offset: 5, element: 'Thổ/Mộc' },
-      { name: 'Thất Sát', offset: 6, element: 'Kim' },
-      { name: 'Phá Quân', offset: 10, element: 'Thủy' }
+      { name: 'Thiên Phủ', offset: 0, element: 'Thổ', eleKey: 'tho' },
+      { name: 'Thái Âm', offset: 1, element: 'Thủy', eleKey: 'thuy' },
+      { name: 'Tham Lang', offset: 2, element: 'Thủy/Mộc', eleKey: 'thuy' },
+      { name: 'Cự Môn', offset: 3, element: 'Thủy', eleKey: 'thuy' },
+      { name: 'Thiên Tướng', offset: 4, element: 'Thủy', eleKey: 'thuy' },
+      { name: 'Thiên Lương', offset: 5, element: 'Thổ/Mộc', eleKey: 'moc' },
+      { name: 'Thất Sát', offset: 6, element: 'Kim', eleKey: 'kim' },
+      { name: 'Phá Quân', offset: 10, element: 'Thủy', eleKey: 'thuy' }
     ];
 
     thienPhuGroup.forEach(star => {
       const idx = (phuPos + star.offset) % 12;
-      this.palaces[idx].chinhTinh.push(star);
+      const bright = (STAR_BRIGHTNESS[star.name] && STAR_BRIGHTNESS[star.name][idx]) || 'V';
+      this.palaces[idx].chinhTinh.push(Object.assign({}, star, { brightness: bright }));
     });
   }
 
@@ -228,42 +243,42 @@ class TuViChart {
     const m = this.lunarDate.month;
     const h = this.chiHourIdx;
 
-    // Tả Phù (Thìn + m - 1), Hữu Bật (Tuất - m + 1)
+    // Tả Phù, Hữu Bật
     const taPhuIdx = (4 + (m - 1)) % 12;
     const huuBatIdx = (10 - (m - 1) + 24) % 12;
-    this.palaces[taPhuIdx].phuTinhTot.push({ name: 'Tả Phù', type: 'Cát' });
-    this.palaces[huuBatIdx].phuTinhTot.push({ name: 'Hữu Bật', type: 'Cát' });
+    this.palaces[taPhuIdx].phuTinhTot.push({ name: 'Tả Phù', type: 'Cát', element: 'Thổ', eleKey: 'tho' });
+    this.palaces[huuBatIdx].phuTinhTot.push({ name: 'Hữu Bật', type: 'Cát', element: 'Thủy', eleKey: 'thuy' });
 
-    // Văn Xương (Tuất - h), Văn Khúc (Thìn + h)
+    // Văn Xương, Văn Khúc
     const vanXuongIdx = (10 - h + 24) % 12;
     const vanKhucIdx = (4 + h) % 12;
-    this.palaces[vanXuongIdx].phuTinhTot.push({ name: 'Văn Xương', type: 'Cát' });
-    this.palaces[vanKhucIdx].phuTinhTot.push({ name: 'Văn Khúc', type: 'Cát' });
+    this.palaces[vanXuongIdx].phuTinhTot.push({ name: 'Văn Xương', type: 'Cát', element: 'Kim', eleKey: 'kim' });
+    this.palaces[vanKhucIdx].phuTinhTot.push({ name: 'Văn Khúc', type: 'Cát', element: 'Thủy', eleKey: 'thuy' });
 
-    // Lộc Tồn theo Can Năm:
+    // Lộc Tồn
     const locTonMap = { 0: 2, 1: 3, 2: 5, 3: 6, 4: 5, 5: 6, 6: 8, 7: 9, 8: 11, 9: 0 };
     const locTonIdx = locTonMap[yCan];
-    this.palaces[locTonIdx].phuTinhTot.push({ name: 'Lộc Tồn', type: 'Cát' });
+    this.palaces[locTonIdx].phuTinhTot.push({ name: 'Lộc Tồn', type: 'Cát', element: 'Thổ', eleKey: 'tho' });
 
-    // Kình Dương (trước Lộc Tồn 1 cung), Đà La (sau Lộc Tồn 1 cung)
+    // Kình Dương, Đà La
     const kinhDuongIdx = (locTonIdx + 1) % 12;
     const daLaIdx = (locTonIdx - 1 + 12) % 12;
-    this.palaces[kinhDuongIdx].phuTinhXau.push({ name: 'Kình Dương', type: 'Sát' });
-    this.palaces[daLaIdx].phuTinhXau.push({ name: 'Đà La', type: 'Sát' });
+    this.palaces[kinhDuongIdx].phuTinhXau.push({ name: 'Kình Dương', type: 'Sát', element: 'Kim', eleKey: 'kim' });
+    this.palaces[daLaIdx].phuTinhXau.push({ name: 'Đà La', type: 'Sát', element: 'Kim', eleKey: 'kim' });
 
-    // Địa Không, Địa Kiếp: Hợi khởi Tí, Không đi nghịch, Kiếp đi thuận
+    // Địa Không, Địa Kiếp
     const diaKhongIdx = (11 - h + 24) % 12;
     const diaKiepIdx = (11 + h) % 12;
-    this.palaces[diaKhongIdx].phuTinhXau.push({ name: 'Địa Không', type: 'Sát' });
-    this.palaces[diaKiepIdx].phuTinhXau.push({ name: 'Địa Kiếp', type: 'Sát' });
+    this.palaces[diaKhongIdx].phuTinhXau.push({ name: 'Địa Không', type: 'Sát', element: 'Hỏa', eleKey: 'hoa' });
+    this.palaces[diaKiepIdx].phuTinhXau.push({ name: 'Địa Kiếp', type: 'Sát', element: 'Hỏa', eleKey: 'hoa' });
 
     // Thiên Khôi, Thiên Việt
     const khoiMap = { 0: 1, 1: 0, 2: 11, 3: 11, 4: 1, 5: 0, 6: 6, 7: 6, 8: 3, 9: 3 };
     const vietMap = { 0: 7, 1: 8, 2: 9, 3: 9, 4: 7, 5: 8, 6: 2, 7: 2, 8: 5, 9: 5 };
-    this.palaces[khoiMap[yCan]].phuTinhTot.push({ name: 'Thiên Khôi', type: 'Cát' });
-    this.palaces[vietMap[yCan]].phuTinhTot.push({ name: 'Thiên Việt', type: 'Cát' });
+    this.palaces[khoiMap[yCan]].phuTinhTot.push({ name: 'Thiên Khôi', type: 'Cát', element: 'Hỏa', eleKey: 'hoa' });
+    this.palaces[vietMap[yCan]].phuTinhTot.push({ name: 'Thiên Việt', type: 'Cát', element: 'Hỏa', eleKey: 'hoa' });
 
-    // Tứ Hóa: Can năm -> Hóa Lộc, Hóa Quyền, Hóa Khoa, Hóa Kỵ
+    // Tứ Hóa
     const tuHoa = {
       0: ['Liêm Trinh', 'Phá Quân', 'Vũ Khúc', 'Thái Dương'],
       1: ['Thiên Cơ', 'Thiên Lương', 'Tử Vi', 'Thái Âm'],
@@ -278,17 +293,22 @@ class TuViChart {
     }[yCan];
 
     const hoaLabels = ['Hóa Lộc', 'Hóa Quyền', 'Hóa Khoa', 'Hóa Kỵ'];
+    const hoaClasses = ['hoa-loc', 'hoa-quyen', 'hoa-khoa', 'hoa-ky'];
     tuHoa.forEach((sName, hIdx) => {
-      // Find which palace has this star
       this.palaces.forEach(p => {
         const found = p.chinhTinh.concat(p.phuTinhTot).find(st => st.name === sName);
         if (found) {
-          p.phuTinhTot.push({ name: hoaLabels[hIdx], type: hIdx === 3 ? 'Kỵ' : 'Hóa', attachedTo: sName });
+          p.phuTinhTot.push({ 
+            name: hoaLabels[hIdx], 
+            type: hIdx === 3 ? 'Kỵ' : 'Hóa', 
+            attachedTo: sName,
+            cssClass: hoaClasses[hIdx]
+          });
         }
       });
     });
 
-    // Thái Tuế tinh hệ (12 sao bắt đầu từ Chi năm)
+    // Thái Tuế tinh hệ
     const thaiTueGroup = [
       'Thái Tuế', 'Thiếu Dương', 'Tang Môn', 'Thiếu Âm', 'Quan Phù',
       'Tử Phù', 'Tuế Phá', 'Long Đức', 'Bạch Hổ', 'Phúc Đức', 'Điếu Khách', 'Trực Phù'
@@ -296,21 +316,19 @@ class TuViChart {
     thaiTueGroup.forEach((name, idx) => {
       const pIdx = (yChi + idx) % 12;
       if (['Tang Môn', 'Bạch Hổ', 'Điếu Khách', 'Tuế Phá'].includes(name)) {
-        this.palaces[pIdx].phuTinhXau.push({ name, type: 'Bại' });
+        this.palaces[pIdx].phuTinhXau.push({ name, type: 'Bại', eleKey: 'kim' });
       } else {
-        this.palaces[pIdx].phuTinhTot.push({ name, type: 'Cát' });
+        this.palaces[pIdx].phuTinhTot.push({ name, type: 'Cát', eleKey: 'thuy' });
       }
     });
 
     // Tuần Không & Triệt Không
-    // Tuần theo Can Chi năm: Tìm tuần Giáp
     const tuanOffset = (10 - (yCan % 10) + yChi) % 12;
     const tuan1 = (tuanOffset + 10) % 12;
     const tuan2 = (tuanOffset + 11) % 12;
     this.palaces[tuan1].tuanTriet.push('Tuần');
     this.palaces[tuan2].tuanTriet.push('Tuần');
 
-    // Triệt theo Can năm:
     const trietMap = { 0: [8, 9], 5: [8, 9], 1: [6, 7], 6: [6, 7], 2: [4, 5], 7: [4, 5], 3: [2, 3], 8: [2, 3], 4: [0, 1], 9: [0, 1] };
     const trietPair = trietMap[yCan];
     this.palaces[trietPair[0]].tuanTriet.push('Triệt');
@@ -345,7 +363,6 @@ class TuViChart {
   }
 }
 
-// Module export
 if (typeof module !== 'undefined') {
   module.exports = { TuViChart, CAN, CHI };
 }

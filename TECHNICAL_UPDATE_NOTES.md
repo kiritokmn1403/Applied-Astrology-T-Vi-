@@ -121,10 +121,52 @@ Bản phát hành đầu tiên đánh dấu sự chuyển đổi lịch sử t�
 
 ## 7. Bảng Mã Hash Kiểm Tra Tính Toàn Vẹn (SHA-256 Checksums)
 ```
-803a4877c2046b9bc9b222e55df9107ff24bd1cd0f0d3b6286e78a817665e4c2  AppliedAstrology-0.0.1-arm64-v8a.apk
-72d509f4a0c64064360f97be48c95122dbf2a859a3ceadb0ae0f1232b802b9a4  AppliedAstrology-0.0.1-armeabi-v7a.apk
-43b86458c2381e3c74a2e279808d2f8d8ed515d1a502c92c009099ad4fd21662  AppliedAstrology-0.0.1-x86_64.apk
-e3190927031a2a051d52cf01fd422fa3c8067807f7208b3194bb205a764e9772  AppliedAstrology-0.0.1-windows-x64-Setup.exe
-3369d206f7c0846a71b68746a570a5c44dde5ff7b8ebfa268c6207852cda725b  AppliedAstrology-0.0.1-windows-x64.appxbundle
-b0ebd784fecac43f85ebdad21446b9d8f456a01739f9800e630b178ea0d0faa3  AppliedAstrology-0.0.1-windows-x64.zip
+44a7ba677324f632fb1e1e64cdba939dc66cc5202ea9f90dd8f56a19d14d2e23 *AppliedAstrology-0.0.1-arm64-v8a.apk
+11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-armeabi-v7a.apk
+11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-x86_64.apk
+7161ad7208a8b4fb7f76a525409ad6c0941ef7741c6e864cd2ed83167f7a2052 *AppliedAstrology-0.0.1-windows-x64.zip
+50ed58864ca76c35e5e24cfb32c54428f3a055a4692173131158409bc1d00ce8 *AppliedAstrology-0.0.1-windows-x64-Setup.exe
+d08305b7f2c9f9e039370dc60d1c4455078f6f3644a27caf85d90bf8b172c7b6 *AppliedAstrology-0.0.1-windows-x64.appxbundle
 ```
+
+---
+
+## 8. Nhật Ký Nâng Cấp Giao Diện & Tách Biệt Cài Đặt (Refinement Update)
+**Thời điểm thực hiện**: 01/11/2026 22:05  
+**Nội dung thực hiện theo yêu cầu trực tiếp của người dùng**:
+
+1. **Khắc phục triệt để lỗi ảnh (Broken Image)**:
+   - *Nguyên nhân phát hiện*: Lệnh copy tài nguyên trong PowerShell vô tình tạo thư mục lồng `assets/assets/assets`, đồng thời Android WebView chặn giao thức `file:///` khi nạp ảnh ngoại vi.
+   - *Xử lý*:
+     - Nhúng trực tiếp thành phần đồ họa véc-tơ SVG (Inline SVG) của Logo và Bát Quái Thái Cực vào đầu trang `index.html` và trung tâm Thiên Bàn, đảm bảo **100% không bao giờ bị lỗi ảnh** ngay cả khi mất mạng hoặc WebView chặn tài nguyên cục bộ.
+     - Cấu hình bổ sung trong `MainActivity.java`: `s.setAllowFileAccessFromFileURLs(true); s.setAllowUniversalAccessFromFileURLs(true);`
+     - Sửa lệnh đóng gói trong `build_apk_split.ps1` để đưa toàn bộ tệp assets vào đúng vị trí gốc `file:///android_asset/assets/`.
+
+2. **Khắc phục lỗi font chữ & Đại tu thẩm mỹ Giao diện (Luxury Celestial Theme)**:
+   - *Nguyên nhân*: Bàn vuông 4x4 trên màn hình dọc của điện thoại bị ép hẹp dưới 85px/cột khiến chữ Việt có dấu (ươ, ê, ô, dấu hỏi/ngã/nặng) bị tràn, đè vỡ và ngắt dòng dị dạng.
+   - *Xử lý*:
+     - Thiết lập chuẩn typography: `font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Be Vietnam Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;`
+     - Bổ sung thanh điều hướng nhanh 12 Cung (Quick Palace Chooser Bar: Tý đến Hợi) giúp người dùng chạm vào xem ngay nội dung từng cung mà không lo chữ bị đè nén.
+     - Đặt giới hạn chiều rộng tối thiểu 540px cho bàn Tử Vi 4x4 kết hợp cơ chế cuộn ngang và phóng to thu nhỏ mượt mà trên di động.
+     - Bổ sung ký hiệu Ngũ Hành màu sắc trực quan (Kim = Trắng, Mộc = Xanh lục, Thủy = Xanh lam, Hỏa = Đỏ, Thổ = Vàng) và thẻ mức độ sáng Đắc Miếu Hãm `[M]`, `[V]`, `[Đ]`, `[B]`, `[H]` cho toàn bộ 14 chính tinh.
+
+3. **Tách biệt cài đặt vào tệp độc lập (`settings.js` & `settings.json`)**:
+   - Chuyển toàn bộ logic quản lý, lưu trữ và giao diện cài đặt ra module độc lập `settings.js`.
+   - Quản lý tập trung:
+     - Chế độ Samsung DeX / Desktop đa màn hình.
+     - Chuyển đổi 19 ngôn ngữ quốc tế (kế thừa tiêu chuẩn YomiHub/Aniyomi).
+     - Đổi chủ đề màu sắc phong thủy: *Huyền Không Tinh Tú*, *Hoàng Triều Kim Sắc*, *Bạch Ngọc Cung Đình*, *Chu Sa Cát Tường*.
+     - Thu phóng cỡ chữ (Font Scaling): Compact / Normal / Large.
+     - Kiểm thử bảo mật mạng & chẩn đoán VPN ngoại vi.
+     - Xuất/nhập file sao lưu cá nhân hóa dạng JSON.
+   - Cung cấp tệp cấu hình máy đọc `settings.json` cho các hệ thống cấu hình ngoại vi.
+
+4. **Kiểm thử thực tế sau nâng cấp**:
+   - Cài đặt lại gói `AppliedAstrology-0.0.1-arm64-v8a.apk` lên **Samsung Galaxy Note 9 (`SM-N960N`, Android 10)**.
+   - Kiểm tra trực quan: Logo hiển thị rực rỡ, font chữ sắc nét chuẩn mực, thanh điều hướng 12 cung phản hồi tức thì, hộp thoại Cài đặt độc lập hoạt động trơn tru.
+   - Chụp lại toàn bộ bộ ảnh minh chứng cập nhật:
+     - `screenshots/test_android_note9.png` (Giao diện lá số mới không lỗi font/ảnh)
+     - `screenshots/test_android_settings.png` (Hộp thoại cài đặt độc lập)
+     - `screenshots/test_android_library.png` (Kho sách Bửu Đình)
+     - `screenshots/test_android_ai.png` (Trợ lý AI luận giải)
+

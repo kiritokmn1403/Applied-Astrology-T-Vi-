@@ -58,12 +58,20 @@ Tất cả các bản dựng đã được tối ưu hóa dung lượng, biên d
 
 | Nền tảng | Tên Tệp Tin | Định dạng | Kiến trúc / Mục tiêu | Dung lượng |
 | :--- | :--- | :--- | :--- | :--- |
-| **Android** | `AppliedAstrology-0.0.1-arm64-v8a.apk` | APK | Android 6.0+ (ARM64) | ~14.29 MB |
-| **Android** | `AppliedAstrology-0.0.1-armeabi-v7a.apk` | APK | Android 6.0+ (ARM32) | ~2.11 MB |
-| **Android** | `AppliedAstrology-0.0.1-x86_64.apk` | APK | Android 6.0+ (x86_64 Emulator/Tablet) | ~2.74 MB |
-| **Windows** | `AppliedAstrology-0.0.1-windows-x64.zip` | ZIP | Bản Portable không cần cài đặt | ~0.33 MB |
-| **Windows** | `AppliedAstrology-0.0.1-windows-x64-Setup.exe` | EXE | Bộ cài đặt GUI Windows Setup | ~0.35 MB |
-| **Windows** | `AppliedAstrology-0.0.1-windows-x64.appxbundle` | APPXBUNDLE | Gói đóng gói Windows Store / UWP | ~0.55 MB |
+| **Android** | `AppliedAstrology-0.0.1-arm64-v8a.apk` | APK | Android 6.0+ (ARM64) | ~17.03 MB |
+| **Android** | `AppliedAstrology-0.0.1-armeabi-v7a.apk` | APK | Android 6.0+ (ARM32) | ~3.15 MB |
+| **Android** | `AppliedAstrology-0.0.1-x86_64.apk` | APK | Android 6.0+ (x86_64 Emulator/Tablet) | ~3.15 MB |
+| **Windows** | `AppliedAstrology-0.0.1-windows-x64.zip` | ZIP | Bản Portable không cần cài đặt | ~3.06 MB |
+| **Windows** | `AppliedAstrology-0.0.1-windows-x64-Setup.exe` | EXE | Bộ cài đặt GUI Windows Setup | ~3.08 MB |
+| **Windows** | `AppliedAstrology-0.0.1-windows-x64.appxbundle` | APPXBUNDLE | Gói đóng gói Windows Store / UWP | ~5.09 MB |
+
+### ⚙️ Module Cài Đặt Độc Lập (`settings.js` & `settings.json`)
+Toàn bộ tính năng quản trị hệ thống đã được tách biệt hoàn toàn vào tệp riêng:
+- **Chế độ Samsung DeX / Desktop Màn Hình Lớn**: Tự động nhận diện và chuyển đổi bố cục 2 cột song song.
+- **Chuyển đổi 19 Ngôn ngữ**: Tiếng Việt, English, 中文, 日本語, Français, v.v., lưu cấu hình bền vững qua LocalStorage.
+- **Chủ đề Màu sắc Phong thủy**: Huyền Không Tinh Tú, Hoàng Triều Kim Sắc, Bạch Ngọc Cung Đình, Chu Sa Cát Tường.
+- **Kiểm thử VPN Ngoại vi**: Đo đạc độ trễ mạng và xác minh đường truyền bảo mật ngoài ứng dụng.
+- **Quản lý Dữ liệu**: Xuất/nhập file sao lưu JSON an toàn.
 
 *Mã băm kiểm tra tính toàn vẹn SHA-256 được lưu trữ tại `output/0.0.1/SHA256SUMS-0.0.1.txt`.*
 

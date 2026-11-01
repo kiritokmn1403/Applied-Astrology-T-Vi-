@@ -313,3 +313,4 @@ if (Test-Path $installerExe) {
 } else {
     throw "Failed to build installer executable!"
 }
+

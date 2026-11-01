@@ -17,7 +17,7 @@ $javac = "$env:JAVA_HOME\bin\javac.exe"
 $outDir = ".\output\0.0.1"
 $keystore = ".\appliedastrology.jks"
 
-Write-Output "Building Android Split APKs for Applied Astrology v$ver..."
+Write-Output "Building Android Split APKs for Applied Astrology v$ver (Enhanced UI)..."
 
 $staging = "$env:TEMP\tuvi_apk_staging"
 if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
@@ -29,7 +29,7 @@ $srcDir = "$staging\src"
 $binDir = "$staging\bin"
 $compiledRes = "$staging\compiled_res"
 
-New-Item -ItemType Directory -Force "$resDir\values", "$assetsDir\assets", "$srcDir\com\visicons\appliedastrology", $binDir, $compiledRes | Out-Null
+New-Item -ItemType Directory -Force "$resDir\values", $assetsDir, "$assetsDir\assets", "$srcDir\com\visicons\appliedastrology", $binDir, $compiledRes | Out-Null
 
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 
@@ -110,7 +110,7 @@ $baseApk = "$binDir\base.apk"
 if ($LASTEXITCODE -ne 0) { throw "aapt2 link failed!" }
 Write-Output "aapt2 link succeeded."
 
-# 6. MainActivity.java
+# 6. MainActivity.java with Universal File Access & WebSettings
 $javaCode = @"
 package com.visicons.appliedastrology;
 
@@ -141,6 +141,8 @@ public class MainActivity extends Activity {
         s.setDatabaseEnabled(true);
         s.setAllowFileAccess(true);
         s.setAllowContentAccess(true);
+        s.setAllowFileAccessFromFileURLs(true);
+        s.setAllowUniversalAccessFromFileURLs(true);
         s.setLoadWithOverviewMode(true);
         s.setUseWideViewPort(true);
 
@@ -181,11 +183,18 @@ New-Item -ItemType Directory -Force $dexDir | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "d8 failed!" }
 Write-Output "d8 compiled classes.dex."
 
-# 8. Assets Payload
-Copy-Item ".\index.html" "$assetsDir\" -Force
-Copy-Item ".\tuvi_engine.js" "$assetsDir\" -Force
-Copy-Item ".\i18n.js" "$assetsDir\" -Force
-Copy-Item ".\assets" "$assetsDir\assets" -Recurse -Force
+# 8. Assets Payload - Copy cleanly without nested assets/assets/
+Copy-Item ".\index.html" "$assetsDir\index.html" -Force
+Copy-Item ".\tuvi_engine.js" "$assetsDir\tuvi_engine.js" -Force
+Copy-Item ".\i18n.js" "$assetsDir\i18n.js" -Force
+Copy-Item ".\settings.js" "$assetsDir\settings.js" -Force
+Copy-Item ".\settings.json" "$assetsDir\settings.json" -Force
+Copy-Item ".\buudinh_tuvi_database.json" "$assetsDir\buudinh_tuvi_database.json" -Force
+
+# Copy contents of assets/ into $assetsDir\assets\
+Get-ChildItem -Path ".\assets" | ForEach-Object {
+    Copy-Item $_.FullName "$assetsDir\assets\" -Recurse -Force
+}
 
 # 9. Build and Sign Split APKs
 $abis = @('arm64-v8a', 'armeabi-v7a', 'x86_64')
@@ -198,41 +207,37 @@ foreach ($abi in $abis) {
 
     Copy-Item $baseApk $abiApkRaw -Force
 
-    # Open zip and inject classes.dex, assets, and lib
+    # Add classes.dex, assets, and native libraries
     $zip = [System.IO.Compression.ZipFile]::Open($abiApkRaw, [System.IO.Compression.ZipArchiveMode]::Update)
     
-    # Add classes.dex
+    # 9a. Add classes.dex
     [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, "$dexDir\classes.dex", "classes.dex") | Out-Null
-
-    # Add assets
-    Get-ChildItem -Recurse $assetsDir -File | ForEach-Object {
+    
+    # 9b. Add assets
+    Get-ChildItem -Path $assetsDir -Recurse -File | ForEach-Object {
         $relPath = $_.FullName.Substring($assetsDir.Length + 1).Replace('\', '/')
         [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, "assets/$relPath") | Out-Null
     }
 
-    # Add native lib for this ABI
-    $srcLib = "$sourceLibBase\$abi\libapp.so"
-    if (-not (Test-Path $srcLib)) {
-        $srcLib = (Get-ChildItem -Path "$sourceLibBase\$abi" -Filter "*.so" -ErrorAction SilentlyContinue | Select-Object -First 1).FullName
+    # 9c. Add ABI native library (libapp.so)
+    $libFile = "$sourceLibBase\$abi\libapp.so"
+    if (Test-Path $libFile) {
+        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $libFile, "lib/$abi/libapp.so") | Out-Null
     }
-    if ($srcLib -and (Test-Path $srcLib)) {
-        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $srcLib, "lib/$abi/libapp.so") | Out-Null
-    }
-
+    
     $zip.Dispose()
 
-    # Zipalign
-    Remove-Item $abiApkAligned -ErrorAction SilentlyContinue
-    & $zipalign -p -f 4 $abiApkRaw $abiApkAligned
-    if ($LASTEXITCODE -ne 0) { throw "zipalign failed for $abi" }
+    # 10. Zipalign
+    if (Test-Path $abiApkAligned) { Remove-Item $abiApkAligned -Force }
+    & $zipalign -v -p 4 $abiApkRaw $abiApkAligned
+    if ($LASTEXITCODE -ne 0) { throw "zipalign failed for $abi!" }
 
-    # Apksigner
-    Remove-Item $finalApk -ErrorAction SilentlyContinue
-    Copy-Item $abiApkAligned $finalApk -Force
-    & $apksigner sign --ks $keystore --ks-pass pass:tuvi1234 --key-pass pass:tuvi1234 $finalApk
-    if ($LASTEXITCODE -ne 0) { throw "apksigner failed for $abi" }
+    # 11. Apksigner
+    if (Test-Path $finalApk) { Remove-Item $finalApk -Force }
+    & $apksigner sign --ks $keystore --ks-key-alias tuvi --ks-pass pass:tuvi1234 --key-pass pass:tuvi1234 --out $finalApk $abiApkAligned
+    if ($LASTEXITCODE -ne 0) { throw "apksigner failed for $abi!" }
 
-    Write-Output "APK Generated & Signed: $finalApk ($([math]::Round((Get-Item $finalApk).Length / 1MB, 2)) MB)"
+    Write-Output "Successfully built & signed: $finalApk ($((Get-Item $finalApk).Length / 1MB | ForEach-Object { '{0:N2} MB' -f $_ }))"
 }
 
-Write-Output "All 3 Android Split APKs built successfully!"
+Write-Output "All Split APKs generated successfully!"

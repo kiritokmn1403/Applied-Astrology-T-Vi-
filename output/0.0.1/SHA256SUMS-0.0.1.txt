@@ -1,6 +1,6 @@
-803a4877c2046b9bc9b222e55df9107ff24bd1cd0f0d3b6286e78a817665e4c2  AppliedAstrology-0.0.1-arm64-v8a.apk
-72d509f4a0c64064360f97be48c95122dbf2a859a3ceadb0ae0f1232b802b9a4  AppliedAstrology-0.0.1-armeabi-v7a.apk
-e3190927031a2a051d52cf01fd422fa3c8067807f7208b3194bb205a764e9772  AppliedAstrology-0.0.1-windows-x64-Setup.exe
-3369d206f7c0846a71b68746a570a5c44dde5ff7b8ebfa268c6207852cda725b  AppliedAstrology-0.0.1-windows-x64.appxbundle
-b0ebd784fecac43f85ebdad21446b9d8f456a01739f9800e630b178ea0d0faa3  AppliedAstrology-0.0.1-windows-x64.zip
-43b86458c2381e3c74a2e279808d2f8d8ed515d1a502c92c009099ad4fd21662  AppliedAstrology-0.0.1-x86_64.apk
+44a7ba677324f632fb1e1e64cdba939dc66cc5202ea9f90dd8f56a19d14d2e23 *AppliedAstrology-0.0.1-arm64-v8a.apk
+11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-armeabi-v7a.apk
+11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-x86_64.apk
+7161ad7208a8b4fb7f76a525409ad6c0941ef7741c6e864cd2ed83167f7a2052 *AppliedAstrology-0.0.1-windows-x64.zip
+50ed58864ca76c35e5e24cfb32c54428f3a055a4692173131158409bc1d00ce8 *AppliedAstrology-0.0.1-windows-x64-Setup.exe
+d08305b7f2c9f9e039370dc60d1c4455078f6f3644a27caf85d90bf8b172c7b6 *AppliedAstrology-0.0.1-windows-x64.appxbundle
