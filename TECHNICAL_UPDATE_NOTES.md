@@ -101,7 +101,10 @@ Bản phát hành đầu tiên đánh dấu sự chuyển đổi lịch sử t�
   1. Chạy bản Portable `AppliedAstrology.exe` -> Hoạt động trơn tru, nạp dữ liệu nhanh chóng.
   2. Thử nghiệm bộ cài `AppliedAstrology-0.0.1-windows-x64-Setup.exe` -> Giao diện cài đặt hiển thị đẹp mắt, tự giải nén và tạo lối tắt.
   3. Kiểm tra gói `.appxbundle` -> Đạt chuẩn cấu trúc Windows Store Package.
-  4. Ảnh chụp kiểm thử: `screenshots/test_windows_desktop.png`, `screenshots/test_windows_window.png`.
+  4. Ảnh chụp kiểm thử thực tế trên Windows:
+     - `screenshots/test_windows_desktop.png` (Tổng thể màn hình Windows 11 Desktop, taskbar và cửa sổ ứng dụng)
+     - `screenshots/test_windows_window.png` (Cửa sổ ứng dụng kích thước 1280x850, lập lá số và bình giải)
+     - `screenshots/test_windows_settings.png` (Cửa sổ ứng dụng mở Tab 5 Cài Đặt quy tụ độc quyền các cấu hình)
 
 ---
 

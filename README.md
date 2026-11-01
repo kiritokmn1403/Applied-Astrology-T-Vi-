@@ -92,9 +92,11 @@ Toàn bộ tính năng quản trị hệ thống đã được tách biệt hoà
   ![Trợ Lý AI Android](screenshots/test_android_ai.png)
 - **Cài Đặt, Tùy Biến Giao Diện & VPN Ngoại Vi**:  
   ![Cài Đặt Android](screenshots/test_android_settings.png)
-- **Ứng Dụng Chạy Trên Màn Hình Windows**:  
+- **Ứng Dụng Chạy Trên Màn Hình Windows (Lập Lá Số)**:  
   ![Windows App View](screenshots/test_windows_window.png)
-- **Tổng Thể Desktop Windows**:  
+- **Mục Cài Đặt Tập Trung Độc Quyền Trên Windows**:  
+  ![Windows Settings View](screenshots/test_windows_settings.png)
+- **Tổng Thể Desktop Windows 11**:  
   ![Windows Desktop View](screenshots/test_windows_desktop.png)
 
 ---

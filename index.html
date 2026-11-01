@@ -1487,6 +1487,21 @@
     window.addEventListener('DOMContentLoaded', () => {
       loadAstrologyDatabase();
       generateChart();
+
+      // Handle URL hash or tab parameter
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get('tab') || window.location.hash.replace('#', '');
+        if (tab === 'settings' || tab === 'settingsTab') {
+          switchTab('settingsTab');
+        } else if (tab === 'library' || tab === 'libraryTab') {
+          switchTab('libraryTab');
+        } else if (tab === 'ai' || tab === 'aiTab') {
+          switchTab('aiTab');
+        } else if (tab === 'reader' || tab === 'readerTab') {
+          switchTab('readerTab');
+        }
+      } catch (e) {}
     });
   </script>
 </body>
