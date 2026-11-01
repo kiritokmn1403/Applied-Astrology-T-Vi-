@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Binary files
+*.apk binary
+*.exe binary
+*.appxbundle binary
+*.zip binary
+*.png binary
+*.ico binary
+*.idsig binary
+*.jks binary
