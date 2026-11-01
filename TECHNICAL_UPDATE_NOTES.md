@@ -121,12 +121,12 @@ Bản phát hành đầu tiên đánh dấu sự chuyển đổi lịch sử t�
 
 ## 7. Bảng Mã Hash Kiểm Tra Tính Toàn Vẹn (SHA-256 Checksums)
 ```
-44a7ba677324f632fb1e1e64cdba939dc66cc5202ea9f90dd8f56a19d14d2e23 *AppliedAstrology-0.0.1-arm64-v8a.apk
-11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-armeabi-v7a.apk
-11266259c37cc294497bf354ea92a29dc030e6afbc5936fdc2a97ccc0c2ebe00 *AppliedAstrology-0.0.1-x86_64.apk
-7161ad7208a8b4fb7f76a525409ad6c0941ef7741c6e864cd2ed83167f7a2052 *AppliedAstrology-0.0.1-windows-x64.zip
-50ed58864ca76c35e5e24cfb32c54428f3a055a4692173131158409bc1d00ce8 *AppliedAstrology-0.0.1-windows-x64-Setup.exe
-d08305b7f2c9f9e039370dc60d1c4455078f6f3644a27caf85d90bf8b172c7b6 *AppliedAstrology-0.0.1-windows-x64.appxbundle
+b83ab7a87cfd88558ef640aed054d67e6779803b3260419ac9fc3733030fa837 *AppliedAstrology-0.0.1-arm64-v8a.apk
+2921063e6225ae4277d074c1c75716e88d00f26a47b918023b1c5cdeb254280d *AppliedAstrology-0.0.1-armeabi-v7a.apk
+2921063e6225ae4277d074c1c75716e88d00f26a47b918023b1c5cdeb254280d *AppliedAstrology-0.0.1-x86_64.apk
+2d720d59c85d9ab1f0ed85611165720270817a5a23782a6c1dd3de10685d44da *AppliedAstrology-0.0.1-windows-x64.zip
+8de00dd79a5083d34f8403f9af16206312be980d4277d028cc775f13704fa478 *AppliedAstrology-0.0.1-windows-x64-Setup.exe
+e895728af869077f1e280675d7ce7dbf93223d179c3093569878a86f8bd8b0f6 *AppliedAstrology-0.0.1-windows-x64.appxbundle
 ```
 
 ---
@@ -169,4 +169,51 @@ d08305b7f2c9f9e039370dc60d1c4455078f6f3644a27caf85d90bf8b172c7b6 *AppliedAstrolo
      - `screenshots/test_android_settings.png` (Hộp thoại cài đặt độc lập)
      - `screenshots/test_android_library.png` (Kho sách Bửu Đình)
      - `screenshots/test_android_ai.png` (Trợ lý AI luận giải)
+
+---
+
+## 9. Nhật Ký Tập Trung Cài Đặt Vào Duy Nhất Mục "Cài Đặt" (Settings Exclusivity & Cleanup)
+**Thời điểm thực hiện**: 01/11/2026 22:25  
+**Yêu cầu người dùng**: *"tôi muốn các mục cài đặt như Dex, Chuyển đổi ngôn ngữ, giao diện,... chỉ xuất hiện ở trong mục Cài Đặt, không xuất hiện ở đâu khác nữa."*
+
+### A. Phân Tích & Các Điểm Cần Loại Bỏ:
+- Trước đó, trên thanh Header (`.app-header`) vẫn còn nút chuyển DeX nhanh, menu chọn 19 ngôn ngữ và biểu tượng răng cưa cài đặt. Điều này gây phân tán cài đặt ở nhiều nơi, làm rối thanh tiêu đề ứng dụng.
+- Người dùng yêu cầu thanh tiêu đề phải hoàn toàn sạch sẽ, chỉ mang tính chất hiển thị thương hiệu; toàn bộ cấu hình ứng dụng phải được quy tụ về một nơi duy nhất: **Tab Cài Đặt (Tab 5)**.
+
+### B. Thay Đổi Mã Nguồn Đã Thực Hiện:
+1. **Loại bỏ hoàn toàn cài đặt khỏi Header (`index.html`)**:
+   - Gỡ bỏ toàn bộ khối `<div class="header-actions">` trên Header (xóa nút DeX, xóa select chọn ngôn ngữ, xóa nút bánh răng).
+   - Thanh Header chỉ giữ lại duy nhất Khung Logo Véc-tơ Bát Quái Tử Vi và Tên ứng dụng *Tử Vi Ứng Dụng - Kế thừa tác phẩm Bửu Đình*.
+2. **Xây dựng Tab 5 Thành Trung Tâm Điều Khiển Duy Nhất (`#settingsTab`)**:
+   - Thêm `<section id="settingsTab" class="tab-view">` độc lập, quy tụ toàn diện 7 nhóm cấu hình:
+     - **Chế độ Samsung DeX & Đa Màn Hình**: Bật/tắt giao diện mở rộng 2 cột cho Samsung Galaxy Note/S/Fold và màn hình máy tính.
+     - **Chuyển Đổi 19 Ngôn Ngữ Quốc Tế**: Tiếng Việt, English, 中文, 日本語, Français, v.v.
+     - **Chủ Đề Phong Thủy (Themes)**: Huyền Không Tinh Tú, Hoàng Triều Kim Sắc, Bạch Ngọc Cung Đình, Chu Sa Cát Tường.
+     - **Kích Thước Chữ (Font Scaling)**: Compact, Normal (Chuẩn cân đối), Large.
+     - **Bố Cục Hiển Thị Lá Số**: Tự động thích ứng, Thanh điều hướng 12 Cung, Bàn vuông 4x4 cổ điển.
+     - **Kiểm Tra Mạng & VPN Ngoại Vi Độc Lập**: Đo độ trễ và chẩn đoán định tuyến an toàn.
+     - **Sao Lưu & Quản Lý Dữ Liệu**: Xuất/nhập file cấu hình `.json` an toàn.
+3. **Cập nhật Logic Điều Khiển (`settings.js`)**:
+   - Loại bỏ các event listener liên quan đến Header (`headerDexBtn`, `headerLangSelect`).
+   - Kết nối trực tiếp và đồng bộ trạng thái hai chiều với các phần tử trong `#settingsTab` (`tabDexToggle`, `tabLangSelect`, `tabThemeSelect`, `tabFontSizeSelect`, `tabViewModeSelect`, `tabVpnStatus`).
+   - Đảm bảo khi người dùng thay đổi bất kỳ mục nào trong Tab Cài Đặt, cấu hình được lưu vào LocalStorage và áp dụng tức thì.
+
+### C. Đóng Gói Lại Toàn Bộ Ứng Dụng:
+- Rebuild và ký số lại 3 bản Split APK:
+  - `AppliedAstrology-0.0.1-arm64-v8a.apk` (17.03 MB)
+  - `AppliedAstrology-0.0.1-armeabi-v7a.apk` (3.15 MB)
+  - `AppliedAstrology-0.0.1-x86_64.apk` (3.15 MB)
+- Rebuild lại 3 bản Windows:
+  - `AppliedAstrology-0.0.1-windows-x64.zip` (Portable)
+  - `AppliedAstrology-0.0.1-windows-x64-Setup.exe` (Bộ cài đặt)
+  - `AppliedAstrology-0.0.1-windows-x64.appxbundle` (Gói hiện đại Windows Store)
+- Cập nhật lại toàn bộ bảng mã SHA-256 Checksums tương ứng.
+
+### D. Kết Quả Kiểm Thử Thực Tế:
+- **Thiết bị**: Samsung Galaxy Note 9 (`SM-N960N`, Android 10, ABI `arm64-v8a`).
+- **Thao tác**:
+  1. Cài đặt bản cập nhật mới qua ADB USB Debugging (`adb install -r -d`).
+  2. Khởi chạy ứng dụng: Header hoàn toàn sạch sẽ, không còn bất kỳ nút cài đặt nào.
+  3. Chuyển sang Tab 5 (Cài Đặt): Toàn bộ các mục cấu hình xuất hiện đầy đủ, ngăn nắp, hoạt động chính xác 100%.
+  4. Bộ ảnh chụp thực tế đã được cập nhật vào thư mục `screenshots/`.
 
