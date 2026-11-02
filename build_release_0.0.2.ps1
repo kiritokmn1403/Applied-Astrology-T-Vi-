@@ -637,9 +637,21 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
         $notesFile = Join-Path $Repo "docs\RELEASE_NOTES_$Ver.md"
         $notes = if (Test-Path $notesFile) { Get-Content $notesFile -Raw -Encoding UTF8 } else { "Applied Astrology $Ver" }
         if (-not $rel) {
-            $body = @{ tag_name = "v$Ver"; name = "Applied Astrology v$Ver"; body = $notes; draft = $false; prerelease = $false } | ConvertTo-Json -Depth 4
-            $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases" -Method Post -Body ([Text.Encoding]::UTF8.GetBytes($body)) -ContentType "application/json; charset=utf-8"
+            try { $rel = (Invoke-RestMethod -Headers $h -Uri "$api/releases?per_page=50" -Method Get) | Where-Object { $_.tag_name -eq "v$Ver" } | Select-Object -First 1 } catch { }
         }
+        if (-not $rel) {
+            $body = @{ tag_name = "v$Ver"; name = "Applied Astrology v$Ver"; body = [string]$notes; draft = $false; prerelease = $false } | ConvertTo-Json -Depth 4
+            try { $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases" -Method Post -Body ([Text.Encoding]::UTF8.GetBytes($body)) -ContentType "application/json; charset=utf-8" }
+            catch {
+                $detail = $_.ErrorDetails.Message
+                if (-not $detail) { try { $sr = New-Object IO.StreamReader($_.Exception.Response.GetResponseStream()); $detail = $sr.ReadToEnd() } catch { } }
+                Say "  create release failed: $detail" "ERR"
+                # retry with a short body (in case the notes are rejected)
+                $body = @{ tag_name = "v$Ver"; name = "Applied Astrology v$Ver"; body = "Applied Astrology v$Ver - see docs/RELEASE_NOTES_$Ver.md"; draft = $false; prerelease = $false } | ConvertTo-Json
+                $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases" -Method Post -Body ([Text.Encoding]::UTF8.GetBytes($body)) -ContentType "application/json; charset=utf-8"
+            }
+        }
+        Say "  release id $($rel.id) $($rel.html_url)"
         $assets = @(Get-ChildItem $Out -File | Where-Object { $_.Extension -in ".apk", ".zip", ".exe", ".msi", ".appxbundle", ".cer", ".txt" })
         # test videos (kept out of git because of the 100 MB file limit) are attached to the release
         foreach ($v in (Get-ChildItem $Reports -Recurse -Filter *.mp4)) {
