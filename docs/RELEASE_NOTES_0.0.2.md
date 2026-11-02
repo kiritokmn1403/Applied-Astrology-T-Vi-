@@ -10,7 +10,7 @@ Nếu đã cài bản 0.0.1 (package cũ `com.visicons.appliedastrology`), hãy 
 **Windows 7 SP1 → 11 (x86 / x64 / ARM64)**
 - `AppliedAstrology-0.0.2-windows-Setup.exe`: bộ cài, không cần quyền Admin, có trình gỡ cài đặt
 - `AppliedAstrology-0.0.2-windows-<x86|x64|arm64>.msi`: Windows Installer
-- `AppliedAstrology-0.0.2-windows.appxbundle`: Windows 10/11. Trước khi cài, nhập chứng chỉ `AppliedAstrology-0.0.2-signing-certificate.cer` vào *Trusted People*.
+- `AppliedAstrology-0.0.2-windows.appxbundle`: Windows 10/11. Trước khi cài, nhập chứng chỉ `AppliedAstrology-0.0.2-signing-certificate.cer` vào *Local Machine → Trusted People*. Nếu Windows báo lỗi 0x80073CF0, hãy dùng Setup.exe hoặc MSI.
 - `AppliedAstrology-0.0.2-windows-portable.zip`: giải nén rồi chạy, không cần cài
 
 Mã kiểm tra tệp nằm trong `SHA256SUMS-0.0.2.txt`.

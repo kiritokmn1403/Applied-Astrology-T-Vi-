@@ -313,6 +313,8 @@ ffmpeg -f gdigrab -i desktop (quay video kiểm thử Windows)
   - Thiết bị dùng kiểm thử: Samsung Galaxy Note 9 (SM-N960N, Android 10, arm64-v8a), emulator Android 17 (API 37, x86_64), emulator **Android 6.0 (API 23, x86_64)**, Windows 11 x64 (WebView2 156 và IE11).
 - **VPN**: chỉ kiểm tra bên ngoài ứng dụng, đúng yêu cầu. Trong app có màn hình chẩn đoán, chỉ đọc trạng thái WARP/VPN qua Cloudflare trace.
 
+### Lượt 6 (BUILD đầy đủ, 15:29–15:52): Note 9, Android 17, Android 6.0, portable WebView2, IE11, Setup.exe, MSI x64 và appx đều **24/24 PASS**. Commit `98edfd3` đã push lên `main`, tag `v0.0.2`. Bước tạo Release lỗi `git credential fill: missing protocol field`, do PowerShell gửi chuỗi qua pipe sai định dạng; đã sửa bằng cách ghi trực tiếp vào stdin của tiến trình (chạy lại bằng `PUBLISH_v0.0.2.bat`).
+
 ### Kết quả lượt 5 (02/11/2026 15:07–15:27, BUILD_TEST)
 
 | Thiết bị / bản cài | Engine | Tự kiểm thử 24 bước |
@@ -324,7 +326,7 @@ ffmpeg -f gdigrab -i desktop (quay video kiểm thử Windows)
 | Windows 11 x64, bản portable, ép chạy IE11 (đường chạy Windows 7) | IE11 / MSHTML | **24/24 PASS** |
 | Setup.exe (cài im lặng `/S` → chạy → gỡ `/uninstall /S`) | Edge WebView2 | **24/24 PASS**; đã gỡ sạch thư mục và khóa đăng ký ARP |
 | MSI x64 (`msiexec /i /qn` → chạy → `msiexec /x`) | Edge WebView2 | **24/24 PASS** |
-| appxbundle | — | Lỗi do junction (đã sửa ở lượt phát hành) |
+| appxbundle (lượt 6, 15:48) | Edge WebView2 | **24/24 PASS** khi cài layout x64 bằng `Add-AppxPackage -Register` (chế độ developer). Cài trực tiếp gói `.appxbundle` đã ký vẫn báo 0x80073CF0, nên khuyến nghị dùng Setup.exe hoặc MSI |
 
 Ghi chú: trên Note 9, bước kiểm tra mạng báo "Không có kết nối Internet" vì lúc đó máy không có mạng; trên Windows báo đã kết nối, độ trễ khoảng 300 ms, IP Việt Nam, PoP HKG, không có WARP.
 

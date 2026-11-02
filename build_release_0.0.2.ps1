@@ -619,8 +619,16 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
     }
     Step "31_github_release" {
         # Token from the user's own Git Credential Manager (never printed or logged)
-        $cred = "protocol=https`nhost=github.com`n`n" | & $T.git credential fill 2>$null
-        $tok = ($cred | Where-Object { $_ -like "password=*" }) -replace "^password=", ""
+        $psi = New-Object System.Diagnostics.ProcessStartInfo
+        $psi.FileName = $T.git; $psi.Arguments = "credential fill"
+        $psi.UseShellExecute = $false; $psi.RedirectStandardInput = $true; $psi.RedirectStandardOutput = $true; $psi.CreateNoWindow = $true
+        $gp = [System.Diagnostics.Process]::Start($psi)
+        $gp.StandardInput.NewLine = "`n"
+        $gp.StandardInput.WriteLine("protocol=https"); $gp.StandardInput.WriteLine("host=github.com"); $gp.StandardInput.WriteLine("")
+        $gp.StandardInput.Close()
+        $cred = $gp.StandardOutput.ReadToEnd() -split "`n"
+        $gp.WaitForExit(60000) | Out-Null
+        $tok = (($cred | Where-Object { $_ -like "password=*" }) -replace "^password=", "").Trim()
         if (-not $tok) { throw "no GitHub credential in Git Credential Manager - sign in with GitHub Desktop/git first" }
         $h = @{ Authorization = "token $tok"; "User-Agent" = "AppliedAstrology-release"; Accept = "application/vnd.github+json" }
         $api = "https://api.github.com/repos/$Owner/$RepoName"
