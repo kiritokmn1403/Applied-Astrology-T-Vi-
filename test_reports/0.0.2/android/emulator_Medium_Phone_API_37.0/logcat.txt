@@ -1,0 +1,67 @@
+﻿--------- beginning of main
+11-02 15:36:18.023  3476  3500 I chromium: [1102/153618.008733:INFO:android_webview/browser/variations/variations_seed_loader.cc:67] Failed to open file for reading.: No such file or directory (2)
+11-02 15:36:18.027  3476  3500 I chromium: [1102/153618.027547:INFO:android_webview/browser/variations/variations_seed_loader.cc:67] Failed to open file for reading.: No such file or directory (2)
+11-02 15:36:19.247  3476  3476 W chromium: [WARNING:android_webview/browser/network_service/net_helpers.cc:137] HTTP Cache size is: 20971520
+11-02 15:36:19.690  3476  3476 I AppliedAstrology: start v0.0.2 abi=x86_64 sdk=37 selftest=true
+11-02 15:36:19.839  3504  3515 W chromium: [WARNING:content/child/runtime_features.cc:564] Fenced frames cannot be enabled in this configuration. Use --enable-features=FencedFrames instead.
+11-02 15:36:19.839  3504  3515 W chromium: [WARNING:content/child/runtime_features.cc:589] Topics cannot be enabled in this configuration. Use --enable-features=BrowsingTopics in addition.
+11-02 15:36:19.839  3504  3515 W chromium: [WARNING:content/child/runtime_features.cc:610] SharedStorage cannot be enabled in this configuration. Use --enable-features=SharedStorageAPI in addition.
+11-02 15:36:21.816  3476  3537 I AppliedAstrology: build solar,15,8,1995,6
+11-02 15:36:23.350  3476  3476 I AppliedAstrology: console[LOG] [AA] build solar,15,8,1995,6 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:23.381  3476  3537 I AppliedAstrology: build solar,15,8,1995,6
+11-02 15:36:23.461  3476  3537 I AppliedAstrology: SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
+11-02 15:36:23.497  3476  3476 I AppliedAstrology: console[LOG] [AA] build solar,15,8,1995,6 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:23.498  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục @file:///android_asset/web/js/platform.js:181
+11-02 15:36:27.665  3476  3537 I AppliedAstrology: SELFTEST PASS 02_palace_detail related=4
+11-02 15:36:27.666  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 02_palace_detail related=4 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:30.998  3476  3537 I AppliedAstrology: build lunar,1,2,2023,3
+11-02 15:36:30.999  3476  3476 I AppliedAstrology: console[LOG] [AA] build lunar,1,2,2023,3 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:31.020  3476  3537 I AppliedAstrology: SELFTEST PASS 03_lunar_input solar=22/3/2023
+11-02 15:36:31.021  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 03_lunar_input solar=22/3/2023 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:34.903  3476  3537 I AppliedAstrology: SELFTEST PASS 04_qr size=29
+11-02 15:36:34.905  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 04_qr size=29 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:41.122  3476  3537 I AppliedAstrology: SELFTEST PASS 05_png bytes=373794
+11-02 15:36:41.124  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 05_png bytes=373794 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:47.313  3476  3537 I AppliedAstrology: SELFTEST PASS 06_save_profile saved=1
+11-02 15:36:47.314  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 06_save_profile saved=1 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:50.701  3476  3537 I AppliedAstrology: SELFTEST PASS 07_library_home chapters=13 articles=611
+11-02 15:36:50.702  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 07_library_home chapters=13 articles=611 @file:///android_asset/web/js/platform.js:181
+11-02 15:36:54.090  3476  3537 I AppliedAstrology: SELFTEST PASS 08_library_chapter 
+11-02 15:36:54.091  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 08_library_chapter  @file:///android_asset/web/js/platform.js:181
+11-02 15:36:58.382  3476  3537 I AppliedAstrology: SELFTEST PASS 09_reader chars=21432
+11-02 15:36:58.383  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 09_reader chars=21432 @file:///android_asset/web/js/platform.js:181
+11-02 15:37:02.156  3476  3537 I AppliedAstrology: SELFTEST PASS 10_search results=300 native=true
+11-02 15:37:02.157  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 10_search results=300 native=true @file:///android_asset/web/js/platform.js:181
+11-02 15:37:05.640  3476  3537 I AppliedAstrology: SELFTEST PASS 11_search_noaccent results=300
+11-02 15:37:05.642  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 11_search_noaccent results=300 @file:///android_asset/web/js/platform.js:181
+11-02 15:37:09.024  3476  3537 I AppliedAstrology: SELFTEST PASS 12_assistant_overview chars=1379
+11-02 15:37:09.025  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 12_assistant_overview chars=1379 @file:///android_asset/web/js/platform.js:181
+11-02 15:37:12.357  3476  3537 I AppliedAstrology: SELFTEST PASS 13_assistant_question chars=1322
+11-02 15:37:12.358  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 13_assistant_question chars=1322 @file:///android_asset/web/js/platform.js:181
+11-02 15:37:15.774  3476  3537 I AppliedAstrology: SELFTEST PASS 14_assistant_year 
+11-02 15:37:15.775  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 14_assistant_year  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:19.127  3476  3537 I AppliedAstrology: SELFTEST PASS 15_settings_theme 
+11-02 15:37:19.128  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 15_settings_theme  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:22.781  3476  3537 I AppliedAstrology: SELFTEST PASS 16_settings_language_en 
+11-02 15:37:22.782  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 16_settings_language_en  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:26.106  3476  3537 I AppliedAstrology: SELFTEST PASS 17_settings_language_ja ライブラリ
+11-02 15:37:26.107  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 17_settings_language_ja ライブラリ @file:///android_asset/web/js/platform.js:181
+11-02 15:37:29.541  3476  3537 I AppliedAstrology: SELFTEST PASS 18_settings_font_layout 
+11-02 15:37:29.543  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 18_settings_font_layout  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:32.863  3476  3537 I AppliedAstrology: SELFTEST PASS 19_chart_list_layout 
+11-02 15:37:32.865  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 19_chart_list_layout  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:36.241  3476  3537 I AppliedAstrology: SELFTEST PASS 20_desktop_dex 
+11-02 15:37:36.243  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 20_desktop_dex  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:39.674  3476  3537 I AppliedAstrology: SELFTEST PASS 21_backup_export 
+11-02 15:37:39.676  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 21_backup_export  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:43.166  3476  3537 I AppliedAstrology: SELFTEST PASS 22_backup_import 
+11-02 15:37:43.172  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 22_backup_import  @file:///android_asset/web/js/platform.js:181
+11-02 15:37:46.910  3476  3537 I AppliedAstrology: net 267ms ip=222.252.212.181 warp=off
+11-02 15:37:46.912  3476  3476 I AppliedAstrology: console[LOG] [AA] net 267ms ip=222.252.212.181 warp=off @file:///android_asset/web/js/platform.js:181
+11-02 15:37:53.628  3476  3537 I AppliedAstrology: SELFTEST PASS 23_network_check Connected · Latency: 267 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected
+11-02 15:37:53.630  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 23_network_check Connected · Latency: 267 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected @file:///android_asset/web/js/platform.js:181
+11-02 15:37:56.989  3476  3537 I AppliedAstrology: build solar,15,8,1995,6
+11-02 15:37:56.990  3476  3476 I AppliedAstrology: console[LOG] [AA] build solar,15,8,1995,6 @file:///android_asset/web/js/platform.js:181
+11-02 15:37:57.034  3476  3537 I AppliedAstrology: SELFTEST PASS 24_restore_defaults 
+11-02 15:37:57.036  3476  3476 I AppliedAstrology: console[LOG] [AA] SELFTEST PASS 24_restore_defaults  @file:///android_asset/web/js/platform.js:181
+11-02 15:38:00.603  3476  3537 I AppliedAstrology: SELFTEST_DONE {"app":"Applied Astrology","version":"0.0.2","platform":{"os":"Android 17 (API 37)","device":"Google sdk_gphone64_x86_64","abi":"x86_64","engine":"Android WebView","dex":false,"kind":"android","ua":"Mozilla/5.0 (Linux; Android 17; sdk_gphone64_x86_64 Build/CE2A.260420.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/145.0.7632.218 Mobile Safari/537.36"},"pass":24,"total":24,"results":[{"step":"01_chart_build","ok":true,"detail":"palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục"},{"step":"02_palace_detail","ok":true,"detail":"related=4"},{"step":"03_lunar_input","ok":true,"detail":"solar=22/3/2023"},{"step":"04_qr","ok":true,"detail":"size=29"},{"step":"05_png","ok":true,"detail":"bytes=373794"},{"step":"06_save_profile","ok":true,"detail":"saved=1"},{"step":"07_library_home","ok":true,"detail":"chapters=13 articles=611"},{"step":"08_library_chapter","ok":true,"detail":""},{"step":"09_reader","ok":true,"detail":"chars=21432"},{"step":"10_search","ok":true,"detail":"results=300 native=true"},{"step":"11_search_noaccent","ok":true,"detail":"results=300"},{"step":"12_assistant_overview","ok":true,"detail":"chars=1379"},{"step":"13_assistant_question","ok":true,"detail":"chars=1322"},{"step":"14_assistant_year","ok":true,"detail":""},{"step":"15_settings_theme","ok":true,"detail":""},{"step":"16_settings_language_en","ok":true,"detail":""},{"step":"17_settings_language_ja","ok":true,"detail":"ライブラリ"},{"step":"18_settings_font_layout","ok":true,"detail":""},{"step":"19_chart_list_layout","ok":true,"detail":""},{"step":"20_desktop_dex","ok":true,"detail":""},{"step":"21_backup_export","ok":true,"detail":""},{"step":"22_backup_import","ok":true,"detail":""},{"step":"23_network_check","ok":true,"detail":"Connected · Latency: 267 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected"},{"step":"24_restore_defaults","ok":true,"detail":""}]}

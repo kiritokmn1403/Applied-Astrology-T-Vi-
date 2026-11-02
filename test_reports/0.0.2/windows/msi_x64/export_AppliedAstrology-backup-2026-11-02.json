@@ -1,0 +1,114 @@
+{
+  "app": "Applied Astrology",
+  "version": "0.0.2",
+  "date": "2026-11-02T08:47:58.885Z",
+  "settings": {
+    "lang": "en",
+    "theme": "ivory-light",
+    "font": "large",
+    "layout": "board",
+    "desktop": true,
+    "ts": true,
+    "bs": false,
+    "tt": true,
+    "luu": true,
+    "leap": "same"
+  },
+  "saved": [
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793609229233,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    },
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793609120256,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    },
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793607964222,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    },
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793607854004,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    },
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793594782105,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    },
+    {
+      "name": "Trần Thị Bình",
+      "gender": "Nữ",
+      "calendar": "lunar",
+      "day": 1,
+      "month": 2,
+      "year": 2023,
+      "hourChi": 3,
+      "leap": true,
+      "leapMode": "same",
+      "viewYear": 2026,
+      "saved": 1793594674964,
+      "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
+    }
+  ],
+  "bookmarks": [],
+  "recent": [
+    {
+      "k": "chinh-tinh:0",
+      "ch": "chinh-tinh",
+      "i": 0,
+      "t": "TỬ VI",
+      "s": 0,
+      "d": 1793609238936
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+adec1a5d81b3148926681e373371f033d18fe129fb4dad9ef79d2ed508e00de2 *AppliedAstrology-0.0.2-arm64-v8a.apk
+71d279c4f9f5e6c15753e9e54dba392300329b774089f1b39188981c0d6bfa3b *AppliedAstrology-0.0.2-armeabi-v7a.apk
+2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73 *AppliedAstrology-0.0.2-signing-certificate.cer
+9ff2841300873f26ad74ea91c361e04f9faf4ec0ca869d232bcde248f85ce4ff *AppliedAstrology-0.0.2-windows.appxbundle
+53d09580603cf4c32096253133878fb8b51588066db60db47087072ba2c1bd09 *AppliedAstrology-0.0.2-windows-arm64.msi
+90ada77e3c04576ff8ee9e868e406c534c779b132f6474e37c1d885e9c04e171 *AppliedAstrology-0.0.2-windows-portable.zip
+af3882424d32a7a23cf79fd4e37a7e3a3594c55cc2d15adafd9244aea4b8c918 *AppliedAstrology-0.0.2-windows-Setup.exe
+874cd060518339f016584a52f4832b7c17e88b88aacea3dad8b029900f95360b *AppliedAstrology-0.0.2-windows-x64.msi
+199fd3fad966c246fb98a0df536cf31a95d8439224e71e82ac2cd6b8430aa1e0 *AppliedAstrology-0.0.2-windows-x86.msi
+befcf370aad036bc53b491cfd0afeda57fd9773d55f41a6203dc741578eed7bc *AppliedAstrology-0.0.2-x86_64.apk

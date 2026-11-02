@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Applied Astrology – Tử Vi Ứng Dụng</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="aa-header">
+  <svg class="aa-logo" viewBox="0 0 100 100" aria-hidden="true">
+    <defs><radialGradient id="lg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3b2a6b"/><stop offset="1" stop-color="#0a0518"/></radialGradient></defs>
+    <circle cx="50" cy="50" r="48" fill="url(#lg)" stroke="#f2b84b" stroke-width="2"/>
+    <polygon points="50,8 56,40 88,50 56,60 50,92 44,60 12,50 44,40" fill="#f2b84b" opacity=".9"/>
+    <circle cx="50" cy="50" r="13" fill="#0a0518" stroke="#ffe7a3" stroke-width="2"/>
+    <path d="M50 37 A13 13 0 0 1 50 63 A6.5 6.5 0 0 1 50 50 A6.5 6.5 0 0 0 50 37 Z" fill="#ffe7a3"/>
+  </svg>
+  <div>
+    <div class="aa-title" data-i18n="app_name">Tử Vi Ứng Dụng</div>
+    <div class="aa-subtitle" data-i18n="app_sub">Applied Astrology · Di sản Bửu Đình</div>
+  </div>
+</header>
+<nav class="aa-nav" id="nav">
+  <a data-view="chart" class="active"><span class="ico">&#10022;</span><span data-i18n="tab_chart">Lá Số</span></a>
+  <a data-view="library"><span class="ico">&#10070;</span><span data-i18n="tab_library">Thư Viện</span></a>
+  <a data-view="assistant"><span class="ico">&#9775;</span><span data-i18n="tab_assistant">Luận Giải</span></a>
+  <a data-view="saved"><span class="ico">&#9734;</span><span data-i18n="tab_saved">Hồ Sơ</span></a>
+  <a data-view="settings"><span class="ico">&#9881;</span><span data-i18n="tab_settings">Cài Đặt</span></a>
+</nav>
+
+<main class="aa-main">
+  <!-- LÁ SỐ -->
+  <section class="view active" id="view-chart">
+    <div class="card no-print">
+      <div class="form-row">
+        <div class="field wide"><label data-i18n="f_name">Họ và tên</label><input type="text" id="fName" maxlength="60"></div>
+        <div class="field tiny"><label data-i18n="f_gender">Giới tính</label><select id="fGender"><option value="Nam" data-i18n="male">Nam</option><option value="Nữ" data-i18n="female">Nữ</option></select></div>
+        <div class="field tiny"><label data-i18n="f_calendar">Lịch</label><select id="fCal"><option value="solar" data-i18n="solar">Dương lịch</option><option value="lunar" data-i18n="lunar">Âm lịch</option></select></div>
+        <div class="field tiny"><label data-i18n="f_day">Ngày</label><select id="fDay"></select></div>
+        <div class="field tiny"><label data-i18n="f_month">Tháng</label><select id="fMonth"></select></div>
+        <div class="field tiny"><label data-i18n="f_year">Năm</label><input type="number" id="fYear" min="1900" max="2100"></div>
+        <div class="field"><label data-i18n="f_hour">Giờ sinh</label><select id="fHour"></select></div>
+        <div class="field tiny"><label data-i18n="f_viewyear">Xem hạn năm</label><input type="number" id="fView" min="1900" max="2100"></div>
+      </div>
+      <label class="check hidden" id="leapWrap"><input type="checkbox" id="fLeap"> <span data-i18n="f_leap">Tháng nhuận</span></label>
+      <div class="btn-row">
+        <a class="btn primary" id="btnBuild" data-i18n="btn_build">Lập lá số</a>
+        <a class="btn" id="btnSave" data-i18n="btn_save">Lưu hồ sơ</a>
+        <a class="btn" id="btnPng" data-i18n="btn_png">Xuất ảnh PNG</a>
+        <a class="btn" id="btnQr" data-i18n="btn_qr">Mã QR</a>
+        <a class="btn" id="btnShare" data-i18n="btn_share">Chia sẻ</a>
+        <a class="btn" id="btnPrint" data-i18n="btn_print">In</a>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-col"><div id="chartBox"></div></div>
+      <div class="side-col"><div class="card" id="detailBox"><div class="muted" data-i18n="pick_palace"></div></div></div>
+    </div>
+  </section>
+
+  <!-- THƯ VIỆN -->
+  <section class="view" id="view-library">
+    <div class="card no-print">
+      <h2 data-i18n="lib_title">Thư viện</h2>
+      <div class="hint" id="libDesc"></div>
+      <div class="form-row" style="margin-top:6px">
+        <div class="field wide"><input type="text" id="libQ" data-i18n-ph="lib_search_ph"></div>
+        <div class="field tiny"><a class="btn primary" id="libGo" data-i18n="btn_search">Tìm</a></div>
+      </div>
+      <div id="libContinue"></div>
+    </div>
+    <div id="libBody"></div>
+  </section>
+
+  <!-- LUẬN GIẢI -->
+  <section class="view" id="view-assistant">
+    <div class="card">
+      <h2 data-i18n="as_title">Trợ lý luận giải</h2>
+      <div class="hint" data-i18n="as_note"></div>
+      <div style="margin-top:6px" id="asChips">
+        <span class="chip" data-q="__overview" data-i18n="as_overview">Tổng quan</span>
+        <span class="chip" data-q="mệnh tính cách" data-i18n="as_q_menh">Cung Mệnh</span>
+        <span class="chip" data-q="công danh sự nghiệp" data-i18n="as_q_career">Công danh</span>
+        <span class="chip" data-q="tài lộc tiền" data-i18n="as_q_money">Tài lộc</span>
+        <span class="chip" data-q="hôn nhân phu thê" data-i18n="as_q_love">Phu thê</span>
+        <span class="chip" data-q="sức khỏe bệnh" data-i18n="as_q_health">Sức khỏe</span>
+        <span class="chip" data-q="hạn năm nay" data-i18n="as_q_year">Hạn năm nay</span>
+      </div>
+      <div class="chat" id="chat"></div>
+      <div class="form-row">
+        <div class="field wide"><input type="text" id="asQ" data-i18n-ph="as_ph"></div>
+        <div class="field tiny"><a class="btn primary" id="asSend" data-i18n="btn_send">Gửi</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HỒ SƠ -->
+  <section class="view" id="view-saved">
+    <div class="card"><h2 data-i18n="saved_charts">Lá số đã lưu</h2><div id="savedList"></div></div>
+    <div class="card"><h2 data-i18n="lib_bookmarks">Đã đánh dấu</h2><div id="bmList"></div></div>
+    <div class="card"><h2 data-i18n="lib_recent">Đọc gần đây</h2><div id="recentList"></div></div>
+  </section>
+
+  <!-- CÀI ĐẶT (mọi tùy chọn chỉ nằm ở đây) -->
+  <section class="view" id="view-settings">
+    <div class="setting"><h3 data-i18n="s_language">Ngôn ngữ</h3><select id="sLang"></select></div>
+    <div class="setting"><h3 data-i18n="s_theme">Giao diện</h3>
+      <select id="sTheme"><option value="celestial-dark" data-i18n="th_celestial"></option><option value="royal-gold" data-i18n="th_gold"></option><option value="ivory-light" data-i18n="th_ivory"></option><option value="imperial-red" data-i18n="th_red"></option></select></div>
+    <div class="setting"><h3 data-i18n="s_font">Cỡ chữ</h3>
+      <select id="sFont"><option value="compact" data-i18n="fs_compact"></option><option value="normal" data-i18n="fs_normal"></option><option value="large" data-i18n="fs_large"></option><option value="xlarge" data-i18n="fs_xlarge"></option></select></div>
+    <div class="setting"><h3 data-i18n="s_layout">Bố cục lá số</h3>
+      <select id="sLayout"><option value="auto" data-i18n="lay_auto"></option><option value="board" data-i18n="lay_board"></option><option value="list" data-i18n="lay_list"></option></select></div>
+    <div class="setting"><h3 data-i18n="s_desktop">DeX</h3>
+      <label class="switch"><input type="checkbox" id="sDesktop"><span class="knob"></span></label><span class="hint" data-i18n="s_desktop_d"></span></div>
+    <div class="setting"><h3 data-i18n="s_rings">Vòng sao</h3>
+      <label class="check"><input type="checkbox" id="sTS"> <span data-i18n="s_trangsinh"></span></label>
+      <label class="check"><input type="checkbox" id="sBS"> <span data-i18n="s_bacsi"></span></label>
+      <label class="check"><input type="checkbox" id="sTT"> <span data-i18n="s_thaitue"></span></label>
+      <label class="check"><input type="checkbox" id="sLuu"> <span data-i18n="s_luu"></span></label></div>
+    <div class="setting"><h3 data-i18n="s_leap">Tháng nhuận</h3>
+      <select id="sLeap"><option value="same" data-i18n="s_leap_same"></option><option value="next" data-i18n="s_leap_next"></option></select></div>
+    <div class="setting"><h3 data-i18n="s_network">Mạng & VPN</h3><div class="hint" data-i18n="s_network_d"></div>
+      <a class="btn" id="sNet" data-i18n="s_check">Kiểm tra</a><div id="netOut" style="margin-top:6px"></div></div>
+    <div class="setting"><h3 data-i18n="s_backup">Sao lưu</h3>
+      <a class="btn" id="sExport" data-i18n="s_export"></a>
+      <label class="btn"><span data-i18n="s_import"></span><input type="file" id="sImportFile" accept=".json,application/json" style="display:none"></label>
+      <div style="margin-top:6px"><textarea id="sImportText" data-i18n-ph="s_import_text"></textarea><a class="btn small" id="sImportGo" data-i18n="s_import_text"></a></div>
+      <a class="btn" id="sReset" data-i18n="btn_reset"></a> <a class="btn" id="sClear" data-i18n="s_clear"></a></div>
+    <div class="setting"><h3 data-i18n="s_about">Giới thiệu</h3><div class="hint" data-i18n="s_about_d"></div><div id="aboutInfo" class="hint" style="margin-top:6px"></div></div>
+  </section>
+</main>
+
+<div class="modal hidden" id="modal"><div class="modal-box" id="modalBox"></div></div>
+<div class="toast hidden" id="toast"></div>
+
+<script src="js/platform.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/lunar.js"></script>
+<script src="js/tuvi_engine.js"></script>
+<script src="data/lib_index.js"></script>
+<script src="js/library.js"></script>
+<script>window.AALib && (window.AALib.registerGlobal = true);</script>
+<script src="js/qr.js"></script>
+<script src="js/chart_view.js"></script>
+<script src="js/assistant.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

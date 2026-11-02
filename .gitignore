@@ -1,0 +1,7 @@
+build_logs/
+*.jks
+*.pfx
+*.idsig
+src/web/qa_selftest.html
+__pycache__/
+*.mp4

@@ -220,3 +220,131 @@ e895728af869077f1e280675d7ce7dbf93223d179c3093569878a86f8bd8b0f6 *AppliedAstrolo
   3. Chuyển sang Tab 5 (Cài Đặt): Toàn bộ các mục cấu hình xuất hiện đầy đủ, ngăn nắp, hoạt động chính xác 100%.
   4. Bộ ảnh chụp thực tế đã được cập nhật vào thư mục `screenshots/`.
 
+
+---
+
+# CẬP NHẬT v0.0.2 – Applied Astrology (Tử Vi Ứng Dụng)
+**Ngày thực hiện**: 02/11/2026  
+**Người thực hiện**: Claude (Cowork, theo yêu cầu của chủ dự án Kiệt Nguyễn)  
+**Package Android mới**: `com.appliedastrology.tuvi` (bỏ `com.visicons.appliedastrology`). Cần gỡ bản 0.0.1 trước khi cài.
+
+## 1. Phạm vi yêu cầu (sheet "Feature Check" của Project – Applied Astrology.xlsx)
+1. *Creat & Update*:
+   - Quét file SWF và các nhóm project Flash Player, Runtime Native/Hybrid, Browser, Aniyomi, Mangayomi, Nekoyomi.
+   - Bổ sung đủ nội dung SWF.
+   - Dịch sang các ngôn ngữ mà Aniyomi/Mangayomi/Nekoyomi hỗ trợ.
+   - Gỡ mọi thứ liên quan đến Visicons.
+2. Rà soát sheet Project GitHub, tối ưu code và cập nhật vào ứng dụng.
+3. Kiểm tra độ ổn định của tính năng. Sheet "App Feature Set" **không có** trong file Excel, nên dùng danh sách tính năng của ứng dụng thay thế.
+
+## 2. Lỗi phát hiện trong v0.0.1 và cách sửa
+
+| # | Lỗi v0.0.1 | Cách sửa ở v0.0.2 | Công cụ |
+|---|---|---|---|
+| 1 | `solarToLunar()` là công thức giả `((d+9)%29)+1`, nên **sai âm lịch với hầu hết ngày sinh** | Viết `lunar.js` theo thuật toán thiên văn Hồ Ngọc Đức (múi giờ +7, tháng nhuận, đổi chiều âm→dương). Đã kiểm tra Tết 2023/2024/2025, nhuận 2/2023, Tết 1968 và trường hợp đặc biệt năm 1985 của Việt Nam | VS Code, Node.js |
+| 2 | 12 cung an **ngược chiều**: Phụ Mẫu đặt ở Mệnh−1 | Đặt cung chức theo chiều thuận kể từ Mệnh | Node.js |
+| 3 | Tuần Không sai (`tuanOffset+10` bị cộng thừa 10) | Tuần = (Chi − Can) + 10, + 11 | Node.js |
+| 4 | Ghi chú 0.0.1 nói có Tràng Sinh, Hỏa/Linh… nhưng code không có | Bổ sung hơn 70 phụ tinh theo quy tắc An Sao của chính SWF: Hỏa/Linh theo "cung định trước", Tam Thai/Bát Tọa, Ân Quang/Thiên Quý, Thai Phụ/Phong Cáo, Tràng Sinh, Bác Sĩ, Thái Tuế, lưu niên… | Python, Node.js |
+| 5 | Bảng Thiên Khôi/Việt khác sách Bửu Đình | Lấy theo 60 mẫu lá số trong SWF (Đinh: Khôi Dậu/Việt Hợi; Mậu & Canh: Khôi Mùi/Việt Sửu…) | Python (trích mẫu), Node.js |
+| 6 | Độ sáng chính tinh sai (ví dụ Tử Vi ở Tị là "B") | Dùng bảng Miếu/Vượng/Đắc/Bình/Hãm phổ thông | — |
+| 7 | Dữ liệu SWF bị cắt thành từng câu rời, mất tên bài và chương; Android không đọc được do `fetch()` qua `file://` nên chỉ còn 4 câu dự phòng | Khôi phục **611 bài nguyên văn / 13 chương** theo menu gốc, nạp dần từng chương bằng `<script>` (chạy được qua `file://`) | Python (bộ đọc SWF tự viết) |
+| 8 | Chương "An Sao" (chữ tĩnh) bị mất vì lỗi bảng mã | Giải mã glyph bằng so khớp hình dạng (PIL + Liberation Sans) kết hợp từ điển tần suất âm tiết, cộng bộ chuyển VNI-Win → Unicode | Python |
+| 9 | "Trợ lý AI" chỉ trả về một câu viết sẵn | Trợ lý ngoại tuyến thật: phân tích chính tinh, độ sáng, Tứ Hóa, Tuần/Triệt, tam phương, đại/tiểu hạn, kèm trích đoạn Bửu Đình liên quan. Ghi rõ đây không phải AI tạo sinh | VS Code |
+| 10 | Chỉ 5 trên 19 ngôn ngữ có bản dịch, còn lại hiện tiếng Anh | 68 locale theo Aniyomi/Nekoyomi (63) và Mangayomi (es-419). Đã dịch đầy đủ 51 ngôn ngữ. 17 ngôn ngữ hiếm (am, as, be, ceb, cv, eo, fil, jv, kn, ml, mr, my, ne, sa, sah, sc, sdh) tạm dùng tiếng Anh | Python `build_i18n.py`, Node `i18n_test.js` |
+| 11 | Nút "Kiểm tra VPN" luôn báo an toàn, kể cả khi mất mạng | Kiểm tra thật qua `cloudflare.com/cdn-cgi/trace` bằng HTTP native (Android/Windows): hiện IP, vị trí, độ trễ, trạng thái WARP. Ứng dụng không bật/tắt VPN | Java, C# |
+| 12 | APK arm64 bị gắn kèm `libapp.so` (khoảng 14 MB) **của Mangayomi**; APK armeabi-v7a và x86_64 **trùng hash** (cùng một tệp) | Thư viện native riêng `libaacore.so` (tìm kiếm toàn văn bằng C/NDK) biên dịch cho từng ABI; mỗi ABI có versionCode riêng (2001/2002/2003). APK giảm từ **17,0 MB xuống 2,58 MB** | NDK clang 27, aapt2, d8, zipalign `-P 16`, apksigner |
+| 13 | Bản Windows chỉ có x64; IE11 không chạy được JS ES6 (arrow function, template string, CSS variables) | Toàn bộ web viết lại theo **ES5**; màu chủ đề sinh bằng JS thay vì CSS variables; bảng lá số dùng `<table>`. Host C# dùng WebView2, tự chuyển sang IE11 trên Windows 7. Có bản x86 / x64 / ARM64 | Visual Studio 2022 Build Tools (Roslyn csc) |
+| 14 | Còn chữ "Visicons" (package, publisher AppX "CN=Visicons", chân trang) | Đã gỡ hết. Publisher là "CN=Applied Astrology", package `com.appliedastrology.tuvi` | — |
+| 15 | Mật khẩu keystore ghi thẳng trong script (`tuvi1234`) | Keystore mới RSA-3072, mật khẩu ngẫu nhiên lưu ở `D:\yh\aa002_keys` (ngoài repo, đã gitignore). Log che mật khẩu | keytool |
+
+## 3. Lỗi phát sinh khi build/kiểm thử v0.0.2 (đã sửa)
+
+| Lượt | Lỗi | Nguyên nhân | Sửa |
+|---|---|---|---|
+| 1 | `aapt2 link: assets\web\web: failed to open file`, makeappx "web\web" | Symlink `src/web/web` vô tình tạo khi chạy thử thư viện C trong sandbox | Xóa symlink; script tự loại bỏ reparse point trong thư mục stage |
+| 1 | WiX `CNDL0230` | Component per-user vừa có file vừa có registry keypath, lại dùng GUID tự sinh | Mỗi tệp một component (File KeyPath); mỗi thư mục một component RemoveFolder + HKCU keypath |
+| 1 | WebView2 "Ambiguous match found" | SDK 1.0.2903 có 2 overload `EnsureCoreWebView2Async` | Chọn đúng overload 1 tham số bằng reflection |
+| 1 | `avdmanager`: package path is not valid | Đường dẫn system image sai | Dùng AVD có sẵn (Medium_Phone_API_37.0, OOS_Android6_API23) |
+| 2 | `apksigner: java.io.IOException: Bad pathname`; `adb: failed to stat` | `.bat` của build-tools và adb không xử lý được đường dẫn tiếng Việt có dấu của repo | Ký, cài và lấy ảnh trong thư mục ASCII `D:\yh\aa002`, sau đó mới chép về `output/` và `test_reports/` |
+| 2 | `Access to WebView2Loader.dll is denied` | Tiến trình còn sót của lượt trước giữ khóa DLL | Đóng tiến trình cũ; giải nén mỗi lượt vào thư mục có timestamp |
+| 3 | Android hiện trang trắng; trên Android 6: `net::ERR_FILE_NOT_FOUND` cho `index.html?selftest=1` | WebView không hỗ trợ query string với `file:///android_asset` | Dùng `#selftest=1`; `app.js` đọc tham số cả từ hash |
+| 4 | Android vẫn báo `net::ERR_FILE_NOT_FOUND` dù đã đổi sang `#selftest=1` | Trên Windows, `aapt2 link -A` ghi tên mục trong APK bằng dấu gạch ngược (`assets/web\css\app.css`), Android không đọc được | Bỏ `-A`; tự thêm assets vào APK bằng .NET ZipArchive, dùng dấu `/` |
+| 4 | IE11 (đường chạy Windows 7): lá số không lập được (14/24) | IE11 không hỗ trợ gán `innerHTML` cho `<select>`, nên ô ngày/tháng trống | Tạo `<option>` bằng DOM (`fillSelect`) |
+| 5 | appxbundle: `0x80073CF0 Package could not be opened` | `D:\yh` là junction; dịch vụ cài AppX từ chối đường dẫn qua junction | Chép gói/layout sang `%TEMP%` rồi mới cài |
+| 4 | Note 9 hiện màn hình trắng | Máy đang khóa màn hình; WebView không vẽ khi app nằm sau màn hình khóa | Script đánh thức máy và mở khóa màn hình (nếu không đặt mật khẩu) trước khi kiểm thử |
+| 3 | Ảnh kiểm thử Windows 1×1 px | Công cụ chụp màn hình của tác nhân đã thu nhỏ cửa sổ app khi app chưa được cấp quyền xem | Cấp quyền xem cho app; không chụp màn hình trong lúc app đang tự kiểm thử |
+
+## 4. Dòng lệnh chính (trong `build_release_0.0.2.ps1`)
+```
+aapt2 compile --dir src\android\res -o compiled\res.zip
+javac -encoding UTF-8 -source 8 -target 8 -bootclasspath android-35\android.jar ...
+d8 --release --min-api 23 --lib android.jar --output dex <classes>
+clang --target=aarch64-linux-android23 | armv7a-linux-androideabi23 -mthumb | x86_64-linux-android23 -shared -fPIC -O2 aacore.c -landroid -llog -Wl,-z,max-page-size=16384
+aapt2 link -A assets --min-sdk-version 23 --target-sdk-version 35 --version-code 2001|2002|2003
+zipalign -f -P 16 4 ; apksigner sign --v4-signing-enabled false ; apksigner verify --min-sdk-version 23
+csc /platform:anycpu|x86|x64|arm64 /codepage:65001 /win32manifest:app.manifest AppHost.cs  (Roslyn, VS 2022 Build Tools)
+csc /resource:payload.zip,AppPayload Setup.cs
+makeappx pack (x86/x64/arm64) ; makeappx bundle ; signtool sign /fd SHA256
+candle -arch x86|x64|arm64 ; light -sval     (WiX 3.14)
+adb install -r -g ; am start --ez selftest true ; screenrecord ; screencap ; logcat
+ffmpeg -f gdigrab -i desktop (quay video kiểm thử Windows)
+```
+
+## 5. Kiểm thử
+- **Unit test (Node.js)**:
+  - `tools/tests/engine_test.js`: so 120 mẫu lá số SWF với **3.965 phép kiểm, khớp 98,18%**. Phần sai lệch còn lại do nhãn sao trong hình SWF nằm trên ranh giới giữa 2 ô.
+  - `i18n_test.js`: kiểm tra đủ khóa cho mọi ngôn ngữ.
+- **QR**: so từng module với thư viện gốc Nayuki ở 5 chuỗi (phiên bản 1 đến 32), trùng khớp 100%.
+- **Tìm kiếm native (C)**: chạy thử trong sandbox, vị trí trả về khớp với chỉ số chuỗi bên JS.
+- **Tự kiểm thử 24 bước trong ứng dụng** (`#selftest=1` / `--selftest`): mỗi bước bấm phần tử giao diện thật rồi chụp màn hình. Các bước gồm:
+  - Lập lá số dương/âm lịch, chi tiết cung
+  - QR, PNG, lưu hồ sơ
+  - Thư viện, đọc sách, tìm kiếm có dấu và không dấu
+  - Trợ lý (tổng quan, công danh, hạn năm)
+  - Giao diện, ngôn ngữ en/ja, cỡ chữ, bố cục, DeX
+  - Sao lưu và khôi phục, kiểm tra mạng, khôi phục mặc định
+- **Kết quả**: xem `test_reports/0.0.2/TEST_REPORT.md`, gồm ảnh từng bước, video Android (`android_test_video.mp4`), video màn hình Windows (`windows_test_video.mp4`) và logcat.
+  - Lượt 3 trên Windows / WebView2 (bản portable): 14 bước đầu đều **PASS**:
+    - Lá số 15/8/1995 ra âm lịch 20/7/1995, Thổ Ngũ Cục
+    - Đổi âm→dương 1/2 nhuận 2023 ra 22/3/2023
+    - QR v3, PNG 331 KB
+    - Thư viện 13 chương / 611 bài, tìm kiếm 599–604 kết quả
+    - Trợ lý trả lời 1.300–1.400 ký tự
+  - Thiết bị dùng kiểm thử: Samsung Galaxy Note 9 (SM-N960N, Android 10, arm64-v8a), emulator Android 17 (API 37, x86_64), emulator **Android 6.0 (API 23, x86_64)**, Windows 11 x64 (WebView2 156 và IE11).
+- **VPN**: chỉ kiểm tra bên ngoài ứng dụng, đúng yêu cầu. Trong app có màn hình chẩn đoán, chỉ đọc trạng thái WARP/VPN qua Cloudflare trace.
+
+### Kết quả lượt 5 (02/11/2026 15:07–15:27, BUILD_TEST)
+
+| Thiết bị / bản cài | Engine | Tự kiểm thử 24 bước |
+|---|---|---|
+| Samsung Galaxy Note 9 SM-N960N, Android 10, arm64-v8a (đang chạy **Samsung DeX**, `dex=true`) | Android WebView 156, tìm kiếm **native** (`native=true`) | **24/24 PASS** |
+| Emulator Android 17 (API 37), x86_64 | Android WebView | **24/24 PASS** |
+| Emulator **Android 6.0 (API 23)**, x86_64 | Android WebView (bản hệ thống) | **24/24 PASS** |
+| Windows 11 x64, bản portable | Edge WebView2 156 | **24/24 PASS** |
+| Windows 11 x64, bản portable, ép chạy IE11 (đường chạy Windows 7) | IE11 / MSHTML | **24/24 PASS** |
+| Setup.exe (cài im lặng `/S` → chạy → gỡ `/uninstall /S`) | Edge WebView2 | **24/24 PASS**; đã gỡ sạch thư mục và khóa đăng ký ARP |
+| MSI x64 (`msiexec /i /qn` → chạy → `msiexec /x`) | Edge WebView2 | **24/24 PASS** |
+| appxbundle | — | Lỗi do junction (đã sửa ở lượt phát hành) |
+
+Ghi chú: trên Note 9, bước kiểm tra mạng báo "Không có kết nối Internet" vì lúc đó máy không có mạng; trên Windows báo đã kết nối, độ trễ khoảng 300 ms, IP Việt Nam, PoP HKG, không có WARP.
+
+## 6. Tham chiếu từ sheet Project GitHub
+- **Flash Player** (Ruffle, swf2js, Lightspark): tham khảo cấu trúc thẻ SWF để tự viết bộ đọc SWF bằng Python. Không nhúng Ruffle vì WASM không chạy được trên IE11 / Android 6, và SWF nặng 26 MB.
+- **Runtime Native/Hybrid**: áp dụng mô hình vỏ native (Java/JNI + C# WinForms) bọc giao diện web dùng chung.
+- **Trình duyệt** (Chromium/Firefox): dùng Edge WebView2 (Chromium) trên Windows 10/11 và Android System WebView (Chromium); IE11 dự phòng cho Windows 7.
+- **Aniyomi/Nekoyomi** (moko-resources, 63 locale) và **Mangayomi** (`lib/l10n`, 19 locale): làm danh sách ngôn ngữ.
+- **QR-Code-generator (Nayuki, mục X.8)**: chuyển thể sang ES5 thành `qr.js`.
+
+## 7. So sánh với v0.0.1
+
+| Tiêu chí | v0.0.1 | v0.0.2 |
+|---|---|---|
+| Âm lịch | Công thức giả, sai | Thuật toán thiên văn, đúng các mốc kiểm tra |
+| An sao | 14 chính tinh, khoảng 25 phụ tinh, nhiều chỗ sai | 14 chính tinh, hơn 70 phụ tinh, 3 vòng sao, lưu niên; khớp 98% với mẫu SWF |
+| Nội dung Bửu Đình | Câu rời; Android không tải được | 611 bài nguyên văn / 13 chương, có An Sao, tìm kiếm toàn văn |
+| Trợ lý | Một câu trả lời cố định | Phân tích lá số thật + trích dẫn |
+| Ngôn ngữ | 5 bản dịch thật | 51 ngôn ngữ dịch đầy đủ, chọn được 68 |
+| Android | arm64 17 MB (kèm .so của app khác), 2 APK trùng hash | 3 APK 2,58 MB, native thật cho từng ABI, minSdk 23, căn trang 16 KB |
+| Windows | x64, chỉ WebView1/IE, ES6 lỗi | WebView2 + IE11, x86/x64/ARM64, Setup.exe có trình gỡ, 3 MSI, appxbundle 3 kiến trúc, portable |
+| Kiểm thử | Chụp tay | Tự kiểm thử 24 bước + unit test + video |
+| Thương hiệu | Còn Visicons | Đã gỡ hoàn toàn |

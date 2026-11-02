@@ -1,0 +1,33 @@
+﻿15:46:45 engine Edge WebView2 156.0.4314.58 arch x64
+15:46:46 JS build solar,15,8,1995,6
+15:46:47 JS build solar,15,8,1995,6
+15:46:47 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
+15:46:50 JS SELFTEST PASS 02_palace_detail related=4
+15:46:54 JS build lunar,1,2,2023,3
+15:46:54 JS SELFTEST PASS 03_lunar_input solar=22/3/2023
+15:46:57 JS SELFTEST PASS 04_qr size=29
+15:47:03 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.2\windows\msi_x64\export_LaSo-Trần_Thị_Bình-2023.png (248325 bytes)
+15:47:03 JS SELFTEST PASS 05_png bytes=331122
+15:47:09 JS SELFTEST PASS 06_save_profile saved=6
+15:47:12 JS SELFTEST PASS 07_library_home chapters=13 articles=611
+15:47:15 JS SELFTEST PASS 08_library_chapter 
+15:47:19 JS SELFTEST PASS 09_reader chars=21432
+15:47:23 JS SELFTEST PASS 10_search results=599 native=false
+15:47:26 JS SELFTEST PASS 11_search_noaccent results=604
+15:47:29 JS SELFTEST PASS 12_assistant_overview chars=1379
+15:47:33 JS SELFTEST PASS 13_assistant_question chars=1322
+15:47:36 JS SELFTEST PASS 14_assistant_year 
+15:47:39 JS SELFTEST PASS 15_settings_theme 
+15:47:42 JS SELFTEST PASS 16_settings_language_en 
+15:47:46 JS SELFTEST PASS 17_settings_language_ja ライブラリ
+15:47:49 JS SELFTEST PASS 18_settings_font_layout 
+15:47:52 JS SELFTEST PASS 19_chart_list_layout 
+15:47:55 JS SELFTEST PASS 20_desktop_dex 
+15:47:58 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.2\windows\msi_x64\export_AppliedAstrology-backup-2026-11-02.json (2514 bytes)
+15:47:58 JS SELFTEST PASS 21_backup_export 
+15:48:02 JS SELFTEST PASS 22_backup_import 
+15:48:05 JS net 212ms ip=222.252.212.181 warp=off
+15:48:12 JS SELFTEST PASS 23_network_check Connected · Latency: 212 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected
+15:48:15 JS build solar,15,8,1995,6
+15:48:15 JS SELFTEST PASS 24_restore_defaults 
+15:48:18 SELFTEST_DONE {"app":"Applied Astrology","version":"0.0.2","platform":{"os":"Microsoft Windows NT 10.0.26300.0 64-bit","abi":"OS AMD64 / process x64","engine":"Edge WebView2 156.0.4314.58","portable":false,"dataDir":"C:\\Users\\nguye\\AppData\\Roaming\\AppliedAstrology","kind":"windows-webview2","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"},"pass":24,"total":24,"results":[{"step":"01_chart_build","ok":true,"detail":"palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục"},{"step":"02_palace_detail","ok":true,"detail":"related=4"},{"step":"03_lunar_input","ok":true,"detail":"solar=22/3/2023"},{"step":"04_qr","ok":true,"detail":"size=29"},{"step":"05_png","ok":true,"detail":"bytes=331122"},{"step":"06_save_profile","ok":true,"detail":"saved=6"},{"step":"07_library_home","ok":true,"detail":"chapters=13 articles=611"},{"step":"08_library_chapter","ok":true,"detail":""},{"step":"09_reader","ok":true,"detail":"chars=21432"},{"step":"10_search","ok":true,"detail":"results=599 native=false"},{"step":"11_search_noaccent","ok":true,"detail":"results=604"},{"step":"12_assistant_overview","ok":true,"detail":"chars=1379"},{"step":"13_assistant_question","ok":true,"detail":"chars=1322"},{"step":"14_assistant_year","ok":true,"detail":""},{"step":"15_settings_theme","ok":true,"detail":""},{"step":"16_settings_language_en","ok":true,"detail":""},{"step":"17_settings_language_ja","ok":true,"detail":"ライブラリ"},{"step":"18_settings_font_layout","ok":true,"detail":""},{"step":"19_chart_list_layout","ok":true,"detail":""},{"step":"20_desktop_dex","ok":true,"detail":""},{"step":"21_backup_export","ok":true,"detail":""},{"step":"22_backup_import","ok":true,"detail":""},{"step":"23_network_check","ok":true,"detail":"Connected · Latency: 212 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected"},{"step":"24_restore_defaults","ok":true,"detail":""}]}
