@@ -1,24 +1,24 @@
-﻿  Window #4 Window{9a6b050 u0 StatusBar}:
+﻿  Window #4 Window{e3b0809 u0 StatusBar}:
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1080,63] last=[0,0][1080,63]
     Cur insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,0][0,0] stable=[0,0][0,0] outsets=[0,0][0,0]
     Lst insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,0][0,0] stable=[0,0][0,0] physical=[0,0][0,0] outset=[0,0][0,0]
-    WindowStateAnimator{51e58b7 StatusBar}:
+    WindowStateAnimator{5944ed8 StatusBar}:
       mSurface=Surface(name=StatusBar)
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1080,1920] last=[0,0][1080,1920]
     Cur insets: overscan=[0,0][0,0] content=[0,63][0,0] visible=[0,63][0,0] stable=[0,63][0,0] outsets=[0,0][0,0]
     Lst insets: overscan=[0,0][0,0] content=[0,63][0,0] visible=[0,63][0,0] stable=[0,63][0,0] physical=[0,0][0,0] outset=[0,0][0,0]
-  Window #2 Window{65a5e26 u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
-    mOwnerUid=10069 mShowToOwnerOnly=true package=com.appliedastrology.tuvi appop=NONE
-    mToken=AppWindowToken{cd4acd9 token=Token{c9e6a23 ActivityRecord{fb0a752 u0 com.appliedastrology.tuvi/.MainActivity t16}}}
-    mRootToken=AppWindowToken{cd4acd9 token=Token{c9e6a23 ActivityRecord{fb0a752 u0 com.appliedastrology.tuvi/.MainActivity t16}}}
-    mAppToken=AppWindowToken{cd4acd9 token=Token{c9e6a23 ActivityRecord{fb0a752 u0 com.appliedastrology.tuvi/.MainActivity t16}}}
+  Window #2 Window{6a87ea4 u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
+    mOwnerUid=10070 mShowToOwnerOnly=true package=com.appliedastrology.tuvi appop=NONE
+    mToken=AppWindowToken{f7fe2e5 token=Token{776adf3 ActivityRecord{e935862 u0 com.appliedastrology.tuvi/.MainActivity t18}}}
+    mRootToken=AppWindowToken{f7fe2e5 token=Token{776adf3 ActivityRecord{e935862 u0 com.appliedastrology.tuvi/.MainActivity t18}}}
+    mAppToken=AppWindowToken{f7fe2e5 token=Token{776adf3 ActivityRecord{e935862 u0 com.appliedastrology.tuvi/.MainActivity t18}}}
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1080,1920] last=[0,0][1080,1920]
     Cur insets: overscan=[0,0][0,0] content=[0,63][0,0] visible=[0,63][0,0] stable=[0,63][0,0] outsets=[0,0][0,0]
     Lst insets: overscan=[0,0][0,0] content=[0,63][0,0] visible=[0,63][0,0] stable=[0,63][0,0] physical=[0,0][0,0] outset=[0,0][0,0]
-    WindowStateAnimator{7a8f8d com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
+    WindowStateAnimator{9ce5d16 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
       mSurface=Surface(name=com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity)
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1080,1920] last=[0,0][1080,1920]
@@ -28,7 +28,6 @@
     mFrame=[0,0][1080,1920] last=[0,0][1080,1920]
     Cur insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,63][0,0] stable=[0,63][0,0] outsets=[0,0][0,0]
     Lst insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,63][0,0] stable=[0,63][0,0] physical=[0,0][0,0] outset=[0,0][0,0]
-  mCurrentFocus=Window{65a5e26 u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}
-  mFocusedApp=AppWindowToken{cd4acd9 token=Token{c9e6a23 ActivityRecord{fb0a752 u0 com.appliedastrology.tuvi/.MainActivity t16}}}
-  mLastDisplayFreezeDuration=0 due to Window{9a6b050 u0 StatusBar}
+  mCurrentFocus=Window{6a87ea4 u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}
+  mFocusedApp=AppWindowToken{f7fe2e5 token=Token{776adf3 ActivityRecord{e935862 u0 com.appliedastrology.tuvi/.MainActivity t18}}}
   mLastStatusBarVisibility=0x8600

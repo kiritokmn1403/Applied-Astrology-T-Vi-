@@ -145,3 +145,6 @@ details { margin: 6px 0; } summary { cursor: pointer; }
 .notes { white-space: pre-wrap; font-size: .85rem; margin-top: 6px; }
 .progress { height: 8px; border-radius: 4px; overflow: hidden; margin: 8px 0 4px; }
 .progress div { height: 100%; width: 0; transition: width .3s; }
+
+/* v0.0.3 – biểu tượng thanh tab bằng SVG (Samsung WebView vẽ ☾ ☯ thành emoji kể cả khi có U+FE0E) */
+.aa-nav a .ico svg { width: 1.25rem; height: 1.25rem; fill: currentColor; vertical-align: middle; overflow: visible; }

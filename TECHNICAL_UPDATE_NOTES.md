@@ -385,7 +385,7 @@ Ghi chú: trên Note 9, bước kiểm tra mạng báo "Không có kết nối I
 | 10 | Nhật ký ứng dụng: Android `files/app.log` (xoay vòng 256 KB), Windows `app.log` (512 KB); bộ đệm JS 400 dòng | `fileLog()`, `Program.Log()`, `AAHost.log()` | |
 | 11 | Báo cáo lỗi: Android `Thread.setDefaultUncaughtExceptionHandler` → `files/crash/*.txt`; Windows `Application.ThreadException` + `AppDomain.UnhandledException` → `crash\*.txt`; lỗi JS (`window.onerror`) lưu 100 mục | `installCrashHandler()`, `Program.WriteCrash()`, `AAHost.recordError()` | |
 | 12 | **i18n**: 74 khóa mới × 66 ngôn ngữ + dịch đầy đủ 17 ngôn ngữ còn thiếu (am, as, be, ceb, cv, eo, fil, jv, kn, ml, mr, my, ne, sa, sah, sc, sdh – 233 chuỗi mỗi ngôn ngữ). Kiểm tra tự động: đủ khóa, đủ 7 thứ trong tuần, giữ nguyên `{v}/{p}/{m}/{y}/{n}/{c}` | `tools/i18n_v3/*.txt`, `tools/merge_i18n_v3.py` (mới), `python tools/build_i18n.py`, `node tools/tests/i18n_test.js` | Python, Node.js |
-| 13 | Biểu tượng thanh tab hiển thị dạng chữ (thêm U+FE0E) – Samsung từng vẽ ☾ thành emoji | `index.html` | |
+| 13 | Biểu tượng thanh tab: lần 1 thêm U+FE0E (không đủ – WebView Samsung vẫn vẽ ☾ ☯ thành emoji); lần 2 thay cả 6 biểu tượng bằng **SVG nội tuyến** tô theo màu chữ (chạy cả trên IE11) | `index.html`, `css/app.css` | |
 | 14 | Build: versionCode 3001–3003; thư mục ASCII `D:\yh\aa003`; thêm `System.IO.Compression*.dll` khi biên dịch AppHost; chép `assets/certs`; bước `11b` sinh trình cài appx; kiểm thử nâng cấp 0.0.2 → 0.0.3 (Android `adb install -r`, Windows Setup.exe đè); `calendar_test.js`; dump `window_insets.txt` | `build_release_0.0.3.ps1`, `BUILD_v0.0.3.bat`, `BUILD_TEST_v0.0.3.bat`, `PUBLISH_v0.0.3.bat` | PowerShell |
 
 ## 3. Lỗi phát hiện trong quá trình update và cách sửa
@@ -396,7 +396,7 @@ Ghi chú: trên Note 9, bước kiểm tra mạng báo "Không có kết nối I
 | Rà v0.0.2 | 17 ngôn ngữ vẫn hiện tiếng Anh | Chưa dịch | Dịch đầy đủ |
 | 1 (16:10) | **Android 6.0: tải bản cập nhật lỗi** `SSLHandshakeException: Trust anchor for certification path not found` (gọi API vẫn được) | Tệp phát hành được tải từ `*.githubusercontent.com` dùng root **DigiCert Global Root G2** – kho CA của Android 6 chưa có | `TlsCompat.java` (mới): TrustManager thử kho hệ thống trước, chỉ khi bị từ chối mới thử 13 root CA công khai đóng gói (`src/android/certs`, lấy từ kho Mozilla); chỉ áp dụng API < 24; vẫn xác minh chứng chỉ & hostname |
 | 1 (16:33) | appxbundle đã ký: `0x80073CF0` / **`0x800B0109` root certificate must be trusted** | Gói tự ký cần chứng chỉ trong *Local Machine › Trusted People* (cần Admin); script build không chạy quyền Admin nên chỉ nhập được vào kho người dùng | Thêm `AppliedAstrology-0.0.3-windows-appx-install.bat`: tự xin UAC, nhập chứng chỉ vào LocalMachine\TrustedPeople rồi cài gói. Kiểm thử tự động vẫn cài layout x64 (chế độ developer) để chạy 36 bước |
-| 1 | Samsung hiển thị ☾ thành emoji ô tím ở tab Âm Lịch | Ký tự có biến thể emoji | Thêm U+FE0E (biến thể chữ) cho mọi biểu tượng tab |
+| 1 | Samsung hiển thị ☾ thành emoji ô tím ở tab Âm Lịch | Ký tự có biến thể emoji | Thêm U+FE0E (biến thể chữ) cho mọi biểu tượng tab → **chưa đủ**, xem lượt 3 |
 | 2 (16:59) | **Chế độ IE11 (đường chạy Windows 7) hiện cửa sổ trắng** – 36/36 bước vẫn đạt (DOM chạy đúng) nhưng ảnh chụp & video toàn màu trắng | Khoanh vùng bằng 4 biến thể chạy IE11 trên cùng máy: host 0.0.3 + web 0.0.3, host 0.0.2 + web 0.0.3, host 0.0.3 + web 0.0.2, và **chính bản 0.0.2 gốc** (hôm qua chụp bình thường) → **tất cả đều trắng** ⇒ không phải lỗi mã 0.0.3 mà do dựng hình GPU của MSHTML (`FEATURE_GPU_RENDERING = 1`) không còn vẽ trên máy kiểm thử (Windows 11 build 26300, NVIDIA) | `AppHost.cs`: đặt `FEATURE_GPU_RENDERING = 0` (dựng hình phần mềm; biến môi trường `AA_IE_GPU=1` để bật lại). Thử lại: ảnh IE11 có nội dung (≈100 KB/ảnh thay vì 6,5 KB trắng) |
 
 ## 4. Kiểm thử
@@ -468,28 +468,45 @@ Bằng chứng: `test_reports/0.0.3/` (ảnh từng bước, ảnh màn hình th
 | Tự kiểm thử | 24 bước | 36 bước + kiểm thử nâng cấp + unit test lịch |
 | Windows appx | Lỗi 0x80073CF0 khi cài gói ký | Rõ nguyên nhân (0x800B0109) + trình cài tự xin quyền |
 
-## 8. Bảng mã SHA-256 v0.0.3 (`output/0.0.3/SHA256SUMS-0.0.3.txt`)
+## 8. Bảng mã SHA-256 v0.0.3 – build phát hành cuối (`output/0.0.3/SHA256SUMS-0.0.3.txt`)
 | Tệp | Dung lượng | SHA-256 |
 |---|---|---|
-| AppliedAstrology-0.0.3-arm64-v8a.apk | 2.937.467 B | `d32c2153ae41aa5db9a4dd230302aec99d6829de9453c50cac9d2baaafcbfdcc` |
-| AppliedAstrology-0.0.3-armeabi-v7a.apk | 2.937.469 B | `a0712b1b6e4de06591da16f724ee6276c9e6bc35475edd7fcac4ff6399f355e7` |
-| AppliedAstrology-0.0.3-x86_64.apk | 2.937.464 B | `9baba920b360441036ee72715cf2ac458820d2c7aec5937698bf4a28ab000087` |
-| AppliedAstrology-0.0.3-windows-Setup.exe | 3.188.624 B | `d137baa197d6e8a296e93bc6e7914b74a5cea093b7198b597d2eddfdd4f80c1a` |
-| AppliedAstrology-0.0.3-windows.appxbundle | 9.994.158 B | `48b32fa7b05814c699cccf8fb10062f6be23362e21d2b95b7258cb5d7c753ae7` |
-| AppliedAstrology-0.0.3-windows-appx-install.bat | 1.693 B | `fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26` |
-| AppliedAstrology-0.0.3-windows-portable.zip | 3.169.174 B | `ac3c1ba92b6c0cc2dfabc97dab2f8fe2a20634544daae559bcf8422dc48a3c4d` |
-| AppliedAstrology-0.0.3-windows-x64.msi | 2.314.240 B | `c677b0e76a3a09173dc0fcf6736992553525e8f703f9df1ded8c08fc9fb7eb82` |
-| AppliedAstrology-0.0.3-windows-x86.msi | 2.289.664 B | `548505c5221e0dd95a2e2fce46713a3979a2175f9e2ba3f994d0b1ea0e7d35c8` |
-| AppliedAstrology-0.0.3-windows-arm64.msi | 2.285.568 B | `3c131f3eaccde8d0db4d658d5052e9230955718eda506bdc4029e35027f6e80b` |
+| AppliedAstrology-0.0.3-arm64-v8a.apk | 2.937.467 B | `48e0382736669a0260ecbe400266258bf6f4366ccf694cf169ed51f427465edf` |
+| AppliedAstrology-0.0.3-armeabi-v7a.apk | 2.937.469 B | `282add22c14e399383d014021f14af3ed80877f8d68e5af8086104645d7ad5ce` |
 | AppliedAstrology-0.0.3-signing-certificate.cer | 794 B | `2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73` |
+| AppliedAstrology-0.0.3-windows-Setup.exe | 3.189.136 B | `03d5bf6ffda5e7ab9f038d06dac4229945bf5b3e9f68da36e33fc8ceed21e987` |
+| AppliedAstrology-0.0.3-windows-appx-install.bat | 1.693 B | `fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26` |
+| AppliedAstrology-0.0.3-windows-arm64.msi | 2.289.664 B | `08a9b8511aec2bce3ffd023d315aac4afb02fce6e8ecf97924a9e180e254956c` |
+| AppliedAstrology-0.0.3-windows-portable.zip | 3.169.665 B | `40889f1daf420ba5c16484c7178f1a1742d416ea22bbdd5253bfc5167ce1e08f` |
+| AppliedAstrology-0.0.3-windows-x64.msi | 2.314.240 B | `5db46b151f72aff34923e8cca5f87c44787ed877e23de3c8c95744503b27b12d` |
+| AppliedAstrology-0.0.3-windows-x86.msi | 2.289.664 B | `9ce0802c38e55614e1896d9ff8335e6cc8dbe53b5b724b0363832b309e45708a` |
+| AppliedAstrology-0.0.3-windows.appxbundle | 9.995.609 B | `975ae793363f4c43e5937c5fac789eefa2057d499410fee3a3b3be1b734e4bd7` |
+| AppliedAstrology-0.0.3-x86_64.apk | 2.937.464 B | `6304f89e8010c2cf7b8ccc986d6a1a2ab8c13d27ead88404e2addfa85ca2a0ed` |
 
 ## 9. Phát hành
 `PUBLISH_v0.0.3.bat` → `build_release_0.0.3.ps1 -Phase publish`: `git add` (src, tools, docs, output/0.0.3, test_reports/0.0.3, README, CHANGELOG, TECHNICAL_UPDATE_NOTES, script) → commit → `git push origin HEAD:main` → tag `v0.0.3` → tạo GitHub Release (token lấy từ Git Credential Manager của máy, không ghi log) → tải lên 12 tệp output + 4 video kiểm thử → đối chiếu tên và kích thước từng tệp trên Release.
+
+### Lượt 4 (sau phát hành lần đầu) – rà ảnh kiểm thử
+| Lỗi | Nguyên nhân | Sửa |
+|---|---|---|
+| Ảnh ghép kiểm thử cho thấy Galaxy Note 9 vẫn vẽ ☾ (Âm Lịch) và ☯ (Luận Giải) thành emoji ô tím dù đã có U+FE0E | WebView/phông emoji của Samsung bỏ qua bộ chọn biến thể VS15 | Thay 6 biểu tượng thanh tab bằng SVG nội tuyến (`fill: currentColor`), kiểm tra hiển thị bằng Chromium; build + kiểm thử lại toàn bộ (lượt 4 BUILD_TEST) và phát hành lại cùng phiên bản 0.0.3 |
+
+### Lượt 4 (18:01–18:48) – build phát hành cuối (biểu tượng SVG)
+| Thiết bị / bản cài | Kết quả |
+|---|---|
+| Emulator Android 17 (API 37) · Android 6.0 (API 23) | **36/36 · 36/36** |
+| Windows portable IE11 · Setup.exe · MSI x64 · appxbundle | **36/36** cả 4 (chạy lại 18:34–18:48: vẫn 36/36) |
+| Windows portable WebView2 | 34/36 lúc 18:24 do **máy build mất Internet** (IP đổi 222.252.x → 113.185.x, độ trễ 20,9 s, phiên điều khiển bị ngắt) → chạy lại 18:41: **36/36** |
+| Galaxy Note 9 (thật) | 18:07: 34/36 (điện thoại mất mạng); 18:39: **35/36** – bước 30/31 kiểm tra & tải **chính Release v0.0.3** (2.937.467 B) OK; bước 08 lỗi 1 lần (nội dung thư viện bị đổi trong 3 giây giữa bước 07 và 08 – nghi có thao tác trên điện thoại thật; bước này đạt ở 4 lượt trước); lần chạy lại 18:50 treo ở `adb install` (điện thoại chờ xác nhận) nên dừng – **ứng dụng đã bị gỡ khỏi Note 9 ở bước chuẩn bị, cần cài lại APK** |
+| Xiaomi/Redmi 25069PTEBG, Android 16 (mới cắm USB) | Không cài được: `INSTALL_FAILED_USER_RESTRICTED` – HyperOS yêu cầu bật *Tùy chọn nhà phát triển › Cài đặt qua USB* và bấm *Cho phép* trên điện thoại |
+
+Thêm tùy chọn `-AndroidOnly` cho `build_release_0.0.3.ps1` (chỉ kiểm thử lại Android).
 
 **Kết quả phát hành (03/11/2026):**
 | Lượt | Thời gian | Kết quả | Xử lý |
 |---|---|---|---|
 | 1 | 17:37–17:42 | `git push` lỗi `RPC failed; curl 55 Send failure: Connection was reset` (đẩy ~100 MB ảnh kiểm thử qua mạng chập chờn); Release `v0.0.3` được tạo nhưng tải lên dừng ở tệp thứ 6 (`The underlying connection was closed`) | Thêm vào script: `http.postBuffer = 500 MB`, `http.lowSpeedLimit = 0`, thử lại `push` 5 lần, thử lại từng tệp 4 lần (xóa tệp tải dở), bỏ qua tệp đã lên đủ dung lượng, cập nhật nội dung Release |
 | 2 | 17:44–17:57 | `git push` OK (commit `e4457db`), tag `v0.0.3` OK; 5 tệp đã lên từ lượt 1 được bỏ qua, 11 tệp còn lại tải lên OK | **16/16 tệp xác minh đúng tên + dung lượng** (`state=uploaded`); trang Release hiển thị *Latest*, 18 tệp (16 + 2 gói mã nguồn) |
+| 3 | sau lượt kiểm thử 4 | Phát hành lại **build cuối** (biểu tượng SVG) trên cùng tag `v0.0.3`: commit mới, tag dời sang commit đó, các tệp cài đặt/video có dung lượng khác được xóa và tải lại, tệp trùng dung lượng được giữ; script so **SHA-256** (trường `digest` của GitHub) thay vì chỉ dung lượng, rồi đối chiếu tên + dung lượng + SHA-256 từng tệp |
 
 Liên kết: https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.3

@@ -11,7 +11,8 @@ param(
     [string]$Phase = "all",
     [switch]$SkipEmulator,
     [switch]$Api23,
-    [switch]$NoPublish
+    [switch]$NoPublish,
+    [switch]$AndroidOnly      # v0.0.3: re-test only Android devices/emulators (skip Windows tests)
 )
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
@@ -540,7 +541,7 @@ if ($Phase -in @("all", "test")) {
         return $r
     }
 
-    Step "21_windows_tests" {
+    if (-not $AndroidOnly) { Step "21_windows_tests" {
         $vid = Join-Path $Reports "windows\windows_test_video.mp4"
         New-Item -ItemType Directory -Force (Split-Path $vid) | Out-Null
         $ff = Start-DesktopVideo $vid
@@ -613,6 +614,7 @@ if ($Phase -in @("all", "test")) {
             } catch { Say "  appxbundle test: $($_.Exception.Message)" "ERR"; $AllResults["windows_appxbundle"] = @{ pass = 0; total = 0; error = $_.Exception.Message } }
         } finally { Stop-DesktopVideo $ff }
     }
+    }   # end if (-not $AndroidOnly)
     Step "22_test_report" {
         $md = New-Object System.Text.StringBuilder
         [void]$md.AppendLine("# Applied Astrology $Ver - Test report ($((Get-Date).ToString('yyyy-MM-dd HH:mm')))")
@@ -702,7 +704,8 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
         }
         foreach ($f in $assets) {
             $old = $rel.assets | Where-Object { $_.name -eq $f.Name }
-            if ($old -and $old.size -eq $f.Length -and $old.state -eq "uploaded") { Say ("  already uploaded {0} ({1} bytes) - skip" -f $f.Name, $old.size); continue }
+            # skip only when GitHub's sha256 digest of the uploaded asset equals the local file (same size is NOT enough: a rebuilt APK can keep its size)
+            if ($old -and $old.state -eq "uploaded" -and $old.digest -and ($old.digest -eq ("sha256:" + (Sha $f.FullName)))) { Say ("  already uploaded {0} (sha256 match) - skip" -f $f.Name); continue }
             if ($old) { Invoke-RestMethod -Headers $h -Uri "$api/releases/assets/$($old.id)" -Method Delete | Out-Null }
             $ct = switch ($f.Extension) { ".apk" { "application/vnd.android.package-archive" } ".zip" { "application/zip" } ".msi" { "application/x-msi" } ".txt" { "text/plain" } ".md" { "text/markdown" } default { "application/octet-stream" } }
             $up = "https://uploads.github.com/repos/$Owner/$RepoName/releases/$($rel.id)/assets?name=$([Uri]::EscapeDataString($f.Name))"
@@ -724,7 +727,8 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
         $missing = @()
         foreach ($f in $assets) {
             $a = $rel.assets | Where-Object { $_.name -eq $f.Name }
-            if (-not $a -or $a.size -ne $f.Length) { $missing += $f.Name } else { Say ("  verified {0} {1} bytes state={2}" -f $a.name, $a.size, $a.state) "OK" }
+            $dig = if ($a -and $a.digest) { $a.digest } else { "" }
+            if (-not $a -or $a.size -ne $f.Length -or ($dig -and $dig -ne ("sha256:" + (Sha $f.FullName)))) { $missing += $f.Name } else { Say ("  verified {0} {1} bytes state={2} {3}" -f $a.name, $a.size, $a.state, $dig) "OK" }
         }
         "release_url=$($rel.html_url)" | Set-Content (Join-Path $LogDir "release_url.txt")
         if ($missing.Count) { throw "assets missing/mismatch: $($missing -join ', ')" }

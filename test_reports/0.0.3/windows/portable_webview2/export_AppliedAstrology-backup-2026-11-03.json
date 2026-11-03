@@ -1,7 +1,7 @@
 {
   "app": "Applied Astrology",
   "version": "0.0.3",
-  "date": "2026-11-03T10:26:42.053Z",
+  "date": "2026-11-03T11:40:39.406Z",
   "settings": {
     "lang": "en",
     "theme": "ivory-light",
@@ -30,7 +30,7 @@
       "leap": true,
       "leapMode": "same",
       "viewYear": 2026,
-      "saved": 1793701562169,
+      "saved": 1793705999001,
       "summary": "Quý Mão · Kim Tứ Cục · Mệnh Tí"
     }
   ],
@@ -40,7 +40,7 @@
       "ch": "chinh-tinh",
       "i": 0,
       "t": "TỬ VI",
-      "d": 1793701570816
+      "d": 1793706007724
     }
   ],
   "recent": [
@@ -50,7 +50,7 @@
       "i": 0,
       "t": "TỬ VI",
       "s": 0,
-      "d": 1793701569912
+      "d": 1793706006829
     }
   ]
 }

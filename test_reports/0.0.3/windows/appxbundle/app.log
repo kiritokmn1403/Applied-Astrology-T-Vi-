@@ -61,3 +61,15 @@
 17:33:46 JS build solar,15,8,1995,6
 17:33:48 JS build solar,15,8,1995,6
 17:33:48 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
+18:31:21 start v0.0.3 os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=setup
+18:31:21 engine Edge WebView2 156.0.4314.58 arch x64
+18:31:23 JS init v0.0.3 windows-webview2
+18:31:23 JS build solar,15,8,1995,6
+18:31:24 JS build solar,15,8,1995,6
+18:31:24 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
+18:48:22 start v0.0.3 os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=setup
+18:48:23 engine Edge WebView2 156.0.4314.58 arch x64
+18:48:23 JS init v0.0.3 windows-webview2
+18:48:23 JS build solar,15,8,1995,6
+18:48:25 JS build solar,15,8,1995,6
+18:48:25 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục

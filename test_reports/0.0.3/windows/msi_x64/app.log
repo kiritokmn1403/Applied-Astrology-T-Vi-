@@ -1,51 +1,51 @@
-﻿17:31:40 start v0.0.3 os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=msi
-17:31:40 engine Edge WebView2 156.0.4314.58 arch x64
-17:31:41 JS init v0.0.3 windows-webview2
-17:31:41 JS build solar,15,8,1995,6
-17:31:42 JS build solar,15,8,1995,6
-17:31:42 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
-17:31:45 JS SELFTEST PASS 02_palace_detail related=4
-17:31:47 JS build lunar,1,2,2023,3
-17:31:47 JS SELFTEST PASS 03_lunar_input solar=22/3/2023
-17:31:50 JS SELFTEST PASS 04_qr size=29
-17:31:55 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.3\windows\msi_x64\export_LaSo-Trần_Thị_Bình-2023.png (248325 bytes)
-17:31:55 JS SELFTEST PASS 05_png bytes=331122
-17:31:59 JS SELFTEST PASS 06_save_profile saved=14
-17:32:02 JS SELFTEST PASS 07_library_home chapters=13 articles=611
-17:32:04 JS SELFTEST PASS 08_library_chapter 
-17:32:08 JS SELFTEST PASS 09_reader chars=21432
-17:32:11 JS SELFTEST PASS 10_search results=599 native=false
-17:32:13 JS SELFTEST PASS 11_search_noaccent results=604
-17:32:16 JS SELFTEST PASS 12_assistant_overview chars=1379
-17:32:18 JS SELFTEST PASS 13_assistant_question chars=1322
-17:32:21 JS SELFTEST PASS 14_assistant_year 
-17:32:24 JS SELFTEST PASS 15_settings_theme 
-17:32:26 JS SELFTEST PASS 16_settings_language_en 
-17:32:29 JS SELFTEST PASS 17_settings_language_ja ライブラリ
-17:32:31 JS SELFTEST PASS 18_settings_font_layout 
-17:32:34 JS SELFTEST PASS 19_chart_list_layout 
-17:32:36 JS SELFTEST PASS 20_desktop_dex 
-17:32:39 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.3\windows\msi_x64\export_AppliedAstrology-backup-2026-11-03.json (5282 bytes)
-17:32:39 JS SELFTEST PASS 21_backup_export 
-17:32:42 JS SELFTEST PASS 22_backup_import 
-17:32:44 JS net 235ms ip=222.252.212.181 warp=off
-17:32:51 JS SELFTEST PASS 23_network_check Connected · Latency: 235 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected
-17:32:54 JS SELFTEST PASS 24_calendar_view days=30/30 today=3/11
-17:32:56 JS SELFTEST PASS 25_calendar_tet_2026 1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán
-17:32:59 JS SELFTEST PASS 26_calendar_convert Tet2027=6/2/2027 3/11/2026->25/9/2026
-17:33:01 JS SELFTEST PASS 27_calendar_sixty rows=60 1995=Ất Hợi Sơn Đầu Hỏa
-17:33:04 JS SELFTEST PASS 28_paper_background paper=vangchanh
-17:33:07 JS SELFTEST PASS 29_about_view sections=5
-17:33:09 JS update check https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest
-17:33:10 JS update latest=0.0.2 current=0.0.3 newer=false asset=AppliedAstrology-0.0.2-windows-x64.msi
-17:33:10 JS SELFTEST PASS 30_update_check latest=0.0.2 current=0.0.3 newer=false assets=15 asset=AppliedAstrology-0.0.2-windows-x64.msi
-17:33:14 update downloaded C:\Users\nguye\AppData\Local\Temp\AppliedAstrology-update\AppliedAstrology-0.0.2-windows-x64.msi 2187264
-17:33:14 JS SELFTEST PASS 31_update_download AppliedAstrology-0.0.2-windows-x64.msi done 2187264/2187264 1422ms 
-17:33:17 JS SELFTEST-LOG-1793701997448
-17:33:18 JS SELFTEST PASS 32_app_logs native=77667 chars
-17:33:20 JS SELFTEST PASS 33_error_report crash files=0 url=1027 chars
-17:33:23 JS SELFTEST PASS 34_safe_area nav 66-134 / viewport 861 header.top=0
-17:33:26 JS SELFTEST PASS 35_language_fr_new Calendrier
-17:33:28 JS build solar,15,8,1995,6
-17:33:28 JS SELFTEST PASS 36_restore_defaults 
-17:33:31 SELFTEST_DONE {"app":"Applied Astrology","version":"0.0.3","platform":{"os":"Microsoft Windows NT 10.0.26300.0 64-bit","abi":"OS AMD64 / process x64","engine":"Edge WebView2 156.0.4314.58","portable":false,"dataDir":"C:\\Users\\nguye\\AppData\\Roaming\\AppliedAstrology","install":"msi","arch":"x64","version":"0.0.3","kind":"windows-webview2","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"},"pass":36,"total":36,"results":[{"step":"01_chart_build","ok":true,"detail":"palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục"},{"step":"02_palace_detail","ok":true,"detail":"related=4"},{"step":"03_lunar_input","ok":true,"detail":"solar=22/3/2023"},{"step":"04_qr","ok":true,"detail":"size=29"},{"step":"05_png","ok":true,"detail":"bytes=331122"},{"step":"06_save_profile","ok":true,"detail":"saved=14"},{"step":"07_library_home","ok":true,"detail":"chapters=13 articles=611"},{"step":"08_library_chapter","ok":true,"detail":""},{"step":"09_reader","ok":true,"detail":"chars=21432"},{"step":"10_search","ok":true,"detail":"results=599 native=false"},{"step":"11_search_noaccent","ok":true,"detail":"results=604"},{"step":"12_assistant_overview","ok":true,"detail":"chars=1379"},{"step":"13_assistant_question","ok":true,"detail":"chars=1322"},{"step":"14_assistant_year","ok":true,"detail":""},{"step":"15_settings_theme","ok":true,"detail":""},{"step":"16_settings_language_en","ok":true,"detail":""},{"step":"17_settings_language_ja","ok":true,"detail":"ライブラリ"},{"step":"18_settings_font_layout","ok":true,"detail":""},{"step":"19_chart_list_layout","ok":true,"detail":""},{"step":"20_desktop_dex","ok":true,"detail":""},{"step":"21_backup_export","ok":true,"detail":""},{"step":"22_backup_import","ok":true,"detail":""},{"step":"23_network_check","ok":true,"detail":"Connected · Latency: 235 msIP: 222.252.212.181 · Location: VN · PoP HKG · WARP not detected"},{"step":"24_calendar_view","ok":true,"detail":"days=30/30 today=3/11"},{"step":"25_calendar_tet_2026","ok":true,"detail":"1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán"},{"step":"26_calendar_convert","ok":true,"detail":"Tet2027=6/2/2027 3/11/2026->25/9/2026"},{"step":"27_calendar_sixty","ok":true,"detail":"rows=60 1995=Ất Hợi Sơn Đầu Hỏa"},{"step":"28_paper_background","ok":true,"detail":"paper=vangchanh"},{"step":"29_about_view","ok":true,"detail":"sections=5"},{"step":"30_update_check","ok":true,"detail":"latest=0.0.2 current=0.0.3 newer=false assets=15 asset=AppliedAstrology-0.0.2-windows-x64.msi"},{"step":"31_update_download","ok":true,"detail":"AppliedAstrology-0.0.2-windows-x64.msi done 2187264/2187264 1422ms "},{"step":"32_app_logs","ok":true,"detail":"native=77667 chars"},{"step":"33_error_report","ok":true,"detail":"crash files=0 url=1027 chars"},{"step":"34_safe_area","ok":true,"detail":"nav 66-134 / viewport 861 header.top=0"},{"step":"35_language_fr_new","ok":true,"detail":"Calendrier"},{"step":"36_restore_defaults","ok":true,"detail":""}]}
+﻿18:46:12 start v0.0.3 os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=msi
+18:46:12 engine Edge WebView2 156.0.4314.58 arch x64
+18:46:13 JS init v0.0.3 windows-webview2
+18:46:13 JS build solar,15,8,1995,6
+18:46:15 JS build solar,15,8,1995,6
+18:46:15 JS SELFTEST PASS 01_chart_build palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục
+18:46:17 JS SELFTEST PASS 02_palace_detail related=4
+18:46:20 JS build lunar,1,2,2023,3
+18:46:20 JS SELFTEST PASS 03_lunar_input solar=22/3/2023
+18:46:23 JS SELFTEST PASS 04_qr size=29
+18:46:27 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.3\windows\msi_x64\export_LaSo-Trần_Thị_Bình-2023.png (248325 bytes)
+18:46:27 JS SELFTEST PASS 05_png bytes=331122
+18:46:32 JS SELFTEST PASS 06_save_profile saved=18
+18:46:35 JS SELFTEST PASS 07_library_home chapters=13 articles=611
+18:46:37 JS SELFTEST PASS 08_library_chapter 
+18:46:41 JS SELFTEST PASS 09_reader chars=21432
+18:46:44 JS SELFTEST PASS 10_search results=599 native=false
+18:46:46 JS SELFTEST PASS 11_search_noaccent results=604
+18:46:49 JS SELFTEST PASS 12_assistant_overview chars=1379
+18:46:52 JS SELFTEST PASS 13_assistant_question chars=1322
+18:46:54 JS SELFTEST PASS 14_assistant_year 
+18:46:57 JS SELFTEST PASS 15_settings_theme 
+18:47:00 JS SELFTEST PASS 16_settings_language_en 
+18:47:02 JS SELFTEST PASS 17_settings_language_ja ライブラリ
+18:47:05 JS SELFTEST PASS 18_settings_font_layout 
+18:47:07 JS SELFTEST PASS 19_chart_list_layout 
+18:47:10 JS SELFTEST PASS 20_desktop_dex 
+18:47:12 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.3\windows\msi_x64\export_AppliedAstrology-backup-2026-11-03.json (6622 bytes)
+18:47:12 JS SELFTEST PASS 21_backup_export 
+18:47:15 JS SELFTEST PASS 22_backup_import 
+18:47:18 JS net 204ms ip=2001:ee0:4965:4170:8f2:dfbc:1d7c:79e2 warp=off
+18:47:25 JS SELFTEST PASS 23_network_check Connected · Latency: 204 msIP: 2001:ee0:4965:4170:8f2:dfbc:1d7c:79e2 · Location: VN · PoP HKG · WARP not detected
+18:47:27 JS SELFTEST PASS 24_calendar_view days=30/30 today=3/11
+18:47:30 JS SELFTEST PASS 25_calendar_tet_2026 1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán
+18:47:32 JS SELFTEST PASS 26_calendar_convert Tet2027=6/2/2027 3/11/2026->25/9/2026
+18:47:35 JS SELFTEST PASS 27_calendar_sixty rows=60 1995=Ất Hợi Sơn Đầu Hỏa
+18:47:38 JS SELFTEST PASS 28_paper_background paper=vangchanh
+18:47:40 JS SELFTEST PASS 29_about_view sections=5
+18:47:43 JS update check https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest
+18:47:44 JS update latest=0.0.3 current=0.0.3 newer=false asset=AppliedAstrology-0.0.3-windows-x64.msi
+18:47:44 JS SELFTEST PASS 30_update_check latest=0.0.3 current=0.0.3 newer=false assets=16 asset=AppliedAstrology-0.0.3-windows-x64.msi
+18:47:53 update downloaded C:\Users\nguye\AppData\Local\Temp\AppliedAstrology-update\AppliedAstrology-0.0.3-windows-x64.msi 2314240
+18:47:54 JS SELFTEST PASS 31_update_download AppliedAstrology-0.0.3-windows-x64.msi done 2314240/2314240 7098ms 
+18:47:56 JS SELFTEST-LOG-1793706476933
+18:47:57 JS SELFTEST PASS 32_app_logs native=107551 chars
+18:48:00 JS SELFTEST PASS 33_error_report crash files=0 url=1027 chars
+18:48:03 JS SELFTEST PASS 34_safe_area nav 66-135 / viewport 861 header.top=0
+18:48:05 JS SELFTEST PASS 35_language_fr_new Calendrier
+18:48:08 JS build solar,15,8,1995,6
+18:48:08 JS SELFTEST PASS 36_restore_defaults 
+18:48:10 SELFTEST_DONE {"app":"Applied Astrology","version":"0.0.3","platform":{"os":"Microsoft Windows NT 10.0.26300.0 64-bit","abi":"OS AMD64 / process x64","engine":"Edge WebView2 156.0.4314.58","portable":false,"dataDir":"C:\\Users\\nguye\\AppData\\Roaming\\AppliedAstrology","install":"msi","arch":"x64","version":"0.0.3","kind":"windows-webview2","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"},"pass":36,"total":36,"results":[{"step":"01_chart_build","ok":true,"detail":"palaces=12 lunar=20/7/1995 cuc=Thổ Ngũ Cục"},{"step":"02_palace_detail","ok":true,"detail":"related=4"},{"step":"03_lunar_input","ok":true,"detail":"solar=22/3/2023"},{"step":"04_qr","ok":true,"detail":"size=29"},{"step":"05_png","ok":true,"detail":"bytes=331122"},{"step":"06_save_profile","ok":true,"detail":"saved=18"},{"step":"07_library_home","ok":true,"detail":"chapters=13 articles=611"},{"step":"08_library_chapter","ok":true,"detail":""},{"step":"09_reader","ok":true,"detail":"chars=21432"},{"step":"10_search","ok":true,"detail":"results=599 native=false"},{"step":"11_search_noaccent","ok":true,"detail":"results=604"},{"step":"12_assistant_overview","ok":true,"detail":"chars=1379"},{"step":"13_assistant_question","ok":true,"detail":"chars=1322"},{"step":"14_assistant_year","ok":true,"detail":""},{"step":"15_settings_theme","ok":true,"detail":""},{"step":"16_settings_language_en","ok":true,"detail":""},{"step":"17_settings_language_ja","ok":true,"detail":"ライブラリ"},{"step":"18_settings_font_layout","ok":true,"detail":""},{"step":"19_chart_list_layout","ok":true,"detail":""},{"step":"20_desktop_dex","ok":true,"detail":""},{"step":"21_backup_export","ok":true,"detail":""},{"step":"22_backup_import","ok":true,"detail":""},{"step":"23_network_check","ok":true,"detail":"Connected · Latency: 204 msIP: 2001:ee0:4965:4170:8f2:dfbc:1d7c:79e2 · Location: VN · PoP HKG · WARP not detected"},{"step":"24_calendar_view","ok":true,"detail":"days=30/30 today=3/11"},{"step":"25_calendar_tet_2026","ok":true,"detail":"1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán"},{"step":"26_calendar_convert","ok":true,"detail":"Tet2027=6/2/2027 3/11/2026->25/9/2026"},{"step":"27_calendar_sixty","ok":true,"detail":"rows=60 1995=Ất Hợi Sơn Đầu Hỏa"},{"step":"28_paper_background","ok":true,"detail":"paper=vangchanh"},{"step":"29_about_view","ok":true,"detail":"sections=5"},{"step":"30_update_check","ok":true,"detail":"latest=0.0.3 current=0.0.3 newer=false assets=16 asset=AppliedAstrology-0.0.3-windows-x64.msi"},{"step":"31_update_download","ok":true,"detail":"AppliedAstrology-0.0.3-windows-x64.msi done 2314240/2314240 7098ms "},{"step":"32_app_logs","ok":true,"detail":"native=107551 chars"},{"step":"33_error_report","ok":true,"detail":"crash files=0 url=1027 chars"},{"step":"34_safe_area","ok":true,"detail":"nav 66-135 / viewport 861 header.top=0"},{"step":"35_language_fr_new","ok":true,"detail":"Calendrier"},{"step":"36_restore_defaults","ok":true,"detail":""}]}

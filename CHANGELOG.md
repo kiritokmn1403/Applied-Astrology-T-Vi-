@@ -12,7 +12,7 @@
 - Android 15+: nội dung, nút và thanh tab bị thanh trạng thái/thanh điều hướng che (edge-to-edge).
 - Android 6.0: không tải được tệp từ GitHub (thiếu root CA DigiCert Global Root G2) – thêm root CA dự phòng.
 - appxbundle: làm rõ lỗi 0x80073CF0 (thực chất 0x800B0109 – chứng chỉ chưa được tin cậy ở Local Machine) và thêm trình cài.
-- Biểu tượng ☾ hiển thị thành emoji trên Samsung.
+- Biểu tượng thanh tab (☾ ☯) hiển thị thành emoji trên Samsung – thay bằng biểu tượng SVG.
 - Windows (chế độ IE11 cho Windows 7/8.1): cửa sổ trắng trên máy có driver đồ họa không tương thích – chuyển MSHTML sang dựng hình phần mềm.
 
 ## 0.0.2 – 02/11/2026

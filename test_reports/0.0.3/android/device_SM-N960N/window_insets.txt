@@ -34,16 +34,16 @@
     mFrame=[0,0][0,0] last=[0,0][0,0]
      cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
     Cur insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,0][0,0] stable=[0,84][0,168] outsets=[0,0][0,0]    Lst insets: overscan=[0,0][0,0] content=[0,0][0,0] visible=[0,0][0,0] stable=[0,84][0,168] outset=[0,0][0,0]
-  Window #7 Window{2de00c u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
-    mOwnerUid=10560 mShowToOwnerOnly=true package=com.appliedastrology.tuvi appop=NONE
-    mBaseLayer=21000 mSubLayer=0    mToken=AppWindowToken{eddf16c token=Token{5b20a1f ActivityRecord{d6719be u0 com.appliedastrology.tuvi/.MainActivity t258}}}
-    mAppToken=AppWindowToken{eddf16c token=Token{5b20a1f ActivityRecord{d6719be u0 com.appliedastrology.tuvi/.MainActivity t258}}}
+  Window #7 Window{ef84c5f u0 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
+    mOwnerUid=10562 mShowToOwnerOnly=true package=com.appliedastrology.tuvi appop=NONE
+    mBaseLayer=21000 mSubLayer=0    mToken=AppWindowToken{231b899 token=Token{31aede0 ActivityRecord{5541fe3 u0 com.appliedastrology.tuvi/.MainActivity t262}}}
+    mAppToken=AppWindowToken{231b899 token=Token{31aede0 ActivityRecord{5541fe3 u0 com.appliedastrology.tuvi/.MainActivity t262}}}
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1440,2960] last=[0,0][1440,2960]
      cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
     Cur insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outsets=[0,0][0,0]    Lst insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outset=[0,0][0,0]
-    WindowStateAnimator{4603dd5 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
-      mSurface=Surface(name=com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity$_21144)/@0x78f69ea
+    WindowStateAnimator{f182821 com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity}:
+      mSurface=Surface(name=com.appliedastrology.tuvi/com.appliedastrology.tuvi.MainActivity$_18700)/@0x4095446
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[720,0][720,2960] last=[0,0][0,0]
      cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
@@ -53,8 +53,8 @@
      cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
     Cur insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outsets=[0,0][0,0]    Lst insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outset=[0,0][0,0]
     mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
-    mFrame=[0,0][2960,1440] last=[0,0][2960,1440]
-     cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
-    Cur insets: overscan=[0,0][0,0] content=[0,84][168,0] visible=[0,84][168,0] stable=[0,84][168,0] outsets=[0,0][0,0]    Lst insets: overscan=[0,0][0,0] content=[0,84][168,0] visible=[0,84][168,0] stable=[0,84][168,0] outset=[0,0][0,0]
-    mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
     mFrame=[0,0][1440,2960] last=[0,0][1440,2960]
+     cutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}} last=DisplayCutout{insets=Rect(0, 0 - 0, 0) boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]}}
+    Cur insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outsets=[0,0][0,0]    Lst insets: overscan=[0,0][0,0] content=[0,84][0,168] visible=[0,84][0,168] stable=[0,84][0,168] outset=[0,0][0,0]
+    mAttrs={(0,0)(wrapxwrap) gr=BOTTOM CENTER_VERTICAL sim={adjust=pan forwardNavigation} ty=APPLICATION fmt=TRANSLUCENT wanim=0x7f120005 surfaceInsets=Rect(7, 7 - 7, 7)
+    mGivenContentInsets=[0,0][0,0] mGivenVisibleInsets=[0,0][0,0]
