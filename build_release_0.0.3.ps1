@@ -645,9 +645,17 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
             }
             Run $T.git @("add", "-A", "src", "tools", "assets", "docs", "output/$Ver", "test_reports/$Ver", "screenshots", "README.md", "TECHNICAL_UPDATE_NOTES.md", "CHANGELOG.md", "build_release_$Ver.ps1", "BUILD_v$Ver.bat", "BUILD_TEST_v$Ver.bat", "PUBLISH_v$Ver.bat", ".gitignore", ".gitattributes", "LICENSE") "git add" -IgnoreExit | Out-Null
             Run $T.git @("-c", "user.name=kiritokmn1403", "-c", "user.email=kietnguyenworking1403@gmail.com", "commit", "-m", "release: Applied Astrology v$Ver - Am Lich, Gioi thieu (cap nhat/nhat ky/bao loi), safe-area Android 15+, 68 ngon ngu (Android arm64-v8a/armeabi-v7a/x86_64, Windows appxbundle/msi/exe/portable)") "git commit" -IgnoreExit | Out-Null
-            Run $T.git @("push", "origin", "HEAD:main") "git push" | Out-Null
+            # v0.0.3: large push (test screenshots) over an unstable connection -> bigger buffer + retries
+            Run $T.git @("config", "http.postBuffer", "524288000") "git" | Out-Null
+            Run $T.git @("config", "http.lowSpeedLimit", "0") "git" | Out-Null
+            $pushed = $false
+            for ($try = 1; $try -le 5 -and -not $pushed; $try++) {
+                try { Run $T.git @("push", "origin", "HEAD:main") "git push" | Out-Null; $pushed = $true }
+                catch { Say "  git push attempt $try failed: $($_.Exception.Message)" "ERR"; Start-Sleep (15 * $try) }
+            }
+            if (-not $pushed) { throw "git push failed after 5 attempts" }
             Run $T.git @("tag", "-f", "v$Ver") "git tag" | Out-Null
-            Run $T.git @("push", "-f", "origin", "v$Ver") "git push tag" | Out-Null
+            for ($try = 1; $try -le 3; $try++) { try { Run $T.git @("push", "-f", "origin", "v$Ver") "git push tag" | Out-Null; break } catch { Say "  tag push attempt $try failed" "ERR"; Start-Sleep 10 } }
         } finally { Pop-Location }
     }
     Step "31_github_release" {
@@ -684,6 +692,7 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
                 $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases" -Method Post -Body ([Text.Encoding]::UTF8.GetBytes($body)) -ContentType "application/json; charset=utf-8"
             }
         }
+        try { $patch = @{ body = [string]$notes; name = "Applied Astrology v$Ver" } | ConvertTo-Json -Depth 4; $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases/$($rel.id)" -Method Patch -Body ([Text.Encoding]::UTF8.GetBytes($patch)) -ContentType "application/json; charset=utf-8" } catch { Say "  release notes update failed: $($_.Exception.Message)" "ERR" }
         Say "  release id $($rel.id) $($rel.html_url)"
         $assets = @(Get-ChildItem $Out -File | Where-Object { $_.Extension -in ".apk", ".zip", ".exe", ".msi", ".appxbundle", ".cer", ".txt", ".bat" })
         # test videos (kept out of git because of the 100 MB file limit) are attached to the release
@@ -693,11 +702,22 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
         }
         foreach ($f in $assets) {
             $old = $rel.assets | Where-Object { $_.name -eq $f.Name }
+            if ($old -and $old.size -eq $f.Length -and $old.state -eq "uploaded") { Say ("  already uploaded {0} ({1} bytes) - skip" -f $f.Name, $old.size); continue }
             if ($old) { Invoke-RestMethod -Headers $h -Uri "$api/releases/assets/$($old.id)" -Method Delete | Out-Null }
             $ct = switch ($f.Extension) { ".apk" { "application/vnd.android.package-archive" } ".zip" { "application/zip" } ".msi" { "application/x-msi" } ".txt" { "text/plain" } ".md" { "text/markdown" } default { "application/octet-stream" } }
             $up = "https://uploads.github.com/repos/$Owner/$RepoName/releases/$($rel.id)/assets?name=$([Uri]::EscapeDataString($f.Name))"
             Say ("  uploading {0} ({1:N2} MB)" -f $f.Name, ($f.Length / 1MB))
-            Invoke-RestMethod -Headers $h -Uri $up -Method Post -InFile $f.FullName -ContentType $ct -TimeoutSec 1800 | Out-Null
+            $ok = $false
+            for ($try = 1; $try -le 4 -and -not $ok; $try++) {
+                try { Invoke-RestMethod -Headers $h -Uri $up -Method Post -InFile $f.FullName -ContentType $ct -TimeoutSec 1800 | Out-Null; $ok = $true }
+                catch {
+                    Say "  upload attempt $try of $($f.Name) failed: $($_.Exception.Message)" "ERR"
+                    Start-Sleep (10 * $try)
+                    # a half-finished upload leaves a broken asset with the same name: remove it before retrying
+                    try { $cur = Invoke-RestMethod -Headers $h -Uri "$api/releases/$($rel.id)" -Method Get; $bad = $cur.assets | Where-Object { $_.name -eq $f.Name }; if ($bad) { Invoke-RestMethod -Headers $h -Uri "$api/releases/assets/$($bad.id)" -Method Delete | Out-Null } } catch { }
+                }
+            }
+            if (-not $ok) { Say "  giving up on $($f.Name)" "ERR" }
         }
         # Verify
         $rel = Invoke-RestMethod -Headers $h -Uri "$api/releases/$($rel.id)" -Method Get
