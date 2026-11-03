@@ -485,3 +485,11 @@ Bằng chứng: `test_reports/0.0.3/` (ảnh từng bước, ảnh màn hình th
 
 ## 9. Phát hành
 `PUBLISH_v0.0.3.bat` → `build_release_0.0.3.ps1 -Phase publish`: `git add` (src, tools, docs, output/0.0.3, test_reports/0.0.3, README, CHANGELOG, TECHNICAL_UPDATE_NOTES, script) → commit → `git push origin HEAD:main` → tag `v0.0.3` → tạo GitHub Release (token lấy từ Git Credential Manager của máy, không ghi log) → tải lên 12 tệp output + 4 video kiểm thử → đối chiếu tên và kích thước từng tệp trên Release.
+
+**Kết quả phát hành (03/11/2026):**
+| Lượt | Thời gian | Kết quả | Xử lý |
+|---|---|---|---|
+| 1 | 17:37–17:42 | `git push` lỗi `RPC failed; curl 55 Send failure: Connection was reset` (đẩy ~100 MB ảnh kiểm thử qua mạng chập chờn); Release `v0.0.3` được tạo nhưng tải lên dừng ở tệp thứ 6 (`The underlying connection was closed`) | Thêm vào script: `http.postBuffer = 500 MB`, `http.lowSpeedLimit = 0`, thử lại `push` 5 lần, thử lại từng tệp 4 lần (xóa tệp tải dở), bỏ qua tệp đã lên đủ dung lượng, cập nhật nội dung Release |
+| 2 | 17:44–17:57 | `git push` OK (commit `e4457db`), tag `v0.0.3` OK; 5 tệp đã lên từ lượt 1 được bỏ qua, 11 tệp còn lại tải lên OK | **16/16 tệp xác minh đúng tên + dung lượng** (`state=uploaded`); trang Release hiển thị *Latest*, 18 tệp (16 + 2 gói mã nguồn) |
+
+Liên kết: https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.3
