@@ -6,7 +6,8 @@ Bản phát hành = build lượt 4 (18:01, có biểu tượng SVG, TLS Android
 |---|---|---|---|---|
 | android_emulator_Medium_Phone_API_37.0 | Android WebView, Android 17 (API 37) x86_64, edge-to-edge | 36/36 | lượt 4 (18:17) | nâng cấp 0.0.2 → 0.0.3 Success |
 | android_emulator_OOS_Android6_API23 | Android WebView, Android 6.0 (API 23) x86_64 | 36/36 | lượt 4 (18:21) | tải cập nhật qua TLS dự phòng OK |
-| android_device_SM-N960N (Galaxy Note 9, thiết bị thật) | Android WebView, Android 10 (API 29) arm64-v8a, DeX | 35/36 | lượt 4b (18:39) | 30/31 kiểm tra + tải **v0.0.3 thật** OK; 08_library_chapter lỗi 1 lần (màn hình thư viện bị thay đổi giữa 2 bước, nghi do thao tác trên điện thoại thật; đạt ở lượt 1, 2, 3, 4) |
+| android_device_SM-N960N (Galaxy Note 9, thiết bị thật) | Android WebView, Android 10 (API 29) arm64-v8a, DeX | **36/36** | lượt 5 (19:21–19:28) | chạy lại theo yêu cầu: nâng cấp 0.0.2 → 0.0.3 Success; 30/31 kiểm tra + tải v0.0.3 (2.937.467 B) OK; 08_library_chapter PASS. Lần treo trước là do hộp thoại Google Play Protect "Gửi ứng dụng cho Google kiểm tra?" chờ trên điện thoại → chọn "Không gửi" |
+| android_device_SM-N960N (lượt trước) | Android WebView, Android 10 (API 29) arm64-v8a, DeX | 35/36 | lượt 4b (18:39) | 30/31 kiểm tra + tải **v0.0.3 thật** OK; 08_library_chapter lỗi 1 lần (màn hình thư viện bị thay đổi giữa 2 bước, nghi do thao tác trên điện thoại thật; đạt ở lượt 1, 2, 3, 4) |
 | android_device_SM-N960N | 〃 | 34/36 | lượt 4 (18:07) | máy mất Internet: 23 "No Internet", 30/31 lỗi |
 | android_device_25069PTEBG (Xiaomi/Redmi, Android 16) | – | không cài được | lượt 4 | INSTALL_FAILED_USER_RESTRICTED: cần bật "Cài đặt qua USB" và bấm Cho phép trên điện thoại |
 | windows_portable_webview2 | Edge WebView2 156, Windows 11 x64 | 36/36 | lượt 4b (18:41) | lượt 4: 34/36 do máy mất mạng |

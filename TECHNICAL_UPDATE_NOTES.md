@@ -500,6 +500,14 @@ Bằng chứng: `test_reports/0.0.3/` (ảnh từng bước, ảnh màn hình th
 | Galaxy Note 9 (thật) | 18:07: 34/36 (điện thoại mất mạng); 18:39: **35/36** – bước 30/31 kiểm tra & tải **chính Release v0.0.3** (2.937.467 B) OK; bước 08 lỗi 1 lần (nội dung thư viện bị đổi trong 3 giây giữa bước 07 và 08 – nghi có thao tác trên điện thoại thật; bước này đạt ở 4 lượt trước); lần chạy lại 18:50 treo ở `adb install` (điện thoại chờ xác nhận) nên dừng – **ứng dụng đã bị gỡ khỏi Note 9 ở bước chuẩn bị, cần cài lại APK** |
 | Xiaomi/Redmi 25069PTEBG, Android 16 (mới cắm USB) | Không cài được: `INSTALL_FAILED_USER_RESTRICTED` – HyperOS yêu cầu bật *Tùy chọn nhà phát triển › Cài đặt qua USB* và bấm *Cho phép* trên điện thoại |
 
+### Lượt 5 (03/11/2026 19:21–19:28) – chạy lại trên Galaxy Note 9 theo yêu cầu
+- **Lệnh**: `_check_ie11.bat` → `powershell -File build_release_0.0.3.ps1 -Phase test -SkipEmulator -AndroidOnly -NoPublish` (adb, Android SDK platform-tools).
+- **Lỗi phát hiện**: lần chạy lại 18:50 bị treo ở `adb install` không phải do ứng dụng. `dumpsys window` cho thấy cửa sổ đang mở là `com.android.vending/.../PlayProtectDialogsActivity`: Google Play Protect hỏi *"Gửi ứng dụng cho Google kiểm tra bảo mật?"* với APK tự ký và chờ người dùng bấm, nên `adb install` không trả về.
+- **Xử lý**: chụp màn hình điện thoại bằng `adb exec-out screencap -p`, chọn **"Không gửi"** (chỉ áp dụng cho lần cài này, không thay đổi cài đặt Play Protect) → cài 0.0.2 Success → `adb install -r` 0.0.3 Success.
+- **Kết quả**: Galaxy Note 9 SM-N960N (Android 10, arm64-v8a, DeX) **36/36 PASS** (kể cả 08_library_chapter; 30/31 kiểm tra và tải chính Release v0.0.3 2.937.467 B trong 11,2 s); ảnh, video `android_test_video.mp4`, `window_insets.txt`, `logcat.txt` trong `test_reports/0.0.3/android/device_SM-N960N/`.
+- **Lưu ý cho kiểm thử USB sau này**: nếu `adb install` đứng trên điện thoại Samsung/Google, xem màn hình điện thoại – thường là hộp thoại Play Protect.
+
+
 Thêm tùy chọn `-AndroidOnly` cho `build_release_0.0.3.ps1` (chỉ kiểm thử lại Android).
 
 **Kết quả phát hành (03/11/2026):**
