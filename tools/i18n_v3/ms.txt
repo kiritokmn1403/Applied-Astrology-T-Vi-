@@ -1,0 +1,74 @@
+Kalendar Qamari
+lompat
+Isn,Sel,Rab,Kha,Jum,Sab,Ahd
+Isnin,Selasa,Rabu,Khamis,Jumaat,Sabtu,Ahad
+{m}/{y}
+Hari ini
+Waktu Vietnam (GMT+7)
+Hari baik
+Hari kurang baik
+Cuti umum
+Penukar suria ↔ qamari
+Suria → Qamari
+Qamari → Suria
+Kitaran enam puluh & Nạp Âm
+60 tahun batang-cabang, unsur Nạp Âm dan tahun lahir yang sepadan (seperti dalam program asal). Ketik baris untuk melihat umur.
+Cari tahun
+Tahun lahir
+Musim suria
+permulaan musim
+Hari
+Pegawai hari
+Jam pertama (Tí)
+Jam baik
+Jam kurang baik
+Bina carta untuk hari ini
+Tunjukkan hari ini
+Umur (qamari)
+Kertas latar carta
+Warna latar istana seperti dalam perisian asal Bửu Đình.
+Ikut tema
+Emas antik
+Kuning limau
+Biru muda
+Hijau muda
+Ungu muda
+Emas
+Perihal aplikasi
+Kemas kini
+Semak kemas kini secara automatik semasa dibuka
+Pasang secara automatik selepas dimuat turun
+Semak kemas kini
+Menyemak kemas kini…
+Semakan terakhir
+Anda menggunakan versi terkini ({v}).
+Versi baharu tersedia: {v}
+Tidak dapat menyemak kemas kini (semak sambungan).
+Halaman keluaran
+Apa yang baharu
+Muat turun dan pasang
+Memuat turun {p}%
+Muat turun selesai.
+Muat turun gagal
+Pasang sekarang
+Tidak dapat memulakan pemasang
+Keluaran ini belum ada fail untuk peranti anda. Sila buka halaman keluaran.
+Android akan meminta pengesahan. Jika diminta, benarkan Applied Astrology memasang apl tidak diketahui, kemudian ketik Pasang sekali lagi.
+Aplikasi akan ditutup, memasang versi baharu dan dibuka semula.
+Benarkan "Pasang apl tidak diketahui" untuk Applied Astrology, kemudian ketik Pasang sekali lagi.
+Diagnostik
+Log aplikasi
+Rekod log aplikasi
+Lihat log
+Eksport / kongsi log
+Kosongkan log
+Laporan ralat
+Ralat antara muka (JS) dan ranap natif yang direkodkan pada peranti ini.
+Tiada ralat direkodkan.
+Kosongkan laporan ralat
+Laporkan pepijat
+Membuka GitHub Issues dengan maklumat peranti diisi; semak sebelum dihantar.
+Salin maklumat nyahpepijat
+Disalin
+Lesen sumber terbuka
+Pautan

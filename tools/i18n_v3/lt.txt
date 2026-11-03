@@ -1,0 +1,74 @@
+Mėnulio kalendorius
+keliamasis
+Pr,An,Tr,Kt,Pn,Št,Sk
+Pirmadienis,Antradienis,Trečiadienis,Ketvirtadienis,Penktadienis,Šeštadienis,Sekmadienis
+{y}-{m}
+Šiandien
+Vietnamo laikas (GMT+7)
+Palanki diena
+Nepalanki diena
+Šventės
+Keitiklis saulės ↔ mėnulio
+Saulės → mėnulio
+Mėnulio → saulės
+Šešiasdešimties metų ciklas ir Nạp Âm
+60 kamieno-šakos metų, jų Nạp Âm elementas ir atitinkami gimimo metai (kaip originalioje programoje). Bakstelėkite eilutę, kad pamatytumėte amžių.
+Ieškoti metų
+Gimimo metai
+Saulės laikotarpis
+laikotarpio pradžia
+Diena
+Dienos sargas
+Pirmoji valanda (Tí)
+Palankios valandos
+Nepalankios valandos
+Sudaryti žemėlapį šiai dienai
+Rodyti šią dieną
+Amžius (mėnulio)
+Žemėlapio popieriaus fonas
+Rūmų fono spalvos kaip originalioje Bửu Đình programoje.
+Pagal temą
+Antikinis auksas
+Citrinų geltona
+Šviesiai mėlyna
+Šviesiai žalia
+Šviesiai violetinė
+Auksinė
+Apie programėlę
+Atnaujinimai
+Automatiškai tikrinti atnaujinimus paleidžiant
+Automatiškai įdiegti atsisiuntus
+Tikrinti atnaujinimus
+Tikrinami atnaujinimai…
+Paskutinį kartą tikrinta
+Naudojate naujausią versiją ({v}).
+Yra nauja versija: {v}
+Nepavyko patikrinti atnaujinimų (patikrinkite ryšį).
+Leidimų puslapis
+Kas naujo
+Atsisiųsti ir įdiegti
+Atsisiunčiama {p} %
+Atsisiuntimas baigtas.
+Atsisiųsti nepavyko
+Įdiegti dabar
+Nepavyko paleisti diegimo programos
+Šiame leidime dar nėra failo jūsų įrenginiui. Atidarykite leidimų puslapį.
+Android paprašys patvirtinimo. Jei bus paprašyta, leiskite Applied Astrology diegti nežinomas programas ir dar kartą bakstelėkite Įdiegti.
+Programėlė užsidarys, įdiegs naują versiją ir vėl atsidarys.
+Leiskite „Diegti nežinomas programas“ Applied Astrology ir dar kartą bakstelėkite Įdiegti.
+Diagnostika
+Programėlės žurnalai
+Rašyti programėlės žurnalą
+Peržiūrėti žurnalą
+Eksportuoti / bendrinti žurnalą
+Išvalyti žurnalą
+Klaidų ataskaitos
+Šiame įrenginyje užfiksuotos sąsajos (JS) klaidos ir vietiniai strigimai.
+Klaidų neužfiksuota.
+Išvalyti klaidų ataskaitas
+Pranešti apie klaidą
+Atidaro GitHub Issues su užpildytais įrenginio duomenimis; peržiūrėkite prieš siųsdami.
+Kopijuoti derinimo informaciją
+Nukopijuota
+Atvirojo kodo licencijos
+Nuorodos

@@ -1,0 +1,233 @@
+Tử Vi Ứng Dụng · kabilin ni Bửu Đình
+Tsart
+Librarya
+Pagbasa
+Mga Profile
+Mga Setting
+Tibuok ngalan
+Sekso
+Lalaki
+Babaye
+Kalendaryo
+Solar
+Lunar
+Adlaw
+Bulan
+Tuig
+Oras sa pagkatawo
+Leap nga bulan
+Tuig sa tagna
+Himoa ang tsart
+I-save ang profile
+I-export ang PNG
+QR code
+Ipaambit
+I-print
+Sirhi
+Balik
+Kaniadto
+Sunod
+Ablihi
+Papasa
+I-bookmark
+Hubara online
+Pangitaa
+Ipadala
+Ibalik sa default
+Plato sa Langit
+Petsa sa solar
+Petsa sa lunar
+Oras
+Yin–Yang
+Elemento sa kinabuhi
+Buhatan sa elemento
+Kinabuhi – Buhatan
+Agalon sa kinabuhi
+Agalon sa lawas
+Kinabuhi
+Lawas
+Walay pangunang bituon
+Dekada
+Siklo sa tuig
+Kahaw-ang Tuần
+Kahaw-ang Triệt
+Edad
+Pangunang bituon
+Swerte nga bituon
+Daotang bituon
+Neyutral nga bituon
+Tinuig nga bituon
+Mga singsing sa bituon
+Triad ug atbang nga palasyo
+May kalabotang artikulo ni Bửu Đình
+Walay nakit-ang may kalabotang artikulo.
+Tuploka ang usa ka palasyo aron makita ang detalye ug komentaryo ni Bửu Đình.
+Librarya sa Applied Astrology – Bửu Đình
+{n} ka orihinal nga artikulo sa {c} ka kapitulo, gibalik gikan sa source file.
+Pangitaa ang tibuok librarya (may o walay tudlik nga Vietnamese)…
+{n} ka resulta
+Nagkarga sa datos…
+Mga bookmark
+Bag-ong nabasa
+Padayon sa pagbasa
+artikulo
+karakter
+Ang teksto nagpabilin sa orihinal nga Vietnamese sa awtor.
+Offline nga katabang sa pagbasa
+Pagtuki base sa kasamtangang tsart ug librarya ni Bửu Đình. Molihok offline; dili generative AI.
+Pangutana bahin sa palasyo, bituon o panahon (pananglitan karera, bahandi, karong tuiga)
+Kinatibuk-ang tsart
+Himoa una ang tsart.
+Palasyo sa kinabuhi
+Kaminyoon
+Karong tuiga
+Na-save nga mga tsart
+Wala pay na-save nga tsart.
+Na-save ang tsart.
+Napapas.
+Pinulongan
+Tema
+Gidak-on sa font
+Laraw sa tsart
+Dakong screen / Samsung DeX
+Ipakita ang tsart ug komentaryo nga magkatabi (2 ka kolum).
+Ipakita ang mga singsing sa bituon
+Natawo sa leap nga bulan
+Ihap isip naandang bulan
+Gikan sa ika-16 nga adlaw ihap isip sunod nga bulan
+Network ug VPN
+Tinuod nga pagsusi sa koneksyon (Cloudflare trace). Ang app dili mopasiga o mopalong sa VPN; ang VPN gisulayan gawas sa app.
+Susiha ang koneksyon
+Backup ug restore
+I-export ang backup
+I-import gikan sa file
+I-paste ang JSON
+Papasa ang datos sa app
+Mahitungod
+Bersyon
+Plataporma
+Gawasnon nga open-source nga app. Sulod sa libro: "Tử Vi Ứng Dụng" ni Bửu Đình (Tử Vũ).
+Langitnong Tungang-gabii (ngitngit)
+Imperyal nga Bulawan
+Palasyong Garing (hayag)
+Swerteng Sinabre
+Gamay
+Tunga
+Dako
+Dako kaayo
+Awtomatiko
+Klasikong 4×4 nga board
+Lista sa 12 ka palasyo
+Nagsusi…
+Konektado
+Walay koneksyon sa Internet
+Ang trapiko moagi sa WARP/VPN
+Walay nakit-ang WARP
+Lokasyon
+Latency
+QR code sa tsart
+I-scan gamit ang Applied Astrology sa laing device, o tipigi aron himoon pag-usab ang tsart.
+Na-export ang hulagway sa tsart
+Nabalik ang datos
+Dili balido nga file
+Papason ang tanang profile ug setting?
+Dili balido nga petsa
+Wala kini nga petsang lunar (susiha ang leap nga bulan / ika-30 nga adlaw)
+Pangunang Bituon
+Bituon sa Punoan
+Bituon sa Sanga
+Ubang Bituon
+Ang mga Palasyo
+72 ka Sumbanan
+Pagbutang sa mga Bituon
+Mga Panahon
+Tsart sa Lalaki
+Tsart sa Babaye
+Diksiyonaryo sa Tử Vi
+Pares sa Pangunang Bituon
+Mga Grupo sa Bituon
+Ginikanan
+Kapalaran
+Kabtangan
+Karera
+Higala
+Pagbiyahe
+Panglawas
+Bahandi
+Mga anak
+Kapikas
+Managsoon
+Kalendaryo
+leap
+Lun,Mar,Miy,Huw,Biy,Sab,Dom
+Lunes,Martes,Miyerkules,Huwebes,Biyernes,Sabado,Domingo
+{m}/{y}
+Karon
+Oras sa Vietnam (GMT+7)
+Swerteng adlaw
+Malas nga adlaw
+Mga pista
+Converter solar ↔ lunar
+Solar → Lunar
+Lunar → Solar
+Siklo nga kan-uman ug Nạp Âm
+Ang 60 ka tuig sa punoan-sanga, ilang elemento nga Nạp Âm ug katugbang nga mga tuig sa pagkatawo (sama sa orihinal nga programa). Tuploka ang laray aron makita ang edad.
+Pangitaa ang tuig
+Mga tuig sa pagkatawo
+Panahon sa adlaw
+sugod sa panahon
+Adlaw
+Bantay sa adlaw
+Unang oras (Tí)
+Swerteng oras
+Malas nga oras
+Himoa ang tsart alang niining adlawa
+Ipakita kining adlawa
+Edad (lunar)
+Papel nga background sa tsart
+Kolor sa background sa mga palasyo sama sa orihinal nga software ni Bửu Đình.
+Sunda ang tema
+Karaang bulawan
+Dalag nga lemon
+Hayag nga asul
+Hayag nga berde
+Hayag nga biyoleta
+Bulawan
+Mahitungod sa app
+Mga update
+Awtomatikong susiha ang update sa pag-abli
+Awtomatikong i-install human ma-download
+Susiha ang mga update
+Nagsusi sa mga update…
+Kataposang pagsusi
+Gigamit nimo ang pinakabag-ong bersyon ({v}).
+Adunay bag-ong bersyon: {v}
+Dili masusi ang update (susiha ang koneksyon).
+Panid sa mga release
+Unsay bag-o
+I-download ug i-install
+Nagdownload {p}%
+Nahuman ang download.
+Napakyas ang download
+I-install karon
+Dili masugdan ang installer
+Kini nga release wala pay file alang sa imong device. Ablihi ang panid sa mga release.
+Mangayo ang Android og kumpirmasyon. Kon pangutan-on, tugoti ang Applied Astrology sa pag-install og wala mailhing app, unya tuploka pag-usab ang I-install.
+Masira ang app, i-install ang bag-ong bersyon ug moabli pag-usab.
+Tugoti ang "Pag-install og wala mailhing app" alang sa Applied Astrology, unya tuploka pag-usab ang I-install.
+Diagnostiko
+Mga log sa app
+I-record ang log sa app
+Tan-awa ang log
+I-export / ipaambit ang log
+Papasa ang log
+Mga report sa sayop
+Mga sayop sa interface (JS) ug native crash nga natala niini nga device.
+Walay natalang sayop.
+Papasa ang mga report sa sayop
+I-report ang bug
+Ablihan ang GitHub Issues nga napuno na ang detalye sa device; susiha sa dili pa ipadala.
+Kopyaha ang debug info
+Nakopya
+Mga lisensya sa open-source
+Mga link

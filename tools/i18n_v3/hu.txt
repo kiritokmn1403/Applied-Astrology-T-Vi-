@@ -1,0 +1,74 @@
+Holdnaptár
+szökő
+H,K,Sze,Cs,P,Szo,V
+hétfő,kedd,szerda,csütörtök,péntek,szombat,vasárnap
+{y}. {m}.
+Ma
+Vietnami idő (GMT+7)
+Szerencsés nap
+Szerencsétlen nap
+Ünnepek
+Nap ↔ hold átváltó
+Nap → hold
+Hold → nap
+Hatvanas ciklus és Nạp Âm
+A 60 törzs-ág év, Nạp Âm elemük és a megfelelő születési évek (az eredeti programhoz hasonlóan). Koppintson egy sorra az életkor megtekintéséhez.
+Év keresése
+Születési évek
+Napszakasz
+szakasz kezdete
+Nap
+A nap őre
+Első óra (Tí)
+Szerencsés órák
+Szerencsétlen órák
+Horoszkóp készítése erre a napra
+Nap megjelenítése
+Életkor (hold)
+Horoszkóp háttérpapírja
+A paloták háttérszínei Bửu Đình eredeti programjához hasonlóan.
+Téma szerint
+Antik arany
+Citromsárga
+Világoskék
+Világoszöld
+Világoslila
+Arany
+Az alkalmazásról
+Frissítések
+Frissítések automatikus keresése indításkor
+Automatikus telepítés letöltés után
+Frissítések keresése
+Frissítések keresése…
+Utoljára ellenőrizve
+A legújabb verziót ({v}) használja.
+Új verzió érhető el: {v}
+Nem sikerült frissítést keresni (ellenőrizze a kapcsolatot).
+Kiadások oldala
+Újdonságok
+Letöltés és telepítés
+Letöltés {p}%
+A letöltés befejeződött.
+A letöltés sikertelen
+Telepítés most
+Nem sikerült elindítani a telepítőt
+Ebben a kiadásban még nincs fájl az eszközéhez. Nyissa meg a kiadások oldalát.
+Az Android megerősítést kér. Ha kéri, engedélyezze az Applied Astrology számára ismeretlen alkalmazások telepítését, majd koppintson ismét a Telepítésre.
+Az alkalmazás bezárul, telepíti az új verziót, majd újra megnyílik.
+Engedélyezze az „Ismeretlen alkalmazások telepítése” lehetőséget az Applied Astrology számára, majd koppintson ismét a Telepítésre.
+Diagnosztika
+Alkalmazásnapló
+Alkalmazásnapló rögzítése
+Napló megtekintése
+Napló exportálása / megosztása
+Napló törlése
+Hibajelentések
+Az eszközön rögzített felületi (JS) hibák és natív összeomlások.
+Nincs rögzített hiba.
+Hibajelentések törlése
+Hiba bejelentése
+Megnyitja a GitHub Issues oldalt előre kitöltött eszközadatokkal; küldés előtt ellenőrizze.
+Hibakeresési adatok másolása
+Másolva
+Nyílt forráskódú licencek
+Hivatkozások

@@ -1,15 +1,17 @@
 /*
- * Applied Astrology v0.0.2 - Điều khiển giao diện
+ * Applied Astrology v0.0.3 - Điều khiển giao diện
  * ES5 thuần (IE11 / Android 6 WebView / Edge WebView2 / Chrome).
  */
 (function (root) {
   'use strict';
-  var VERSION = '0.0.2';
-  var H = root.AAHost, I = root.AAI18n, E = root.AAEngine, V = root.AAChartView, Lib = root.AALib, A = root.AAAssistant;
+  var VERSION = '0.0.3';
+  var H = root.AAHost, I = root.AAI18n, E = root.AAEngine, V = root.AAChartView, Lib = root.AALib, A = root.AAAssistant, Cal = root.AACalendar, Ab = root.AAAbout;
   var $ = function (id) { return document.getElementById(id); };
   var esc = V.esc, t = root.t;
   var CHI_HOURS = ['23–01', '01–03', '03–05', '05–07', '07–09', '09–11', '11–13', '13–15', '15–17', '17–19', '19–21', '21–23'];
-  var DEFAULTS = { lang: 'vi', theme: 'celestial-dark', font: 'normal', layout: 'auto', desktop: null, ts: true, bs: false, tt: true, luu: true, leap: 'same' };
+  var DEFAULTS = { lang: 'vi', theme: 'celestial-dark', font: 'normal', layout: 'auto', desktop: null, ts: true, bs: false, tt: true, luu: true, leap: 'same', paper: 'none', autoUpdate: true, autoInstall: true, logs: true };
+  // Giấy lót nền lá số – 6 màu nền của khung lập lá số trong SWF gốc (Frame 3)
+  var PAPERS = { none: null, vangkyxao: ['#f3e2b0', '#3a2a08'], vangchanh: ['#f7f1a8', '#2f2a05'], xanhnhat: ['#d9ecf7', '#0d2a3a'], lucnhat: ['#dcefd8', '#12301a'], timnhat: ['#e8dcf3', '#2a1440'], vang: ['#f6d77a', '#3a2804'] };
   var S = Object.assign({}, DEFAULTS, H.get('aa.settings', {}));
   var chart = null, selChi = -1, readerCtx = null, lastLayout = null;
 
@@ -32,24 +34,37 @@
   function show(view) {
     current = view;
     var navs = $('nav').getElementsByTagName('a');
-    for (var i = 0; i < navs.length; i++) navs[i].className = navs[i].getAttribute('data-view') === view ? 'active' : '';
+    for (var i = 0; i < navs.length; i++) { var dv = navs[i].getAttribute('data-view'); navs[i].className = dv === view || (view === 'about' && dv === 'settings') ? 'active' : ''; }
     var views = document.querySelectorAll('.view');
     for (i = 0; i < views.length; i++) views[i].className = 'view' + (views[i].id === 'view-' + view ? ' active' : '');
     if (view === 'library' && !readerCtx) renderLibraryHome();
     if (view === 'saved') renderSaved();
     if (view === 'settings') renderAbout();
+    if (view === 'calendar') Cal.render($('calBody'), { onBuild: calBuild });
+    if (view === 'about') Ab.render($('aboutBody'));
     try { root.scrollTo(0, 0); } catch (e) { /* bỏ qua */ }
   }
   on($('nav'), 'click', function (e) { var a = (e.target || e.srcElement).closest('a'); if (a) show(a.getAttribute('data-view')); });
+  on($('sAboutOpen'), 'click', function () { show('about'); });
+  on($('aboutBack'), 'click', function () { show('settings'); });
+  function calBuild(d, m, y) { setForm({ name: $('fName').value, gender: $('fGender').value, calendar: 'solar', day: d, month: m, year: y, hourChi: parseInt($('fHour').value, 10) || 0 }); show('chart'); build(); }
 
   // ---------------- Cài đặt ----------------
   function applySettings(rerender) {
-    root.AATheme.apply(S.theme);
+    var pal = root.AATheme.apply(S.theme);
+    applyPaper();
+    try { H.setBars(pal.bg2, !pal.dark); } catch (e) { /* bỏ qua */ }
     var html = document.documentElement;
     html.className = html.className.replace(/\bfs-\S+/g, '') + ' fs-' + S.font;
     var desk = S.desktop === null ? (root.innerWidth || 0) >= 1100 : !!S.desktop;
     document.body.className = desk ? 'desktop' : '';
     if (rerender && chart) renderChart();
+  }
+  function applyPaper() {
+    var pp = PAPERS[S.paper], el = document.getElementById('aa-paper');
+    if (!el) { el = document.createElement('style'); el.id = 'aa-paper'; document.getElementsByTagName('head')[0].appendChild(el); }
+    var css = pp ? '#chartBox .palace,#chartBox .thien-ban{background:' + pp[0] + ';color:' + pp[1] + ';border-color:' + pp[1] + ';}#chartBox .p-name,#chartBox .tb-name,#chartBox .tb-row b{color:' + pp[1] + ';}#chartBox .p-canchi,#chartBox .p-ring,#chartBox .p-foot,#chartBox .tb-row{color:' + pp[1] + ';opacity:.85}' : '';
+    if (el.styleSheet) el.styleSheet.cssText = css; else el.textContent = css;
   }
   function fillSettingsUi() {
     var sel = $('sLang'), h = [];
@@ -57,7 +72,7 @@
     fillSelect(sel, h);
     sel.value = S.lang; $('sTheme').value = S.theme; $('sFont').value = S.font; $('sLayout').value = S.layout;
     $('sDesktop').checked = S.desktop === null ? (root.innerWidth || 0) >= 1100 : !!S.desktop;
-    $('sTS').checked = !!S.ts; $('sBS').checked = !!S.bs; $('sTT').checked = !!S.tt; $('sLuu').checked = !!S.luu; $('sLeap').value = S.leap;
+    $('sTS').checked = !!S.ts; $('sBS').checked = !!S.bs; $('sTT').checked = !!S.tt; $('sLuu').checked = !!S.luu; $('sLeap').value = S.leap; $('sPaper').value = S.paper || 'none';
   }
   function bindSettings() {
     on($('sLang'), 'change', function () { S.lang = this.value; saveSettings(); I.setLang(S.lang, function () { if (chart) renderChart(); renderLibraryHome(); }); });
@@ -68,6 +83,7 @@
     var boxes = { sTS: 'ts', sBS: 'bs', sTT: 'tt', sLuu: 'luu' };
     for (var id in boxes) if (boxes.hasOwnProperty(id)) (function (k) { on($(id), 'click', function () { S[k] = this.checked; saveSettings(); if (chart) renderChart(); }); })(boxes[id]);
     on($('sLeap'), 'change', function () { S.leap = this.value; saveSettings(); if (chart) build(); });
+    on($('sPaper'), 'change', function () { S.paper = this.value; saveSettings(); applyPaper(); });
     on($('sNet'), 'click', checkNetwork);
     on($('sExport'), 'click', exportBackup);
     on($('sImportFile'), 'change', function () {
@@ -355,7 +371,8 @@
   // ---------------- Kiểm thử tự động (?selftest=1) ----------------
   // Mỗi bước bấm vào phần tử giao diện thật, kiểm tra kết quả, rồi báo cho host chụp màn hình.
   function selftest() {
-    var results = [], steps = [], DELAY = 2600;
+    var results = [], steps = [], DELAY = 2000;
+    root.AA_SELFTEST_RUNNING = true;
     function click(id) { var el = $(id); if (el.click) el.click(); else { var ev = document.createEvent('MouseEvents'); ev.initEvent('click', true, true); el.dispatchEvent(ev); } }
     function navTo(v) { var a = document.querySelector('#nav a[data-view="' + v + '"]'); a.click(); }
     function step(name, fn) { steps.push({ name: name, fn: fn }); }
@@ -394,7 +411,70 @@
     step('21_backup_export', function (done) { navTo('settings'); var d = exportBackup(); rec('21_backup_export', d && d.saved.length > 0); done(); });
     step('22_backup_import', function (done) { var ok = importBackup(JSON.stringify({ app: 'Applied Astrology', settings: Object.assign({}, S, { theme: 'royal-gold' }) })); rec('22_backup_import', ok && S.theme === 'royal-gold'); done(); });
     step('23_network_check', function (done) { click('sNet'); setTimeout(function () { var txt = $('netOut').textContent; rec('23_network_check', txt.length > 5 && txt !== t('net_checking'), txt.substring(0, 140)); done(); }, 7000); });
-    step('24_restore_defaults', function (done) { click('sReset'); I.setLang('vi', function () { navTo('chart'); setForm({ name: 'Nguyễn Văn An', gender: 'Nam', calendar: 'solar', day: 15, month: 8, year: 1995, hourChi: 6 }); build(); rec('24_restore_defaults', S.theme === 'celestial-dark' && S.lang === 'vi'); done(); }); });
+    // ---- v0.0.3: Âm Lịch, giấy lót nền SWF, Giới thiệu (cập nhật, nhật ký, báo cáo lỗi), vùng an toàn Android ----
+    step('24_calendar_view', function (done) {
+      navTo('calendar'); var n = new Date(), dim = new Date(n.getFullYear(), n.getMonth() + 1, 0).getDate();
+      var cells = document.querySelectorAll('#calBody td.cal-day').length;
+      rec('24_calendar_view', cells === dim && $('calDetail').innerHTML.length > 200, 'days=' + cells + '/' + dim + ' today=' + n.getDate() + '/' + (n.getMonth() + 1));
+      done();
+    });
+    step('25_calendar_tet_2026', function (done) {
+      var inf = Cal.select(17, 2, 2026);
+      rec('25_calendar_tet_2026', inf.lunar.day === 1 && inf.lunar.month === 1 && inf.lunar.year === 2026 && inf.yearCC === 'Bính Ngọ' && inf.goodHours.length === 6 && inf.events.length > 0,
+        inf.lunar.day + '/' + inf.lunar.month + '/' + inf.lunar.year + ' ' + inf.dayCC + ' | ' + inf.monthCC + ' | ' + inf.yearCC + ' tiet=' + inf.tiet + ' ' + inf.than + ' truc=' + inf.truc + ' ev=' + (inf.events[0] && inf.events[0].name));
+      done();
+    });
+    step('26_calendar_convert', function (done) {
+      $('cvD').value = 1; $('cvM').value = 1; $('cvY').value = 2027; $('cvLeap').checked = false; var r = Cal.convert(false);
+      var r2 = null; $('cvD').value = 3; $('cvM').value = 11; $('cvY').value = 2026; r2 = Cal.convert(true);
+      rec('26_calendar_convert', r && r.solar[0] === 6 && r.solar[1] === 2 && r.solar[2] === 2027 && r2 && r2.lunar.day === 25 && r2.lunar.month === 9,
+        'Tet2027=' + (r && r.solar.join('/')) + ' 3/11/2026->' + (r2 && r2.lunar.day + '/' + r2.lunar.month + '/' + r2.lunar.year)); done();
+    });
+    step('27_calendar_sixty', function (done) {
+      $('c60Y').value = 1995; var yi = Cal.findYear(); var rows = document.querySelectorAll('#calBody table.sixty tbody tr').length;
+      rec('27_calendar_sixty', rows === 60 && yi && yi.name === 'Ất Hợi' && yi.napAm === 'Sơn Đầu Hỏa', 'rows=' + rows + ' 1995=' + (yi && yi.name + ' ' + yi.napAm)); done();
+    });
+    step('28_paper_background', function (done) {
+      navTo('settings'); $('sPaper').value = 'vangchanh'; fire($('sPaper'), 'change'); navTo('chart');
+      var css = (document.getElementById('aa-paper') || {}).innerHTML || ((document.getElementById('aa-paper') || {}).styleSheet || {}).cssText || '';
+      rec('28_paper_background', S.paper === 'vangchanh' && String(css).toLowerCase().indexOf('#f7f1a8') >= 0, 'paper=' + S.paper); done();
+    });
+    step('29_about_view', function (done) {
+      navTo('settings'); $('sPaper').value = 'none'; fire($('sPaper'), 'change'); click('sAboutOpen');
+      var txt = $('aboutBody').textContent || '';
+      rec('29_about_view', current === 'about' && txt.indexOf(VERSION) >= 0 && document.querySelectorAll('#aboutBody .setting').length >= 5 && !!$('abCheck'), 'sections=' + document.querySelectorAll('#aboutBody .setting').length); done();
+    });
+    step('30_update_check', function (done) {
+      Ab.checkUpdate(false, function (r) { rec('30_update_check', r.ok && !!r.latest, r.ok ? ('latest=' + r.latest + ' current=' + r.current + ' newer=' + r.newer + ' assets=' + r.assets + ' asset=' + r.asset) : ('status=' + r.status)); setTimeout(done, 600); });
+    });
+    step('31_update_download', function (done) {
+      if (!Ab.upd.release || !(Ab.upd.release.assets || []).length || H.kind === 'browser') { rec('31_update_download', false, 'no release/assets'); done(); return; }
+      if (!Ab.upd.asset) Ab.upd.asset = Ab.pickAsset(Ab.upd.release.assets, H.info());
+      if (!Ab.upd.asset) { rec('31_update_download', false, 'no asset for platform'); done(); return; }
+      var t0 = Date.now(), started = H.download(Ab.upd.asset.browser_download_url, Ab.upd.asset.name);
+      (function wait() {
+        var st = H.downloadStatus() || {};
+        if (st.state === 'running' && Date.now() - t0 < 120000) { setTimeout(wait, 700); return; }
+        rec('31_update_download', !!started && st.state === 'done' && st.got > 100000 && (st.total <= 0 || st.got === st.total), Ab.upd.asset.name + ' ' + st.state + ' ' + st.got + '/' + st.total + ' ' + (Date.now() - t0) + 'ms ' + (st.error || ''));
+        done();
+      })();
+    });
+    step('32_app_logs', function (done) {
+      var mk = 'SELFTEST-LOG-' + Date.now(); H.log(mk);
+      setTimeout(function () { var nat = H.readLog(), js = (Ab.logText() || ''); rec('32_app_logs', js.indexOf(mk) >= 0 && (H.kind === 'browser' || nat.indexOf(mk) >= 0), 'native=' + nat.length + ' chars'); done(); }, 900);
+    });
+    step('33_error_report', function (done) {
+      H.recordError('SELFTEST synthetic error'); Ab.renderErrors(); var u = Ab.reportUrl();
+      var ok = ($('abErrList').textContent || '').indexOf('SELFTEST synthetic error') >= 0 && u.indexOf('/issues/new') > 0 && Ab.debugInfo().indexOf(VERSION) >= 0;
+      rec('33_error_report', ok, 'crash files=' + H.crashList().length + ' url=' + u.length + ' chars');
+      H.set('aa.errors', []); done();
+    });
+    step('34_safe_area', function (done) {
+      navTo('chart'); var nav = $('nav').getBoundingClientRect(), hd = document.querySelector('.aa-header').getBoundingClientRect(), vh = root.innerHeight || document.documentElement.clientHeight;
+      rec('34_safe_area', nav.bottom <= vh + 1 && hd.top >= -1 && nav.top >= 0, 'nav ' + Math.round(nav.top) + '-' + Math.round(nav.bottom) + ' / viewport ' + vh + ' header.top=' + Math.round(hd.top)); done();
+    });
+    step('35_language_fr_new', function (done) { I.setLang('fr', function () { var a = document.querySelector('#nav a[data-view="calendar"] [data-i18n]').textContent; rec('35_language_fr_new', a && a !== I.dict.en.tab_calendar && a !== I.dict.vi.tab_calendar, a); done(); }); });
+    step('36_restore_defaults', function (done) { click('sReset'); I.setLang('vi', function () { navTo('chart'); setForm({ name: 'Nguyễn Văn An', gender: 'Nam', calendar: 'solar', day: 15, month: 8, year: 1995, hourChi: 6 }); build(); rec('36_restore_defaults', S.theme === 'celestial-dark' && S.lang === 'vi' && S.paper === 'none'); done(); }); });
     function fire(el, type) { var ev = document.createEvent('HTMLEvents'); ev.initEvent(type, true, true); el.dispatchEvent(ev); }
     var idx = 0;
     function next() {
@@ -402,6 +482,7 @@
         var pass = 0; for (var i = 0; i < results.length; i++) if (results[i].ok) pass++;
         var summary = { app: 'Applied Astrology', version: VERSION, platform: H.info(), pass: pass, total: results.length, results: results };
         H.testStep('99_done', JSON.stringify(summary));
+        root.AA_SELFTEST_RUNNING = false;
         root.AA_SELFTEST_RESULT = summary;
         var rows = [];
         for (var j = 0; j < results.length; j++) rows.push((results[j].ok ? '✔ ' : '✘ ') + results[j].step + '  ' + results[j].detail);
@@ -419,6 +500,8 @@
   // ---------------- Khởi động ----------------
   function init() {
     fillForm(); fillSettingsUi(); bindSettings(); applySettings(false);
+    Cal.bind($('calBody')); Ab.bind($('aboutBody'));
+    H.log('init v' + VERSION + ' ' + H.kind);
     I.setLang(S.lang, function () {
       var q = root.location ? (root.location.search + '&' + String(root.location.hash).replace(/^#/, '')) : '';
       var m = /[?&]c=([^&]+)/.exec(q);
@@ -426,12 +509,18 @@
       build();
       var tab = /[?&]tab=(\w+)/.exec(q); if (tab) show(tab[1]);
       if (/[?&]selftest=1/.test(q) || root.AA_FORCE_SELFTEST) selftest();
+      else if (S.autoUpdate !== false && H.kind !== 'browser') {
+        // tự kiểm tra cập nhật tối đa 1 lần / 12 giờ (giống Aniyomi/Mangayomi)
+        var lc = H.get('aa.lastUpdateCheck', null);
+        if (!lc || Date.now() - lc.at > 12 * 3600 * 1000) setTimeout(function () { Ab.checkUpdate(true); }, 4000);
+      }
     });
     on(root, 'resize', function () {
       if (S.desktop === null) applySettings(false);
       if (chart && S.layout === 'auto') { var want = (root.innerWidth || 1000) < 560 && document.body.className.indexOf('desktop') < 0 ? 'list' : 'board'; if (want !== lastLayout) renderChart(); }
     });
   }
-  root.AAApp = { build: build, show: show, openArticle: openArticle, search: runSearch, ask: ask, selftest: selftest, exportBackup: exportBackup, importBackup: importBackup, version: VERSION, chart: function () { return chart; } };
+  root.AAApp = { build: build, show: show, openArticle: openArticle, search: runSearch, ask: ask, selftest: selftest, exportBackup: exportBackup, importBackup: importBackup, version: VERSION,
+    chart: function () { return chart; }, settings: function () { return S; }, saveSettings: saveSettings, toast: toast, modal: modal };
   init();
 })(window);

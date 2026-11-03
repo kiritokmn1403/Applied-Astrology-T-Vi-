@@ -1,0 +1,74 @@
+Lunárny kalendár
+priestupný
+Po,Ut,St,Št,Pi,So,Ne
+Pondelok,Utorok,Streda,Štvrtok,Piatok,Sobota,Nedeľa
+{m}/{y}
+Dnes
+Vietnamský čas (GMT+7)
+Priaznivý deň
+Nepriaznivý deň
+Sviatky
+Prevod slnečný ↔ lunárny
+Slnečný → lunárny
+Lunárny → slnečný
+Šesťdesiatročný cyklus a Nạp Âm
+60 rokov kmeň-vetva, ich prvok Nạp Âm a zodpovedajúce roky narodenia (ako v pôvodnom programe). Ťuknutím na riadok zobrazíte vek.
+Vyhľadať rok
+Roky narodenia
+Slnečné obdobie
+začiatok obdobia
+Deň
+Strážca dňa
+Prvá hodina (Tí)
+Priaznivé hodiny
+Nepriaznivé hodiny
+Zostaviť horoskop pre tento deň
+Zobraziť tento deň
+Vek (lunárny)
+Papierové pozadie horoskopu
+Farby pozadia palácov ako v pôvodnom softvéri Bửu Đình.
+Podľa motívu
+Antické zlato
+Citrónovo žltá
+Svetlomodrá
+Svetlozelená
+Svetlofialová
+Zlatá
+O aplikácii
+Aktualizácie
+Automaticky kontrolovať aktualizácie pri spustení
+Po stiahnutí automaticky nainštalovať
+Skontrolovať aktualizácie
+Kontrolujú sa aktualizácie…
+Naposledy skontrolované
+Používate najnovšiu verziu ({v}).
+K dispozícii je nová verzia: {v}
+Aktualizácie sa nepodarilo skontrolovať (skontrolujte pripojenie).
+Stránka vydaní
+Čo je nové
+Stiahnuť a nainštalovať
+Sťahuje sa {p} %
+Sťahovanie dokončené.
+Sťahovanie zlyhalo
+Nainštalovať teraz
+Inštalátor sa nepodarilo spustiť
+Toto vydanie zatiaľ nemá súbor pre vaše zariadenie. Otvorte stránku vydaní.
+Android požiada o potvrdenie. Ak sa zobrazí výzva, povoľte aplikácii Applied Astrology inštalovať neznáme aplikácie a znova ťuknite na Inštalovať.
+Aplikácia sa zavrie, nainštaluje novú verziu a znova sa otvorí.
+Povoľte „Inštalovať neznáme aplikácie“ pre Applied Astrology a znova ťuknite na Inštalovať.
+Diagnostika
+Denníky aplikácie
+Zaznamenávať denník aplikácie
+Zobraziť denník
+Exportovať / zdieľať denník
+Vymazať denník
+Hlásenia chýb
+Chyby rozhrania (JS) a natívne pády zaznamenané v tomto zariadení.
+Nie sú zaznamenané žiadne chyby.
+Vymazať hlásenia chýb
+Nahlásiť chybu
+Otvorí GitHub Issues s vyplnenými údajmi o zariadení; pred odoslaním skontrolujte.
+Kopírovať ladiace informácie
+Skopírované
+Licencie open source
+Odkazy

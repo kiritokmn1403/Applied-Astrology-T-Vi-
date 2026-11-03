@@ -1,0 +1,233 @@
+Tử Vi Ứng Dụng · eredade de Bửu Đình
+Tema astrale
+Biblioteca
+Letura
+Profilos
+Impostatziones
+Nùmene cumpletu
+Sessu
+Òmine
+Fèmina
+Calendàriu
+Solare
+Lunare
+Die
+Mese
+Annu
+Ora de nàschida
+Mese intercalare
+Annu de previsione
+Crea su tema
+Sarva su profilu
+Esporta in PNG
+Còdighe QR
+Cumpartzi
+Imprenta
+Serra
+In segus
+Antepostu
+Imbeniente
+Aberi
+Cantzella
+Sinnalibru
+Tradue in lìnia
+Chirca
+Imbia
+Riprìstina is predefinidos
+Pratu de su Chelu
+Data solare
+Data lunare
+Ora
+Yin–Yang
+Elementu de vida
+Ufìtziu de s'elementu
+Vida – Ufìtziu
+Mere de sa vida
+Mere de su corpus
+Vida
+Corpus
+Peruna isteddu printzipale
+Dècada
+Tziclu annuale
+Vòidu Tuần
+Vòidu Triệt
+Edade
+Isteddos printzipales
+Isteddos favorèvoles
+Isteddos malèficos
+Isteddos neutrales
+Isteddos annuales
+Aneddos de isteddos
+Tríade e palatu opostu
+Artìculos de Bửu Đình ligados
+Perunu artìculu ligadu agatadu.
+Toca unu palatu pro bìdere is detàllios e su cumentu de Bửu Đình.
+Biblioteca de Applied Astrology – Bửu Đình
+{n} artìculos originales in {c} capìtulos, recuperados dae s'archìviu originale.
+Chirca in totu sa biblioteca (cun o sena acentos vietnamitas)…
+{n} resurtados
+Carrighende is datos…
+Sinnalibros
+Letos de reghente
+Sighi a lèghere
+artìculos
+caràteres
+Su testu abarrat in su vietnamita originale de s'autore.
+Assistente de letura fora de lìnia
+Anàlisi basada in su tema atuale e in sa biblioteca de Bửu Đình. Funtzionat fora de lìnia; no est IA generativa.
+Pregunta subra de unu palatu, isteddu o perìodu (es. traballu, richesa, ocannu)
+Resumu de su tema
+Crea primu unu tema.
+Palatu de sa vida
+Matrimòniu
+Ocannu
+Temas sarvados
+Ancora perunu tema sarvadu.
+Tema sarvadu.
+Cantzelladu.
+Limba
+Tema gràficu
+Mannària de su testu
+Dispositzione de su tema
+Ischermu mannu / Samsung DeX
+Mustra su tema e su cumentu a costàgiu (2 colunnas).
+Mustra is aneddos de isteddos
+Nàschidu in unu mese intercalare
+Cunta comente su mese normale
+Dae sa die 16 cunta comente su mese imbeniente
+Rete e VPN
+Controllu reale de sa connessione (Cloudflare trace). S'aplicatzione no ativat sa VPN; sa VPN si proat foras de s'aplicatzione.
+Controlla sa connessione
+Còpia de seguresa e riprìstinu
+Esporta sa còpia de seguresa
+Importa dae archìviu
+Incolla JSON
+Cantzella is datos de s'aplicatzione
+Informatziones
+Versione
+Prataforma
+Aplicatzione indipendente a còdighe abertu. Cuntenutu de su libru: "Tử Vi Ứng Dụng" de Bửu Đình (Tử Vũ).
+Mesunote Tzeleste (iscuru)
+Oro Imperiale
+Palatu de Avòriu (craru)
+Fortuna de Tzinàbru
+Minore
+Mèdiu
+Mannu
+Mannu meda
+Automàticu
+Tauledda clàssica 4×4
+Lista de 12 palatos
+Controllende…
+Connètidu
+Peruna connessione a Internet
+Su tràficu passat pro WARP/VPN
+WARP no rilevadu
+Logu
+Latèntzia
+Còdighe QR de su tema
+Iscansiona cun Applied Astrology in àteru dispositivu, o allògalu pro torrare a creare su tema.
+Immàgine de su tema esportada
+Datos ripristinados
+Archìviu no vàlidu
+Cantzellare totu is profilos e is impostatziones?
+Data no vàlida
+Custa data lunare no esistit (controlla su mese intercalare / sa die 30)
+Isteddos Printzipales
+Isteddos de Truncu
+Isteddos de Ramu
+Àteros Isteddos
+Is Palatos
+72 Schemas
+Collocamentu de is Isteddos
+Perìodos
+Temas de Òmines
+Temas de Fèminas
+Ditzionàriu de su Tử Vi
+Còpias de Isteddos Printzipales
+Grupos de Isteddos
+Babbu e mama
+Fortuna
+Benes
+Traballu
+Amigos
+Biàgios
+Salude
+Richesa
+Fìgios
+Cumpàngiu
+Frades
+Calendàriu
+intercalare
+Lun,Mar,Mèr,Gio,Che,Sàb,Dom
+Lunis,Martis,Mèrcuris,Giòbia,Chenàbura,Sàbadu,Domìnigu
+{m}/{y}
+Oe
+Ora de su Vietnam (GMT+7)
+Die favorèvole
+Die isfavorèvole
+Festas
+Cunvertidore solare ↔ lunare
+Solare → lunare
+Lunare → solare
+Tziclu sessagesimale e Nạp Âm
+Is 60 annos truncu-ramu, s'elementu Nạp Âm issoro e is annos de nàschida chi currispondent (comente in su programma originale). Toca una riga pro bìdere s'edade.
+Chirca s'annu
+Annos de nàschida
+Perìodu solare
+cumintzu de su perìodu
+Die
+Guàrdia de sa die
+Prima ora (Tí)
+Oras favorèvoles
+Oras isfavorèvoles
+Crea unu tema pro custa die
+Mustra custa die
+Edade (lunare)
+Paperi de fundu de su tema
+Colores de fundu de is palatos comente in su programma originale de Bửu Đình.
+Sighi su tema
+Oro antigu
+Grogu limone
+Biaitu craru
+Birde craru
+Biola craru
+Oro
+Informatziones subra de s'aplicatzione
+Atualizatziones
+Controlla is atualizatziones a s'aviamentu
+Installa a sa sola a pustis de s'iscarrigamentu
+Controlla is atualizatziones
+Controllende is atualizatziones…
+Ùrtimu controllu
+Ses impreende sa versione prus noa ({v}).
+B'at una versione noa: {v}
+No est istadu possìbile controllare is atualizatziones (controlla sa connessione).
+Pàgina de is versiones
+Novidades
+Iscàrriga e installa
+Iscarrighende {p}%
+Iscarrigamentu cumpletadu.
+Iscarrigamentu fallidu
+Installa immoe
+No est istadu possìbile aviare s'installadore
+Custa versione non tenet ancora un'archìviu pro su dispositivu tuo. Aberi sa pàgina de is versiones.
+Android at a pedire una cunfirma. Si ti lu pedit, permite a Applied Astrology de installare aplicatziones disconnotas e torra a tocare Installa.
+S'aplicatzione s'at a serrare, at a installare sa versione noa e s'at a torrare a abèrrere.
+Permite "Installa aplicatziones disconnotas" pro Applied Astrology, e a pustis torra a tocare Installa.
+Diagnòsticu
+Registros de s'aplicatzione
+Registra is registros de s'aplicatzione
+Mustra su registru
+Esporta / cumpartzi su registru
+Cantzella su registru
+Raportos de errores
+Errores de interfache (JS) e blocos nativos registrados in custu dispositivu.
+Perunu errore registradu.
+Cantzella is raportos de errores
+Sinnala un'errore
+Aberit GitHub Issues cun is datos de su dispositivu giai prenos; controlla in antis de imbiare.
+Còpia is informatziones de debug
+Copiadu
+Litzèntzias a còdighe abertu
+Ligòngios

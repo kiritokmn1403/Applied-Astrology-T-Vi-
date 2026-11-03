@@ -1,0 +1,74 @@
+Ilargi-egutegia
+bisurte
+Al,Ar,Az,Og,Or,La,Ig
+Astelehena,Asteartea,Asteazkena,Osteguna,Ostirala,Larunbata,Igandea
+{y}/{m}
+Gaur
+Vietnamgo ordua (GMT+7)
+Egun ona
+Egun txarra
+Jaiegunak
+Eguzki ↔ ilargi bihurgailua
+Eguzki → ilargi
+Ilargi → eguzki
+Hirurogeiko zikloa eta Nạp Âm
+60 enbor-adar urteak, haien Nạp Âm elementua eta dagozkien jaiotza-urteak (jatorrizko programan bezala). Sakatu errenkada bat adina ikusteko.
+Bilatu urtea
+Jaiotza-urteak
+Eguzki-aldia
+aldiaren hasiera
+Eguna
+Eguneko zaintzailea
+Lehen ordua (Tí)
+Ordu onak
+Ordu txarrak
+Sortu karta egun honetarako
+Erakutsi egun hau
+Adina (ilargikoa)
+Kartaren atzeko papera
+Jauregien atzeko koloreak Bửu Đình-en jatorrizko softwarean bezala.
+Gaiaren arabera
+Urre zaharra
+Limoi-horia
+Urdin argia
+Berde argia
+More argia
+Urrea
+Aplikazioari buruz
+Eguneratzeak
+Bilatu eguneratzeak automatikoki abiaraztean
+Instalatu automatikoki deskargatu ondoren
+Bilatu eguneratzeak
+Eguneratzeak bilatzen…
+Azken egiaztapena
+Azken bertsioa ({v}) erabiltzen ari zara.
+Bertsio berria eskuragarri: {v}
+Ezin izan dira eguneratzeak bilatu (egiaztatu konexioa).
+Bertsioen orria
+Berritasunak
+Deskargatu eta instalatu
+Deskargatzen % {p}
+Deskarga osatu da.
+Deskargak huts egin du
+Instalatu orain
+Ezin izan da instalatzailea abiarazi
+Bertsio honek ez du oraindik zure gailurako fitxategirik. Ireki bertsioen orria.
+Android-ek berrespena eskatuko du. Eskatzen badu, baimendu Applied Astrology-ri aplikazio ezezagunak instalatzea eta sakatu Instalatu berriro.
+Aplikazioa itxi, bertsio berria instalatu eta berriro irekiko da.
+Baimendu "Instalatu aplikazio ezezagunak" Applied Astrology-rentzat eta sakatu Instalatu berriro.
+Diagnostikoa
+Aplikazioaren erregistroak
+Gorde aplikazioaren erregistroak
+Ikusi erregistroa
+Esportatu / partekatu erregistroa
+Garbitu erregistroa
+Errore-txostenak
+Gailu honetan erregistratutako interfaze-erroreak (JS) eta jatorrizko hutsegiteak.
+Ez dago errorerik erregistratuta.
+Garbitu errore-txostenak
+Jakinarazi akats bat
+GitHub Issues irekitzen du gailuaren datuak beteta; berrikusi bidali aurretik.
+Kopiatu arazketa-informazioa
+Kopiatuta
+Kode irekiko lizentziak
+Estekak

@@ -1,0 +1,233 @@
+Tử Vi Ứng Dụng · warisan Bửu Đình
+Bagan
+Pustaka
+Waosan
+Profil
+Setelan
+Jeneng jangkep
+Jinis kelamin
+Lanang
+Wadon
+Tanggalan
+Srengéngé
+Rembulan
+Dina
+Sasi
+Taun
+Jam lair
+Sasi kabisat
+Taun ramalan
+Gawe bagan
+Simpen profil
+Ekspor PNG
+Kode QR
+Bagékaké
+Cithak
+Tutup
+Bali
+Sadurungé
+Sabanjuré
+Bukak
+Busak
+Tetenger
+Terjemahaké online
+Golèk
+Kirim
+Balèkaké gawan
+Piring Langit
+Tanggal srengéngé
+Tanggal rembulan
+Jam
+Yin–Yang
+Unsur urip
+Biro unsur
+Urip – Biro
+Gusti urip
+Gusti badan
+Urip
+Badan
+Ora ana lintang utama
+Dasawarsa
+Siklus taunan
+Kosong Tuần
+Kosong Triệt
+Umur
+Lintang utama
+Lintang becik
+Lintang ala
+Lintang netral
+Lintang taunan
+Cincin lintang
+Triad lan kraton adhep-adhepan
+Artikel Bửu Đình sing gegandhengan
+Ora ana artikel sing gegandhengan.
+Tutul kraton kanggo ndeleng rinciané lan komentar Bửu Đình.
+Pustaka Applied Astrology – Bửu Đình
+{n} artikel asli ing {c} bab, dibalèkaké saka berkas sumber.
+Golèk ing kabèh pustaka (nganggo utawa tanpa tandha aksen Vietnam)…
+{n} asil
+Ngemot data…
+Tetenger
+Mentas diwaca
+Terusaké maca
+artikel
+aksara
+Teks tetep nganggo basa Vietnam asliné panulis.
+Asistèn waosan offline
+Analisis adhedhasar bagan saiki lan pustaka Bửu Đình. Mlaku offline; dudu AI generatif.
+Takon bab kraton, lintang utawa mangsa (upamané karir, bandha, taun iki)
+Ringkesan bagan
+Gawe bagan dhisik.
+Kraton urip
+Bebrayan
+Taun iki
+Bagan sing disimpen
+Durung ana bagan sing disimpen.
+Bagan disimpen.
+Wis dibusak.
+Basa
+Téma
+Ukuran aksara
+Tata letak bagan
+Layar gedhé / Samsung DeX
+Tampilaké bagan lan komentar jèjèr (2 kolom).
+Tampilaké cincin lintang
+Lair ing sasi kabisat
+Etung kaya sasi biasa
+Wiwit dina kaping 16 etung dadi sasi sabanjuré
+Jaringan lan VPN
+Pamriksan sambungan nyata (Cloudflare trace). Aplikasi ora nguripaké VPN; VPN dites ing njaba aplikasi.
+Priksa sambungan
+Serep lan pulihaké
+Ekspor berkas serep
+Impor saka berkas
+Tempel JSON
+Busak data aplikasi
+Ngenani
+Versi
+Platform
+Aplikasi open-source mandhiri. Isi buku: "Tử Vi Ứng Dụng" anggitané Bửu Đình (Tử Vũ).
+Tengah Wengi Langit (peteng)
+Emas Kraton
+Kraton Gading (padhang)
+Begja Sinabar
+Cilik
+Sedheng
+Gedhé
+Gedhé banget
+Otomatis
+Papan klasik 4×4
+Dhaptar 12 kraton
+Mriksa…
+Kasambung
+Ora ana sambungan Internet
+Lalu lintas liwat WARP/VPN
+WARP ora dideteksi
+Lokasi
+Latensi
+Kode QR bagan
+Pindai nganggo Applied Astrology ing piranti liya, utawa simpen kanggo nggawe manèh bagan.
+Gambar bagan diekspor
+Data dipulihaké
+Berkas ora sah
+Busak kabèh profil lan setelan?
+Tanggal ora sah
+Tanggal rembulan iki ora ana (priksa sasi kabisat / dina kaping 30)
+Lintang Utama
+Lintang Batang
+Lintang Pang
+Lintang Liyané
+Kraton-kraton
+72 Pola
+Mapanaké Lintang
+Mangsa
+Bagan Lanang
+Bagan Wadon
+Kamus Tử Vi
+Pasangan Lintang Utama
+Klompok Lintang
+Wong tuwa
+Begja
+Bandha omah
+Karir
+Kanca
+Lelungan
+Kasarasan
+Bandha
+Anak
+Bojo
+Sedulur
+Tanggalan
+kabisat
+Sen,Sel,Rab,Kem,Jem,Set,Min
+Senin,Selasa,Rabu,Kemis,Jemuwah,Setu,Minggu
+{m}/{y}
+Dina iki
+Wektu Vietnam (GMT+7)
+Dina becik
+Dina ala
+Dina riyaya
+Konvèrsi srengéngé ↔ rembulan
+Srengéngé → rembulan
+Rembulan → srengéngé
+Siklus sewidak lan Nạp Âm
+60 taun batang-pang, unsur Nạp Âm lan taun lair sing cocog (kaya ing program asli). Tutul baris kanggo ndeleng umur.
+Golèk taun
+Taun lair
+Mangsa srengéngé
+wiwitan mangsa
+Dina
+Juru jaga dina
+Jam kapisan (Tí)
+Jam becik
+Jam ala
+Gawe bagan kanggo dina iki
+Tampilaké dina iki
+Umur (rembulan)
+Kertas latar bagan
+Werna latar kraton kaya ing piranti lunak asli Bửu Đình.
+Miturut téma
+Emas kuna
+Kuning jeruk
+Biru enom
+Ijo enom
+Ungu enom
+Emas
+Ngenani aplikasi
+Pembaruan
+Priksa pembaruan otomatis nalika dibukak
+Pasang otomatis sawisé diundhuh
+Priksa pembaruan
+Mriksa pembaruan…
+Pungkasan dipriksa
+Sampéyan nganggo versi paling anyar ({v}).
+Ana versi anyar: {v}
+Ora bisa mriksa pembaruan (priksa sambungan).
+Kaca rilis
+Apa sing anyar
+Undhuh lan pasang
+Ngundhuh {p}%
+Undhuhan rampung.
+Undhuhan gagal
+Pasang saiki
+Ora bisa miwiti pamasang
+Rilis iki durung duwé berkas kanggo piranti sampéyan. Bukak kaca rilis.
+Android bakal njaluk konfirmasi. Yèn dijaluk, idini Applied Astrology masang aplikasi sing ora dikenal, banjur tutul Pasang manèh.
+Aplikasi bakal ditutup, masang versi anyar lan dibukak manèh.
+Idini "Pasang aplikasi sing ora dikenal" kanggo Applied Astrology, banjur tutul Pasang manèh.
+Diagnostik
+Log aplikasi
+Rekam log aplikasi
+Deleng log
+Ekspor / bagékaké log
+Busak log
+Laporan kasalahan
+Kasalahan antarmuka (JS) lan crash native sing kacathet ing piranti iki.
+Ora ana kasalahan sing kacathet.
+Busak laporan kasalahan
+Laporaké bug
+Mbukak GitHub Issues kanthi info piranti wis diisi; priksa sadurungé ngirim.
+Salin info debug
+Disalin
+Lisènsi open-source
+Pranala

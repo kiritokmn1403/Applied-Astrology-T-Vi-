@@ -1,0 +1,74 @@
+Kalendari hënor
+i brishtë
+Hën,Mar,Mër,Enj,Pre,Sht,Die
+E hënë,E martë,E mërkurë,E enjte,E premte,E shtunë,E diel
+{m}/{y}
+Sot
+Ora e Vietnamit (GMT+7)
+Ditë e mbarë
+Ditë e prapë
+Festat
+Konvertues diellor ↔ hënor
+Diellor → hënor
+Hënor → diellor
+Cikli gjashtëdhjetëvjeçar dhe Nạp Âm
+60 vitet trung-degë, elementi i tyre Nạp Âm dhe vitet përkatëse të lindjes (si në programin origjinal). Prekni një rresht për të parë moshën.
+Kërko vitin
+Vitet e lindjes
+Periudha diellore
+fillimi i periudhës
+Dita
+Roja e ditës
+Ora e parë (Tí)
+Orët e mbara
+Orët e prapa
+Krijo hartë për këtë ditë
+Shfaq këtë ditë
+Mosha (hënore)
+Letra e sfondit të hartës
+Ngjyrat e sfondit të pallateve si në programin origjinal të Bửu Đình.
+Sipas temës
+Ar antik
+E verdhë limoni
+Blu e çelët
+Jeshile e çelët
+Vjollcë e çelët
+Ari
+Rreth aplikacionit
+Përditësimet
+Kontrollo automatikisht për përditësime gjatë nisjes
+Instalo automatikisht pas shkarkimit
+Kontrollo për përditësime
+Po kontrollohen përditësimet…
+Kontrolli i fundit
+Po përdorni versionin më të ri ({v}).
+Version i ri i disponueshëm: {v}
+Nuk u kontrolluan dot përditësimet (kontrolloni lidhjen).
+Faqja e versioneve
+Çfarë ka të re
+Shkarko dhe instalo
+Po shkarkohet {p}%
+Shkarkimi përfundoi.
+Shkarkimi dështoi
+Instalo tani
+Instaluesi nuk u nis dot
+Ky version nuk ka ende skedar për pajisjen tuaj. Hapni faqen e versioneve.
+Android do të kërkojë konfirmim. Nëse kërkohet, lejoni Applied Astrology të instalojë aplikacione të panjohura dhe prekni sërish Instalo.
+Aplikacioni do të mbyllet, do të instalojë versionin e ri dhe do të rihapet.
+Lejoni "Instalo aplikacione të panjohura" për Applied Astrology dhe prekni sërish Instalo.
+Diagnostikimi
+Regjistrat e aplikacionit
+Ruaj regjistrat e aplikacionit
+Shiko regjistrin
+Eksporto / ndaj regjistrin
+Pastro regjistrin
+Raportet e gabimeve
+Gabimet e ndërfaqes (JS) dhe rrëzimet native të regjistruara në këtë pajisje.
+Nuk ka gabime të regjistruara.
+Pastro raportet e gabimeve
+Raporto një gabim
+Hap GitHub Issues me të dhënat e pajisjes të plotësuara; kontrollojini para dërgimit.
+Kopjo informacionin e diagnostikimit
+U kopjua
+Licencat me burim të hapur
+Lidhjet

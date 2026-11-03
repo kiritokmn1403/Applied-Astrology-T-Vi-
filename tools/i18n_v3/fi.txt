@@ -1,0 +1,74 @@
+Kuukalenteri
+karkaus
+ma,ti,ke,to,pe,la,su
+maanantai,tiistai,keskiviikko,torstai,perjantai,lauantai,sunnuntai
+{m}/{y}
+Tänään
+Vietnamin aika (GMT+7)
+Onnenpäivä
+Epäonnen päivä
+Juhlapäivät
+Muunnin aurinko ↔ kuu
+Aurinko → kuu
+Kuu → aurinko
+Kuusikymmenvuotiskierto & Nạp Âm
+60 runko-haara-vuotta, niiden Nạp Âm -elementti ja vastaavat syntymävuodet (kuten alkuperäisessä ohjelmassa). Napauta riviä nähdäksesi iän.
+Hae vuosi
+Syntymävuodet
+Aurinkokausi
+kausi alkaa
+Päivä
+Päivän vartija
+Ensimmäinen tunti (Tí)
+Onnentunnit
+Epäonnen tunnit
+Luo kartta tälle päivälle
+Näytä tämä päivä
+Ikä (kuu)
+Kartan taustapaperi
+Palatsien taustavärit kuten Bửu Đìnhin alkuperäisessä ohjelmassa.
+Teeman mukaan
+Antiikkikulta
+Sitruunankeltainen
+Vaaleansininen
+Vaaleanvihreä
+Vaaleanvioletti
+Kulta
+Tietoja sovelluksesta
+Päivitykset
+Tarkista päivitykset automaattisesti käynnistettäessä
+Asenna automaattisesti latauksen jälkeen
+Tarkista päivitykset
+Tarkistetaan päivityksiä…
+Viimeksi tarkistettu
+Käytät uusinta versiota ({v}).
+Uusi versio saatavilla: {v}
+Päivityksiä ei voitu tarkistaa (tarkista yhteys).
+Julkaisusivu
+Uutta
+Lataa ja asenna
+Ladataan {p} %
+Lataus valmis.
+Lataus epäonnistui
+Asenna nyt
+Asennusohjelmaa ei voitu käynnistää
+Tässä julkaisussa ei vielä ole tiedostoa laitteellesi. Avaa julkaisusivu.
+Android pyytää vahvistusta. Salli pyydettäessä Applied Astrologyn asentaa tuntemattomia sovelluksia ja napauta Asenna uudelleen.
+Sovellus sulkeutuu, asentaa uuden version ja avautuu uudelleen.
+Salli ”Asenna tuntemattomia sovelluksia” Applied Astrologylle ja napauta sitten Asenna uudelleen.
+Vianmääritys
+Sovelluksen lokit
+Tallenna sovelluslokit
+Näytä loki
+Vie / jaa loki
+Tyhjennä loki
+Virheraportit
+Tällä laitteella tallennetut käyttöliittymävirheet (JS) ja natiivikaatumiset.
+Ei tallennettuja virheitä.
+Tyhjennä virheraportit
+Ilmoita viasta
+Avaa GitHub Issuesin laitetiedot valmiiksi täytettyinä; tarkista ennen lähettämistä.
+Kopioi vianetsintätiedot
+Kopioitu
+Avoimen lähdekoodin lisenssit
+Linkit

@@ -1,0 +1,74 @@
+Kalender
+Schalt
+Mo,Di,Mi,Do,Fr,Sa,So
+Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Samstag,Sonntag
+{m}/{y}
+Heute
+Vietnamesische Zeit (GMT+7)
+Glückstag
+Unglückstag
+Feiertage
+Umrechner Sonnen- ↔ Mondkalender
+Sonne → Mond
+Mond → Sonne
+Sechzigerzyklus & Nạp Âm
+Die 60 Stamm-Zweig-Jahre, ihr Nạp-Âm-Element und die passenden Geburtsjahre (wie im Original-Programm). Tippen Sie auf eine Zeile, um das Alter zu sehen.
+Jahr nachschlagen
+Geburtsjahre
+Sonnenperiode
+Periodenbeginn
+Tag
+Tagesbeamter
+Erste Stunde (Tí)
+Glücksstunden
+Unglücksstunden
+Horoskop für diesen Tag erstellen
+Diesen Tag anzeigen
+Alter (Mondjahre)
+Papierhintergrund des Horoskops
+Hintergrundfarben der Paläste wie in der Original-Software von Bửu Đình.
+Wie Design
+Antikgold
+Zitronengelb
+Hellblau
+Hellgrün
+Hellviolett
+Gold
+Über die App
+Updates
+Beim Start automatisch nach Updates suchen
+Nach dem Download automatisch installieren
+Nach Updates suchen
+Suche nach Updates…
+Zuletzt geprüft
+Sie verwenden die neueste Version ({v}).
+Neue Version verfügbar: {v}
+Updates konnten nicht geprüft werden (Verbindung prüfen).
+Release-Seite
+Neuigkeiten
+Herunterladen und installieren
+Lade herunter {p} %
+Download abgeschlossen.
+Download fehlgeschlagen
+Jetzt installieren
+Installationsprogramm konnte nicht gestartet werden
+Dieses Release enthält noch keine Datei für Ihr Gerät. Bitte öffnen Sie die Release-Seite.
+Android fragt nach einer Bestätigung. Erlauben Sie ggf. Applied Astrology, unbekannte Apps zu installieren, und tippen Sie erneut auf Installieren.
+Die App wird geschlossen, installiert die neue Version und startet erneut.
+Erlauben Sie „Unbekannte Apps installieren“ für Applied Astrology und tippen Sie erneut auf Installieren.
+Diagnose
+App-Protokolle
+App-Protokolle aufzeichnen
+Protokolle anzeigen
+Protokolle exportieren / teilen
+Protokolle löschen
+Fehlerberichte
+Auf diesem Gerät erfasste Oberflächenfehler (JS) und native Abstürze.
+Keine Fehler erfasst.
+Fehlerberichte löschen
+Fehler melden
+Öffnet GitHub Issues mit vorausgefüllten Geräteinfos; vor dem Absenden prüfen.
+Debug-Infos kopieren
+Kopiert
+Open-Source-Lizenzen
+Links

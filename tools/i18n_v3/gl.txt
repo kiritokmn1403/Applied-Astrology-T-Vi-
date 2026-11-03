@@ -1,0 +1,74 @@
+Calendario lunar
+intercalar
+Lu,Ma,Mé,Xo,Ve,Sá,Do
+Luns,Martes,Mércores,Xoves,Venres,Sábado,Domingo
+{m}/{y}
+Hoxe
+Hora de Vietnam (GMT+7)
+Día propicio
+Día adverso
+Festivos
+Conversor solar ↔ lunar
+Solar → lunar
+Lunar → solar
+Ciclo sesaxenario e Nạp Âm
+Os 60 anos tronco-póla, o seu elemento Nạp Âm e os anos de nacemento correspondentes (como no programa orixinal). Toca unha fila para ver a idade.
+Buscar ano
+Anos de nacemento
+Termo solar
+inicio do termo
+Día
+Oficial
+Primeira hora (Tí)
+Horas propicias
+Horas adversas
+Crear unha carta para este día
+Amosar este día
+Idade (lunar)
+Papel de fondo da carta
+Cores de fondo dos pazos como no software orixinal de Bửu Đình.
+Segundo o tema
+Ouro antigo
+Amarelo limón
+Azul claro
+Verde claro
+Violeta claro
+Ouro
+Acerca da aplicación
+Actualizacións
+Buscar actualizacións automaticamente ao iniciar
+Instalar automaticamente tras descargar
+Buscar actualizacións
+Buscando actualizacións…
+Última comprobación
+Estás a usar a última versión ({v}).
+Hai unha nova versión: {v}
+Non se puideron buscar actualizacións (comproba a conexión).
+Páxina de versións
+Novidades
+Descargar e instalar
+Descargando {p} %
+Descarga completada.
+Fallou a descarga
+Instalar agora
+Non se puido iniciar o instalador
+Esta versión aínda non ten ficheiro para o teu dispositivo. Abre a páxina de versións.
+Android pedirá confirmación. Se cho pide, permite que Applied Astrology instale aplicacións descoñecidas e volve tocar Instalar.
+A aplicación pecharase, instalará a nova versión e volverá abrirse.
+Permite «Instalar aplicacións descoñecidas» para Applied Astrology e volve tocar Instalar.
+Diagnóstico
+Rexistros da aplicación
+Gardar rexistros da aplicación
+Ver rexistro
+Exportar / compartir rexistro
+Borrar rexistro
+Informes de erros
+Erros de interface (JS) e fallos nativos rexistrados neste dispositivo.
+Non hai erros rexistrados.
+Borrar informes de erros
+Informar dun erro
+Abre GitHub Issues cos datos do dispositivo cubertos; revísaos antes de enviar.
+Copiar información de depuración
+Copiado
+Licenzas de código aberto
+Ligazóns

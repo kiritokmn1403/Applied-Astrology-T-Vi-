@@ -1,0 +1,74 @@
+Kalender Lunar
+kabisat
+Sen,Sel,Rab,Kam,Jum,Sab,Min
+Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu
+{m}/{y}
+Hari ini
+Waktu Vietnam (GMT+7)
+Hari baik
+Hari buruk
+Hari raya
+Konversi surya ↔ lunar
+Surya → Lunar
+Lunar → Surya
+Siklus enam puluh & Nạp Âm
+60 tahun batang-cabang, unsur Nạp Âm-nya, dan tahun lahir yang sesuai (seperti di program asli). Ketuk baris untuk melihat usia.
+Cari tahun
+Tahun lahir
+Musim surya
+awal musim
+Hari
+Penjaga hari
+Jam pertama (Tí)
+Jam baik
+Jam buruk
+Buat bagan untuk hari ini
+Tampilkan hari ini
+Usia (lunar)
+Kertas latar bagan
+Warna latar istana seperti di perangkat lunak asli Bửu Đình.
+Ikuti tema
+Emas antik
+Kuning lemon
+Biru muda
+Hijau muda
+Ungu muda
+Emas
+Tentang aplikasi
+Pembaruan
+Periksa pembaruan otomatis saat dibuka
+Pasang otomatis setelah diunduh
+Periksa pembaruan
+Memeriksa pembaruan…
+Terakhir diperiksa
+Anda memakai versi terbaru ({v}).
+Versi baru tersedia: {v}
+Tidak dapat memeriksa pembaruan (periksa koneksi).
+Halaman rilis
+Yang baru
+Unduh dan pasang
+Mengunduh {p}%
+Unduhan selesai.
+Unduhan gagal
+Pasang sekarang
+Tidak dapat menjalankan pemasang
+Rilis ini belum punya berkas untuk perangkat Anda. Buka halaman rilis.
+Android akan meminta konfirmasi. Jika diminta, izinkan Applied Astrology memasang aplikasi tak dikenal, lalu ketuk Pasang lagi.
+Aplikasi akan ditutup, memasang versi baru, lalu dibuka kembali.
+Izinkan "Pasang aplikasi tak dikenal" untuk Applied Astrology, lalu ketuk Pasang lagi.
+Diagnostik
+Log aplikasi
+Rekam log aplikasi
+Lihat log
+Ekspor / bagikan log
+Hapus log
+Laporan galat
+Galat antarmuka (JS) dan crash native yang tercatat di perangkat ini.
+Tidak ada galat tercatat.
+Hapus laporan galat
+Laporkan bug
+Membuka GitHub Issues dengan info perangkat terisi; periksa sebelum mengirim.
+Salin info debug
+Disalin
+Lisensi sumber terbuka
+Tautan

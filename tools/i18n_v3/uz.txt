@@ -1,0 +1,74 @@
+Oy taqvimi
+kabisa
+Du,Se,Ch,Pa,Ju,Sh,Ya
+Dushanba,Seshanba,Chorshanba,Payshanba,Juma,Shanba,Yakshanba
+{m}/{y}
+Bugun
+Vyetnam vaqti (GMT+7)
+Qutlug‘ kun
+Noxush kun
+Bayramlar
+Quyosh ↔ oy konvertori
+Quyosh → oy
+Oy → quyosh
+Oltmish yillik sikl va Nạp Âm
+60 ta tana-shox yil, ularning Nạp Âm unsuri va mos tug‘ilgan yillar (asl dasturdagidek). Yoshni ko‘rish uchun qatorga bosing.
+Yilni qidirish
+Tug‘ilgan yillar
+Quyosh davri
+davr boshlanishi
+Kun
+Kun qo‘riqchisi
+Birinchi soat (Tí)
+Qutlug‘ soatlar
+Noxush soatlar
+Shu kun uchun xarita tuzish
+Shu kunni ko‘rsatish
+Yosh (oy)
+Xarita qog‘oz foni
+Saroylar fon ranglari asl Bửu Đình dasturidagidek.
+Mavzuga ko‘ra
+Qadimiy oltin
+Limon sariq
+Och ko‘k
+Och yashil
+Och binafsha
+Oltin
+Ilova haqida
+Yangilanishlar
+Ishga tushganda yangilanishlarni avtomatik tekshirish
+Yuklab olingandan keyin avtomatik o‘rnatish
+Yangilanishlarni tekshirish
+Yangilanishlar tekshirilmoqda…
+Oxirgi tekshiruv
+Siz eng so‘nggi versiyadan ({v}) foydalanmoqdasiz.
+Yangi versiya mavjud: {v}
+Yangilanishlarni tekshirib bo‘lmadi (ulanishni tekshiring).
+Relizlar sahifasi
+Yangiliklar
+Yuklab olish va o‘rnatish
+Yuklab olinmoqda {p}%
+Yuklab olish tugadi.
+Yuklab olib bo‘lmadi
+Hozir o‘rnatish
+O‘rnatuvchini ishga tushirib bo‘lmadi
+Bu relizda hali qurilmangiz uchun fayl yo‘q. Relizlar sahifasini oching.
+Android tasdiq so‘raydi. So‘ralsa, Applied Astrology’ga noma’lum ilovalarni o‘rnatishga ruxsat bering va yana O‘rnatish tugmasini bosing.
+Ilova yopiladi, yangi versiyani o‘rnatadi va qayta ochiladi.
+Applied Astrology uchun “Noma’lum ilovalarni o‘rnatish”ga ruxsat bering, so‘ng yana O‘rnatish tugmasini bosing.
+Diagnostika
+Ilova jurnallari
+Ilova jurnalini yozish
+Jurnalni ko‘rish
+Jurnalni eksport qilish / ulashish
+Jurnalni tozalash
+Xato hisobotlari
+Ushbu qurilmada qayd etilgan interfeys (JS) xatolari va mahalliy nosozliklar.
+Hech qanday xato qayd etilmagan.
+Xato hisobotlarini tozalash
+Xato haqida xabar berish
+Qurilma ma’lumotlari to‘ldirilgan GitHub Issues’ni ochadi; yuborishdan oldin tekshiring.
+Nosozlik ma’lumotini nusxalash
+Nusxalandi
+Ochiq kodli litsenziyalar
+Havolalar

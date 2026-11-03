@@ -1,0 +1,74 @@
+Maankalender
+schrikkel
+ma,di,wo,do,vr,za,zo
+maandag,dinsdag,woensdag,donderdag,vrijdag,zaterdag,zondag
+{m}-{y}
+Vandaag
+Vietnamese tijd (GMT+7)
+Gunstig
+Ongunstig
+Feestdagen
+Omrekenen zonne ↔ maan
+Zonne → maan
+Maan → zonne
+Zestigjarige cyclus & Nạp Âm
+De 60 stam-tak-jaren, hun Nạp Âm-element en bijbehorende geboortejaren (zoals in het originele programma). Tik op een rij om de leeftijd te zien.
+Jaar opzoeken
+Geboortejaren
+Zonneterm
+begin van de term
+Dag
+Dagbeambte
+Eerste uur (Tí)
+Gunstige uren
+Ongunstige uren
+Horoscoop maken voor deze dag
+Deze dag tonen
+Leeftijd (maan)
+Papieren achtergrond van de horoscoop
+Achtergrondkleuren van de paleizen zoals in de originele software van Bửu Đình.
+Volgens thema
+Antiek goud
+Citroengeel
+Lichtblauw
+Lichtgroen
+Lichtpaars
+Goud
+Over de app
+Updates
+Automatisch naar updates zoeken bij het starten
+Automatisch installeren na download
+Naar updates zoeken
+Zoeken naar updates…
+Laatst gecontroleerd
+U gebruikt de nieuwste versie ({v}).
+Nieuwe versie beschikbaar: {v}
+Kon niet naar updates zoeken (controleer de verbinding).
+Releasepagina
+Wat is er nieuw
+Downloaden en installeren
+Downloaden {p}%
+Download voltooid.
+Download mislukt
+Nu installeren
+Kon het installatieprogramma niet starten
+Deze release heeft nog geen bestand voor uw apparaat. Open de releasepagina.
+Android vraagt om bevestiging. Sta indien gevraagd Applied Astrology toe onbekende apps te installeren en tik opnieuw op Installeren.
+De app sluit, installeert de nieuwe versie en opent opnieuw.
+Sta "Onbekende apps installeren" toe voor Applied Astrology en tik opnieuw op Installeren.
+Diagnose
+App-logboeken
+App-logboek bijhouden
+Logboek bekijken
+Logboek exporteren / delen
+Logboek wissen
+Foutrapporten
+Interfacefouten (JS) en native crashes die op dit apparaat zijn vastgelegd.
+Geen fouten vastgelegd.
+Foutrapporten wissen
+Bug melden
+Opent GitHub Issues met vooraf ingevulde apparaatgegevens; controleer vóór verzenden.
+Debuginfo kopiëren
+Gekopieerd
+Open-sourcelicenties
+Links

@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.2 - Bộ cài đặt .exe (một tệp cho x86 / x64 / ARM64, Windows 7 SP1+)
+// Applied Astrology v0.0.3 - Bộ cài đặt .exe (một tệp cho x86 / x64 / ARM64, Windows 7 SP1+)
 // Cài theo người dùng (không cần quyền Administrator) vào %LOCALAPPDATA%\Programs\Applied Astrology,
 // tạo lối tắt, đăng ký "Apps & features" (HKCU) và tự làm trình gỡ cài đặt (uninstall.exe /uninstall).
 // Dòng lệnh: /S (cài im lặng)  /D=<thư mục>  /uninstall  /uninstall /S
@@ -14,15 +14,15 @@ using Microsoft.Win32;
 [assembly: AssemblyTitle("Applied Astrology Setup")]
 [assembly: AssemblyProduct("Applied Astrology (Tử Vi Ứng Dụng)")]
 [assembly: AssemblyCompany("Applied Astrology")]
-[assembly: AssemblyVersion("0.0.2.0")]
-[assembly: AssemblyFileVersion("0.0.2.0")]
+[assembly: AssemblyVersion("0.0.3.0")]
+[assembly: AssemblyFileVersion("0.0.3.0")]
 
 namespace AppliedAstrologySetup
 {
     static class Program
     {
         internal const string AppName = "Applied Astrology";
-        internal const string Version = "0.0.2";
+        internal const string Version = "0.0.3";
         internal const string RegKey = @"Software\Microsoft\Windows\CurrentVersion\Uninstall\AppliedAstrology";
         internal static string DefaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", AppName);
 

@@ -3,9 +3,9 @@ import os, re, json, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 keys = json.loads(subprocess.check_output(['node', '-e', "global.window=global;global.document={};require('%s/src/web/js/i18n.js');console.log(JSON.stringify(Object.keys(AAI18n.dict.en)))" % ROOT.replace('\\','/')]))
 en = json.loads(subprocess.check_output(['node', '-e', "global.window=global;global.document={};require('%s/src/web/js/i18n.js');console.log(JSON.stringify(AAI18n.dict.en))" % ROOT.replace('\\','/')]))
-SAME = ['app_name', 's_trangsinh', 's_bacsi', 's_thaitue', 'net_ip']
+SAME = ['app_name', 's_trangsinh', 's_bacsi', 's_thaitue', 'net_ip', 'cal_napam']
 DUP = {'day_cc': 'f_day', 'month_cc': 'f_month', 'year_cc': 'f_year', 'p_menh': 'menh', 'as_q_career': 'p_quanloc',
-       'as_q_money': 'p_taibach', 'as_q_health': 'p_tatach', 'reader_font': 's_font', 's_luu': 'luu_stars'}
+       'as_q_money': 'p_taibach', 'as_q_health': 'p_tatach', 'reader_font': 's_font', 's_luu': 'luu_stars', 'ab_title': 'ab_open'}
 src = os.path.join(ROOT, 'tools', 'i18n_src'); out = os.path.join(ROOT, 'src', 'web', 'data', 'lang')
 os.makedirs(out, exist_ok=True)
 bad = 0

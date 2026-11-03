@@ -1,0 +1,74 @@
+Lunární kalendář
+přestupný
+Po,Út,St,Čt,Pá,So,Ne
+Pondělí,Úterý,Středa,Čtvrtek,Pátek,Sobota,Neděle
+{m}/{y}
+Dnes
+Vietnamský čas (GMT+7)
+Příznivý den
+Nepříznivý den
+Svátky
+Převod sluneční ↔ lunární
+Sluneční → lunární
+Lunární → sluneční
+Šedesátiletý cyklus a Nạp Âm
+60 let kmen-větev, jejich prvek Nạp Âm a odpovídající roky narození (jako v původním programu). Klepnutím na řádek zobrazíte věk.
+Vyhledat rok
+Roky narození
+Sluneční období
+začátek období
+Den
+Strážce dne
+První hodina (Tí)
+Příznivé hodiny
+Nepříznivé hodiny
+Sestavit horoskop pro tento den
+Zobrazit tento den
+Věk (lunární)
+Papírové pozadí horoskopu
+Barvy pozadí paláců jako v původním softwaru Bửu Đình.
+Podle motivu
+Antické zlato
+Citronově žlutá
+Světle modrá
+Světle zelená
+Světle fialová
+Zlatá
+O aplikaci
+Aktualizace
+Automaticky kontrolovat aktualizace při spuštění
+Po stažení automaticky nainstalovat
+Zkontrolovat aktualizace
+Kontrola aktualizací…
+Naposledy zkontrolováno
+Používáte nejnovější verzi ({v}).
+K dispozici je nová verze: {v}
+Aktualizace nelze zkontrolovat (zkontrolujte připojení).
+Stránka vydání
+Co je nového
+Stáhnout a nainstalovat
+Stahování {p} %
+Stahování dokončeno.
+Stahování selhalo
+Nainstalovat nyní
+Instalační program nelze spustit
+Toto vydání zatím nemá soubor pro vaše zařízení. Otevřete stránku vydání.
+Android požádá o potvrzení. Pokud budete vyzváni, povolte aplikaci Applied Astrology instalovat neznámé aplikace a znovu klepněte na Instalovat.
+Aplikace se zavře, nainstaluje novou verzi a znovu se otevře.
+Povolte „Instalace neznámých aplikací“ pro Applied Astrology a znovu klepněte na Instalovat.
+Diagnostika
+Protokoly aplikace
+Zaznamenávat protokol aplikace
+Zobrazit protokol
+Exportovat / sdílet protokol
+Vymazat protokol
+Hlášení chyb
+Chyby rozhraní (JS) a nativní pády zaznamenané v tomto zařízení.
+Nejsou zaznamenány žádné chyby.
+Vymazat hlášení chyb
+Nahlásit chybu
+Otevře GitHub Issues s vyplněnými údaji o zařízení; před odesláním zkontrolujte.
+Kopírovat ladicí informace
+Zkopírováno
+Licence open source
+Odkazy

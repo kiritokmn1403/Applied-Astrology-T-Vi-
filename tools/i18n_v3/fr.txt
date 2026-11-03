@@ -1,0 +1,74 @@
+Calendrier
+intercalaire
+Lun,Mar,Mer,Jeu,Ven,Sam,Dim
+Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche
+{m}/{y}
+Aujourd'hui
+Heure du Vietnam (GMT+7)
+Faste
+Néfaste
+Fêtes
+Convertisseur solaire ↔ lunaire
+Solaire → Lunaire
+Lunaire → Solaire
+Cycle sexagésimal et Nạp Âm
+Les 60 années tronc-branche, leur élément Nạp Âm et les années de naissance correspondantes (comme dans le logiciel d'origine). Touchez une ligne pour voir l'âge.
+Chercher une année
+Années de naissance
+Terme solaire
+début du terme
+Jour
+Officier
+Première heure (Tí)
+Heures fastes
+Heures néfastes
+Établir un thème pour ce jour
+Afficher ce jour
+Âge (lunaire)
+Fond de papier du thème
+Couleurs de fond des palais comme dans le logiciel original de Bửu Đình.
+Selon le thème
+Or antique
+Jaune citron
+Bleu clair
+Vert clair
+Violet clair
+Or
+À propos de l'application
+Mises à jour
+Vérifier les mises à jour au démarrage
+Installer automatiquement après le téléchargement
+Rechercher des mises à jour
+Recherche de mises à jour…
+Dernière vérification
+Vous utilisez la dernière version ({v}).
+Nouvelle version disponible : {v}
+Impossible de vérifier les mises à jour (vérifiez votre connexion).
+Page des versions
+Nouveautés
+Télécharger et installer
+Téléchargement {p} %
+Téléchargement terminé.
+Échec du téléchargement
+Installer maintenant
+Impossible de lancer l'installateur
+Cette version n'a pas encore de fichier pour votre appareil. Ouvrez la page des versions.
+Android demandera une confirmation. Si nécessaire, autorisez Applied Astrology à installer des applis inconnues, puis touchez à nouveau Installer.
+L'application va se fermer, installer la nouvelle version puis se rouvrir.
+Autorisez « Installer des applis inconnues » pour Applied Astrology, puis touchez à nouveau Installer.
+Diagnostic
+Journaux de l'application
+Enregistrer les journaux
+Voir les journaux
+Exporter / partager les journaux
+Effacer les journaux
+Rapports d'erreurs
+Erreurs d'interface (JS) et plantages natifs enregistrés sur cet appareil.
+Aucune erreur enregistrée.
+Effacer les rapports d'erreurs
+Signaler un bug
+Ouvre GitHub Issues avec les infos de l'appareil pré-remplies ; relisez avant d'envoyer.
+Copier les infos de débogage
+Copié
+Licences open source
+Liens

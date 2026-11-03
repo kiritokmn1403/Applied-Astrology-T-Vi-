@@ -1,0 +1,233 @@
+Tử Vi Ứng Dụng · heredaĵo de Bửu Đình
+Horoskopo
+Biblioteko
+Interpreto
+Profiloj
+Agordoj
+Plena nomo
+Sekso
+Viro
+Virino
+Kalendaro
+Suna
+Luna
+Tago
+Monato
+Jaro
+Naskiĝhoro
+Interkalara monato
+Jaro de prognozo
+Krei horoskopon
+Konservi profilon
+Eksporti PNG
+QR-kodo
+Kunhavigi
+Presi
+Fermi
+Reen
+Antaŭa
+Sekva
+Malfermi
+Forigi
+Legosigno
+Traduki enrete
+Serĉi
+Sendi
+Restarigi defaŭltojn
+Ĉiela Telero
+Suna dato
+Luna dato
+Horo
+Jino–Jango
+Viv-elemento
+Element-oficejo
+Vivo – Oficejo
+Vivmastro
+Korpmastro
+Vivo
+Korpo
+Sen ĉefa stelo
+Jardeko
+Jara ciklo
+Tuần-malpleno
+Triệt-malpleno
+Aĝo
+Ĉefaj steloj
+Bonaŭguraj steloj
+Malbonaŭguraj steloj
+Neŭtralaj steloj
+Jaraj steloj
+Stelaj ringoj
+Triado kaj kontraŭa palaco
+Rilataj artikoloj de Bửu Đình
+Neniu rilata artikolo trovita.
+Tuŝu palacon por vidi detalojn kaj komentojn de Bửu Đình.
+Biblioteko de Applied Astrology – Bửu Đình
+{n} originalaj artikoloj en {c} ĉapitroj, restaŭritaj el la fontodosiero.
+Serĉi en la tuta biblioteko (kun aŭ sen vjetnamaj diakritaĵoj)…
+{n} rezultoj
+Ŝargante datumojn…
+Legosignoj
+Lastatempe legitaj
+Daŭrigi legadon
+artikoloj
+signoj
+La teksto restas en la originala vjetnama de la aŭtoro.
+Eksterreta interpret-asistanto
+Analizo surbaze de la nuna horoskopo kaj la biblioteko de Bửu Đình. Funkcias eksterrete; ne estas generativa AI.
+Demandu pri palaco, stelo aŭ periodo (ekz. kariero, riĉo, ĉi tiu jaro)
+Superrigardo
+Bonvolu unue krei horoskopon.
+Viv-palaco
+Geedziĝo
+Ĉi tiu jaro
+Konservitaj horoskopoj
+Ankoraŭ neniuj konservitaj horoskopoj.
+Horoskopo konservita.
+Forigita.
+Lingvo
+Etoso
+Tipara grando
+Aranĝo de horoskopo
+Granda ekrano / Samsung DeX
+Montri horoskopon kaj komentojn flank-al-flanke (2 kolumnoj).
+Montri stelajn ringojn
+Naskita en interkalara monato
+Kalkuli kiel la ordinaran monaton
+De la 16-a tago kalkuli kiel la sekvan monaton
+Reto kaj VPN
+Reala konektokontrolo (Cloudflare trace). La aplikaĵo ne ŝaltas VPN; VPN estas testata ekster la aplikaĵo.
+Kontroli konekton
+Savkopio kaj restarigo
+Eksporti savkopion
+Importi el dosiero
+Alglui JSON
+Viŝi aplikaĵajn datumojn
+Pri
+Versio
+Platformo
+Sendependa malfermitkoda aplikaĵo. Libro-enhavo: "Tử Vi Ứng Dụng" de Bửu Đình (Tử Vũ).
+Ĉiela Noktomezo (malhela)
+Imperia Oro
+Ebura Palaco (hela)
+Cinabra Feliĉo
+Malgranda
+Meza
+Granda
+Tre granda
+Aŭtomata
+Klasika 4×4 tabulo
+Listo de 12 palacoj
+Kontrolante…
+Konektita
+Neniu interreta konekto
+Trafiko iras tra WARP/VPN
+WARP ne detektita
+Loko
+Latenco
+QR-kodo de horoskopo
+Skanu per Applied Astrology sur alia aparato, aŭ konservu ĝin por rekrei la horoskopon.
+Horoskopa bildo eksportita
+Datumoj restarigitaj
+Nevalida dosiero
+Ĉu forigi ĉiujn profilojn kaj agordojn?
+Nevalida dato
+Ĉi tiu luna dato ne ekzistas (kontrolu interkalaran monaton / 30-an tagon)
+Ĉefaj steloj
+Trunkaj steloj
+Branĉaj steloj
+Aliaj steloj
+La palacoj
+72 skemoj
+Lokigo de la steloj
+Periodoj
+Viraj horoskopoj
+Virinaj horoskopoj
+Vortaro de Tử Vi
+Paroj de ĉefaj steloj
+Stelaj grupoj
+Gepatroj
+Bonŝanco
+Posedaĵo
+Kariero
+Amikoj
+Vojaĝo
+Sano
+Riĉo
+Infanoj
+Geedzo
+Gefratoj
+Kalendaro
+interkalara
+lu,ma,me,ĵa,ve,sa,di
+lundo,mardo,merkredo,ĵaŭdo,vendredo,sabato,dimanĉo
+{m}/{y}
+Hodiaŭ
+Vjetnama tempo (GMT+7)
+Bonaŭgura tago
+Malbonaŭgura tago
+Festotagoj
+Konvertilo suna ↔ luna
+Suna → luna
+Luna → suna
+Sesdekjara ciklo kaj Nạp Âm
+La 60 trunk-branĉaj jaroj, ilia Nạp Âm-elemento kaj respondaj naskiĝjaroj (kiel en la originala programo). Tuŝu vicon por vidi la aĝon.
+Serĉi jaron
+Naskiĝjaroj
+Suna periodo
+komenco de periodo
+Tago
+Tago-gardisto
+Unua horo (Tí)
+Bonaŭguraj horoj
+Malbonaŭguraj horoj
+Krei horoskopon por ĉi tiu tago
+Montri ĉi tiun tagon
+Aĝo (luna)
+Papera fono de horoskopo
+Fonkoloroj de la palacoj kiel en la originala programo de Bửu Đình.
+Laŭ etoso
+Antikva oro
+Citronflava
+Helblua
+Helverda
+Helviola
+Ora
+Pri la aplikaĵo
+Ĝisdatigoj
+Aŭtomate kontroli ĝisdatigojn ĉe lanĉo
+Aŭtomate instali post elŝuto
+Kontroli ĝisdatigojn
+Kontrolante ĝisdatigojn…
+Laste kontrolita
+Vi uzas la plej novan version ({v}).
+Nova versio disponeblas: {v}
+Ne eblis kontroli ĝisdatigojn (kontrolu la konekton).
+Paĝo de eldonoj
+Kio novas
+Elŝuti kaj instali
+Elŝutante {p}%
+Elŝuto finiĝis.
+Elŝuto malsukcesis
+Instali nun
+Ne eblis lanĉi la instalilon
+Ĉi tiu eldono ankoraŭ ne havas dosieron por via aparato. Malfermu la paĝon de eldonoj.
+Android petos konfirmon. Se petite, permesu al Applied Astrology instali nekonatajn aplikaĵojn kaj denove tuŝu Instali.
+La aplikaĵo fermiĝos, instalos la novan version kaj remalfermiĝos.
+Permesu "Instali nekonatajn aplikaĵojn" por Applied Astrology, poste denove tuŝu Instali.
+Diagnozo
+Aplikaĵaj protokoloj
+Registri aplikaĵan protokolon
+Vidi protokolon
+Eksporti / kunhavigi protokolon
+Viŝi protokolon
+Erar-raportoj
+Interfacaj (JS) eraroj kaj denaskaj kraŝoj registritaj sur ĉi tiu aparato.
+Neniuj eraroj registritaj.
+Viŝi erar-raportojn
+Raporti cimon
+Malfermas GitHub Issues kun antaŭplenigitaj aparataj datumoj; kontrolu antaŭ sendo.
+Kopii sencimigajn informojn
+Kopiita
+Malfermitkodaj permesiloj
+Ligiloj

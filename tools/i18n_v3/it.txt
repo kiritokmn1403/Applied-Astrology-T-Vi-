@@ -1,0 +1,74 @@
+Calendario
+intercalare
+Lun,Mar,Mer,Gio,Ven,Sab,Dom
+Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato,Domenica
+{m}/{y}
+Oggi
+Ora del Vietnam (GMT+7)
+Fausto
+Infausto
+Festività
+Convertitore solare ↔ lunare
+Solare → Lunare
+Lunare → Solare
+Ciclo sessagesimale e Nạp Âm
+I 60 anni tronco-ramo, il loro elemento Nạp Âm e gli anni di nascita corrispondenti (come nel programma originale). Tocca una riga per vedere l'età.
+Cerca anno
+Anni di nascita
+Termine solare
+inizio del termine
+Giorno
+Ufficiale
+Prima ora (Tí)
+Ore fauste
+Ore infauste
+Crea un tema per questo giorno
+Mostra questo giorno
+Età (lunare)
+Carta di sfondo del tema
+Colori di sfondo dei palazzi come nel software originale di Bửu Đình.
+Segui il tema
+Oro antico
+Giallo limone
+Azzurro chiaro
+Verde chiaro
+Viola chiaro
+Oro
+Informazioni sull'app
+Aggiornamenti
+Controlla gli aggiornamenti all'avvio
+Installa automaticamente dopo il download
+Controlla aggiornamenti
+Ricerca aggiornamenti…
+Ultimo controllo
+Stai usando l'ultima versione ({v}).
+Nuova versione disponibile: {v}
+Impossibile controllare gli aggiornamenti (verifica la connessione).
+Pagina delle versioni
+Novità
+Scarica e installa
+Download {p}%
+Download completato.
+Download non riuscito
+Installa ora
+Impossibile avviare il programma di installazione
+Questa versione non ha ancora un file per il tuo dispositivo. Apri la pagina delle versioni.
+Android chiederà conferma. Se richiesto, consenti ad Applied Astrology di installare app sconosciute, poi tocca di nuovo Installa.
+L'app si chiuderà, installerà la nuova versione e si riaprirà.
+Consenti «Installa app sconosciute» per Applied Astrology, poi tocca di nuovo Installa.
+Diagnostica
+Registri dell'app
+Registra i log dell'app
+Visualizza log
+Esporta / condividi log
+Cancella log
+Segnalazioni di errori
+Errori dell'interfaccia (JS) e arresti anomali nativi registrati su questo dispositivo.
+Nessun errore registrato.
+Cancella segnalazioni
+Segnala un bug
+Apre GitHub Issues con i dati del dispositivo precompilati; controlla prima di inviare.
+Copia info di debug
+Copiato
+Licenze open source
+Collegamenti

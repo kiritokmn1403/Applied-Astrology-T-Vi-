@@ -1,0 +1,74 @@
+Calendari lunar
+intercalar
+Dl,Dt,Dc,Dj,Dv,Ds,Dg
+Dilluns,Dimarts,Dimecres,Dijous,Divendres,Dissabte,Diumenge
+{m}/{y}
+Avui
+Hora del Vietnam (GMT+7)
+Dia propici
+Dia advers
+Festius
+Conversor solar ↔ lunar
+Solar → lunar
+Lunar → solar
+Cicle sexagenari i Nạp Âm
+Els 60 anys tronc-branca, el seu element Nạp Âm i els anys de naixement corresponents (com al programa original). Toqueu una fila per veure l'edat.
+Cerca l'any
+Anys de naixement
+Terme solar
+inici del terme
+Dia
+Oficial
+Primera hora (Tí)
+Hores propícies
+Hores adverses
+Crea una carta per a aquest dia
+Mostra aquest dia
+Edat (lunar)
+Paper de fons de la carta
+Colors de fons dels palaus com al programari original de Bửu Đình.
+Segons el tema
+Or antic
+Groc llimona
+Blau clar
+Verd clar
+Violeta clar
+Or
+Quant a l'aplicació
+Actualitzacions
+Cerca actualitzacions automàticament en iniciar
+Instal·la automàticament després de baixar
+Cerca actualitzacions
+S'estan cercant actualitzacions…
+Darrera comprovació
+Feu servir la darrera versió ({v}).
+Hi ha una versió nova: {v}
+No s'han pogut cercar actualitzacions (comproveu la connexió).
+Pàgina de versions
+Novetats
+Baixa i instal·la
+S'està baixant {p} %
+Baixada completada.
+La baixada ha fallat
+Instal·la ara
+No s'ha pogut iniciar l'instal·lador
+Aquesta versió encara no té fitxer per al vostre dispositiu. Obriu la pàgina de versions.
+Android demanarà confirmació. Si cal, permeteu que Applied Astrology instal·li aplicacions desconegudes i torneu a tocar Instal·la.
+L'aplicació es tancarà, instal·larà la versió nova i es tornarà a obrir.
+Permeteu «Instal·la aplicacions desconegudes» per a Applied Astrology i torneu a tocar Instal·la.
+Diagnòstic
+Registres de l'aplicació
+Desa els registres de l'aplicació
+Mostra el registre
+Exporta / comparteix el registre
+Esborra el registre
+Informes d'errors
+Errors d'interfície (JS) i fallades natives registrats en aquest dispositiu.
+No s'ha registrat cap error.
+Esborra els informes d'errors
+Informa d'un error
+Obre GitHub Issues amb les dades del dispositiu emplenades; reviseu-les abans d'enviar.
+Copia la informació de depuració
+Copiat
+Llicències de codi obert
+Enllaços

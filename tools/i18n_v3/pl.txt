@@ -1,0 +1,74 @@
+Kalendarz
+przestępny
+Pn,Wt,Śr,Cz,Pt,So,Nd
+Poniedziałek,Wtorek,Środa,Czwartek,Piątek,Sobota,Niedziela
+{m}.{y}
+Dziś
+Czas wietnamski (GMT+7)
+Pomyślny
+Niepomyślny
+Święta
+Przelicznik słoneczny ↔ księżycowy
+Słoneczny → księżycowy
+Księżycowy → słoneczny
+Cykl sześćdziesięcioletni i Nạp Âm
+60 lat pień-gałąź, ich element Nạp Âm i odpowiadające lata urodzenia (jak w oryginalnym programie). Dotknij wiersza, aby zobaczyć wiek.
+Sprawdź rok
+Lata urodzenia
+Okres słoneczny
+początek okresu
+Dzień
+Strażnik dnia
+Pierwsza godzina (Tí)
+Pomyślne godziny
+Niepomyślne godziny
+Utwórz horoskop na ten dzień
+Pokaż ten dzień
+Wiek (księżycowy)
+Papierowe tło horoskopu
+Kolory tła pałaców jak w oryginalnym programie Bửu Đình.
+Zgodnie z motywem
+Antyczne złoto
+Cytrynowy
+Jasnoniebieski
+Jasnozielony
+Jasnofioletowy
+Złoty
+O aplikacji
+Aktualizacje
+Automatycznie sprawdzaj aktualizacje przy starcie
+Instaluj automatycznie po pobraniu
+Sprawdź aktualizacje
+Sprawdzanie aktualizacji…
+Ostatnio sprawdzono
+Używasz najnowszej wersji ({v}).
+Dostępna nowa wersja: {v}
+Nie udało się sprawdzić aktualizacji (sprawdź połączenie).
+Strona wydań
+Co nowego
+Pobierz i zainstaluj
+Pobieranie {p}%
+Pobieranie zakończone.
+Pobieranie nie powiodło się
+Zainstaluj teraz
+Nie można uruchomić instalatora
+To wydanie nie ma jeszcze pliku dla twojego urządzenia. Otwórz stronę wydań.
+Android poprosi o potwierdzenie. W razie potrzeby zezwól Applied Astrology na instalowanie nieznanych aplikacji i ponownie dotknij Zainstaluj.
+Aplikacja zamknie się, zainstaluje nową wersję i uruchomi ponownie.
+Zezwól na „Instalowanie nieznanych aplikacji” dla Applied Astrology, a następnie ponownie dotknij Zainstaluj.
+Diagnostyka
+Dziennik aplikacji
+Zapisuj dziennik aplikacji
+Pokaż dziennik
+Eksportuj / udostępnij dziennik
+Wyczyść dziennik
+Raporty błędów
+Błędy interfejsu (JS) i natywne awarie zapisane na tym urządzeniu.
+Brak zapisanych błędów.
+Wyczyść raporty błędów
+Zgłoś błąd
+Otwiera GitHub Issues z wypełnionymi danymi urządzenia; sprawdź przed wysłaniem.
+Kopiuj informacje debugowania
+Skopiowano
+Licencje open source
+Linki

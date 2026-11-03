@@ -1,5 +1,5 @@
 /*
- * Applied Astrology v0.0.2 - Lớp nền tảng (polyfill + cầu nối native)
+ * Applied Astrology v0.0.3 - Lớp nền tảng (polyfill + cầu nối native)
  * Android: window.AANative (addJavascriptInterface)
  * Windows: window.external (IE11 WebBrowser, ObjectForScripting) hoặc chrome.webview (Edge WebView2)
  * Trình duyệt thường: dùng localStorage / tải file qua thẻ <a download>.
@@ -32,7 +32,7 @@
   root.onerror = function (msg, src, line, col) {
     var m = String(msg) + ' @' + String(src || '').split('/').pop() + ':' + line + ':' + (col || 0);
     root.AA_ERRORS.push(m);
-    try { if (root.AAHost) root.AAHost.log('JSERROR ' + m); } catch (e) { /* bỏ qua */ }
+    try { if (root.AAHost) { root.AAHost.log('JSERROR ' + m); root.AAHost.recordError(m); } } catch (e) { /* bỏ qua */ }
     if (root.AA_DEBUG && document.body) {
       var b = document.getElementById('aa-err') || document.createElement('pre');
       b.id = 'aa-err'; b.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:999;background:#b00;color:#fff;font-size:12px;margin:0;padding:6px;white-space:pre-wrap';
@@ -78,6 +78,8 @@
         if (cmd === 'testStep') return nativeAndroid.testStep(a, b);
         if (cmd === 'log') return nativeAndroid.log(a);
         if (cmd === 'httpGet') return nativeAndroid.httpGet(a);
+        // lệnh mới (v0.0.3): mọi hàm cầu nối Android nhận đúng 2 tham số chuỗi
+        if (typeof nativeAndroid['x_' + cmd] === 'function') return nativeAndroid['x_' + cmd](a === undefined ? '' : String(a), b === undefined ? '' : String(b));
         return null;
       }
       if (wv2) return wv2.HostCall(cmd, a === undefined ? '' : String(a), b === undefined ? '' : String(b));
@@ -178,7 +180,41 @@
       }
     },
     testStep: function (name, payload) { return hostCall('testStep', name, payload || ''); },
-    log: function (msg) { hostCall('log', msg); if (root.console) console.log('[AA] ' + msg); }
+    /** Nhật ký ứng dụng: ghi vào host (tệp app.log) và bộ đệm vòng 400 dòng trong bộ nhớ ứng dụng */
+    log: function (msg) {
+      var line = new Date().toISOString ? new Date().toISOString().substring(11, 19) + ' ' + msg : String(msg);
+      if (logEnabled()) {
+        hostCall('log', msg);
+        logBuf.push(line); if (logBuf.length > 400) logBuf.splice(0, logBuf.length - 400);
+        clearTimeout(logTimer); logTimer = setTimeout(function () { Host.set('aa.log', logBuf); }, 800);
+      }
+      if (root.console) console.log('[AA] ' + msg);
+    },
+    recordError: function (m) {
+      var list = Host.get('aa.errors', []) || [];
+      list.push({ at: Date.now(), m: String(m).substring(0, 600) }); if (list.length > 100) list.splice(0, list.length - 100);
+      Host.set('aa.errors', list);
+    },
+    readLog: function () { return hostCall('readLog') || ''; },
+    clearLog: function () { logBuf = []; return hostCall('clearLog'); },
+    crashList: function () { var r = hostCall('crashList'); try { return r ? JSON.parse(r) : []; } catch (e) { return []; } },
+    clearCrash: function () { return hostCall('clearCrash'); },
+    copy: function (text) {
+      if (hostCall('copy', text)) return true;
+      try { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return true; } catch (e) { return false; }
+    },
+    /** Tải tệp cập nhật (chạy nền ở host). Trả về '1' khi bắt đầu */
+    download: function (url, name) {
+      if (kind === 'browser') { Host.openUrl(url); return null; }
+      return hostCall('download', url, name);
+    },
+    downloadStatus: function () { var r = hostCall('downloadStatus'); try { return r ? JSON.parse(r) : null; } catch (e) { return null; } },
+    installUpdate: function (path) { return hostCall('installUpdate', path); },
+    /** Màu thanh trạng thái / điều hướng (Android) theo giao diện */
+    setBars: function (color, light) { return hostCall('setBars', color, light ? '1' : '0'); }
   };
+  var logBuf = [], logTimer = null;
+  function logEnabled() { try { var s = Host.get('aa.settings', {}); return !s || s.logs !== false; } catch (e) { return true; } }
+  try { logBuf = Host.get('aa.log', []) || []; } catch (e4) { logBuf = []; }
   root.AAHost = Host;
 })(window);

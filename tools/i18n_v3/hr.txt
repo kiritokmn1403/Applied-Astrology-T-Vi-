@@ -1,0 +1,74 @@
+Lunarni kalendar
+prijestupni
+Pon,Uto,Sri,Čet,Pet,Sub,Ned
+Ponedjeljak,Utorak,Srijeda,Četvrtak,Petak,Subota,Nedjelja
+{m}/{y}
+Danas
+Vijetnamsko vrijeme (GMT+7)
+Povoljan dan
+Nepovoljan dan
+Blagdani
+Pretvornik sunčani ↔ lunarni
+Sunčani → lunarni
+Lunarni → sunčani
+Šezdesetogodišnji ciklus i Nạp Âm
+60 godina debla i grane, njihov element Nạp Âm i odgovarajuće godine rođenja (kao u izvornom programu). Dodirnite redak da vidite dob.
+Potraži godinu
+Godine rođenja
+Sunčano razdoblje
+početak razdoblja
+Dan
+Čuvar dana
+Prvi sat (Tí)
+Povoljni sati
+Nepovoljni sati
+Izradi kartu za ovaj dan
+Prikaži ovaj dan
+Dob (lunarna)
+Papirnata pozadina karte
+Boje pozadine palača kao u izvornom softveru Bửu Đình.
+Prema temi
+Antičko zlato
+Limun žuta
+Svijetloplava
+Svijetlozelena
+Svijetloljubičasta
+Zlatna
+O aplikaciji
+Ažuriranja
+Automatski provjeri ažuriranja pri pokretanju
+Automatski instaliraj nakon preuzimanja
+Provjeri ažuriranja
+Provjera ažuriranja…
+Zadnja provjera
+Koristite najnoviju verziju ({v}).
+Dostupna je nova verzija: {v}
+Nije moguće provjeriti ažuriranja (provjerite vezu).
+Stranica izdanja
+Što je novo
+Preuzmi i instaliraj
+Preuzimanje {p} %
+Preuzimanje je dovršeno.
+Preuzimanje nije uspjelo
+Instaliraj sada
+Nije moguće pokrenuti instalacijski program
+Ovo izdanje još nema datoteku za vaš uređaj. Otvorite stranicu izdanja.
+Android će tražiti potvrdu. Ako se zatraži, dopustite aplikaciji Applied Astrology instaliranje nepoznatih aplikacija i ponovno dodirnite Instaliraj.
+Aplikacija će se zatvoriti, instalirati novu verziju i ponovno otvoriti.
+Dopustite „Instaliranje nepoznatih aplikacija” za Applied Astrology i ponovno dodirnite Instaliraj.
+Dijagnostika
+Zapisnici aplikacije
+Bilježi zapisnik aplikacije
+Prikaži zapisnik
+Izvezi / podijeli zapisnik
+Očisti zapisnik
+Izvješća o pogreškama
+Pogreške sučelja (JS) i nativna rušenja zabilježena na ovom uređaju.
+Nema zabilježenih pogrešaka.
+Očisti izvješća
+Prijavi pogrešku
+Otvara GitHub Issues s ispunjenim podacima o uređaju; provjerite prije slanja.
+Kopiraj podatke za otklanjanje pogrešaka
+Kopirano
+Licence otvorenog koda
+Poveznice

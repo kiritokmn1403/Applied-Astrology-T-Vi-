@@ -1,0 +1,74 @@
+Calendar lunar
+bisect
+Lun,Mar,Mie,Joi,Vin,Sâm,Dum
+Luni,Marți,Miercuri,Joi,Vineri,Sâmbătă,Duminică
+{m}/{y}
+Azi
+Ora Vietnamului (GMT+7)
+Zi faste
+Zi nefaste
+Sărbători
+Convertor solar ↔ lunar
+Solar → lunar
+Lunar → solar
+Ciclul de șaizeci și Nạp Âm
+Cei 60 de ani trunchi-ramură, elementul lor Nạp Âm și anii de naștere corespunzători (ca în programul original). Atingeți un rând pentru a vedea vârsta.
+Caută anul
+Ani de naștere
+Perioadă solară
+începutul perioadei
+Zi
+Străjerul zilei
+Prima oră (Tí)
+Ore faste
+Ore nefaste
+Creează o hartă pentru această zi
+Arată această zi
+Vârstă (lunară)
+Hârtia de fundal a hărții
+Culorile de fundal ale palatelor ca în programul original Bửu Đình.
+După temă
+Aur antic
+Galben lămâie
+Albastru deschis
+Verde deschis
+Violet deschis
+Auriu
+Despre aplicație
+Actualizări
+Caută actualizări automat la pornire
+Instalează automat după descărcare
+Caută actualizări
+Se caută actualizări…
+Ultima verificare
+Folosiți cea mai nouă versiune ({v}).
+Versiune nouă disponibilă: {v}
+Nu s-au putut căuta actualizări (verificați conexiunea).
+Pagina de versiuni
+Noutăți
+Descarcă și instalează
+Se descarcă {p}%
+Descărcare finalizată.
+Descărcarea a eșuat
+Instalează acum
+Programul de instalare nu a putut porni
+Această versiune nu are încă un fișier pentru dispozitivul dvs. Deschideți pagina de versiuni.
+Android va cere confirmare. Dacă vi se cere, permiteți Applied Astrology să instaleze aplicații necunoscute, apoi atingeți din nou Instalează.
+Aplicația se va închide, va instala noua versiune și se va redeschide.
+Permiteți „Instalarea aplicațiilor necunoscute” pentru Applied Astrology, apoi atingeți din nou Instalează.
+Diagnosticare
+Jurnalele aplicației
+Înregistrează jurnalul aplicației
+Vezi jurnalul
+Exportă / partajează jurnalul
+Șterge jurnalul
+Rapoarte de erori
+Erori de interfață (JS) și blocări native înregistrate pe acest dispozitiv.
+Nicio eroare înregistrată.
+Șterge rapoartele de erori
+Raportează o eroare
+Deschide GitHub Issues cu datele dispozitivului completate; verificați înainte de trimitere.
+Copiază informațiile de depanare
+Copiat
+Licențe open source
+Linkuri

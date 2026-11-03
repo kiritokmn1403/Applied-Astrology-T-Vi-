@@ -1,0 +1,74 @@
+Calendario
+bisiesto
+Lun,Mar,Mié,Jue,Vie,Sáb,Dom
+Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo
+{m}/{y}
+Hoy
+Hora de Vietnam (GMT+7)
+Fasto
+Nefasto
+Festividades
+Conversor solar ↔ lunar
+Solar → Lunar
+Lunar → Solar
+Ciclo sexagenario y Nạp Âm
+Los 60 años tronco-rama, su elemento Nạp Âm y los años de nacimiento correspondientes (como en el programa original). Toca una fila para ver la edad.
+Buscar año
+Años de nacimiento
+Término solar
+inicio del término
+Día
+Oficial
+Primera hora (Tí)
+Horas fastas
+Horas nefastas
+Crear una carta para este día
+Ver este día
+Edad (lunar)
+Papel de fondo de la carta
+Colores de fondo de los palacios como en el programa original de Bửu Đình.
+Según el tema
+Oro antiguo
+Amarillo limón
+Azul claro
+Verde claro
+Violeta claro
+Oro
+Acerca de la aplicación
+Actualizaciones
+Buscar actualizaciones automáticamente al iniciar
+Instalar automáticamente tras la descarga
+Buscar actualizaciones
+Buscando actualizaciones…
+Última comprobación
+Tienes la última versión ({v}).
+Nueva versión disponible: {v}
+No se pudieron buscar actualizaciones (revisa tu conexión).
+Página de versiones
+Novedades
+Descargar e instalar
+Descargando {p} %
+Descarga completada.
+Error en la descarga
+Instalar ahora
+No se pudo iniciar el instalador
+Esta versión aún no tiene archivo para tu dispositivo. Abre la página de versiones.
+Android pedirá confirmación. Si se solicita, permite que Applied Astrology instale apps desconocidas y vuelve a tocar Instalar.
+La aplicación se cerrará, instalará la nueva versión y se volverá a abrir.
+Permite «Instalar apps desconocidas» para Applied Astrology y vuelve a tocar Instalar.
+Diagnóstico
+Registros de la app
+Guardar registros de la app
+Ver registros
+Exportar / compartir registros
+Borrar registros
+Informes de errores
+Errores de interfaz (JS) y fallos nativos registrados en este dispositivo.
+No hay errores registrados.
+Borrar informes de errores
+Informar de un error
+Abre GitHub Issues con los datos del dispositivo ya rellenados; revísalos antes de enviar.
+Copiar información de depuración
+Copiado
+Licencias de código abierto
+Enlaces

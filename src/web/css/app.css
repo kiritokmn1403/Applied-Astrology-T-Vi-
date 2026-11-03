@@ -1,4 +1,4 @@
-/* Applied Astrology v0.0.2 — bố cục (màu sắc do js/theme.js sinh ra; không dùng CSS variables/grid/gap để chạy được trên IE11) */
+/* Applied Astrology v0.0.3 — bố cục (màu sắc do js/theme.js sinh ra; không dùng CSS variables/grid/gap để chạy được trên IE11) */
 * { box-sizing: border-box; }
 html { font-size: 15px; -webkit-text-size-adjust: 100%; }
 html.fs-compact { font-size: 13px; } html.fs-large { font-size: 17px; } html.fs-xlarge { font-size: 19px; }
@@ -17,8 +17,11 @@ button, input, select, textarea { font: inherit; }
 .aa-main { padding: 12px; max-width: 1400px; margin: 0 auto; }
 .view { display: none; } .view.active { display: block; }
 @media (max-width: 720px) {
-  body { padding-bottom: 62px; }
-  .aa-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; }
+  body { padding-bottom: 62px; padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
+  .aa-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding-bottom: env(safe-area-inset-bottom); }
+  .aa-nav a { min-width: 52px; font-size: .74rem; padding: 7px 2px 6px; }
+  .aa-nav a .ico { font-size: 1.05rem; }
+  .toast { bottom: 96px; }
   .aa-nav a { border-bottom: 0; border-top: 3px solid transparent; }
   .aa-main { padding: 8px; }
 }
@@ -104,3 +107,41 @@ table.board td { vertical-align: top; padding: 0; }
   body, html { background: #fff !important; color: #000 !important; }
   table.board { min-width: 0; }
 }
+
+/* v0.0.3 – vùng an toàn (tai thỏ, góc bo) cho WebView/trình duyệt hỗ trợ env(); Android 15+ đã đệm insets ở lớp native */
+.aa-header { padding-top: 8px; padding-top: calc(8px + env(safe-area-inset-top)); padding-left: calc(14px + env(safe-area-inset-left)); padding-right: calc(14px + env(safe-area-inset-right)); }
+
+/* v0.0.3 – Âm Lịch */
+.cal-nav { display: flex; flex-wrap: wrap; align-items: center; }
+.cal-title { font-size: 1.05rem; margin: 0 8px; flex: 1 1 auto; text-align: center; }
+.cal-sel { width: auto !important; margin: 3px 4px 3px 0; padding: 4px 6px !important; max-width: 120px; }
+.cal-wrap { display: flex; flex-wrap: wrap; margin: 0 -6px; }
+.cal-col { flex: 3 1 420px; padding: 0 6px; min-width: 0; }
+.cal-side { flex: 2 1 300px; padding: 0 6px; min-width: 0; }
+table.cal-grid { width: 100%; border-collapse: separate; border-spacing: 3px; table-layout: fixed; }
+table.cal-grid th { font-size: .78rem; padding: 4px 0; }
+table.cal-grid td { border: 1px solid; border-radius: 8px; vertical-align: top; padding: 3px 4px; height: 58px; cursor: pointer; position: relative; }
+table.cal-grid td.empty { border: 0; cursor: default; background: transparent !important; }
+.cal-day .sd { font-size: 1.05rem; font-weight: 700; line-height: 1.1; }
+.cal-day .ldn { font-size: .72rem; text-align: right; }
+.cal-day .tk { font-size: .58rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-day.hd:after { content: ""; position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; }
+.cal-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
+.cal-big { display: flex; align-items: center; margin-bottom: 8px; }
+.cal-big > div { margin-right: 12px; }
+.cal-bigd { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+.cal-bigl { margin-left: auto; text-align: right; }
+.hour { display: inline-block; margin: 1px 6px 1px 0; white-space: nowrap; }
+.cal-out { margin-top: 8px; }
+table.sixty { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 520px; margin-top: 8px; }
+table.sixty td, table.sixty th { padding: 4px 6px; border-bottom: 1px solid rgba(128,128,128,.3); text-align: left; }
+table.sixty tr { cursor: pointer; }
+
+/* v0.0.3 – Giới thiệu */
+.about-head { display: flex; align-items: center; }
+.aa-logo.big { width: 64px; height: 64px; margin-right: 12px; }
+pre.log { white-space: pre-wrap; word-wrap: break-word; font-size: .74rem; max-height: 260px; overflow: auto; padding: 8px; border-radius: 8px; margin: 6px 0 0; }
+details { margin: 6px 0; } summary { cursor: pointer; }
+.notes { white-space: pre-wrap; font-size: .85rem; margin-top: 6px; }
+.progress { height: 8px; border-radius: 4px; overflow: hidden; margin: 8px 0 4px; }
+.progress div { height: 100%; width: 0; transition: width .3s; }

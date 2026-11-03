@@ -1,0 +1,74 @@
+Månekalender
+skudd
+man,tir,ons,tor,fre,lør,søn
+mandag,tirsdag,onsdag,torsdag,fredag,lørdag,søndag
+{m}/{y}
+I dag
+Vietnamesisk tid (GMT+7)
+Lykkedag
+Ulykkesdag
+Helligdager
+Omregner sol ↔ måne
+Sol → måne
+Måne → sol
+Sekstiårssyklusen & Nạp Âm
+De 60 stamme-gren-årene, deres Nạp Âm-element og tilsvarende fødselsår (som i originalprogrammet). Trykk på en rad for å se alderen.
+Slå opp år
+Fødselsår
+Solperiode
+periodens start
+Dag
+Dagens vokter
+Første time (Tí)
+Lykketimer
+Ulykkestimer
+Lag horoskop for denne dagen
+Vis denne dagen
+Alder (måne)
+Papirbakgrunn for horoskopet
+Palassenes bakgrunnsfarger som i Bửu Đìnhs originalprogram.
+Følg tema
+Antikkgull
+Sitrongul
+Lyseblå
+Lysegrønn
+Lyselilla
+Gull
+Om appen
+Oppdateringer
+Se etter oppdateringer automatisk ved oppstart
+Installer automatisk etter nedlasting
+Se etter oppdateringer
+Ser etter oppdateringer…
+Sist sjekket
+Du bruker nyeste versjon ({v}).
+Ny versjon tilgjengelig: {v}
+Kunne ikke se etter oppdateringer (sjekk tilkoblingen).
+Utgivelsesside
+Nyheter
+Last ned og installer
+Laster ned {p} %
+Nedlasting fullført.
+Nedlasting mislyktes
+Installer nå
+Kunne ikke starte installasjonsprogrammet
+Denne utgivelsen har ennå ingen fil for enheten din. Åpne utgivelsessiden.
+Android ber om bekreftelse. Hvis du blir spurt, la Applied Astrology installere ukjente apper og trykk Installer igjen.
+Appen lukkes, installerer den nye versjonen og åpnes igjen.
+Tillat «Installer ukjente apper» for Applied Astrology, og trykk deretter Installer igjen.
+Diagnostikk
+Applogg
+Lagre applogg
+Vis logg
+Eksporter / del logg
+Tøm logg
+Feilrapporter
+Grensesnittfeil (JS) og native krasj registrert på denne enheten.
+Ingen feil registrert.
+Tøm feilrapporter
+Rapporter en feil
+Åpner GitHub Issues med enhetsinformasjon utfylt; se over før du sender.
+Kopier feilsøkingsinfo
+Kopiert
+Lisenser for åpen kildekode
+Lenker

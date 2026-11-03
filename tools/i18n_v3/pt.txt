@@ -1,0 +1,74 @@
+Calendário
+intercalar
+Seg,Ter,Qua,Qui,Sex,Sáb,Dom
+Segunda-feira,Terça-feira,Quarta-feira,Quinta-feira,Sexta-feira,Sábado,Domingo
+{m}/{y}
+Hoje
+Hora do Vietname (GMT+7)
+Auspicioso
+Inauspicioso
+Feriados
+Conversor solar ↔ lunar
+Solar → Lunar
+Lunar → Solar
+Ciclo sexagenário e Nạp Âm
+Os 60 anos tronco-ramo, o seu elemento Nạp Âm e os anos de nascimento correspondentes (como no programa original). Toque numa linha para ver a idade.
+Procurar ano
+Anos de nascimento
+Termo solar
+início do termo
+Dia
+Oficial
+Primeira hora (Tí)
+Horas auspiciosas
+Horas inauspiciosas
+Criar um mapa para este dia
+Mostrar este dia
+Idade (lunar)
+Papel de fundo do mapa
+Cores de fundo dos palácios como no programa original de Bửu Đình.
+Seguir o tema
+Ouro antigo
+Amarelo-limão
+Azul-claro
+Verde-claro
+Violeta-claro
+Ouro
+Sobre a aplicação
+Atualizações
+Procurar atualizações automaticamente ao iniciar
+Instalar automaticamente após a transferência
+Procurar atualizações
+A procurar atualizações…
+Última verificação
+Está a usar a versão mais recente ({v}).
+Nova versão disponível: {v}
+Não foi possível procurar atualizações (verifique a ligação).
+Página de versões
+Novidades
+Transferir e instalar
+A transferir {p}%
+Transferência concluída.
+Falha na transferência
+Instalar agora
+Não foi possível iniciar o instalador
+Esta versão ainda não tem ficheiro para o seu dispositivo. Abra a página de versões.
+O Android pedirá confirmação. Se solicitado, permita que a Applied Astrology instale apps desconhecidas e toque novamente em Instalar.
+A aplicação vai fechar, instalar a nova versão e reabrir.
+Permita «Instalar apps desconhecidas» para a Applied Astrology e toque novamente em Instalar.
+Diagnóstico
+Registos da aplicação
+Gravar registos da aplicação
+Ver registos
+Exportar / partilhar registos
+Limpar registos
+Relatórios de erros
+Erros de interface (JS) e falhas nativas registados neste dispositivo.
+Nenhum erro registado.
+Limpar relatórios de erros
+Comunicar um erro
+Abre o GitHub Issues com os dados do dispositivo preenchidos; reveja antes de enviar.
+Copiar informações de depuração
+Copiado
+Licenças de código aberto
+Ligações

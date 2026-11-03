@@ -1,5 +1,5 @@
 /*
- * Applied Astrology v0.0.2 - Chủ đề màu sắc
+ * Applied Astrology v0.0.3 - Chủ đề màu sắc
  * IE11 (Windows 7) không hỗ trợ CSS variables, nên màu được sinh thành CSS thật và chèn vào <style id="aa-theme">.
  */
 (function (root) {
@@ -43,7 +43,13 @@
       '.msg.user{background:' + c.sel + ';border-color:' + c.gold + ';} mark{background:' + c.gold + ';color:#000;}',
       '.toast{background:' + c.gold + ';color:#1a1205;} .modal{background:rgba(0,0,0,0.6);}',
       '.reader-body{color:' + c.text + ';} .status-ok{color:' + c.good + ';} .status-bad{color:' + c.bad + ';}',
-      '.switch .knob{background:' + c.line + ';} .switch input:checked + .knob{background:' + c.gold + ';}'
+      '.switch .knob{background:' + c.line + ';} .switch input:checked + .knob{background:' + c.gold + ';}',
+      'table.cal-grid td{background:' + c.card + ';border-color:' + c.line + ';} table.cal-grid .we .sd,table.cal-grid th.we{color:' + c.bad + ';}',
+      '.cal-day .ldn,.cal-day .tk{color:' + c.muted + ';} .cal-day.ld .ldn{color:' + c.gold + ';font-weight:bold;} .cal-day.ev .sd{text-decoration:underline;text-decoration-color:' + c.accent + ';}',
+      '.cal-day.today{border-color:' + c.gold + ';border-width:2px;} .cal-day.sel{background:' + c.sel + ';border-color:' + c.gold + ';}',
+      '.cal-day.hd:after,.cal-legend .dot.hd{background:' + c.good + ';} .cal-legend .dot.ev{background:' + c.accent + ';}',
+      '.cal-bigd{color:' + c.gold2 + ';} table.sixty tr.cur{background:' + c.sel + ';} pre.log{background:' + c.card2 + ';color:' + c.text + ';}',
+      '.progress{background:' + c.line + ';} .progress div{background:' + c.gold + ';}'
     ].join('\n');
   }
   function apply(name) {

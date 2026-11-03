@@ -1,0 +1,74 @@
+Mēness kalendārs
+garais
+P,O,T,C,Pk,S,Sv
+Pirmdiena,Otrdiena,Trešdiena,Ceturtdiena,Piektdiena,Sestdiena,Svētdiena
+{m}.{y}
+Šodien
+Vjetnamas laiks (GMT+7)
+Labvēlīga diena
+Nelabvēlīga diena
+Svētki
+Pārveidotājs saules ↔ mēness
+Saules → mēness
+Mēness → saules
+Sešdesmitgades cikls un Nạp Âm
+60 stumbra-zara gadi, to Nạp Âm elements un atbilstošie dzimšanas gadi (kā oriģinālajā programmā). Pieskarieties rindai, lai redzētu vecumu.
+Meklēt gadu
+Dzimšanas gadi
+Saules periods
+perioda sākums
+Diena
+Dienas sargs
+Pirmā stunda (Tí)
+Labvēlīgās stundas
+Nelabvēlīgās stundas
+Izveidot karti šai dienai
+Rādīt šo dienu
+Vecums (mēness)
+Kartes papīra fons
+Piļu fona krāsas kā oriģinālajā Bửu Đình programmā.
+Pēc motīva
+Antīks zelts
+Citronu dzeltena
+Gaiši zila
+Gaiši zaļa
+Gaiši violeta
+Zelta
+Par lietotni
+Atjauninājumi
+Automātiski pārbaudīt atjauninājumus palaišanas laikā
+Automātiski instalēt pēc lejupielādes
+Pārbaudīt atjauninājumus
+Pārbauda atjauninājumus…
+Pēdējā pārbaude
+Jūs izmantojat jaunāko versiju ({v}).
+Pieejama jauna versija: {v}
+Neizdevās pārbaudīt atjauninājumus (pārbaudiet savienojumu).
+Laidienu lapa
+Kas jauns
+Lejupielādēt un instalēt
+Lejupielādē {p}%
+Lejupielāde pabeigta.
+Lejupielāde neizdevās
+Instalēt tagad
+Neizdevās palaist instalētāju
+Šim laidienam vēl nav faila jūsu ierīcei. Atveriet laidienu lapu.
+Android lūgs apstiprinājumu. Ja tiek prasīts, atļaujiet Applied Astrology instalēt nezināmas lietotnes un vēlreiz pieskarieties Instalēt.
+Lietotne aizvērsies, instalēs jauno versiju un atvērsies no jauna.
+Atļaujiet “Instalēt nezināmas lietotnes” lietotnei Applied Astrology un vēlreiz pieskarieties Instalēt.
+Diagnostika
+Lietotnes žurnāli
+Rakstīt lietotnes žurnālu
+Skatīt žurnālu
+Eksportēt / kopīgot žurnālu
+Notīrīt žurnālu
+Kļūdu ziņojumi
+Šajā ierīcē reģistrētās saskarnes (JS) kļūdas un vietējās avārijas.
+Nav reģistrētu kļūdu.
+Notīrīt kļūdu ziņojumus
+Ziņot par kļūdu
+Atver GitHub Issues ar aizpildītiem ierīces datiem; pārskatiet pirms sūtīšanas.
+Kopēt atkļūdošanas informāciju
+Nokopēts
+Atvērtā koda licences
+Saites

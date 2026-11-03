@@ -1,0 +1,74 @@
+Calendário
+intercalar
+Seg,Ter,Qua,Qui,Sex,Sáb,Dom
+Segunda-feira,Terça-feira,Quarta-feira,Quinta-feira,Sexta-feira,Sábado,Domingo
+{m}/{y}
+Hoje
+Horário do Vietnã (GMT+7)
+Auspicioso
+Inauspicioso
+Feriados
+Conversor solar ↔ lunar
+Solar → Lunar
+Lunar → Solar
+Ciclo sexagenário e Nạp Âm
+Os 60 anos tronco-ramo, seu elemento Nạp Âm e os anos de nascimento correspondentes (como no programa original). Toque em uma linha para ver a idade.
+Buscar ano
+Anos de nascimento
+Termo solar
+início do termo
+Dia
+Oficial
+Primeira hora (Tí)
+Horas auspiciosas
+Horas inauspiciosas
+Criar um mapa para este dia
+Mostrar este dia
+Idade (lunar)
+Papel de fundo do mapa
+Cores de fundo dos palácios como no programa original de Bửu Đình.
+Seguir o tema
+Ouro antigo
+Amarelo-limão
+Azul-claro
+Verde-claro
+Violeta-claro
+Ouro
+Sobre o app
+Atualizações
+Verificar atualizações automaticamente ao iniciar
+Instalar automaticamente após o download
+Verificar atualizações
+Verificando atualizações…
+Última verificação
+Você está na versão mais recente ({v}).
+Nova versão disponível: {v}
+Não foi possível verificar atualizações (verifique sua conexão).
+Página de versões
+Novidades
+Baixar e instalar
+Baixando {p}%
+Download concluído.
+Falha no download
+Instalar agora
+Não foi possível iniciar o instalador
+Esta versão ainda não tem arquivo para o seu dispositivo. Abra a página de versões.
+O Android pedirá confirmação. Se solicitado, permita que o Applied Astrology instale apps desconhecidos e toque em Instalar novamente.
+O app será fechado, instalará a nova versão e abrirá de novo.
+Permita "Instalar apps desconhecidos" para o Applied Astrology e toque em Instalar novamente.
+Diagnóstico
+Logs do app
+Gravar logs do app
+Ver logs
+Exportar / compartilhar logs
+Limpar logs
+Relatórios de erros
+Erros de interface (JS) e falhas nativas registrados neste dispositivo.
+Nenhum erro registrado.
+Limpar relatórios de erros
+Relatar um bug
+Abre o GitHub Issues com os dados do dispositivo preenchidos; revise antes de enviar.
+Copiar informações de depuração
+Copiado
+Licenças de código aberto
+Links

@@ -1,0 +1,74 @@
+Ay Takvimi
+artık
+Pzt,Sal,Çar,Per,Cum,Cmt,Paz
+Pazartesi,Salı,Çarşamba,Perşembe,Cuma,Cumartesi,Pazar
+{m}/{y}
+Bugün
+Vietnam saati (GMT+7)
+Uğurlu gün
+Uğursuz gün
+Bayramlar
+Güneş ↔ ay takvimi çevirici
+Güneş → Ay
+Ay → Güneş
+Altmışlı döngü ve Nạp Âm
+60 gövde-dal yılı, Nạp Âm elementleri ve karşılık gelen doğum yılları (orijinal programdaki gibi). Yaşı görmek için bir satıra dokunun.
+Yıl ara
+Doğum yılları
+Güneş dönemi
+dönem başlangıcı
+Gün
+Gün görevlisi
+İlk saat (Tí)
+Uğurlu saatler
+Uğursuz saatler
+Bu gün için harita oluştur
+Bu günü göster
+Yaş (ay)
+Harita kâğıt arka planı
+Orijinal Bửu Đình yazılımındaki gibi saray arka plan renkleri.
+Temaya uy
+Antika altın
+Limon sarısı
+Açık mavi
+Açık yeşil
+Açık mor
+Altın
+Uygulama hakkında
+Güncellemeler
+Açılışta güncellemeleri otomatik denetle
+İndirdikten sonra otomatik kur
+Güncellemeleri denetle
+Güncellemeler denetleniyor…
+Son denetim
+En son sürümü ({v}) kullanıyorsunuz.
+Yeni sürüm mevcut: {v}
+Güncellemeler denetlenemedi (bağlantınızı kontrol edin).
+Sürümler sayfası
+Yenilikler
+İndir ve kur
+İndiriliyor %{p}
+İndirme tamamlandı.
+İndirme başarısız
+Şimdi kur
+Yükleyici başlatılamadı
+Bu sürümde cihazınız için henüz dosya yok. Lütfen sürümler sayfasını açın.
+Android onay isteyecek. İstenirse Applied Astrology'nin bilinmeyen uygulamaları yüklemesine izin verin ve tekrar Kur'a dokunun.
+Uygulama kapanacak, yeni sürümü kuracak ve yeniden açılacak.
+Applied Astrology için "Bilinmeyen uygulamaları yükle" iznini verin, ardından tekrar Kur'a dokunun.
+Tanılama
+Uygulama günlükleri
+Uygulama günlüğü tut
+Günlükleri görüntüle
+Günlükleri dışa aktar / paylaş
+Günlükleri temizle
+Hata raporları
+Bu cihazda kaydedilen arayüz (JS) hataları ve yerel çökmeler.
+Kayıtlı hata yok.
+Hata raporlarını temizle
+Hata bildir
+Cihaz bilgileri doldurulmuş GitHub Issues'u açar; göndermeden önce kontrol edin.
+Hata ayıklama bilgisini kopyala
+Kopyalandı
+Açık kaynak lisansları
+Bağlantılar

@@ -3,6 +3,8 @@ package com.appliedastrology.tuvi;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +18,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.graphics.Color;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
+import android.widget.FrameLayout;
 import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -31,7 +39,14 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -40,9 +55,11 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Applied Astrology v0.0.2 - vỏ Android (Android 6.0 / API 23 trở lên).
+ * Applied Astrology v0.0.3 - vỏ Android (Android 6.0 / API 23 trở lên).
  * Nạp giao diện web từ assets/web, cung cấp cầu nối AANative cho lưu trữ, xuất tệp, chia sẻ,
- * kiểm tra mạng và tìm kiếm native (libaacore.so theo từng ABI).
+ * kiểm tra mạng, tìm kiếm native (libaacore.so theo từng ABI), nhật ký/báo cáo lỗi và tự cập nhật từ GitHub Releases.
+ * v0.0.3: đệm WindowInsets (thanh trạng thái, thanh điều hướng, tai thỏ, bàn phím) để nội dung không bị che
+ * khi Android 15+ ép chế độ tràn viền (edge-to-edge) với targetSdk 35.
  */
 public class MainActivity extends Activity {
     private static final String TAG = "AppliedAstrology";
@@ -52,11 +69,17 @@ public class MainActivity extends Activity {
     private SharedPreferences prefs;
     private boolean selftest;
     private File testDir;
+    private FrameLayout rootView;
+    static final String VERSION = "0.0.3";
+    private final Object dlLock = new Object();
+    private volatile String dlState = "idle", dlError = "", dlPath = "";
+    private volatile long dlGot = 0, dlTotal = 0;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        installCrashHandler();
         prefs = getSharedPreferences("aa_store", Context.MODE_PRIVATE);
         Intent it = getIntent();
         selftest = it != null && it.getBooleanExtra("selftest", false);
@@ -67,7 +90,11 @@ public class MainActivity extends Activity {
             WebView.setWebContentsDebuggingEnabled(true);
         }
         web = new WebView(this);
-        setContentView(web);
+        rootView = new FrameLayout(this);
+        rootView.setBackgroundColor(Color.parseColor("#0E1428"));
+        rootView.addView(web, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        setContentView(rootView);
+        applyInsets();
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
@@ -110,7 +137,8 @@ public class MainActivity extends Activity {
         // Android WebView không hỗ trợ query string với file:///android_asset -> dùng #hash
         String url = "file:///android_asset/web/index.html" + (selftest ? "#selftest=1" : "");
         if (savedInstanceState != null) web.restoreState(savedInstanceState); else web.loadUrl(url);
-        Log.i(TAG, "start v0.0.2 abi=" + NativeCore.abi() + " sdk=" + Build.VERSION.SDK_INT + " selftest=" + selftest);
+        fileLog("start v" + VERSION + " abi=" + NativeCore.abi() + " sdk=" + Build.VERSION.SDK_INT + " device=" + Build.MANUFACTURER + " " + Build.MODEL);
+        Log.i(TAG, "start v" + VERSION + " abi=" + NativeCore.abi() + " sdk=" + Build.VERSION.SDK_INT + " selftest=" + selftest);
     }
 
     @Override protected void onSaveInstanceState(Bundle out) { super.onSaveInstanceState(out); if (web != null) web.saveState(out); }
@@ -181,6 +209,168 @@ public class MainActivity extends Activity {
             }
         });
         try { latch.await(5, TimeUnit.SECONDS); } catch (InterruptedException ignored) { }
+    }
+
+    // ---------------- v0.0.3: WindowInsets (Android 15+ ép edge-to-edge khi targetSdk 35) ----------------
+    private void applyInsets() {
+        if (Build.VERSION.SDK_INT < 20) return;
+        rootView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override public WindowInsets onApplyWindowInsets(View v, WindowInsets in) {
+                int l, t, r, b;
+                if (Build.VERSION.SDK_INT >= 30) {
+                    android.graphics.Insets s = in.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout() | WindowInsets.Type.ime());
+                    l = s.left; t = s.top; r = s.right; b = s.bottom;
+                } else {
+                    l = in.getSystemWindowInsetLeft(); t = in.getSystemWindowInsetTop(); r = in.getSystemWindowInsetRight(); b = in.getSystemWindowInsetBottom();
+                }
+                // Android 14 trở xuống (không tràn viền): hệ thống đã chừa chỗ cho thanh trạng thái/điều hướng
+                if (Build.VERSION.SDK_INT < 35) { l = t = r = 0; b = 0; }
+                v.setPadding(l, t, r, b);
+                if (selftest) fileLog("insets l=" + l + " t=" + t + " r=" + r + " b=" + b);
+                return in;
+            }
+        });
+        rootView.requestApplyInsets();
+    }
+    @SuppressWarnings("deprecation")
+    private void setBars(String color, boolean light) {
+        try {
+            int c = Color.parseColor(color);
+            rootView.setBackgroundColor(c);
+            Window w = getWindow();
+            if (Build.VERSION.SDK_INT < 35) { w.setStatusBarColor(c); w.setNavigationBarColor(c); }
+            if (Build.VERSION.SDK_INT >= 30) {
+                WindowInsetsController ic = w.getInsetsController();
+                if (ic != null) {
+                    int mask = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
+                    ic.setSystemBarsAppearance(light ? mask : 0, mask);
+                }
+            } else if (Build.VERSION.SDK_INT >= 23) {
+                View d = w.getDecorView();
+                int f = d.getSystemUiVisibility();
+                f = light ? (f | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) : (f & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                if (Build.VERSION.SDK_INT >= 26) f = light ? (f | 0x10) : (f & ~0x10); // SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                d.setSystemUiVisibility(f);
+            }
+        } catch (Exception e) { Log.w(TAG, "setBars " + e); }
+    }
+
+    // ---------------- v0.0.3: nhật ký ứng dụng & báo cáo lỗi (crash) ----------------
+    private File logFile() { return new File(getFilesDir(), "app.log"); }
+    private File crashDir() { File d = new File(getFilesDir(), "crash"); d.mkdirs(); return d; }
+    private synchronized void fileLog(String m) {
+        try {
+            String on = prefs != null ? prefs.getString("aa.settings", null) : null;
+            if (on != null && on.contains("\"logs\":false")) return;
+            File f = logFile();
+            if (f.length() > 262144) { File old = new File(getFilesDir(), "app.log.1"); old.delete(); f.renameTo(old); f = logFile(); }
+            FileOutputStream fo = new FileOutputStream(f, true);
+            fo.write((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()) + " " + m + "\n").getBytes("UTF-8"));
+            fo.close();
+        } catch (Exception ignored) { }
+    }
+    private static String readTail(File f, int max) {
+        if (f == null || !f.exists()) return "";
+        try {
+            FileInputStream in = new FileInputStream(f);
+            long skip = Math.max(0, f.length() - max);
+            if (skip > 0) in.skip(skip);
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            byte[] buf = new byte[8192]; int n;
+            while ((n = in.read(buf)) > 0) bo.write(buf, 0, n);
+            in.close();
+            return bo.toString("UTF-8");
+        } catch (Exception e) { return ""; }
+    }
+    private void installCrashHandler() {
+        final Thread.UncaughtExceptionHandler prev = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override public void uncaughtException(Thread th, Throwable ex) {
+                try {
+                    StringWriter sw = new StringWriter();
+                    ex.printStackTrace(new PrintWriter(sw));
+                    String head = "Applied Astrology " + VERSION + "\nAndroid " + Build.VERSION.RELEASE + " (API " + Build.VERSION.SDK_INT + ")\nDevice: " + Build.MANUFACTURER + " " + Build.MODEL +
+                        "\nABI: " + NativeCore.abi() + "\nThread: " + th.getName() + "\nTime: " + new Date() + "\n\n";
+                    FileOutputStream fo = new FileOutputStream(new File(crashDir(), "crash_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".txt"));
+                    fo.write((head + sw).getBytes("UTF-8")); fo.close();
+                } catch (Throwable ignored) { }
+                if (prev != null) prev.uncaughtException(th, ex);
+            }
+        });
+    }
+
+    // ---------------- v0.0.3: tải và cài bản cập nhật từ GitHub Releases ----------------
+    static File updatesDir(Context c) {
+        File base = c.getExternalCacheDir();
+        if (base == null) base = c.getCacheDir();
+        File d = new File(base, "updates"); d.mkdirs();
+        return d;
+    }
+    private boolean startDownload(final String url, final String name) {
+        if (url == null || !url.startsWith("https://")) return false;
+        synchronized (dlLock) {
+            if ("running".equals(dlState)) return true;
+            dlState = "running"; dlGot = 0; dlTotal = 0; dlError = ""; dlPath = "";
+        }
+        new Thread(new Runnable() { @Override public void run() {
+            HttpURLConnection c = null;
+            try {
+                String safe = name.replaceAll("[^A-Za-z0-9._-]", "_");
+                File dir = updatesDir(MainActivity.this);
+                File[] old = dir.listFiles(); if (old != null) for (File o : old) o.delete();
+                File part = new File(dir, safe + ".part"), out = new File(dir, safe);
+                String u = url;
+                for (int hop = 0; hop < 6; hop++) { // tự theo chuyển hướng (github.com -> objects.githubusercontent.com)
+                    c = (HttpURLConnection) new URL(u).openConnection();
+                    TlsCompat.apply(MainActivity.this, c);
+                    c.setInstanceFollowRedirects(false);
+                    c.setConnectTimeout(15000); c.setReadTimeout(30000);
+                    c.setRequestProperty("User-Agent", "AppliedAstrology/" + VERSION + " Android");
+                    int code = c.getResponseCode();
+                    if (code >= 300 && code < 400) { u = c.getHeaderField("Location"); c.disconnect(); c = null; continue; }
+                    if (code != 200) throw new Exception("HTTP " + code);
+                    break;
+                }
+                if (c == null) throw new Exception("too many redirects");
+                dlTotal = c.getContentLength();
+                InputStream in = c.getInputStream();
+                FileOutputStream fo = new FileOutputStream(part);
+                byte[] buf = new byte[65536]; int n;
+                while ((n = in.read(buf)) > 0) { fo.write(buf, 0, n); dlGot += n; }
+                fo.close(); in.close();
+                if (dlTotal > 0 && dlGot != dlTotal) throw new Exception("incomplete " + dlGot + "/" + dlTotal);
+                out.delete();
+                if (!part.renameTo(out)) throw new Exception("rename failed");
+                out.setReadable(true, false);
+                dlPath = out.getAbsolutePath();
+                fileLog("update downloaded " + dlPath + " " + dlGot);
+                dlState = "done";
+            } catch (Exception e) {
+                dlError = String.valueOf(e); dlState = "error"; fileLog("update download error " + e);
+            } finally { if (c != null) c.disconnect(); }
+        } }, "aa-update").start();
+        return true;
+    }
+    private String installApk(final File apk) {
+        if (apk == null || !apk.exists()) return null;
+        if (Build.VERSION.SDK_INT >= 26 && !getPackageManager().canRequestPackageInstalls()) {
+            runOnUiThread(new Runnable() { @Override public void run() {
+                try { startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getPackageName()))); }
+                catch (Exception e) { Log.w(TAG, "unknown sources settings " + e); }
+            } });
+            return "need_permission";
+        }
+        runOnUiThread(new Runnable() { @Override public void run() {
+            try {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Build.VERSION.SDK_INT >= 24 ? Uri.parse("content://" + ApkProvider.AUTHORITY + "/" + apk.getName()) : Uri.fromFile(apk);
+                i.setDataAndType(uri, "application/vnd.android.package-archive");
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(i);
+                fileLog("update install intent " + uri);
+            } catch (Exception e) { fileLog("update install error " + e); Toast.makeText(MainActivity.this, String.valueOf(e), Toast.LENGTH_LONG).show(); }
+        } });
+        return "1";
     }
 
     /** Cầu nối JS -> native (chạy trên luồng JavaBridge) */
@@ -261,13 +451,15 @@ public class MainActivity extends Activity {
             HttpURLConnection c = null;
             try {
                 c = (HttpURLConnection) new URL(url).openConnection();
+                TlsCompat.apply(MainActivity.this, c);
                 c.setConnectTimeout(6000); c.setReadTimeout(6000);
-                c.setRequestProperty("User-Agent", "AppliedAstrology/0.0.2 Android");
+                c.setRequestProperty("User-Agent", "AppliedAstrology/" + VERSION + " Android");
+                if (url.startsWith("https://api.github.com/")) c.setRequestProperty("Accept", "application/vnd.github+json");
                 int code = c.getResponseCode();
                 InputStream in = code < 400 ? c.getInputStream() : c.getErrorStream();
                 ByteArrayOutputStream bo = new ByteArrayOutputStream();
                 byte[] buf = new byte[4096]; int n;
-                while (in != null && (n = in.read(buf)) > 0 && bo.size() < 65536) bo.write(buf, 0, n);
+                while (in != null && (n = in.read(buf)) > 0 && bo.size() < 2097152) bo.write(buf, 0, n);
                 long ms = System.currentTimeMillis() - t0;
                 return "{\"ok\":" + (code >= 200 && code < 400) + ",\"status\":" + code + ",\"ms\":" + ms + ",\"body\":" + jsonStr(bo.toString("UTF-8")) + "}";
             } catch (Exception e) {
@@ -281,7 +473,43 @@ public class MainActivity extends Activity {
             catch (Throwable e) { Log.w(TAG, "native search unavailable: " + e); return null; }
         }
 
-        @JavascriptInterface public String log(String m) { Log.i(TAG, m); return "1"; }
+        @JavascriptInterface public String log(String m) { Log.i(TAG, m); fileLog(m); return "1"; }
+        // ---------- v0.0.3: nhật ký, báo cáo lỗi, cập nhật, thanh hệ thống (mọi hàm nhận 2 tham số chuỗi) ----------
+        @JavascriptInterface public String x_readLog(String a, String b) { return readTail(logFile(), 131072); }
+        @JavascriptInterface public String x_clearLog(String a, String b) { logFile().delete(); new File(getFilesDir(), "app.log.1").delete(); return "1"; }
+        @JavascriptInterface
+        public String x_crashList(String a, String b) {
+            File[] l = crashDir().listFiles();
+            StringBuilder sb = new StringBuilder("[");
+            if (l != null) {
+                Arrays.sort(l);
+                for (int i = l.length - 1, n = 0; i >= 0 && n < 20; i--, n++) {
+                    if (sb.length() > 1) sb.append(',');
+                    sb.append("{\"name\":").append(jsonStr(l[i].getName())).append(",\"text\":").append(jsonStr(readTail(l[i], 16384))).append('}');
+                }
+            }
+            return sb.append(']').toString();
+        }
+        @JavascriptInterface public String x_clearCrash(String a, String b) { deleteDir(crashDir()); return "1"; }
+        @JavascriptInterface
+        public String x_copy(final String text, String b) {
+            runOnUiThread(new Runnable() { @Override public void run() {
+                try { ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("Applied Astrology", text)); } catch (Exception ignored) { }
+            } });
+            return "1";
+        }
+        @JavascriptInterface public String x_download(String url, String name) { return startDownload(url, name) ? "1" : null; }
+        @JavascriptInterface
+        public String x_downloadStatus(String a, String b) {
+            return "{\"state\":" + jsonStr(dlState) + ",\"got\":" + dlGot + ",\"total\":" + dlTotal + ",\"path\":" + jsonStr(dlPath) + ",\"error\":" + jsonStr(dlError) + "}";
+        }
+        @JavascriptInterface public String x_installUpdate(String path, String b) { return installApk(new File(path)); }
+        @JavascriptInterface
+        public String x_setBars(final String color, final String light) {
+            runOnUiThread(new Runnable() { @Override public void run() { setBars(color, "1".equals(light)); } });
+            return "1";
+        }
+
 
         @JavascriptInterface
         public String testStep(String name, String payload) {

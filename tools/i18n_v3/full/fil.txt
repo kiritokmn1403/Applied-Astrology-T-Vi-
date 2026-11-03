@@ -1,0 +1,233 @@
+Tử Vi Ứng Dụng · pamana ni Bửu Đình
+Tsart
+Aklatan
+Pagbasa
+Mga Profile
+Mga Setting
+Buong pangalan
+Kasarian
+Lalaki
+Babae
+Kalendaryo
+Solar
+Lunar
+Araw
+Buwan
+Taon
+Oras ng kapanganakan
+Leap na buwan
+Taon ng hula
+Gumawa ng tsart
+I-save ang profile
+I-export ang PNG
+QR code
+Ibahagi
+I-print
+Isara
+Bumalik
+Nakaraan
+Susunod
+Buksan
+Burahin
+I-bookmark
+Isalin online
+Maghanap
+Ipadala
+Ibalik sa default
+Plato ng Langit
+Petsang solar
+Petsang lunar
+Oras
+Yin–Yang
+Elemento ng buhay
+Kawanihan ng elemento
+Buhay – Kawanihan
+Panginoon ng buhay
+Panginoon ng katawan
+Buhay
+Katawan
+Walang pangunahing bituin
+Dekada
+Siklo ng taon
+Puwang na Tuần
+Puwang na Triệt
+Edad
+Pangunahing bituin
+Mapalad na bituin
+Masamang bituin
+Neutral na bituin
+Taunang bituin
+Mga singsing ng bituin
+Triad at kabilang palasyo
+Kaugnay na artikulo ni Bửu Đình
+Walang nakitang kaugnay na artikulo.
+I-tap ang isang palasyo para makita ang detalye at komentaryo ni Bửu Đình.
+Aklatan ng Applied Astrology – Bửu Đình
+{n} orihinal na artikulo sa {c} kabanata, naibalik mula sa source file.
+Maghanap sa buong aklatan (may o walang tuldik na Vietnamese)…
+{n} resulta
+Naglo-load ng datos…
+Mga bookmark
+Kamakailang binasa
+Ituloy ang pagbasa
+artikulo
+karakter
+Nanatili ang teksto sa orihinal na Vietnamese ng may-akda.
+Offline na katulong sa pagbasa
+Pagsusuri batay sa kasalukuyang tsart at aklatan ni Bửu Đình. Gumagana offline; hindi generative AI.
+Magtanong tungkol sa palasyo, bituin o panahon (hal. karera, yaman, ngayong taon)
+Buod ng tsart
+Gumawa muna ng tsart.
+Palasyo ng buhay
+Pag-aasawa
+Ngayong taon
+Mga naka-save na tsart
+Wala pang naka-save na tsart.
+Na-save ang tsart.
+Nabura.
+Wika
+Tema
+Laki ng font
+Ayos ng tsart
+Malaking screen / Samsung DeX
+Ipakita ang tsart at komentaryo nang magkatabi (2 kolum).
+Ipakita ang mga singsing ng bituin
+Ipinanganak sa leap na buwan
+Bilangin bilang karaniwang buwan
+Mula ika-16 na araw bilangin bilang susunod na buwan
+Network at VPN
+Totoong pagsusuri ng koneksyon (Cloudflare trace). Hindi binubuksan o pinapatay ng app ang VPN; sinusubok ang VPN sa labas ng app.
+Suriin ang koneksyon
+Backup at restore
+I-export ang backup
+Mag-import mula sa file
+I-paste ang JSON
+Burahin ang data ng app
+Tungkol
+Bersyon
+Platform
+Malayang open-source na app. Nilalaman ng aklat: "Tử Vi Ứng Dụng" ni Bửu Đình (Tử Vũ).
+Hatinggabing Makalangit (madilim)
+Imperyal na Ginto
+Palasyong Garing (maliwanag)
+Swerteng Sinabre
+Maliit
+Katamtaman
+Malaki
+Napakalaki
+Awtomatiko
+Klasikong 4×4 na board
+Listahan ng 12 palasyo
+Sinusuri…
+Nakakonekta
+Walang koneksyon sa Internet
+Dumadaan ang trapiko sa WARP/VPN
+Walang natukoy na WARP
+Lokasyon
+Latency
+QR code ng tsart
+I-scan gamit ang Applied Astrology sa ibang device, o itago para muling gawin ang tsart.
+Na-export ang larawan ng tsart
+Naibalik ang data
+Di-wastong file
+Burahin ang lahat ng profile at setting?
+Di-wastong petsa
+Walang ganitong petsang lunar (suriin ang leap na buwan / ika-30 araw)
+Pangunahing Bituin
+Bituin ng Tangkay
+Bituin ng Sanga
+Ibang Bituin
+Ang mga Palasyo
+72 Padron
+Paglalagay ng mga Bituin
+Mga Panahon
+Tsart ng Lalaki
+Tsart ng Babae
+Diksiyonaryo ng Tử Vi
+Pares ng Pangunahing Bituin
+Mga Grupo ng Bituin
+Magulang
+Kapalaran
+Ari-arian
+Karera
+Kaibigan
+Paglalakbay
+Kalusugan
+Yaman
+Mga anak
+Asawa
+Magkakapatid
+Kalendaryo
+leap
+Lun,Mar,Miy,Huw,Biy,Sab,Lin
+Lunes,Martes,Miyerkules,Huwebes,Biyernes,Sabado,Linggo
+{m}/{y}
+Ngayon
+Oras sa Vietnam (GMT+7)
+Mapalad na araw
+Malas na araw
+Mga pista
+Converter solar ↔ lunar
+Solar → Lunar
+Lunar → Solar
+Siklong animnapu at Nạp Âm
+Ang 60 taon ng tangkay-sanga, ang elementong Nạp Âm nila at katugmang mga taon ng kapanganakan (gaya ng orihinal na programa). I-tap ang hilera para makita ang edad.
+Hanapin ang taon
+Mga taon ng kapanganakan
+Panahong solar
+simula ng panahon
+Araw
+Bantay ng araw
+Unang oras (Tí)
+Mapalad na oras
+Malas na oras
+Gumawa ng tsart para sa araw na ito
+Ipakita ang araw na ito
+Edad (lunar)
+Papel na background ng tsart
+Kulay ng background ng mga palasyo gaya ng orihinal na software ni Bửu Đình.
+Sundin ang tema
+Lumang ginto
+Dilaw na lemon
+Mapusyaw na asul
+Mapusyaw na berde
+Mapusyaw na lila
+Ginto
+Tungkol sa app
+Mga update
+Awtomatikong tingnan ang update sa pagbukas
+Awtomatikong i-install pagkatapos mag-download
+Tingnan ang mga update
+Tinitingnan ang mga update…
+Huling pagsusuri
+Gamit mo ang pinakabagong bersyon ({v}).
+May bagong bersyon: {v}
+Hindi masuri ang update (suriin ang koneksyon).
+Pahina ng mga release
+Ano ang bago
+I-download at i-install
+Nagda-download {p}%
+Tapos na ang download.
+Nabigo ang download
+I-install ngayon
+Hindi masimulan ang installer
+Wala pang file ang release na ito para sa iyong device. Buksan ang pahina ng mga release.
+Hihingi ng kumpirmasyon ang Android. Kung tanungin, payagan ang Applied Astrology na mag-install ng hindi kilalang app, saka i-tap muli ang I-install.
+Magsasara ang app, ii-install ang bagong bersyon at muling bubukas.
+Payagan ang "Mag-install ng hindi kilalang app" para sa Applied Astrology, saka i-tap muli ang I-install.
+Diagnostics
+Mga log ng app
+I-record ang log ng app
+Tingnan ang log
+I-export / ibahagi ang log
+Burahin ang log
+Mga ulat ng error
+Mga error ng interface (JS) at native crash na naitala sa device na ito.
+Walang naitalang error.
+Burahin ang mga ulat ng error
+Mag-ulat ng bug
+Binubuksan ang GitHub Issues na may nakapunong detalye ng device; suriin bago ipadala.
+Kopyahin ang debug info
+Nakopya
+Mga open-source na lisensya
+Mga link

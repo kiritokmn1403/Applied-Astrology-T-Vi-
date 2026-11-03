@@ -1,5 +1,5 @@
 /*
- * Applied Astrology v0.0.2 - Đa ngôn ngữ
+ * Applied Astrology v0.0.3 - Đa ngôn ngữ
  * Danh sách ngôn ngữ = hợp của Aniyomi/Nekoyomi (moko-resources, 63 locale) và Mangayomi (19 locale).
  * Tiếng Việt & tiếng Anh nằm sẵn trong tệp này; các ngôn ngữ khác nạp theo yêu cầu từ data/lang/<mã>.js
  * Nội dung sách Bửu Đình giữ nguyên văn tiếng Việt (bản gốc); tên sao, cung, chương được dịch.
@@ -63,7 +63,28 @@
     ch_72_cach: '72 Cách', ch_an_sao: 'An Sao', ch_han: 'Hạn', ch_la_so_nam: 'Lá Số Nam', ch_la_so_nu: 'Lá Số Nữ', ch_tu_dien: 'Từ Điển Tử Vi',
     ch_2_chinh_tinh: '2 Chính Tinh', ch_cac_bo: 'Các Bộ Sao',
     p_menh: 'Mệnh', p_phumau: 'Phụ Mẫu', p_phucduc: 'Phúc Đức', p_dientrach: 'Điền Trạch', p_quanloc: 'Quan Lộc', p_nobOc: 'Nô Bộc',
-    p_thiendi: 'Thiên Di', p_tatach: 'Tật Ách', p_taibach: 'Tài Bạch', p_tutuc: 'Tử Tức', p_phuthe: 'Phu Thê', p_huynhde: 'Huynh Đệ'
+    p_thiendi: 'Thiên Di', p_tatach: 'Tật Ách', p_taibach: 'Tài Bạch', p_tutuc: 'Tử Tức', p_phuthe: 'Phu Thê', p_huynhde: 'Huynh Đệ',
+    tab_calendar: 'Âm Lịch', cal_leap: 'nhuận', cal_wd: 'T2,T3,T4,T5,T6,T7,CN', cal_wd_full: 'Thứ Hai,Thứ Ba,Thứ Tư,Thứ Năm,Thứ Sáu,Thứ Bảy,Chủ Nhật',
+    cal_month_title: 'Tháng {m} năm {y}', cal_today: 'Hôm nay', cal_tz: 'Giờ Việt Nam (GMT+7)', cal_hd: 'Hoàng đạo', cal_hkd: 'Hắc đạo',
+    cal_events: 'Ngày lễ', cal_convert: 'Đổi ngày Dương ↔ Âm', cal_s2l: 'Dương → Âm', cal_l2s: 'Âm → Dương', cal_60: 'Lục Thập Hoa Giáp & Nạp Âm',
+    cal_60_d: 'Bảng 60 năm Can Chi, mệnh nạp âm và các năm sinh tương ứng (theo khung lập lá số của phần mềm gốc). Chạm vào một dòng để xem tuổi.',
+    cal_find_year: 'Tra năm sinh', cal_napam: 'Nạp âm', cal_years: 'Các năm sinh', cal_tiet: 'Tiết khí', cal_tiet_start: 'bắt đầu tiết',
+    cal_daytype: 'Ngày', cal_truc: 'Trực', cal_hour0: 'Giờ Tí đầu ngày', cal_good_hours: 'Giờ hoàng đạo', cal_bad_hours: 'Giờ hắc đạo',
+    cal_build_chart: 'Lập lá số theo ngày này', cal_open_day: 'Xem ngày này', cal_age: 'Tuổi (âm)',
+    s_paper: 'Giấy lót nền lá số', s_paper_d: 'Màu nền các cung giống phần mềm gốc Bửu Đình.', paper_none: 'Theo giao diện', paper_vangkyxao: 'Vàng kỹ xảo',
+    paper_vangchanh: 'Vàng chanh', paper_xanhnhat: 'Xanh nhạt', paper_lucnhat: 'Lục nhạt', paper_timnhat: 'Tím nhạt', paper_vang: 'Vàng',
+    ab_open: 'Giới thiệu ứng dụng', ab_title: 'Giới thiệu ứng dụng', ab_updates: 'Cập nhật', ab_auto_check: 'Tự động kiểm tra cập nhật khi mở ứng dụng',
+    ab_auto_install: 'Tự cài đặt sau khi tải xong', ab_check: 'Kiểm tra cập nhật', ab_checking: 'Đang kiểm tra bản cập nhật…', ab_last_check: 'Lần kiểm tra gần nhất',
+    ab_latest: 'Bạn đang dùng bản mới nhất ({v}).', ab_new: 'Có bản mới: {v}', ab_update_fail: 'Không kiểm tra được bản cập nhật (kiểm tra kết nối mạng).',
+    ab_releases: 'Trang phát hành (Releases)', ab_whats_new: 'Có gì mới', ab_download: 'Tải về và cài đặt', ab_downloading: 'Đang tải {p}%',
+    ab_dl_done: 'Đã tải xong.', ab_dl_fail: 'Tải về thất bại', ab_install: 'Cài đặt ngay', ab_install_fail: 'Không mở được trình cài đặt',
+    ab_no_asset: 'Bản phát hành này chưa có tệp cho thiết bị của bạn. Hãy mở trang Releases.',
+    ab_install_note_android: 'Android sẽ hỏi xác nhận. Nếu được yêu cầu, hãy cho phép Applied Astrology cài ứng dụng không rõ nguồn gốc rồi bấm Cài đặt lần nữa.',
+    ab_install_note_win: 'Ứng dụng sẽ đóng, cài bản mới rồi tự mở lại.', ab_need_perm: 'Hãy cho phép "Cài ứng dụng không rõ nguồn gốc" cho Applied Astrology, sau đó bấm Cài đặt lần nữa.',
+    ab_diag: 'Chẩn đoán', ab_logs: 'Nhật ký ứng dụng', ab_logs_on: 'Ghi nhật ký ứng dụng', ab_logs_view: 'Xem nhật ký', ab_logs_share: 'Xuất / chia sẻ nhật ký',
+    ab_logs_clear: 'Xóa nhật ký', ab_errors: 'Báo cáo lỗi', ab_errors_d: 'Lỗi giao diện (JS) và sự cố native đã ghi nhận trên thiết bị này.', ab_errors_none: 'Chưa ghi nhận lỗi nào.',
+    ab_errors_clear: 'Xóa báo cáo lỗi', ab_report: 'Gửi báo cáo lỗi', ab_report_d: 'Mở GitHub Issues với thông tin thiết bị điền sẵn; bạn xem lại trước khi gửi.',
+    ab_copy_debug: 'Sao chép thông tin gỡ lỗi', ab_copied: 'Đã sao chép', ab_licenses: 'Giấy phép mã nguồn mở', ab_links: 'Liên kết'
   };
   D.en = {
     app_name: 'Applied Astrology', app_sub: 'Tử Vi Ứng Dụng · Bửu Đình heritage',
@@ -106,7 +127,28 @@
     ch_72_cach: '72 Patterns', ch_an_sao: 'Placing the Stars', ch_han: 'Periods', ch_la_so_nam: 'Male Charts', ch_la_so_nu: 'Female Charts', ch_tu_dien: 'Tử Vi Dictionary',
     ch_2_chinh_tinh: 'Major Star Pairs', ch_cac_bo: 'Star Groups',
     p_menh: 'Life', p_phumau: 'Parents', p_phucduc: 'Fortune', p_dientrach: 'Property', p_quanloc: 'Career', p_nobOc: 'Friends',
-    p_thiendi: 'Travel', p_tatach: 'Health', p_taibach: 'Wealth', p_tutuc: 'Children', p_phuthe: 'Spouse', p_huynhde: 'Siblings'
+    p_thiendi: 'Travel', p_tatach: 'Health', p_taibach: 'Wealth', p_tutuc: 'Children', p_phuthe: 'Spouse', p_huynhde: 'Siblings',
+    tab_calendar: 'Calendar', cal_leap: 'leap', cal_wd: 'Mon,Tue,Wed,Thu,Fri,Sat,Sun', cal_wd_full: 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
+    cal_month_title: '{m}/{y}', cal_today: 'Today', cal_tz: 'Vietnam time (GMT+7)', cal_hd: 'Auspicious', cal_hkd: 'Inauspicious',
+    cal_events: 'Holidays', cal_convert: 'Solar ↔ lunar converter', cal_s2l: 'Solar → Lunar', cal_l2s: 'Lunar → Solar', cal_60: 'Sexagenary cycle & Nạp Âm',
+    cal_60_d: 'The 60 stem-branch years, their Nạp Âm element and matching birth years (as in the original chart builder). Tap a row to see the age.',
+    cal_find_year: 'Look up year', cal_napam: 'Nạp Âm', cal_years: 'Birth years', cal_tiet: 'Solar term', cal_tiet_start: 'term begins',
+    cal_daytype: 'Day', cal_truc: 'Officer', cal_hour0: 'First hour (Tí)', cal_good_hours: 'Auspicious hours', cal_bad_hours: 'Inauspicious hours',
+    cal_build_chart: 'Build a chart for this day', cal_open_day: 'Show this day', cal_age: 'Age (lunar)',
+    s_paper: 'Chart paper background', s_paper_d: 'Palace background colours as in the original Bửu Đình software.', paper_none: 'Follow theme', paper_vangkyxao: 'Antique gold',
+    paper_vangchanh: 'Lemon yellow', paper_xanhnhat: 'Light blue', paper_lucnhat: 'Light green', paper_timnhat: 'Light violet', paper_vang: 'Gold',
+    ab_open: 'About the app', ab_title: 'About the app', ab_updates: 'Updates', ab_auto_check: 'Check for updates automatically at start-up',
+    ab_auto_install: 'Install automatically after download', ab_check: 'Check for updates', ab_checking: 'Checking for updates…', ab_last_check: 'Last checked',
+    ab_latest: 'You are on the latest version ({v}).', ab_new: 'New version available: {v}', ab_update_fail: 'Could not check for updates (check your connection).',
+    ab_releases: 'Releases page', ab_whats_new: 'What\'s new', ab_download: 'Download and install', ab_downloading: 'Downloading {p}%',
+    ab_dl_done: 'Download complete.', ab_dl_fail: 'Download failed', ab_install: 'Install now', ab_install_fail: 'Could not start the installer',
+    ab_no_asset: 'This release has no file for your device yet. Please open the Releases page.',
+    ab_install_note_android: 'Android will ask for confirmation. If asked, allow Applied Astrology to install unknown apps, then tap Install again.',
+    ab_install_note_win: 'The app will close, install the new version and reopen.', ab_need_perm: 'Allow "Install unknown apps" for Applied Astrology, then tap Install again.',
+    ab_diag: 'Diagnostics', ab_logs: 'App logs', ab_logs_on: 'Record app logs', ab_logs_view: 'View logs', ab_logs_share: 'Export / share logs',
+    ab_logs_clear: 'Clear logs', ab_errors: 'Error reports', ab_errors_d: 'Interface (JS) errors and native crashes recorded on this device.', ab_errors_none: 'No errors recorded.',
+    ab_errors_clear: 'Clear error reports', ab_report: 'Report a bug', ab_report_d: 'Opens GitHub Issues with device details pre-filled; review before submitting.',
+    ab_copy_debug: 'Copy debug info', ab_copied: 'Copied', ab_licenses: 'Open-source licences', ab_links: 'Links'
   };
 
   var PALACE_KEY = { 'Mệnh': 'p_menh', 'Phụ Mẫu': 'p_phumau', 'Phúc Đức': 'p_phucduc', 'Điền Trạch': 'p_dientrach', 'Quan Lộc': 'p_quanloc',

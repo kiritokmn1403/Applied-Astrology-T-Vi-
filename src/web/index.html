@@ -22,11 +22,12 @@
   </div>
 </header>
 <nav class="aa-nav" id="nav">
-  <a data-view="chart" class="active"><span class="ico">&#10022;</span><span data-i18n="tab_chart">Lá Số</span></a>
-  <a data-view="library"><span class="ico">&#10070;</span><span data-i18n="tab_library">Thư Viện</span></a>
-  <a data-view="assistant"><span class="ico">&#9775;</span><span data-i18n="tab_assistant">Luận Giải</span></a>
-  <a data-view="saved"><span class="ico">&#9734;</span><span data-i18n="tab_saved">Hồ Sơ</span></a>
-  <a data-view="settings"><span class="ico">&#9881;</span><span data-i18n="tab_settings">Cài Đặt</span></a>
+  <a data-view="chart" class="active"><span class="ico">&#10022;&#xFE0E;</span><span data-i18n="tab_chart">Lá Số</span></a>
+  <a data-view="calendar"><span class="ico">&#9790;&#xFE0E;</span><span data-i18n="tab_calendar">Âm Lịch</span></a>
+  <a data-view="library"><span class="ico">&#10070;&#xFE0E;</span><span data-i18n="tab_library">Thư Viện</span></a>
+  <a data-view="assistant"><span class="ico">&#9775;&#xFE0E;</span><span data-i18n="tab_assistant">Luận Giải</span></a>
+  <a data-view="saved"><span class="ico">&#9734;&#xFE0E;</span><span data-i18n="tab_saved">Hồ Sơ</span></a>
+  <a data-view="settings"><span class="ico">&#9881;&#xFE0E;</span><span data-i18n="tab_settings">Cài Đặt</span></a>
 </nav>
 
 <main class="aa-main">
@@ -58,6 +59,9 @@
       <div class="side-col"><div class="card" id="detailBox"><div class="muted" data-i18n="pick_palace"></div></div></div>
     </div>
   </section>
+
+  <!-- ÂM LỊCH (v0.0.3) -->
+  <section class="view" id="view-calendar"><div id="calBody"></div></section>
 
   <!-- THƯ VIỆN -->
   <section class="view" id="view-library">
@@ -118,6 +122,8 @@
       <label class="check"><input type="checkbox" id="sBS"> <span data-i18n="s_bacsi"></span></label>
       <label class="check"><input type="checkbox" id="sTT"> <span data-i18n="s_thaitue"></span></label>
       <label class="check"><input type="checkbox" id="sLuu"> <span data-i18n="s_luu"></span></label></div>
+    <div class="setting"><h3 data-i18n="s_paper">Giấy lót nền lá số</h3><div class="hint" data-i18n="s_paper_d"></div>
+      <select id="sPaper"><option value="none" data-i18n="paper_none"></option><option value="vangkyxao" data-i18n="paper_vangkyxao"></option><option value="vangchanh" data-i18n="paper_vangchanh"></option><option value="xanhnhat" data-i18n="paper_xanhnhat"></option><option value="lucnhat" data-i18n="paper_lucnhat"></option><option value="timnhat" data-i18n="paper_timnhat"></option><option value="vang" data-i18n="paper_vang"></option></select></div>
     <div class="setting"><h3 data-i18n="s_leap">Tháng nhuận</h3>
       <select id="sLeap"><option value="same" data-i18n="s_leap_same"></option><option value="next" data-i18n="s_leap_next"></option></select></div>
     <div class="setting"><h3 data-i18n="s_network">Mạng & VPN</h3><div class="hint" data-i18n="s_network_d"></div>
@@ -127,7 +133,14 @@
       <label class="btn"><span data-i18n="s_import"></span><input type="file" id="sImportFile" accept=".json,application/json" style="display:none"></label>
       <div style="margin-top:6px"><textarea id="sImportText" data-i18n-ph="s_import_text"></textarea><a class="btn small" id="sImportGo" data-i18n="s_import_text"></a></div>
       <a class="btn" id="sReset" data-i18n="btn_reset"></a> <a class="btn" id="sClear" data-i18n="s_clear"></a></div>
-    <div class="setting"><h3 data-i18n="s_about">Giới thiệu</h3><div class="hint" data-i18n="s_about_d"></div><div id="aboutInfo" class="hint" style="margin-top:6px"></div></div>
+    <div class="setting"><h3 data-i18n="s_about">Giới thiệu</h3><div class="hint" data-i18n="s_about_d"></div><div id="aboutInfo" class="hint" style="margin-top:6px"></div>
+      <a class="btn primary" id="sAboutOpen" data-i18n="ab_open">Giới thiệu ứng dụng</a></div>
+  </section>
+
+  <!-- GIỚI THIỆU (v0.0.3, mở từ Cài Đặt) -->
+  <section class="view" id="view-about">
+    <div class="card no-print"><a class="btn small" id="aboutBack">&larr; <span data-i18n="tab_settings">Cài Đặt</span></a> <b data-i18n="ab_title">Giới thiệu ứng dụng</b></div>
+    <div id="aboutBody"></div>
   </section>
 </main>
 
@@ -139,12 +152,15 @@
 <script src="js/theme.js"></script>
 <script src="js/lunar.js"></script>
 <script src="js/tuvi_engine.js"></script>
+<script src="js/calendar.js"></script>
 <script src="data/lib_index.js"></script>
 <script src="js/library.js"></script>
 <script>window.AALib && (window.AALib.registerGlobal = true);</script>
 <script src="js/qr.js"></script>
 <script src="js/chart_view.js"></script>
 <script src="js/assistant.js"></script>
+<script src="data/changelog.js"></script>
+<script src="js/about.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

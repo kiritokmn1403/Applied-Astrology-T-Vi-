@@ -129,9 +129,20 @@
   var CHI = ['Tí', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tị', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'];
   function dayCanChi(jd) { return [(jd + 9) % 10, (jd + 1) % 12]; }
 
+  /** Chỉ số tiết khí (0 = Xuân Phân, mỗi tiết 15°) vào cuối ngày jd, múi giờ tz */
+  function tietKhiIndex(jd, tz) {
+    if (tz === undefined) tz = 7;
+    return INT(sunLongitude(jd + 1 - 0.5 - tz / 24) / PI * 12);
+  }
+  /** Kinh độ mặt trời (độ) vào cuối ngày jd */
+  function sunDegree(jd, tz) {
+    if (tz === undefined) tz = 7;
+    return sunLongitude(jd + 1 - 0.5 - tz / 24) * 180 / PI;
+  }
+
   var api = {
     jdFromDate: jdFromDate, jdToDate: jdToDate, solar2lunar: solar2lunar, lunar2solar: lunar2solar,
-    lunarMonthLength: lunarMonthLength, dayCanChi: dayCanChi, CAN: CAN, CHI: CHI
+    lunarMonthLength: lunarMonthLength, dayCanChi: dayCanChi, tietKhiIndex: tietKhiIndex, sunDegree: sunDegree, CAN: CAN, CHI: CHI
   };
   root.AALunar = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

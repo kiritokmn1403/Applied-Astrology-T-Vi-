@@ -350,3 +350,138 @@ Ghi chú: trên Note 9, bước kiểm tra mạng báo "Không có kết nối I
 | Windows | x64, chỉ WebView1/IE, ES6 lỗi | WebView2 + IE11, x86/x64/ARM64, Setup.exe có trình gỡ, 3 MSI, appxbundle 3 kiến trúc, portable |
 | Kiểm thử | Chụp tay | Tự kiểm thử 24 bước + unit test + video |
 | Thương hiệu | Còn Visicons | Đã gỡ hoàn toàn |
+
+---
+
+# CẬP NHẬT v0.0.3 – Applied Astrology (Tử Vi Ứng Dụng)
+**Ngày thực hiện**: 03/11/2026 (15:09 – 17:45)  
+**Người thực hiện**: Claude (Claude Opus 5.5, theo yêu cầu của chủ dự án Kiệt Nguyễn)  
+**Package Android**: `com.appliedastrology.tuvi`, cùng khóa ký với v0.0.2, versionCode 3001/3002/3003. **Cài đè lên 0.0.2 được, không cần gỡ.**  
+**Công cụ**: VS Code (soạn mã), Node.js 24 (unit test), Python 3 (đọc SWF, i18n), Chromium/Playwright (kiểm thử web không giao diện), JDK 17 + Android SDK 35/NDK 27 (aapt2, d8, clang, zipalign, apksigner), Android Emulator (API 37, API 23), adb + Galaxy Note 9 thật, Visual Studio 2022 Build Tools (Roslyn csc), Windows SDK (makeappx, signtool), WiX 3.14, ffmpeg, Git.
+
+## 1. Phạm vi yêu cầu (Project – Applied Astrology.xlsx, sheet "Feature Check")
+| # | Hạng mục | Thực hiện |
+|---|---|---|
+| 1 | Sheet *Creat & Update* (3 yêu cầu) | (a) Android: nội dung/nút không bị thanh trạng thái, thanh điều hướng che; (b) mục **Âm Lịch** riêng từ bộ project Âm Lịch – Luna Calendar + nội dung SWF; (c) mục **Giới Thiệu** kiểu Aniyomi/Mangayomi/Nekoyomi: Nhật ký ứng dụng, Báo cáo lỗi, Kiểm tra cập nhật lấy từ link trong sheet *Update Link*, tự tải và cài |
+| 2 | Rà sheet Project GitHub, tối ưu và cập nhật | Xem mục 6 |
+| 3 | Kiểm tra độ ổn định các tính năng ("App Feature Set") | Sheet này **không có** trong file Excel → dùng danh sách tính năng v0.0.2 + tính năng mới; tự kiểm thử tăng từ **24 lên 36 bước** |
+| 4 | Quét Flash Player, Runtime Native/Hybrid, Browser, Aniyomi/Mangayomi/Nekoyomi, SWF | Xem mục 6 |
+| 5 | Dịch toàn bộ sang các ngôn ngữ của Aniyomi/Mangayomi/Nekoyomi | **68/68 ngôn ngữ dịch đầy đủ** (trước đây 51; 17 ngôn ngữ còn dùng tiếng Anh nay đã dịch). Nội dung 611 bài Bửu Đình giữ nguyên văn tiếng Việt (có nút dịch trực tuyến) |
+| 6 | Đối chiếu nội dung SWF, bổ sung phần thiếu | Quét lại 62.236 ký tự-đối tượng theo khung (Frame) của SWF. Frame 4–16 (13 chương thư viện) đã đủ. **Frame 3 (khung lập lá số)** còn thiếu: bảng *Lục Thập Hoa Giáp + nạp âm + năm sinh* và 6 màu *giấy lót nền* → đã bổ sung |
+
+## 2. Hạng mục đã làm & dòng lệnh / tệp đã sửa
+| # | Hạng mục | Tệp / dòng lệnh chính | Công cụ |
+|---|---|---|---|
+| 1 | **Sửa nội dung bị che (Android 15+)**: targetSdk 35 khiến Android 15/16/17 ép tràn viền (edge-to-edge); thanh tab dưới cùng nằm dưới thanh điều hướng. Bọc WebView trong `FrameLayout`, `setOnApplyWindowInsetsListener` → đệm `systemBars() \| displayCutout() \| ime()` (API ≥ 35; API < 35 hệ thống tự chừa). Thêm `env(safe-area-inset-*)` cho CSS, thanh tab gọn hơn trên máy nhỏ | `MainActivity.applyInsets()`, `css/app.css` | VS Code, javac |
+| 2 | Thanh trạng thái/điều hướng **đổi màu theo giao diện** (biểu tượng sáng/tối) | `MainActivity.setBars()` (`WindowInsetsController.setSystemBarsAppearance`, API 23–29 dùng `SYSTEM_UI_FLAG_LIGHT_*`), `AAHost.setBars()` | |
+| 3 | **Mục Âm Lịch** (tab mới): lịch tháng Âm Dương GMT+7; Can Chi ngày/tháng/năm; nạp âm ngày/năm; 24 tiết khí (đánh dấu ngày giao tiết); ngày Hoàng đạo/Hắc đạo theo 12 thần trực nhật; 12 Trực; giờ Tí đầu ngày; 6 giờ hoàng đạo/6 giờ hắc đạo; ngày lễ âm/dương + Giao thừa; đổi Dương ↔ Âm (có tháng nhuận); "Lập lá số theo ngày này" | `js/calendar.js` (mới), `lunar.js` thêm `tietKhiIndex()`, `sunDegree()` | Node.js |
+| 4 | **Lục Thập Hoa Giáp & Nạp Âm** (từ Frame 3 của SWF): 60 Can Chi, nạp âm tô màu theo ngũ hành, năm sinh 1840–2100, tra tuổi | `calendar.js` `sixty()`, `yearInfo()` | Python (đọc SWF) |
+| 5 | **Giấy lót nền lá số** (từ Frame 3 của SWF: vàng kỹ xảo, vàng chanh, xanh nhạt, lục nhạt, tím nhạt, vàng) – tùy chọn trong Cài Đặt | `app.js` `PAPERS`, `applyPaper()` | |
+| 6 | **Mục Giới Thiệu** (mở từ Cài Đặt, bố cục Aniyomi/Mangayomi): phiên bản + ngày build; Cập nhật (tự kiểm tra khi mở – tối đa 1 lần/12 giờ, tự cài sau khi tải, nút Kiểm tra, trang Releases); Có gì mới (nhật ký thay đổi trong app); Chẩn đoán (bật/tắt ghi nhật ký, xem/xuất/xóa nhật ký); Báo cáo lỗi (lỗi JS + sự cố native, mở GitHub Issues điền sẵn thông tin thiết bị, sao chép thông tin gỡ lỗi); Giấy phép mã nguồn mở; Liên kết | `js/about.js` (mới), `data/changelog.js` (mới) | |
+| 7 | **Kiểm tra & tự cập nhật**: gọi `https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest`, so phiên bản, chọn đúng tệp theo nền tảng (APK theo ABI; Windows theo kiểu cài: Setup.exe / MSI theo kiến trúc / portable zip / appxbundle) | `about.js` `pickAsset()`, `cmpVer()` | |
+| 8 | Android: tải nền (theo chuyển hướng github.com → *.githubusercontent.com, kiểm tra kích thước), cài bằng trình cài hệ thống; xin quyền "Cài ứng dụng không rõ nguồn gốc" (API 26+); `ApkProvider` (content://, không cần AndroidX) cho API 24+, `file://` cho API 23 | `MainActivity.startDownload()/installApk()`, `ApkProvider.java` (mới), manifest `REQUEST_INSTALL_PACKAGES` + `<provider>` | javac, d8 |
+| 8b | Windows IE11: tắt dựng hình GPU của MSHTML (ổn định trên Windows 7/8.1 và máy có driver lỗi) | `AppHost.StartIE()` | Roslyn csc |
+| 9 | Windows: tải nền có tiến độ; Setup.exe cài im lặng đúng thư mục hiện tại rồi mở lại app; MSI `msiexec /passive`; portable giải nén và chép đè (giữ `userdata`); appxbundle mở App Installer | `AppHost.cs` lớp `Updater` | Roslyn csc |
+| 10 | Nhật ký ứng dụng: Android `files/app.log` (xoay vòng 256 KB), Windows `app.log` (512 KB); bộ đệm JS 400 dòng | `fileLog()`, `Program.Log()`, `AAHost.log()` | |
+| 11 | Báo cáo lỗi: Android `Thread.setDefaultUncaughtExceptionHandler` → `files/crash/*.txt`; Windows `Application.ThreadException` + `AppDomain.UnhandledException` → `crash\*.txt`; lỗi JS (`window.onerror`) lưu 100 mục | `installCrashHandler()`, `Program.WriteCrash()`, `AAHost.recordError()` | |
+| 12 | **i18n**: 74 khóa mới × 66 ngôn ngữ + dịch đầy đủ 17 ngôn ngữ còn thiếu (am, as, be, ceb, cv, eo, fil, jv, kn, ml, mr, my, ne, sa, sah, sc, sdh – 233 chuỗi mỗi ngôn ngữ). Kiểm tra tự động: đủ khóa, đủ 7 thứ trong tuần, giữ nguyên `{v}/{p}/{m}/{y}/{n}/{c}` | `tools/i18n_v3/*.txt`, `tools/merge_i18n_v3.py` (mới), `python tools/build_i18n.py`, `node tools/tests/i18n_test.js` | Python, Node.js |
+| 13 | Biểu tượng thanh tab hiển thị dạng chữ (thêm U+FE0E) – Samsung từng vẽ ☾ thành emoji | `index.html` | |
+| 14 | Build: versionCode 3001–3003; thư mục ASCII `D:\yh\aa003`; thêm `System.IO.Compression*.dll` khi biên dịch AppHost; chép `assets/certs`; bước `11b` sinh trình cài appx; kiểm thử nâng cấp 0.0.2 → 0.0.3 (Android `adb install -r`, Windows Setup.exe đè); `calendar_test.js`; dump `window_insets.txt` | `build_release_0.0.3.ps1`, `BUILD_v0.0.3.bat`, `BUILD_TEST_v0.0.3.bat`, `PUBLISH_v0.0.3.bat` | PowerShell |
+
+## 3. Lỗi phát hiện trong quá trình update và cách sửa
+| Lượt | Lỗi | Nguyên nhân | Sửa |
+|---|---|---|---|
+| Rà v0.0.2 | Thanh tab/nút bị thanh điều hướng che trên Android 15+ | targetSdk 35 → hệ thống ép edge-to-edge, `adjustResize` không còn tác dụng | Đệm WindowInsets ở lớp native (mục 2.1) |
+| Rà v0.0.2 | Thiếu bảng Lục Thập Hoa Giáp và màu giấy nền của SWF | Bộ trích xuất v0.0.2 chỉ lấy Frame 4–16 | Quét lại theo Frame, bổ sung từ Frame 3 |
+| Rà v0.0.2 | 17 ngôn ngữ vẫn hiện tiếng Anh | Chưa dịch | Dịch đầy đủ |
+| 1 (16:10) | **Android 6.0: tải bản cập nhật lỗi** `SSLHandshakeException: Trust anchor for certification path not found` (gọi API vẫn được) | Tệp phát hành được tải từ `*.githubusercontent.com` dùng root **DigiCert Global Root G2** – kho CA của Android 6 chưa có | `TlsCompat.java` (mới): TrustManager thử kho hệ thống trước, chỉ khi bị từ chối mới thử 13 root CA công khai đóng gói (`src/android/certs`, lấy từ kho Mozilla); chỉ áp dụng API < 24; vẫn xác minh chứng chỉ & hostname |
+| 1 (16:33) | appxbundle đã ký: `0x80073CF0` / **`0x800B0109` root certificate must be trusted** | Gói tự ký cần chứng chỉ trong *Local Machine › Trusted People* (cần Admin); script build không chạy quyền Admin nên chỉ nhập được vào kho người dùng | Thêm `AppliedAstrology-0.0.3-windows-appx-install.bat`: tự xin UAC, nhập chứng chỉ vào LocalMachine\TrustedPeople rồi cài gói. Kiểm thử tự động vẫn cài layout x64 (chế độ developer) để chạy 36 bước |
+| 1 | Samsung hiển thị ☾ thành emoji ô tím ở tab Âm Lịch | Ký tự có biến thể emoji | Thêm U+FE0E (biến thể chữ) cho mọi biểu tượng tab |
+| 2 (16:59) | **Chế độ IE11 (đường chạy Windows 7) hiện cửa sổ trắng** – 36/36 bước vẫn đạt (DOM chạy đúng) nhưng ảnh chụp & video toàn màu trắng | Khoanh vùng bằng 4 biến thể chạy IE11 trên cùng máy: host 0.0.3 + web 0.0.3, host 0.0.2 + web 0.0.3, host 0.0.3 + web 0.0.2, và **chính bản 0.0.2 gốc** (hôm qua chụp bình thường) → **tất cả đều trắng** ⇒ không phải lỗi mã 0.0.3 mà do dựng hình GPU của MSHTML (`FEATURE_GPU_RENDERING = 1`) không còn vẽ trên máy kiểm thử (Windows 11 build 26300, NVIDIA) | `AppHost.cs`: đặt `FEATURE_GPU_RENDERING = 0` (dựng hình phần mềm; biến môi trường `AA_IE_GPU=1` để bật lại). Thử lại: ảnh IE11 có nội dung (≈100 KB/ảnh thay vì 6,5 KB trắng) |
+
+## 4. Kiểm thử
+- **Unit test (Node.js)**: `engine_test.js` 3.965 phép kiểm khớp 98,18% (không đổi); `calendar_test.js` **15/15** (Tết 2026 = 17/2, 1/1/2000 = Mậu Ngọ, Lập Xuân 4/2/2026, Đông Chí 22/12/2026, Tết 2027 = 6/2/2027, Trung Thu, Giao thừa, 2.000 ngày liên tiếp hợp lệ); `i18n_test.js` **68/68 ngôn ngữ đầy đủ**; kiểm tra cú pháp **ES5** (acorn) cho toàn bộ JS; Chromium headless 390×844 & 1280×820.
+- **Tự kiểm thử 36 bước trong ứng dụng** (24 bước cũ + 12 bước mới): 24 Âm Lịch hiển thị tháng · 25 Tết 2026 (Can Chi, tiết khí, 6 giờ hoàng đạo, ngày lễ) · 26 đổi Âm ↔ Dương · 27 Lục Thập Hoa Giáp · 28 giấy lót nền · 29 trang Giới thiệu · 30 kiểm tra cập nhật thật trên GitHub · 31 tải thật tệp phát hành phù hợp nền tảng · 32 nhật ký · 33 báo cáo lỗi · 34 vùng an toàn (thanh tab nằm trong khung nhìn) · 35 tiếng Pháp cho khóa mới · 36 khôi phục mặc định.
+- **Kiểm thử nâng cấp**: Android cài 0.0.2 rồi `adb install -r` 0.0.3 → **Success** (Note 9, Android 17, Android 6); Windows Setup.exe 0.0.2 → 0.0.3 cài đè → phiên bản tệp 0.0.3.0.
+
+### Lượt 1 (03/11/2026 16:10–16:35, BUILD_TEST)
+| Thiết bị / bản cài | Engine | Kết quả |
+|---|---|---|
+| Samsung Galaxy Note 9 SM-N960N (thiết bị thật, USB), Android 10, arm64-v8a, DeX | Android WebView, tìm kiếm native | **36/36** |
+| Emulator Android 17 (API 37), x86_64 – tràn viền bắt buộc | Android WebView | **36/36** |
+| Emulator Android 6.0 (API 23), x86_64 | Android WebView | 35/36 – bước 31 lỗi TLS (đã sửa) |
+| Windows 11 x64 portable | Edge WebView2 156 | **36/36** |
+| Windows 11 x64 portable, ép IE11 (đường chạy Windows 7) | IE11 / MSHTML | **36/36** |
+| Setup.exe (nâng cấp từ 0.0.2, cài im lặng → chạy → gỡ sạch) | Edge WebView2 | **36/36** |
+| MSI x64 (`msiexec /i /qn` → chạy → `/x`) | Edge WebView2 | **36/36** |
+| appxbundle (layout x64, chế độ developer) | Edge WebView2 | **36/36** |
+
+### Lượt 2 (03/11/2026 16:37–16:59, BUILD_TEST, sau khi sửa TLS Android 6)
+| Thiết bị / bản cài | Kết quả |
+|---|---|
+| Galaxy Note 9 (thật) · Android 17 emulator · **Android 6.0 emulator** | **36/36 · 36/36 · 36/36** (Android 6 tải cập nhật 2.750.565 byte thành công) |
+| Windows portable WebView2 · portable IE11 · Setup.exe · MSI x64 · appxbundle | **36/36** cả 5 (ảnh IE11 trắng → xem lỗi lượt 2 ở mục 3) |
+
+### Lượt 3 – KẾT QUẢ CUỐI (03/11/2026 17:12–17:33, BUILD_TEST, đủ mọi bản sửa) – bản được phát hành
+| Thiết bị / bản cài | Engine | Kết quả |
+|---|---|---|
+| Samsung Galaxy Note 9 SM-N960N (thật, USB), Android 10, arm64-v8a, DeX | Android WebView, tìm kiếm native | **36/36**, nâng cấp 0.0.2 → 0.0.3 Success |
+| Emulator Android 17 (API 37), edge-to-edge bắt buộc | Android WebView | **36/36**, nâng cấp Success |
+| Emulator Android 6.0 (API 23) | Android WebView | **36/36**, nâng cấp thành công |
+| Windows 11 x64 portable | Edge WebView2 156 | **36/36** |
+| Windows 11 x64 portable, ép IE11 (đường chạy Windows 7) | IE11 / MSHTML (dựng hình phần mềm) | **36/36**, ảnh chụp đầy đủ nội dung |
+| Setup.exe (cài đè lên 0.0.2 → tệp 0.0.3.0, chạy, gỡ sạch) | Edge WebView2 | **36/36** |
+| MSI x64 | Edge WebView2 | **36/36** |
+| appxbundle (layout x64, chế độ developer – xem mục 3) | Edge WebView2 | **36/36** |
+
+**Tổng: 8/8 cấu hình, 288/288 bước PASS.**
+
+Bằng chứng: `test_reports/0.0.3/` (ảnh từng bước, ảnh màn hình thật `live_*.png`, `window_insets.txt`, `upgrade_test.txt`, logcat, `TEST_REPORT.md`, `all_results.json`); video kiểm thử Android/Windows đính kèm trong Release (`test-video-*.mp4`, không đưa vào git vì giới hạn dung lượng).
+
+## 5. Dung lượng & tốc độ
+| | v0.0.2 | v0.0.3 |
+|---|---|---|
+| APK mỗi ABI | 2,58 MB | 2,80 MB (thêm mục Âm Lịch, Giới thiệu, 17 ngôn ngữ mới, 13 root CA ~25 KB) |
+| Ngôn ngữ nạp theo yêu cầu | 49 tệp | 66 tệp (chỉ tải ngôn ngữ đang chọn) |
+| Thư viện | nạp từng chương khi cần | không đổi |
+| Lịch tháng | – | tính tại chỗ < 30 ms/tháng, không cần mạng |
+| Kiểm tra cập nhật | – | tối đa 1 lần/12 giờ, chạy nền sau 4 giây, không chặn giao diện |
+
+## 6. Tham chiếu sheet Project GitHub (đã quét)
+- **Âm Lịch – Luna Calendar**: `hochanh/amlich`, `copthuy/amlich` (bảng giờ hoàng đạo, tiết khí, ngày lễ, can chi giờ), `wolfhong/LunarCalendar` (24 tiết khí), `cmduyeen/lich-am-viet-nam`, `XhinLiang/LunarCalendar`, `lwlsw/Chinese-Lunar-Calendar-ics` → viết lại ES5 trong `calendar.js`, dùng chung thuật toán Hồ Ngọc Đức đã có.
+- **Aniyomi** (`AboutScreen.kt`, `AppUpdateChecker.kt`, `CrashLogUtil.kt`, `GlobalExceptionHandler.kt`), **Mangayomi** (`about_screen.dart`, `check_for_update.dart`, `error_reports_screen.dart`, `logs_state.dart`), **Nekoyomi** → bố cục Giới thiệu, cách chọn tệp phát hành theo nền tảng, nhật ký, báo cáo lỗi; danh sách 68 ngôn ngữ (moko-resources 63 + Mangayomi `lib/l10n`).
+- **Flash Player** (Ruffle, swf2js, Lightspark): cấu trúc thẻ SWF cho bộ đọc Python (tìm Frame 3). Vẫn không nhúng Ruffle (WASM không chạy trên IE11/Android 6).
+- **Runtime Native/Hybrid**: giữ mô hình vỏ native (Java + C#) bọc giao diện web dùng chung; mở rộng cầu nối (`x_*` 2 tham số).
+- **Trình duyệt** (Chromium/Firefox): WebView2/Android WebView; IE11 dự phòng.
+- Các mục không phù hợp với ứng dụng Tử Vi (VPN client, chặn quảng cáo, tải video, công cụ Wi-Fi "hacking", bỏ qua Cloudflare…) **không tích hợp**. VPN chỉ kiểm tra bên ngoài ứng dụng, như yêu cầu.
+
+## 7. So sánh với v0.0.2
+| Tiêu chí | v0.0.2 | v0.0.3 |
+|---|---|---|
+| Âm lịch | Chỉ dùng để lập lá số | **Mục Âm Lịch riêng**: lịch tháng, Can Chi, tiết khí, hoàng đạo, 12 Trực, giờ tốt, ngày lễ, đổi ngày |
+| Nội dung SWF | Frame 4–16 | + Frame 3: Lục Thập Hoa Giáp & nạp âm, 6 giấy lót nền |
+| Giới thiệu | 3 dòng thông tin | Trang riêng: cập nhật tự động, có gì mới, nhật ký, báo cáo lỗi, giấy phép |
+| Cập nhật | Tải tay từ GitHub | Tự kiểm tra, tự tải, tự cài (Android/Windows) |
+| Android 15+ | Nội dung bị thanh hệ thống che | Đệm vùng an toàn, màu thanh hệ thống theo giao diện |
+| Android 6 | – | Tải HTTPS tới GitHub hoạt động nhờ root CA dự phòng |
+| Ngôn ngữ | 51 dịch đủ / 68 | **68/68 dịch đủ** |
+| Tự kiểm thử | 24 bước | 36 bước + kiểm thử nâng cấp + unit test lịch |
+| Windows appx | Lỗi 0x80073CF0 khi cài gói ký | Rõ nguyên nhân (0x800B0109) + trình cài tự xin quyền |
+
+## 8. Bảng mã SHA-256 v0.0.3 (`output/0.0.3/SHA256SUMS-0.0.3.txt`)
+| Tệp | Dung lượng | SHA-256 |
+|---|---|---|
+| AppliedAstrology-0.0.3-arm64-v8a.apk | 2.937.467 B | `d32c2153ae41aa5db9a4dd230302aec99d6829de9453c50cac9d2baaafcbfdcc` |
+| AppliedAstrology-0.0.3-armeabi-v7a.apk | 2.937.469 B | `a0712b1b6e4de06591da16f724ee6276c9e6bc35475edd7fcac4ff6399f355e7` |
+| AppliedAstrology-0.0.3-x86_64.apk | 2.937.464 B | `9baba920b360441036ee72715cf2ac458820d2c7aec5937698bf4a28ab000087` |
+| AppliedAstrology-0.0.3-windows-Setup.exe | 3.188.624 B | `d137baa197d6e8a296e93bc6e7914b74a5cea093b7198b597d2eddfdd4f80c1a` |
+| AppliedAstrology-0.0.3-windows.appxbundle | 9.994.158 B | `48b32fa7b05814c699cccf8fb10062f6be23362e21d2b95b7258cb5d7c753ae7` |
+| AppliedAstrology-0.0.3-windows-appx-install.bat | 1.693 B | `fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26` |
+| AppliedAstrology-0.0.3-windows-portable.zip | 3.169.174 B | `ac3c1ba92b6c0cc2dfabc97dab2f8fe2a20634544daae559bcf8422dc48a3c4d` |
+| AppliedAstrology-0.0.3-windows-x64.msi | 2.314.240 B | `c677b0e76a3a09173dc0fcf6736992553525e8f703f9df1ded8c08fc9fb7eb82` |
+| AppliedAstrology-0.0.3-windows-x86.msi | 2.289.664 B | `548505c5221e0dd95a2e2fce46713a3979a2175f9e2ba3f994d0b1ea0e7d35c8` |
+| AppliedAstrology-0.0.3-windows-arm64.msi | 2.285.568 B | `3c131f3eaccde8d0db4d658d5052e9230955718eda506bdc4029e35027f6e80b` |
+| AppliedAstrology-0.0.3-signing-certificate.cer | 794 B | `2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73` |
+
+## 9. Phát hành
+`PUBLISH_v0.0.3.bat` → `build_release_0.0.3.ps1 -Phase publish`: `git add` (src, tools, docs, output/0.0.3, test_reports/0.0.3, README, CHANGELOG, TECHNICAL_UPDATE_NOTES, script) → commit → `git push origin HEAD:main` → tag `v0.0.3` → tạo GitHub Release (token lấy từ Git Credential Manager của máy, không ghi log) → tải lên 12 tệp output + 4 video kiểm thử → đối chiếu tên và kích thước từng tệp trên Release.

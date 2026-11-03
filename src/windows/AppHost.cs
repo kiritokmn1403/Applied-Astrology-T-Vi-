@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.2 - Windows host (Windows 7 SP1 trở lên; x86 / x64 / ARM64)
+// Applied Astrology v0.0.3 - Windows host (Windows 7 SP1 trở lên; x86 / x64 / ARM64)
 // Ưu tiên Microsoft Edge WebView2 (Windows 10/11) và tự chuyển sang IE11/MSHTML (Windows 7/8.1)
 // khi máy không có WebView2 Runtime. Giao diện nằm trong thư mục "web" cạnh tệp exe.
 using System;
@@ -21,8 +21,8 @@ using Microsoft.Win32;
 [assembly: AssemblyDescription("Applied Astrology - Tử Vi Ứng Dụng (Bửu Đình)")]
 [assembly: AssemblyCompany("Applied Astrology")]
 [assembly: AssemblyCopyright("Applied Astrology contributors")]
-[assembly: AssemblyVersion("0.0.2.0")]
-[assembly: AssemblyFileVersion("0.0.2.0")]
+[assembly: AssemblyVersion("0.0.3.0")]
+[assembly: AssemblyFileVersion("0.0.3.0")]
 [assembly: ComVisible(false)]
 
 namespace AppliedAstrology
@@ -34,6 +34,7 @@ namespace AppliedAstrology
         internal static string TestOut;
         internal static string ForceEngine;
         internal static string DataDir;
+        internal const string Version = "0.0.3";
 
         [STAThread]
         static int Main(string[] args)
@@ -62,6 +63,11 @@ namespace AppliedAstrology
                 if (string.IsNullOrEmpty(TestOut)) TestOut = Path.Combine(DataDir, "selftest");
                 Directory.CreateDirectory(TestOut);
             }
+            // v0.0.3: ghi báo cáo lỗi khi ứng dụng gặp ngoại lệ không xử lý
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += delegate (object s, ThreadExceptionEventArgs e) { WriteCrash(e.Exception); };
+            AppDomain.CurrentDomain.UnhandledException += delegate (object s, UnhandledExceptionEventArgs e) { WriteCrash(e.ExceptionObject as Exception); };
+            Log("start v" + Version + " os=" + Environment.OSVersion.VersionString + " arch=" + ProcArch() + " install=" + InstallKind());
             try { SetProcessDPIAware(); } catch { }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -71,8 +77,33 @@ namespace AppliedAstrology
 
         [DllImport("user32.dll")] static extern bool SetProcessDPIAware();
 
+        internal static string CrashDir { get { string d = Path.Combine(DataDir, "crash"); Directory.CreateDirectory(d); return d; } }
+        internal static void WriteCrash(Exception ex)
+        {
+            try
+            {
+                string txt = "Applied Astrology " + Version + "\r\nOS: " + Environment.OSVersion.VersionString + (Environment.Is64BitOperatingSystem ? " 64-bit" : " 32-bit") +
+                    "\r\nProcess: " + ProcArch() + "\r\nInstall: " + InstallKind() + "\r\nTime: " + DateTime.Now.ToString("s") + "\r\n\r\n" + (ex == null ? "(unknown)" : ex.ToString());
+                File.WriteAllText(Path.Combine(CrashDir, "crash_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt"), txt, Encoding.UTF8);
+                Log("CRASH " + (ex == null ? "" : ex.Message));
+            }
+            catch { }
+        }
+        /** Cách cài đặt: portable | appx | msi | setup */
+        internal static string InstallKind()
+        {
+            string b = BaseDir.ToLowerInvariant();
+            if (File.Exists(Path.Combine(BaseDir, "portable.ini"))) return "portable";
+            if (b.Contains("\\windowsapps\\")) return "appx";
+            if (File.Exists(Path.Combine(BaseDir, "uninstall.exe"))) return "setup";
+            try { using (var k = Registry.CurrentUser.OpenSubKey(@"Software\AppliedAstrology\Msi")) if (k != null) return "msi"; } catch { }
+            return "setup";
+        }
+        internal static bool LogEnabled = true;
         internal static void Log(string msg)
         {
+            if (!LogEnabled && !SelfTest) return;
+            try { string lf = Path.Combine(DataDir, "app.log"); if (File.Exists(lf) && new FileInfo(lf).Length > 512 * 1024) { File.Copy(lf, lf + ".1", true); File.Delete(lf); } } catch { }
             try { File.AppendAllText(Path.Combine(DataDir, "app.log"), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ") + msg + Environment.NewLine, Encoding.UTF8); } catch { }
             if (SelfTest) try { File.AppendAllText(Path.Combine(TestOut, "app.log"), DateTime.Now.ToString("HH:mm:ss ") + msg + Environment.NewLine, Encoding.UTF8); } catch { }
         }
@@ -106,6 +137,35 @@ namespace AppliedAstrology
             storeFile = Path.Combine(Program.DataDir, "store.json");
             store = new Dictionary<string, string>();
             try { if (File.Exists(storeFile)) store = json.Deserialize<Dictionary<string, string>>(File.ReadAllText(storeFile, Encoding.UTF8)) ?? store; } catch { }
+            string st; if (store.TryGetValue("aa.settings", out st) && st != null && st.Contains("\"logs\":false")) Program.LogEnabled = false;
+        }
+
+        private static string ReadTail(string file, int max)
+        {
+            try
+            {
+                if (!File.Exists(file)) return "";
+                using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    if (fs.Length > max) fs.Seek(-max, SeekOrigin.End);
+                    using (var sr = new StreamReader(fs, Encoding.UTF8)) return sr.ReadToEnd();
+                }
+            }
+            catch { return ""; }
+        }
+
+        private string CrashList()
+        {
+            var list = new List<Dictionary<string, object>>();
+            try
+            {
+                string[] files = Directory.GetFiles(Program.CrashDir, "*.txt");
+                Array.Sort(files); Array.Reverse(files);
+                for (int i = 0; i < files.Length && i < 20; i++)
+                    list.Add(new Dictionary<string, object> { { "name", Path.GetFileName(files[i]) }, { "text", ReadTail(files[i], 16384) } });
+            }
+            catch { }
+            return json.Serialize(list);
         }
 
         public string HostCall(string cmd, string a, string b)
@@ -115,7 +175,7 @@ namespace AppliedAstrology
                 switch (cmd)
                 {
                     case "storeGet": { string v; return store.TryGetValue(a, out v) ? v : null; }
-                    case "storeSet": store[a] = b; Save(); return "1";
+                    case "storeSet": store[a] = b; Save(); if (a == "aa.settings") Program.LogEnabled = b == null || !b.Contains("\"logs\":false"); return "1";
                     case "info": return Info();
                     case "saveFile": return SaveFile(a, b);
                     case "share": Clipboard.SetText(a ?? ""); MessageBox.Show(form, "Đã sao chép vào bộ nhớ tạm / Copied to clipboard.", "Applied Astrology"); return "1";
@@ -123,6 +183,15 @@ namespace AppliedAstrology
                     case "httpGet": return HttpGet(a);
                     case "log": Program.Log("JS " + a); return "1";
                     case "testStep": return form.TestStep(a, b);
+                    case "readLog": return ReadTail(Path.Combine(Program.DataDir, "app.log"), 131072);
+                    case "clearLog": try { File.Delete(Path.Combine(Program.DataDir, "app.log")); File.Delete(Path.Combine(Program.DataDir, "app.log.1")); } catch { } return "1";
+                    case "crashList": return CrashList();
+                    case "clearCrash": try { foreach (string f in Directory.GetFiles(Program.CrashDir)) File.Delete(f); } catch { } return "1";
+                    case "copy": Clipboard.SetText(string.IsNullOrEmpty(a) ? " " : a); return "1";
+                    case "download": return Updater.Start(a, b) ? "1" : null;
+                    case "downloadStatus": return Updater.Status(json);
+                    case "installUpdate": return Updater.Install(a, form);
+                    case "setBars": return "1";
                 }
             }
             catch (Exception ex) { Program.Log("HostCall " + cmd + " error: " + ex.Message); }
@@ -142,6 +211,9 @@ namespace AppliedAstrology
             d["engine"] = form.EngineName;
             d["portable"] = File.Exists(Path.Combine(Program.BaseDir, "portable.ini"));
             d["dataDir"] = Program.DataDir;
+            d["install"] = Program.InstallKind();
+            d["arch"] = Program.ProcArch();
+            d["version"] = Program.Version;
             return json.Serialize(d);
         }
 
@@ -181,7 +253,8 @@ namespace AppliedAstrology
             {
                 var req = (HttpWebRequest)WebRequest.Create(url);
                 req.Timeout = 6000; req.ReadWriteTimeout = 6000;
-                req.UserAgent = "AppliedAstrology/0.0.2 Windows";
+                req.UserAgent = "AppliedAstrology/" + Program.Version + " Windows";
+                if (url.StartsWith("https://api.github.com/")) req.Accept = "application/vnd.github+json";
                 using (var resp = (HttpWebResponse)req.GetResponse())
                 using (var sr = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
                 {
@@ -191,6 +264,92 @@ namespace AppliedAstrology
             catch (Exception ex) { r["ok"] = false; r["status"] = 0; r["body"] = ex.Message; }
             r["ms"] = sw.ElapsedMilliseconds;
             return json.Serialize(r);
+        }
+    }
+
+    /// <summary>v0.0.3: tải bản cập nhật từ GitHub Releases (chạy nền, có tiến độ) và cài đặt theo kiểu cài hiện tại.</summary>
+    static class Updater
+    {
+        static readonly object Lock = new object();
+        static string state = "idle", error = "", path = "";
+        static long got, total;
+
+        public static bool Start(string url, string name)
+        {
+            if (string.IsNullOrEmpty(url) || !url.StartsWith("https://")) return false;
+            lock (Lock) { if (state == "running") return true; state = "running"; got = 0; total = 0; error = ""; path = ""; }
+            var th = new Thread(delegate ()
+            {
+                try
+                {
+                    foreach (char c in Path.GetInvalidFileNameChars()) name = name.Replace(c, '_');
+                    string dir = Path.Combine(Path.GetTempPath(), "AppliedAstrology-update");
+                    Directory.CreateDirectory(dir);
+                    string part = Path.Combine(dir, name + ".part"), dst = Path.Combine(dir, name);
+                    var req = (HttpWebRequest)WebRequest.Create(url);
+                    req.UserAgent = "AppliedAstrology/" + Program.Version + " Windows";
+                    req.AllowAutoRedirect = true; req.Timeout = 30000; req.ReadWriteTimeout = 60000;
+                    using (var resp = (HttpWebResponse)req.GetResponse())
+                    using (var rs = resp.GetResponseStream())
+                    using (var fs = new FileStream(part, FileMode.Create, FileAccess.Write))
+                    {
+                        total = resp.ContentLength;
+                        byte[] buf = new byte[81920]; int n;
+                        while ((n = rs.Read(buf, 0, buf.Length)) > 0) { fs.Write(buf, 0, n); got += n; }
+                    }
+                    if (total > 0 && got != total) throw new IOException("incomplete " + got + "/" + total);
+                    if (File.Exists(dst)) File.Delete(dst);
+                    File.Move(part, dst);
+                    path = dst; state = "done";
+                    Program.Log("update downloaded " + dst + " " + got);
+                }
+                catch (Exception ex) { error = ex.Message; state = "error"; Program.Log("update download error " + ex.Message); }
+            });
+            th.IsBackground = true; th.Start();
+            return true;
+        }
+
+        public static string Status(JavaScriptSerializer json)
+        {
+            return json.Serialize(new Dictionary<string, object> { { "state", state }, { "got", got }, { "total", total }, { "path", path }, { "error", error } });
+        }
+
+        /// <summary>Setup.exe: cài im lặng vào đúng thư mục hiện tại rồi mở lại; MSI: msiexec /passive; portable: giải nén đè (giữ userdata); appx: App Installer.</summary>
+        public static string Install(string file, Form form)
+        {
+            if (string.IsNullOrEmpty(file) || !File.Exists(file)) return null;
+            string kind = Program.InstallKind(), exe = Path.Combine(Program.BaseDir, "AppliedAstrology.exe");
+            string lower = file.ToLowerInvariant();
+            Program.Log("update install " + file + " kind=" + kind);
+            if (Program.SelfTest) return "selftest";
+            string script = Path.Combine(Path.GetTempPath(), "AppliedAstrology-update", "apply_update.cmd");
+            string pid = Process.GetCurrentProcess().Id.ToString();
+            var sb = new StringBuilder();
+            sb.AppendLine("@echo off");
+            sb.AppendLine(":wait");
+            sb.AppendLine("tasklist /FI \"PID eq " + pid + "\" 2>nul | find \"" + pid + "\" >nul && (ping -n 2 127.0.0.1 >nul & goto wait)");
+            if (lower.EndsWith(".exe"))
+                sb.AppendLine("\"" + file + "\" /S /D=\"" + Program.BaseDir.TrimEnd('\\') + "\"");
+            else if (lower.EndsWith(".msi"))
+                sb.AppendLine("msiexec /i \"" + file + "\" /passive /norestart");
+            else if (lower.EndsWith(".zip"))
+            {
+                string tmp = Path.Combine(Path.GetTempPath(), "AppliedAstrology-update", "unzip");
+                if (Directory.Exists(tmp)) Directory.Delete(tmp, true);
+                System.IO.Compression.ZipFile.ExtractToDirectory(file, tmp);
+                string[] found = Directory.GetFiles(tmp, "AppliedAstrology.exe", SearchOption.AllDirectories);
+                if (found.Length == 0) return null;
+                string src = Path.GetDirectoryName(found[0]);
+                sb.AppendLine("robocopy \"" + src + "\" \"" + Program.BaseDir.TrimEnd('\\') + "\" /E /XD userdata /NFL /NDL /NJH /NJS >nul");
+            }
+            else { Process.Start(file); return "1"; }   // .appxbundle -> App Installer
+            if (kind != "msi" || !lower.EndsWith(".msi")) sb.AppendLine("start \"\" \"" + exe + "\"");
+            else sb.AppendLine("start \"\" \"%LOCALAPPDATA%\\Programs\\Applied Astrology\\AppliedAstrology.exe\"");
+            File.WriteAllText(script, sb.ToString(), new UTF8Encoding(false));
+            var psi = new ProcessStartInfo("cmd.exe", "/c \"" + script + "\"") { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, UseShellExecute = false };
+            Process.Start(psi);
+            form.BeginInvoke(new MethodInvoker(delegate { form.Close(); }));
+            return "1";
         }
     }
 
@@ -204,7 +363,7 @@ namespace AppliedAstrology
 
         public MainForm()
         {
-            Text = "Applied Astrology 0.0.2 – Tử Vi Ứng Dụng";
+            Text = "Applied Astrology " + Program.Version + " – Tử Vi Ứng Dụng";
             Width = 1320; Height = 900;
             StartPosition = FormStartPosition.CenterScreen;
             BackColor = Color.FromArgb(8, 11, 22);
@@ -303,8 +462,10 @@ namespace AppliedAstrology
                 string exe = Path.GetFileName(Application.ExecutablePath);
                 using (var k = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"))
                     k.SetValue(exe, 11001, RegistryValueKind.DWord);
+                // v0.0.3: tắt dựng hình GPU của MSHTML. Trên một số máy/driver (vd. Windows 11 build 26300 + NVIDIA),
+                // WebBrowser control dựng bằng GPU chỉ hiện nền trắng dù DOM vẫn chạy; dựng hình phần mềm ổn định cho Windows 7/8.1.
                 using (var k = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_GPU_RENDERING"))
-                    k.SetValue(exe, 1, RegistryValueKind.DWord);
+                    k.SetValue(exe, Environment.GetEnvironmentVariable("AA_IE_GPU") == "1" ? 1 : 0, RegistryValueKind.DWord);
             }
             catch { }
             var wb = new WebBrowser();
