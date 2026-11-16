@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Hiệu ứng kính lỏng khúc xạ (kiểu iOS 26) cho thanh tiêu đề, thanh tab, hộp thoại và các thẻ – vẽ native, chạy cả trên Android 6 và Windows 7.",
+"lg_mode": "Chế độ kính",
+"lg_off": "Tắt (nền phẳng)",
+"lg_frost": "Kính mờ (nhẹ, tiết kiệm pin)",
+"lg_liquid": "Kính lỏng khúc xạ (đầy đủ)",
+"lg_bg": "Nền phía sau kính",
+"lg_bg_nebula": "Tinh vân",
+"lg_bg_aurora": "Cực quang",
+"lg_bg_plain": "Phẳng",
+"lg_blur": "Độ mờ",
+"lg_refr": "Độ khúc xạ",
+"lg_bezel": "Bề rộng viền vát",
+"lg_tint": "Độ phủ màu",
+"lg_spec": "Độ sáng viền",
+"lg_sat": "Độ bão hòa",
+"lg_cards": "Áp dụng cho thẻ nội dung",
+"lg_chart": "Áp dụng cho các cung trên lá số",
+"lg_reset": "Khôi phục Liquid Glass mặc định",
+"s_glass": "Liquid Glass (kính lỏng)"
+}

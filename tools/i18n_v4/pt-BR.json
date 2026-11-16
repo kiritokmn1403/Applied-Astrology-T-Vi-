@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efeito de vidro líquido refrator (estilo iOS 26) para a barra de título, a barra de abas, as caixas de diálogo e os cartões – desenhado de forma nativa, funciona também no Android 6 e no Windows 7.",
+"lg_mode": "Modo de vidro",
+"lg_off": "Desligado (plano)",
+"lg_frost": "Vidro fosco (leve, economiza bateria)",
+"lg_liquid": "Refração líquida (completa)",
+"lg_bg": "Fundo atrás do vidro",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Simples",
+"lg_blur": "Desfoque",
+"lg_refr": "Refração",
+"lg_bezel": "Largura do bisel",
+"lg_tint": "Tonalidade",
+"lg_spec": "Brilho da borda",
+"lg_sat": "Saturação",
+"lg_cards": "Aplicar aos cartões de conteúdo",
+"lg_chart": "Aplicar às casas do mapa",
+"lg_reset": "Redefinir Liquid Glass",
+"s_glass": "Liquid Glass"
+}

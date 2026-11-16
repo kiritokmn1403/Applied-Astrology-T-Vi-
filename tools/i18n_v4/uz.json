@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Sarlavha paneli, varaqlar paneli, dialoglar va kartalar uchun yorugʻlikni sindiruvchi suyuq shisha effekti (iOS 26 uslubida) – tabiiy chiziladi, Android 6 va Windows 7 da ham ishlaydi.",
+"lg_mode": "Shisha rejimi",
+"lg_off": "Oʻchiq (tekis)",
+"lg_frost": "Xira shisha (yengil, batareyani tejaydi)",
+"lg_liquid": "Suyuq sinish (toʻliq)",
+"lg_bg": "Shisha ortidagi fon",
+"lg_bg_nebula": "Tumanlik",
+"lg_bg_aurora": "Qutb yogʻdusi",
+"lg_bg_plain": "Oddiy",
+"lg_blur": "Xiralik",
+"lg_refr": "Sinish",
+"lg_bezel": "Qirra kengligi",
+"lg_tint": "Tus",
+"lg_spec": "Qirra yaltirashi",
+"lg_sat": "Toʻyinganlik",
+"lg_cards": "Kontent kartalariga qoʻllash",
+"lg_chart": "Karta uylariga qoʻllash",
+"lg_reset": "Liquid Glass ni tiklash",
+"s_glass": "Liquid Glass"
+}

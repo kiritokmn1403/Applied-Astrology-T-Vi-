@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efek kaca cair sing mbiasaké cahya (gaya iOS 26) kanggo bilah judhul, bilah tab, dialog lan kertu – digambar sacara native, uga mlaku ing Android 6 lan Windows 7.",
+"lg_mode": "Mode kaca",
+"lg_off": "Mati (rata)",
+"lg_frost": "Kaca burem (entheng, ngirit baterei)",
+"lg_liquid": "Pambiasan cair (jangkep)",
+"lg_bg": "Latar ing mburi kaca",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Polos",
+"lg_blur": "Burem",
+"lg_refr": "Pambiasan",
+"lg_bezel": "Ambané pinggiran",
+"lg_tint": "Werna",
+"lg_spec": "Kilauan pinggir",
+"lg_sat": "Saturasi",
+"lg_cards": "Trapaké ing kertu isi",
+"lg_chart": "Trapaké ing istana bagan",
+"lg_reset": "Balèkaké Liquid Glass",
+"s_glass": "Liquid Glass"
+}

@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Kesan kaca cecair yang membiaskan cahaya (gaya iOS 26) untuk bar tajuk, bar tab, dialog dan kad – dilukis secara natif, turut berfungsi pada Android 6 dan Windows 7.",
+"lg_mode": "Mod kaca",
+"lg_off": "Mati (rata)",
+"lg_frost": "Kaca kabur (ringan, jimat bateri)",
+"lg_liquid": "Pembiasan cecair (penuh)",
+"lg_bg": "Latar belakang di sebalik kaca",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Kosong",
+"lg_blur": "Kekaburan",
+"lg_refr": "Pembiasan",
+"lg_bezel": "Lebar serong",
+"lg_tint": "Rona",
+"lg_spec": "Kilauan tepi",
+"lg_sat": "Ketepuan",
+"lg_cards": "Gunakan pada kad kandungan",
+"lg_chart": "Gunakan pada istana carta",
+"lg_reset": "Tetapkan semula Liquid Glass",
+"s_glass": "Liquid Glass"
+}

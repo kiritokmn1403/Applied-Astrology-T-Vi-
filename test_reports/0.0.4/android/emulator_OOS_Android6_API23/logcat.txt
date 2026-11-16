@@ -1,0 +1,396 @@
+﻿--------- beginning of main
+
+--------- beginning of system
+
+11-16 23:11:09.705  3121  3121 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:09.706  3121  3121 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:09.821  3121  3121 D AndroidRuntime: Calling main entry com.android.commands.svc.Svc
+
+11-16 23:11:09.842  3121  3121 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:10.342  3142  3142 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:10.344  3142  3142 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:10.394  3142  3142 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+
+11-16 23:11:10.412  3142  3142 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:10.889  3154  3154 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:10.890  3154  3154 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:10.939  3154  3154 D AndroidRuntime: Calling main entry com.android.commands.wm.Wm
+
+11-16 23:11:10.944  3154  3154 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:11.407  3167  3167 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:11.408  3167  3167 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:11.451  3167  3167 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+
+11-16 23:11:11.460  3167  3167 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:14.126  3192  3192 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:14.127  3192  3192 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:14.173  3192  3192 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:14.204  3192  3192 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:14.544  3204  3204 I AppliedAstrology: start v0.0.4 native abi=x86_64 sdk=23 device=unknown Android SDK built for x86_64 selftest=true
+
+11-16 23:11:17.306  3204  3204 I AppliedAstrology: SELFTEST start 44 steps
+
+11-16 23:11:17.369  3204  3204 I AppliedAstrology: build solar,15,8,1995,6
+
+11-16 23:11:17.390  3204  3204 I AppliedAstrology: SELFTEST PASS 01_chart_build lunar=20/7/1995 cuc=Thß╗ò Ng┼⌐ Cß╗Ñc menh=Dß║ºn
+
+11-16 23:11:19.960  3204  3204 I AppliedAstrology: SELFTEST PASS 02_palace_detail related=4
+
+11-16 23:11:20.208  3338  3338 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:20.209  3338  3338 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:20.254  3338  3338 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:20.267  3338  3338 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:22.532  3204  3204 I AppliedAstrology: build lunar,1,2,2023,3
+
+11-16 23:11:22.545  3204  3204 I AppliedAstrology: SELFTEST PASS 03_lunar_input solar=22/3/2023
+
+11-16 23:11:25.007  3204  3204 I AppliedAstrology: SELFTEST PASS 04_qr size=29
+
+11-16 23:11:26.114  3425  3425 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:26.116  3425  3425 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:26.164  3425  3425 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:26.174  3425  3425 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:29.944  3204  3204 I AppliedAstrology: saved /storage/emulated/0/Android/data/com.appliedastrology.tuvi/files/exports/LaSo-Nguyß╗àn_V─ân_An-2023.png
+
+11-16 23:11:29.996  3204  3204 I AppliedAstrology: SELFTEST PASS 05_png bytes=399280
+
+11-16 23:11:32.419  3478  3478 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:32.422  3478  3478 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:32.492  3478  3478 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:32.502  3478  3478 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:34.906  3204  3204 I AppliedAstrology: toast ─É├ú l╞░u l├í sß╗æ.
+
+11-16 23:11:34.910  3204  3204 I AppliedAstrology: SELFTEST PASS 06_save_profile saved=1
+
+11-16 23:11:37.494  3204  3204 I AppliedAstrology: SELFTEST PASS 07_library_home chapters=13 articles=611
+
+11-16 23:11:38.378  3533  3533 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:38.380  3533  3533 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:38.413  3533  3533 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:38.425  3533  3533 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:40.025  3204  3204 I AppliedAstrology: SELFTEST PASS 08_library_chapter items=10
+
+11-16 23:11:42.675  3204  3204 I AppliedAstrology: SELFTEST PASS 09_reader chars=21432
+
+11-16 23:11:44.297  3607  3607 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:44.299  3607  3607 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:44.362  3607  3607 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:44.400  3607  3607 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:45.309  3204  3204 I AppliedAstrology: search H├│a Kß╗╡
+
+11-16 23:11:45.880  3204  3204 I AppliedAstrology: SELFTEST PASS 10_search results=300 native=true 579ms
+
+11-16 23:11:48.498  3204  3204 I AppliedAstrology: search thien phu
+
+11-16 23:11:48.613  3204  3204 I AppliedAstrology: SELFTEST PASS 11_search_noaccent results=300
+
+11-16 23:11:50.754  3672  3672 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:50.756  3672  3672 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:50.907  3672  3672 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:50.972  3672  3672 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:51.265  3204  3204 I AppliedAstrology: SELFTEST PASS 12_assistant_overview chars=1379
+
+11-16 23:11:54.042  3204  3204 I AppliedAstrology: SELFTEST PASS 13_assistant_question chars=1322
+
+11-16 23:11:56.776  3204  3204 I AppliedAstrology: SELFTEST PASS 14_assistant_year chars=2330
+
+11-16 23:11:57.134  3780  3780 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:11:57.137  3780  3780 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:11:57.328  3780  3780 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:11:57.347  3780  3780 D AndroidRuntime: Shutting down VM
+
+11-16 23:11:59.663  3204  3204 I AppliedAstrology: SELFTEST PASS 15_settings_theme ivory-light
+
+11-16 23:12:02.197  3204  3204 I AppliedAstrology: setting lang=en
+
+11-16 23:12:02.308  3204  3204 I AppliedAstrology: SELFTEST PASS 16_settings_language_en Settings
+
+11-16 23:12:03.185  3883  3883 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:03.186  3883  3883 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:03.226  3883  3883 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:03.237  3883  3883 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:04.827  3204  3204 I AppliedAstrology: setting lang=ja
+
+11-16 23:12:04.986  3204  3204 I AppliedAstrology: SELFTEST PASS 17_settings_language_ja πâ⌐πéñπâûπâ⌐πâ¬
+
+11-16 23:12:07.588  3204  3204 I AppliedAstrology: SELFTEST PASS 18_settings_font_layout 
+
+11-16 23:12:09.031  3953  3953 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:09.032  3953  3953 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:09.082  3953  3953 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:09.093  3953  3953 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:10.147  3204  3204 I AppliedAstrology: SELFTEST PASS 19_chart_list_layout 
+
+11-16 23:12:12.861  3204  3204 I AppliedAstrology: SELFTEST PASS 20_desktop_dex wide=true dex=false
+
+11-16 23:12:14.991  4053  4053 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:14.993  4053  4053 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:15.043  4053  4053 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:15.056  4053  4053 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:15.355  3204  3204 I AppliedAstrology: saved /storage/emulated/0/Android/data/com.appliedastrology.tuvi/files/exports/AppliedAstrology-backup-2026-11-16.json
+
+11-16 23:12:15.355  3204  3204 I AppliedAstrology: toast πâÉπââπé»πéóπââπâùπéÆµ¢╕πüìσç║πüù: /storage/emulated/0/Android/data/com.appliedastrology.tuvi/files/exports/AppliedAstrology-backup-2026-11-16.json
+
+11-16 23:12:15.356  3204  3204 I AppliedAstrology: SELFTEST PASS 21_backup_export 
+
+11-16 23:12:17.930  3204  3204 I AppliedAstrology: toast πâçπâ╝πé┐πéÆσ╛⌐σàâπüùπü╛πüùπüƒ
+
+11-16 23:12:17.931  3204  3204 I AppliedAstrology: SELFTEST PASS 22_backup_import royal-gold
+
+11-16 23:12:20.806  4072  4072 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:20.807  4072  4072 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:20.862  4072  4072 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:20.878  4072  4072 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:20.939  3204  4070 I AppliedAstrology: TlsCompat: 13 bundled roots as fallback (API 23)
+
+11-16 23:12:21.269  3204  3204 I AppliedAstrology: net 664ms ip=113.177.247.151 warp=off
+
+11-16 23:12:26.563  4092  4092 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:26.564  4092  4092 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:26.602  4092  4092 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:26.613  4092  4092 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:27.623  3204  3204 I AppliedAstrology: SELFTEST PASS 23_network_check µÄÑτ╢Üµ╕êπü┐ ┬╖ Θüàσ╗╢: 664 ms
+
+11-16 23:12:27.623  3204  3204 I AppliedAstrology: IP: 113.177.247.151 ┬╖ σá┤µëÇ: VN ┬╖ PoP HKG ┬╖ WARP πü»µñ£σç║πüòπéîπü╛πü¢πéô
+
+11-16 23:12:30.174  3204  3204 I AppliedAstrology: SELFTEST PASS 24_calendar_view days=30 today=16/11
+
+11-16 23:12:32.390  4111  4111 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:32.391  4111  4111 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:32.428  4111  4111 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:32.440  4111  4111 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:33.013  3204  3204 I AppliedAstrology: SELFTEST PASS 25_calendar_tet_2026 1/1/2026 Nh├óm Tuß║Ñt | Canh Dß║ºn | B├¡nh Ngß╗ì tiet=Lß║¡p Xu├ón T╞░ Mß╗çnh truc=Th├ánh ev=Tß║┐t Nguy├¬n ─É├ín
+
+11-16 23:12:35.564  3204  3204 I AppliedAstrology: SELFTEST PASS 26_calendar_convert Tet2027=6/2/2027 3/11/2026->25/9/2026
+
+11-16 23:12:38.092  3204  3204 I AppliedAstrology: SELFTEST PASS 27_calendar_sixty rows=60 1995=ß║ñt Hß╗úi S╞ín ─Éß║ºu Hß╗Åa
+
+11-16 23:12:38.338  4128  4128 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:38.340  4128  4128 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:38.386  4128  4128 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:38.401  4128  4128 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:40.655  3204  3204 I AppliedAstrology: SELFTEST PASS 28_paper_background paper=vangchanh
+
+11-16 23:12:43.257  3204  3204 I AppliedAstrology: SELFTEST PASS 29_about_view current=about
+
+11-16 23:12:44.110  4145  4145 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:44.112  4145  4145 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:44.164  4145  4145 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:44.176  4145  4145 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:45.812  3204  3204 I AppliedAstrology: update check https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest
+
+11-16 23:12:46.502  3204  3204 I AppliedAstrology: update latest=0.0.3 current=0.0.4 newer=false asset=AppliedAstrology-0.0.3-x86_64.apk
+
+11-16 23:12:46.502  3204  3204 I AppliedAstrology: SELFTEST PASS 30_update_check latest=0.0.3 current=0.0.4 newer=false assets=16 asset=AppliedAstrology-0.0.3-x86_64.apk
+
+11-16 23:12:49.878  4172  4172 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:49.879  4172  4172 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:49.913  4172  4172 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:49.925  4172  4172 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:51.002  3204  4164 I AppliedAstrology: update downloaded /storage/emulated/0/Android/data/com.appliedastrology.tuvi/cache/updates/AppliedAstrology-0.0.3-x86_64.apk 2937464
+
+11-16 23:12:51.148  3204  3204 I AppliedAstrology: SELFTEST PASS 31_update_download AppliedAstrology-0.0.3-x86_64.apk done 2937464/2937464 2108ms 
+
+11-16 23:12:53.662  3204  3204 I AppliedAstrology: SELFTEST-LOG-1794845573662
+
+11-16 23:12:53.662  3204  3204 I AppliedAstrology: SELFTEST PASS 32_app_logs native=3668 chars
+
+11-16 23:12:55.752  4190  4190 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:12:55.756  4190  4190 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:12:55.832  4190  4190 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:12:55.844  4190  4190 D AndroidRuntime: Shutting down VM
+
+11-16 23:12:56.202  3204  3204 I AppliedAstrology: SELFTEST PASS 33_error_report crash files=1 url=1776 chars
+
+11-16 23:12:59.714  3204  3204 I AppliedAstrology: SELFTEST PASS 34_safe_area nav 0-0 / root 1857 insets t=0 b=0 header.top=0 sdk=23
+
+11-16 23:13:01.568  4210  4210 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:01.569  4210  4210 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:01.605  4210  4210 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:01.620  4210  4210 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:02.275  3204  3204 I AppliedAstrology: setting lang=fr
+
+11-16 23:13:02.359  3204  3204 I AppliedAstrology: SELFTEST PASS 35_language_fr_new Calendrier
+
+11-16 23:13:04.969  3204  3204 I AppliedAstrology: build solar,15,8,1995,6
+
+11-16 23:13:04.980  3204  3204 I AppliedAstrology: SELFTEST PASS 36_restore_defaults 
+
+11-16 23:13:07.433  4227  4227 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:07.434  4227  4227 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:07.473  4227  4227 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:07.484  4227  4227 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:07.595  3204  3204 I AppliedAstrology: SELFTEST PASS 37_glass_liquid blur=270x464 headerCache=pending
+
+11-16 23:13:10.214  3204  3204 I AppliedAstrology: SELFTEST PASS 38_glass_frost frost
+
+11-16 23:13:12.790  3204  3204 I AppliedAstrology: SELFTEST PASS 39_glass_off off
+
+11-16 23:13:13.153  4244  4244 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:13.154  4244  4244 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:13.191  4244  4244 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:13.203  4244  4244 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:15.311  3204  3204 I AppliedAstrology: SELFTEST PASS 40_glass_sliders blur=30.0 refr=0.9 spec=0.8
+
+11-16 23:13:17.962  3204  3204 I AppliedAstrology: SELFTEST PASS 41_glass_bg_aurora aurora
+
+11-16 23:13:18.906  4262  4262 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:18.907  4262  4262 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:18.950  4262  4262 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:18.962  4262  4262 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:20.659  3204  3204 I AppliedAstrology: toast Kh├┤i phß╗Ñc Liquid Glass mß║╖c ─æß╗ïnh
+
+11-16 23:13:20.659  3204  3204 I AppliedAstrology: SELFTEST PASS 42_glass_reset bg=nebula blur=18
+
+11-16 23:13:23.445  3204  3204 I AppliedAstrology: SELFTEST PASS 43_native_no_webview webviews=0 engine=Native Android Views (no WebView)
+
+11-16 23:13:24.675  4279  4279 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:24.676  4279  4279 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:24.716  4279  4279 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:24.727  4279  4279 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:26.079  3204  3204 I AppliedAstrology: SELFTEST PASS 44_lang_all_68 68/68 
+
+11-16 23:13:28.572  3204  3204 I AppliedAstrology: SELFTEST_DONE 44/44
+
+11-16 23:13:30.524  4297  4297 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:30.527  4297  4297 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:30.593  4297  4297 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:30.611  4297  4297 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:34.467  4317  4317 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:34.468  4317  4317 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:34.509  4317  4317 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+
+11-16 23:13:34.518  4317  4317 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:34.922  4326  4326 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:34.923  4326  4326 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:34.958  4326  4326 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+
+11-16 23:13:34.975  4326  4326 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:39.752  4359  4359 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:39.753  4359  4359 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:39.793  4359  4359 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-16 23:13:39.802  4359  4359 D AndroidRuntime: Shutting down VM
+
+11-16 23:13:40.267  4369  4369 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-16 23:13:40.268  4369  4369 D AndroidRuntime: CheckJNI is OFF
+
+11-16 23:13:40.307  4369  4369 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+
+11-16 23:13:40.315  4369  4369 D AndroidRuntime: Shutting down VM
+

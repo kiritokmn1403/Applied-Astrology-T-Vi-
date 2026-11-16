@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efect de sticlă lichidă care refractă lumina (stil iOS 26) pentru bara de titlu, bara de file, dialoguri și carduri – desenat nativ, funcționează și pe Android 6 și Windows 7.",
+"lg_mode": "Mod sticlă",
+"lg_off": "Dezactivat (plat)",
+"lg_frost": "Sticlă mată (ușor, economisește bateria)",
+"lg_liquid": "Refracție lichidă (completă)",
+"lg_bg": "Fundal în spatele sticlei",
+"lg_bg_nebula": "Nebuloasă",
+"lg_bg_aurora": "Auroră",
+"lg_bg_plain": "Simplu",
+"lg_blur": "Estompare",
+"lg_refr": "Refracție",
+"lg_bezel": "Lățimea teșiturii",
+"lg_tint": "Nuanță",
+"lg_spec": "Luciul marginii",
+"lg_sat": "Saturație",
+"lg_cards": "Aplică pe cardurile de conținut",
+"lg_chart": "Aplică pe casele hărții",
+"lg_reset": "Resetează Liquid Glass",
+"s_glass": "Liquid Glass"
+}

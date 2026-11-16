@@ -1,0 +1,21 @@
+{
+"s_glass_d": "제목 표시줄, 탭 막대, 대화 상자, 카드에 빛을 굴절시키는 리퀴드 글래스 효과(iOS 26 스타일) – 네이티브로 그려지며 Android 6과 Windows 7에서도 작동합니다.",
+"lg_mode": "유리 모드",
+"lg_off": "끄기(평면)",
+"lg_frost": "반투명 유리(가볍고 배터리 절약)",
+"lg_liquid": "리퀴드 굴절(전체)",
+"lg_bg": "유리 뒤 배경",
+"lg_bg_nebula": "성운",
+"lg_bg_aurora": "오로라",
+"lg_bg_plain": "단색",
+"lg_blur": "흐림",
+"lg_refr": "굴절",
+"lg_bezel": "베젤 너비",
+"lg_tint": "색조",
+"lg_spec": "가장자리 하이라이트",
+"lg_sat": "채도",
+"lg_cards": "콘텐츠 카드에 적용",
+"lg_chart": "명반의 궁에 적용",
+"lg_reset": "Liquid Glass 초기화",
+"s_glass": "Liquid Glass"
+}

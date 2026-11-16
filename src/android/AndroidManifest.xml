@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appliedastrology.tuvi"
     android:versionCode="@VERSION_CODE@"
-    android:versionName="0.0.3"
+    android:versionName="0.0.4"
     android:installLocation="auto">
 
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="35" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- v0.0.3: tự cập nhật (tải APK từ GitHub Releases rồi mở trình cài đặt hệ thống) -->
+    <!-- v0.0.3+: tự cập nhật (tải APK từ GitHub Releases rồi mở trình cài đặt hệ thống). v0.0.4: ứng dụng native, không dùng WebView -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />

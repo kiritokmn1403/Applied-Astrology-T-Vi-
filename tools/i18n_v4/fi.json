@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Valoa taittava nestemäisen lasin tehoste (iOS 26 -tyyliin) otsikkopalkkiin, välilehtipalkkiin, valintaikkunoihin ja kortteihin – piirretään natiivisti, toimii myös Android 6:ssa ja Windows 7:ssä.",
+"lg_mode": "Lasitila",
+"lg_off": "Pois (tasainen)",
+"lg_frost": "Huurrettu (kevyt, säästää akkua)",
+"lg_liquid": "Nestemäinen taittuminen (täysi)",
+"lg_bg": "Tausta lasin takana",
+"lg_bg_nebula": "Sumu",
+"lg_bg_aurora": "Revontulet",
+"lg_bg_plain": "Tavallinen",
+"lg_blur": "Sumennus",
+"lg_refr": "Taittuminen",
+"lg_bezel": "Viisteen leveys",
+"lg_tint": "Sävy",
+"lg_spec": "Reunan kiilto",
+"lg_sat": "Kylläisyys",
+"lg_cards": "Käytä sisältökortteihin",
+"lg_chart": "Käytä kartan huoneisiin",
+"lg_reset": "Palauta Liquid Glass",
+"s_glass": "Liquid Glass"
+}

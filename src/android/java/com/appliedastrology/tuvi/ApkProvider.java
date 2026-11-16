@@ -22,12 +22,14 @@ public class ApkProvider extends ContentProvider {
     private File resolve(Uri uri) throws FileNotFoundException {
         String name = uri.getLastPathSegment();
         if (name == null || name.contains("/") || name.contains("..") || !name.endsWith(".apk")) throw new FileNotFoundException(String.valueOf(uri));
-        File f = new File(MainActivity.updatesDir(getContext()), name);
+        File f = new File(updatesDir(getContext()), name);
         if (!f.exists()) throw new FileNotFoundException(f.getAbsolutePath());
         return f;
     }
     @Override public boolean onCreate() { return true; }
-    @Override public String getType(Uri uri) { return "application/vnd.android.package-archive"; }
+    @Override public String getType(Uri uri) { String n = uri.getLastPathSegment(); return n != null && n.endsWith(".png") ? "image/png" : n != null && n.endsWith(".txt") ? "text/plain" : "application/vnd.android.package-archive"; }
+    /** v0.0.4: thư mục cache/updates (APK cập nhật, ảnh lá số để chia sẻ) */
+    static java.io.File updatesDir(android.content.Context c) { java.io.File base = c.getExternalCacheDir(); if (base == null) base = c.getCacheDir(); java.io.File d = new java.io.File(base, "updates"); d.mkdirs(); return d; }
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
         return ParcelFileDescriptor.open(resolve(uri), ParcelFileDescriptor.MODE_READ_ONLY);

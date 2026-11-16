@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Gaismu laužošs šķidrā stikla efekts (iOS 26 stilā) virsrakstjoslai, cilņu joslai, dialogiem un kartītēm – zīmēts natīvi, darbojas arī Android 6 un Windows 7.",
+"lg_mode": "Stikla režīms",
+"lg_off": "Izslēgts (plakans)",
+"lg_frost": "Matēts stikls (viegls, taupa akumulatoru)",
+"lg_liquid": "Šķidrā laušana (pilna)",
+"lg_bg": "Fons aiz stikla",
+"lg_bg_nebula": "Miglājs",
+"lg_bg_aurora": "Polārblāzma",
+"lg_bg_plain": "Vienkāršs",
+"lg_blur": "Izpludinājums",
+"lg_refr": "Laušana",
+"lg_bezel": "Slīpmalas platums",
+"lg_tint": "Tonis",
+"lg_spec": "Malas spīdums",
+"lg_sat": "Piesātinājums",
+"lg_cards": "Lietot satura kartītēm",
+"lg_chart": "Lietot kartes namiem",
+"lg_reset": "Atiestatīt Liquid Glass",
+"s_glass": "Liquid Glass"
+}

@@ -518,3 +518,122 @@ Thêm tùy chọn `-AndroidOnly` cho `build_release_0.0.3.ps1` (chỉ kiểm th�
 | 3 | sau lượt kiểm thử 4 | Phát hành lại **build cuối** (biểu tượng SVG) trên cùng tag `v0.0.3`: commit mới, tag dời sang commit đó, các tệp cài đặt/video có dung lượng khác được xóa và tải lại, tệp trùng dung lượng được giữ; script so **SHA-256** (trường `digest` của GitHub) thay vì chỉ dung lượng, rồi đối chiếu tên + dung lượng + SHA-256 từng tệp |
 
 Liên kết: https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.3
+
+---
+
+# CẬP NHẬT v0.0.4 – Applied Astrology (Tử Vi Ứng Dụng) – BẢN NATIVE
+
+Ngày: 16/11/2026. Người thực hiện: Claude (phiên làm việc từ xa trên máy KIRITOKMN_LAP), theo yêu cầu của Kiệt.
+
+## 1. Phạm vi yêu cầu (Project – Applied Astrology.xlsx, sheet "Feature Check")
+1. **Creat & Update**
+   - Android: nội dung và nút không bị thanh trạng thái hay thanh điều hướng che. Đã làm (đệm WindowInsets cho systemBars, displayCutout và ime trên API 35+).
+   - Đưa 4 dự án Liquid Glass vào giao diện và thêm phần cài đặt Liquid Glass trong *Cài Đặt*. Đã làm: viết lại engine kính bằng Java/C#, có 11 tùy chọn.
+2. Rà sheet Project GitHub (23 mục, khoảng 670 link). Đã tham khảo:
+   - nhóm liquid-glass (profile khúc xạ Snell, SDF hình hộp bo góc, viền phản sáng)
+   - Nayuki QR-Code-generator (đã chép sang Java, port sang C#)
+   - amlich (Hồ Ngọc Đức)
+   - Aniyomi/Mangayomi (trang Giới thiệu, tự cập nhật)
+3. Sheet "App Feature Set" không có trong tệp. Dùng bộ tự kiểm thử 44 bước để thay thế.
+4. Rà Flash Player, Runtime Native/Hybrid, Browser, Aniyomi/Mangayomi/Nekoyomi và SWF. Kết luận: app chuyển hẳn sang **native** (theo yêu cầu bổ sung "không để hệ thống nhận nhầm thành trình duyệt").
+5. 68 ngôn ngữ, đổi được trong app. Đã thêm 19 khóa chuỗi mới cho Liquid Glass, dịch đủ 68 ngôn ngữ.
+6. Toàn bộ nội dung SWF (611 bài / 13 chương, An Sao, Âm Lịch, Lục Thập Hoa Giáp, giấy lót nền) đã chuyển sang dữ liệu native.
+7. Âm Lịch ổn định: lõi Java/C# khớp 100% bản JS 0.0.3.
+8. Cập nhật từ GitHub Releases (kiểm tra, tự tải, cài): selftest bước 30–31 PASS trên mọi nền tảng.
+
+Yêu cầu bổ sung trong phiên:
+- "Build app thành native app để hệ thống không nhận diện nhầm thành trình duyệt web". Người dùng chọn **viết lại native hoàn toàn**.
+- Xin đủ quyền, kể cả quyền điều khiển máy tính.
+- Lưu tiến độ khoảng 5 phút một lần vào `WORK_PROGRESS_v0.0.4.md`.
+
+## 2. Hạng mục đã làm & tệp thay đổi
+| Hạng mục | Tệp |
+|---|---|
+| Lõi Java (Lunar, Engine, Cal, Json, Fold, Library, I18n, Assistant, Theme, Glass) | `src/android/java/com/appliedastrology/tuvi/core/*.java` (mới) |
+| App Android native: Views dựng bằng code, Liquid Glass, bàn lá số, lịch tháng, 7 màn hình, cập nhật, selftest 44 bước | `MainActivity.java`, `Screens.java`, `Ui.java`, `GlassViews.java`, `ChartViews.java`, `MonthView.java`, `Host.java`, `Updates.java`, `SelfTest.java`, `ApkProvider.java` (viết lại); `io/nayuki/qrcodegen/*` (mới, MIT) |
+| NDK tìm kiếm đọc `data/lib/NN.json` | `src/android/jni/aacore.c` |
+| Lõi C# giống hệt lõi Java + QR | `src/windows/Core.cs`, `Core2.cs`, `Qr.cs` (mới) |
+| App Windows native WinForms + GDI+ | `WinHost.cs`, `WinUi.cs`, `WinMain.cs`, `WinScreens.cs`, `WinSelfTest.cs` (mới); `AppHost.cs` (WebView2/IE) chuyển sang `src/legacy_0.0.3/` |
+| Setup.exe 0.0.4: xóa `web/`, `runtimes/`, `Microsoft.Web.WebView2.*.dll` khi nâng cấp | `src/windows/Setup.cs` |
+| Phiên bản 0.0.4.0 | `AppxManifest.template.xml`, `app.manifest`, `AndroidManifest.xml`, `Host.VERSION` |
+| Dữ liệu dùng chung (sinh lúc build) | `tools/build_native_data.js` (mới) → `src/shared/data` |
+| Chuỗi Liquid Glass ×68 ngôn ngữ | `tools/i18n_v4/make_i18n_v4.py` + `tools/i18n_v4/*.json` |
+| Changelog trong app | `tools/changelog_v4.json` |
+| Bộ đối chiếu native | `tools/tests/native/Dump.java`, `DumpCs.cs`, `js_dump.js`, `QrJ.java`, `GlassDemo.java` |
+| Build / test / phát hành | `build_release_0.0.4.ps1`, `BUILD_v0.0.4.bat`, `BUILD_TEST_v0.0.4.bat`, `BUILD_ONLY_v0.0.4.bat`, `PUBLISH_v0.0.4.bat` |
+| Bài học kinh nghiệm (bắt buộc đọc trước) | `A.I Brain - Second Brain/00_READ_FIRST.md` … `05_ai_session_tips.md` |
+
+Dòng lệnh chính:
+- Dữ liệu dùng chung: `node tools/build_native_data.js`
+- Đối chiếu Java:
+  - `javac -d cls core/*.java Dump.java`
+  - `java -cp cls Dump j_charts.json j_cal.json j_l2s.json`
+  - `node js_dump.js j_charts.json j_cal.json j_l2s.json`
+- Đối chiếu C#: `csc Core.cs Core2.cs Qr.cs DumpCs.cs`, sau đó so SHA-256 kết quả của C# với Java.
+- APK:
+  - `javac -source 8 -target 8 -bootclasspath android.jar`
+  - `jar cf classes.jar -C classes .`
+  - `d8 --release --min-api 23 classes.jar`
+  - `clang --target=<abi>23 -shared aacore.c`
+  - `aapt2 link`
+  - `zipalign -P 16`
+  - `apksigner`
+- Windows: `csc /target:winexe /platform:<anycpu|x86|x64|arm64> /win32icon /win32manifest Core.cs Core2.cs Qr.cs WinHost.cs WinUi.cs WinMain.cs WinScreens.cs WinSelfTest.cs`
+
+## 3. Lỗi phát hiện trong quá trình update và cách sửa
+| # | Lỗi | Cách sửa |
+|---|---|---|
+| 1 | Không clone được gist liquid-glass (proxy 403) | Đọc nội dung qua WebFetch rồi viết lại thuật toán bằng Java/C# |
+| 2 | Bản thử kính có vòng xám dày ở mép (phản sáng quá rộng) | Đổi sang viền mảnh dạng hàm mũ + vát mềm |
+| 3 | Windows: màn hình trắng (đo chiều cao = 0 vì `Control.Visible` = false trước khi form hiện) | Thêm cờ `Box.Collapsed`/`SetShown`; gọi `DoLayout` trong `Shown` |
+| 4 | Windows: tìm kiếm rồi hiện 120 kết quả mất 31 s (Mono) | Cache `PrefHeight/PrefWidth` và lan truyền `Dirty()`, còn khoảng 1 s; lõi tìm kiếm 194 ms |
+| 5 | Mã .NET 4.6 (`ToUnixTimeMilliseconds`) không chạy được trên .NET 4.5 (Windows 7) | Thay bằng `Host.NowMs/FromMs` |
+| 6 | Biên dịch C#: trùng tên `Scale`/`Convert` với `Form`; hàm cục bộ C# 7; `NavBar.Click` che sự kiện | Đổi tên thành `Dpi`, gọi `System.Convert`, dùng `Func`, bỏ `Click(string)` |
+| 7 | Nhãn "Can Chi" bị huy hiệu đè; đo chữ thiếu khoảng trắng cuối | Bỏ phần đệm +2u; thêm `MeasureTrailingSpaces` (Java + C#) |
+| 8 | Build thật: `d8 failed: The command line is too long` (nhiều lớp .class) | Gom vào `classes.jar` trước khi chạy d8 |
+| 9 | Nhãn tab tiếng Pháp/Nhật ("Bibliothèque", "旧暦カレンダー") đè lên tab bên cạnh trên Android | `MainActivity.fitLabel`: thu nhỏ chữ tới 8sp, còn dài thì thêm "…" (Windows đã có EndEllipsis) |
+| 10 | Selftest 34_safe_area FAIL trên API 37 ("nav 0-0") | Lỗi của **bài kiểm thử**: đo ngay sau `applySettings()` khi khung chưa layout. Ảnh chụp cho thấy giao diện đúng. Sửa: đo sau 900 ms |
+| 11 | appxbundle tự ký: `Add-AppxPackage` báo 0x80073CF0 khi chưa có chứng chỉ ở LocalMachine | Đã biết từ 0.0.3. Script thử lại bằng đăng ký layout (developer mode); người dùng cài bằng `appx-install.bat` |
+| 12 | `device_commit_files` ghi lại tgz cũ (cache theo đường dẫn); không xóa được tệp trên VM | Mỗi lần đồng bộ dùng tên tgz có timestamp; giải nén ra `$HOME` rồi `cp -rf` |
+
+## 4. Kiểm thử
+### Đối chiếu engine (bước 01b, chạy trên máy thật Windows 11)
+- JS (bản 0.0.3) với Java: **3000/3000 lá số**, **4000/4000 ngày âm lịch**, **1608/1608 lần đổi Âm→Dương** giống hệt nhau.
+- C# với Java: 3 tệp kết quả **trùng từng byte** (charts, cal, l2s).
+- Unit test JS: engine_test (khớp SWF 98,18%), calendar_test 15/15, i18n 68/68.
+
+### Lượt 1 (16/11/2026 22:30–22:56, BUILD_TEST)
+| Đích | Thiết bị / engine | Kết quả |
+|---|---|---|
+| Android | Samsung Galaxy Note 9 SM-N960N, Android 10, arm64-v8a (USB). Nâng cấp 0.0.3 → 0.0.4 thành công | **44/44** |
+| Android | Emulator Android 17 (API 37) x86_64. Nâng cấp OK | 43/44: 34_safe_area FAIL do bài kiểm thử đo sớm (xem lỗi #10); giao diện thực tế không bị che |
+| Android | Emulator Android 6.0 (API 23) x86_64. Nâng cấp OK; tải bản cập nhật qua TLS dự phòng OK | **44/44** |
+| Windows | Portable, native WinForms + GDI+ | **44/44** |
+| Windows | Portable `--compat win7` | **44/44** |
+| Windows | Kiểm tra DLL đã nạp: 56 module, **không có** WebView2/mshtml/ieframe/jscript9 | PASS |
+| Windows | Setup.exe nâng cấp 0.0.3 → 0.0.4 (FileVersion 0.0.4.0). Đã xóa `web/`, `runtimes/`, WebView2 DLL; gỡ cài sạch | **44/44** |
+| Windows | MSI x64 (cài và gỡ, exit 0) | **44/44** |
+| Windows | appxbundle (đăng ký layout x64) | **44/44** |
+
+Dung lượng (0.0.3 → 0.0.4):
+- APK: 2,94 → 2,87 MB
+- Setup.exe: 3,19 → 2,87 MB
+- portable.zip: 3,17 → 2,85 MB
+- appxbundle: 10,00 → 9,45 MB
+- MSI x64: 2,31 → 2,13 MB
+
+## 5. Giới hạn đã biết
+- Chưa có máy Windows 7 thật. Đã kiểm bằng `--compat win7` và chỉ dùng API .NET 4.5. Windows 7 SP1 cần cài .NET Framework 4.5+.
+- SmartScreen vẫn có thể cảnh báo, vì exe ký bằng chứng chỉ tự tạo chứ không phải chứng chỉ thương mại EV/OV. Điều này không liên quan tới native/trình duyệt.
+- VPN chỉ kiểm thử ngoài app (theo yêu cầu).
+
+## 6. So sánh với v0.0.3
+| | 0.0.3 | 0.0.4 |
+|---|---|---|
+| Giao diện | HTML/JS trong WebView (Android), WebView2/IE11 (Windows) | **Native**: Java Views / WinForms + GDI+ |
+| Nhận diện hệ thống | Có tiến trình msedgewebview2 / mshtml | Không nạp DLL trình duyệt nào |
+| Hiệu ứng kính | – | **Liquid Glass** (3 chế độ, 11 tùy chọn) |
+| Biểu tượng tab | Ký tự Unicode / SVG trong HTML | Vector native |
+| Tự kiểm thử | 36 bước | **44 bước** |
+| Đối chiếu engine | – | Java/C# vs JS (3000 lá số, 4000 ngày, 1608 Âm→Dương) |
+| Phụ thuộc Windows | WebView2 SDK, Runtime | Không (chỉ .NET 4.5) |

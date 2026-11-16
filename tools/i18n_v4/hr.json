@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efekt tekućeg stakla s lomom svjetlosti (u stilu iOS 26) za naslovnu traku, traku kartica, dijaloge i kartice – nativno iscrtano, radi i na Androidu 6 i Windowsima 7.",
+"lg_mode": "Način stakla",
+"lg_off": "Isključeno (ravno)",
+"lg_frost": "Mutno staklo (lagano, štedi bateriju)",
+"lg_liquid": "Tekući lom (puni)",
+"lg_bg": "Pozadina iza stakla",
+"lg_bg_nebula": "Maglica",
+"lg_bg_aurora": "Polarna svjetlost",
+"lg_bg_plain": "Obično",
+"lg_blur": "Zamućenje",
+"lg_refr": "Lom",
+"lg_bezel": "Širina ruba",
+"lg_tint": "Nijansa",
+"lg_spec": "Odsjaj ruba",
+"lg_sat": "Zasićenost",
+"lg_cards": "Primijeni na kartice sadržaja",
+"lg_chart": "Primijeni na kuće karte",
+"lg_reset": "Vrati Liquid Glass na zadano",
+"s_glass": "Liquid Glass"
+}

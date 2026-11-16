@@ -1,0 +1,21 @@
+[
+  { "v": "0.0.4", "d": "2026-11-16",
+    "vi": [
+      "Viết lại hoàn toàn thành ứng dụng NATIVE: Android dùng Java + Android Views (không còn WebView), Windows dùng C# WinForms (không còn Edge WebView2/IE11) – hệ thống (Task Manager, Play Protect, SmartScreen) không còn nhận nhầm là trình duyệt; khởi động nhanh hơn, nhẹ hơn.",
+      "Mới: Liquid Glass (kính lỏng) – khúc xạ ánh sáng thật theo định luật Snell, mép vát, viền phản xạ, kính mờ; tích hợp từ 4 project Liquid Glass (archisvaze, liquid-glass-react, liquid-glass-js, gist GLSL); tự vẽ nên chạy cả Android 6 và Windows 7.",
+      "Mới: mục Liquid Glass trong Cài Đặt – chế độ (tắt / kính mờ / kính lỏng), nền (tinh vân / cực quang / phẳng), độ mờ, độ khúc xạ, viền vát, độ phủ màu, độ sáng viền, độ bão hòa, áp dụng cho thẻ / cung lá số, khôi phục mặc định.",
+      "Engine Tử Vi, Âm Lịch, thư viện 611 bài, trợ lý luận giải được chuyển 1:1 sang Java và C#; kiểm thử chéo với bản cũ: 3.000 lá số, 4.000 ngày âm lịch, 1.608 phép đổi Âm→Dương giống hệt.",
+      "Vùng an toàn Android: thanh tiêu đề, thanh tab, hộp thoại không bị thanh trạng thái/thanh điều hướng/tai thỏ/bàn phím che trên mọi phiên bản 6.0 → 17.",
+      "Biểu tượng thanh tab vẽ bằng vector (không phụ thuộc phông emoji); 68 ngôn ngữ đầy đủ, thêm 19 chuỗi mới cho Liquid Glass.",
+      "Tự kiểm thử 44 bước (thêm Liquid Glass, kiểm tra không còn WebView, đủ khóa 68 ngôn ngữ); giữ nguyên dữ liệu hồ sơ, đánh dấu, cài đặt khi cài đè lên 0.0.3."
+    ],
+    "en": [
+      "Rewritten as a fully NATIVE app: Android uses Java + Android Views (no WebView), Windows uses C# WinForms (no Edge WebView2/IE11) – the system (Task Manager, Play Protect, SmartScreen) no longer mistakes it for a browser; faster start-up, lighter.",
+      "New: Liquid Glass – real Snell's-law refraction, bevelled edges, specular rim and frosted glass, integrated from the 4 Liquid Glass projects (archisvaze, liquid-glass-react, liquid-glass-js, GLSL gist); self-drawn so it runs on Android 6 and Windows 7.",
+      "New: Liquid Glass section in Settings – mode (off / frosted / liquid), background (nebula / aurora / plain), blur, refraction, bezel, tint, edge highlight, saturation, apply to cards / chart palaces, reset.",
+      "Tử Vi engine, Lunar Calendar, the 611-article library and the reading assistant were ported 1:1 to Java and C#; cross-checked against the previous version: 3,000 charts, 4,000 lunar days and 1,608 lunar→solar conversions identical.",
+      "Android safe area: title bar, tab bar and dialogs are never covered by the status/navigation bars, cutouts or keyboard on Android 6.0 → 17.",
+      "Vector tab icons (no emoji fonts needed); all 68 languages complete, 19 new Liquid Glass strings.",
+      "44-step self-test (Liquid Glass, no-WebView check, 68-language key check); profiles, bookmarks and settings are kept when installing over 0.0.3."
+    ] }
+]

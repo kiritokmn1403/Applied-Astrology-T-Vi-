@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Šviesą laužiantis skysto stiklo efektas (iOS 26 stiliumi) pavadinimo juostai, skirtukų juostai, dialogams ir kortelėms – piešiamas natūraliai, veikia ir Android 6 bei Windows 7.",
+"lg_mode": "Stiklo režimas",
+"lg_off": "Išjungta (plokščia)",
+"lg_frost": "Matinis stiklas (lengvas, taupo bateriją)",
+"lg_liquid": "Skystas lūžis (pilnas)",
+"lg_bg": "Fonas už stiklo",
+"lg_bg_nebula": "Ūkas",
+"lg_bg_aurora": "Pašvaistė",
+"lg_bg_plain": "Paprastas",
+"lg_blur": "Suliejimas",
+"lg_refr": "Lūžis",
+"lg_bezel": "Nuosklembos plotis",
+"lg_tint": "Atspalvis",
+"lg_spec": "Krašto blizgesys",
+"lg_sat": "Sodrumas",
+"lg_cards": "Taikyti turinio kortelėms",
+"lg_chart": "Taikyti horoskopo namams",
+"lg_reset": "Atkurti Liquid Glass",
+"s_glass": "Liquid Glass"
+}

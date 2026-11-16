@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efekt xhami të lëngshëm që thyen dritën (në stilin iOS 26) për shiritin e titullit, shiritin e skedave, dialogët dhe kartat – i vizatuar në mënyrë origjinale, punon edhe në Android 6 dhe Windows 7.",
+"lg_mode": "Mënyra e xhamit",
+"lg_off": "Joaktiv (i sheshtë)",
+"lg_frost": "Xham i mjegullt (i lehtë, kursen baterinë)",
+"lg_liquid": "Thyerje e lëngshme (e plotë)",
+"lg_bg": "Sfondi pas xhamit",
+"lg_bg_nebula": "Mjegullnajë",
+"lg_bg_aurora": "Agim polar",
+"lg_bg_plain": "I thjeshtë",
+"lg_blur": "Turbullim",
+"lg_refr": "Thyerje",
+"lg_bezel": "Gjerësia e buzës",
+"lg_tint": "Ngjyrim",
+"lg_spec": "Shkëlqimi i buzës",
+"lg_sat": "Ngopja",
+"lg_cards": "Zbato te kartat e përmbajtjes",
+"lg_chart": "Zbato te shtëpitë e hartës",
+"lg_reset": "Rivendos Liquid Glass",
+"s_glass": "Liquid Glass"
+}

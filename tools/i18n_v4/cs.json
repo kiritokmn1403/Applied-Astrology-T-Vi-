@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efekt tekutého skla s lomem světla (ve stylu iOS 26) pro záhlaví, lištu karet, dialogy a karty – vykreslováno nativně, funguje i na Androidu 6 a Windows 7.",
+"lg_mode": "Režim skla",
+"lg_off": "Vypnuto (ploché)",
+"lg_frost": "Matné sklo (lehké, šetří baterii)",
+"lg_liquid": "Tekutý lom (plný)",
+"lg_bg": "Pozadí za sklem",
+"lg_bg_nebula": "Mlhovina",
+"lg_bg_aurora": "Polární záře",
+"lg_bg_plain": "Jednoduché",
+"lg_blur": "Rozmazání",
+"lg_refr": "Lom",
+"lg_bezel": "Šířka zkosení",
+"lg_tint": "Tónování",
+"lg_spec": "Odlesk okraje",
+"lg_sat": "Sytost",
+"lg_cards": "Použít na karty obsahu",
+"lg_chart": "Použít na domy horoskopu",
+"lg_reset": "Obnovit Liquid Glass",
+"s_glass": "Liquid Glass"
+}

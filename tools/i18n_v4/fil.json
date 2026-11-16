@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Epektong likidong salamin na bumabaluktot ng liwanag (estilong iOS 26) para sa title bar, tab bar, mga dialog at card – iginuhit nang native, gumagana rin sa Android 6 at Windows 7.",
+"lg_mode": "Mode ng salamin",
+"lg_off": "Naka-off (patag)",
+"lg_frost": "Frosted (magaan, tipid sa baterya)",
+"lg_liquid": "Likidong repraksiyon (buo)",
+"lg_bg": "Background sa likod ng salamin",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Payak",
+"lg_blur": "Labo",
+"lg_refr": "Repraksiyon",
+"lg_bezel": "Lapad ng gilid",
+"lg_tint": "Kulay",
+"lg_spec": "Kinang ng gilid",
+"lg_sat": "Saturasyon",
+"lg_cards": "Ilapat sa mga content card",
+"lg_chart": "Ilapat sa mga palasyo ng tsart",
+"lg_reset": "I-reset ang Liquid Glass",
+"s_glass": "Liquid Glass"
+}

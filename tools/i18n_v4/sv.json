@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Ljusbrytande flytande glaseffekt (i iOS 26-stil) för namnlisten, flikfältet, dialogrutor och kort – ritas nativt, fungerar även på Android 6 och Windows 7.",
+"lg_mode": "Glasläge",
+"lg_off": "Av (platt)",
+"lg_frost": "Frostat (lätt, sparar batteri)",
+"lg_liquid": "Flytande ljusbrytning (full)",
+"lg_bg": "Bakgrund bakom glaset",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Norrsken",
+"lg_bg_plain": "Enfärgad",
+"lg_blur": "Oskärpa",
+"lg_refr": "Ljusbrytning",
+"lg_bezel": "Kantbredd",
+"lg_tint": "Färgton",
+"lg_spec": "Kantglans",
+"lg_sat": "Mättnad",
+"lg_cards": "Använd på innehållskort",
+"lg_chart": "Använd på horoskopets hus",
+"lg_reset": "Återställ Liquid Glass",
+"s_glass": "Liquid Glass"
+}

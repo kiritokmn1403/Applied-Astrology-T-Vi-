@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.0.4 – 16/11/2026
+### Mới
+- **Viết lại thành ứng dụng native hoàn toàn**. Bản trước chạy giao diện HTML trong WebView/WebView2/IE11. Nay:
+  - Android dùng Java Views kết hợp NDK.
+  - Windows dùng C# WinForms + GDI+, chạy trên .NET Framework 4.5+.
+  - Không còn trình duyệt nhúng nào, nên Windows Task Manager, SmartScreen và Android không còn nhận app là trình duyệt web.
+- **Liquid Glass** gồm 3 chế độ: tắt, kính mờ, kính lỏng. Thanh tiêu đề, thanh tab và hộp thoại khúc xạ thật (Snell, mép kính phản sáng); thẻ dùng kính mờ.
+  - **Cài Đặt › Liquid Glass** có 11 tùy chọn: chế độ, nền (tinh vân / cực quang / trơn), độ mờ, độ khúc xạ, độ dày viền, độ phủ màu, phản sáng, bão hòa, kính cho thẻ, kính cho lá số và khôi phục mặc định.
+- Biểu tượng tab vẽ bằng vector, hiển thị giống nhau trên mọi máy.
+- Logo mới (sao 8 cánh) vẽ native.
+- Tự kiểm thử **44 bước**, trước là 36. Các bước mới: Liquid Glass, kiểm tra không có WebView, và cả 68 ngôn ngữ.
+- Build có bước đối chiếu lõi native với engine JS gốc: 3000 lá số, 4000 ngày âm lịch và 1608 lần đổi Âm→Dương đều khớp. Tệp kết quả của C# trùng từng byte với Java.
+### Sửa lỗi / cải thiện
+- Android 15+: nội dung và nút không bị thanh trạng thái, thanh điều hướng, tai thỏ hay bàn phím che (giữ nguyên ở bản native).
+- Thanh tab: nhãn dài (ví dụ tiếng Pháp) tự thu nhỏ cỡ chữ hoặc rút gọn bằng "…" thay vì đè lên tab bên cạnh.
+- Windows 7: bỏ API của .NET 4.6 (ToUnixTimeMilliseconds) để chạy được trên .NET 4.5.
+- Khi nâng cấp từ 0.0.3, Setup.exe tự xóa các tệp cũ không còn dùng: `web/`, `runtimes/` và các DLL WebView2.
+- Dung lượng giảm: APK 2,94 → 2,87 MB, Setup.exe 3,19 → 2,87 MB, portable 3,17 → 2,85 MB, appxbundle 10,0 → 9,45 MB, MSI 2,31 → 2,13 MB. App mở nhanh hơn vì không phải khởi động trình duyệt.
+- Dữ liệu người dùng giữ nguyên khi cập nhật (cùng khóa lưu với 0.0.3).
+
 ## 0.0.3 – 03/11/2026
 ### Mới
 - Mục **Âm Lịch** riêng: lịch tháng Âm Dương GMT+7, Can Chi ngày/tháng/năm, nạp âm, 24 tiết khí, ngày Hoàng đạo/Hắc đạo, 12 Trực, giờ hoàng đạo, ngày lễ âm/dương, đổi Dương ↔ Âm, lập lá số từ một ngày.

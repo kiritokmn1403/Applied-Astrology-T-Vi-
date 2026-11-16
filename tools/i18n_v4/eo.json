@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Refrakta efiko de likva vitro (iOS 26-stile) por la titolbreto, langeta breto, dialogoj kaj kartoj – desegnita denaske, funkcias ankaŭ ĉe Android 6 kaj Windows 7.",
+"lg_mode": "Vitra reĝimo",
+"lg_off": "Malŝaltita (plata)",
+"lg_frost": "Frosta (malpeza, ŝparas baterion)",
+"lg_liquid": "Likva refrakto (plena)",
+"lg_bg": "Fono malantaŭ la vitro",
+"lg_bg_nebula": "Nebulozo",
+"lg_bg_aurora": "Aŭroro",
+"lg_bg_plain": "Simpla",
+"lg_blur": "Malklarigo",
+"lg_refr": "Refrakto",
+"lg_bezel": "Larĝo de bevelo",
+"lg_tint": "Nuanco",
+"lg_spec": "Randa brilo",
+"lg_sat": "Saturiĝo",
+"lg_cards": "Apliki al enhavaj kartoj",
+"lg_chart": "Apliki al domoj de la horoskopo",
+"lg_reset": "Restarigi Liquid Glass",
+"s_glass": "Liquid Glass"
+}

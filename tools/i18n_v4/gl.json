@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efecto de vidro líquido con refracción (estilo iOS 26) para a barra de título, a barra de lapelas, os diálogos e as tarxetas – debuxado de forma nativa, funciona tamén en Android 6 e Windows 7.",
+"lg_mode": "Modo de vidro",
+"lg_off": "Desactivado (plano)",
+"lg_frost": "Vidro esmerilado (lixeiro, aforra batería)",
+"lg_liquid": "Refracción líquida (completa)",
+"lg_bg": "Fondo detrás do vidro",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Liso",
+"lg_blur": "Desenfoque",
+"lg_refr": "Refracción",
+"lg_bezel": "Largura do bisel",
+"lg_tint": "Tinguidura",
+"lg_spec": "Brillo do bordo",
+"lg_sat": "Saturación",
+"lg_cards": "Aplicar ás tarxetas de contido",
+"lg_chart": "Aplicar ás casas da carta",
+"lg_reset": "Restablecer Liquid Glass",
+"s_glass": "Liquid Glass"
+}

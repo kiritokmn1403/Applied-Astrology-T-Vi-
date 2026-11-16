@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efecte de vidre líquid refractiu (estil iOS 26) per a la barra de títol, la barra de pestanyes, els diàlegs i les targetes – dibuixat de forma nativa, funciona també a Android 6 i Windows 7.",
+"lg_mode": "Mode de vidre",
+"lg_off": "Desactivat (pla)",
+"lg_frost": "Vidre glaçat (lleuger, estalvia bateria)",
+"lg_liquid": "Refracció líquida (completa)",
+"lg_bg": "Fons darrere del vidre",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Llis",
+"lg_blur": "Desenfocament",
+"lg_refr": "Refracció",
+"lg_bezel": "Amplada del bisell",
+"lg_tint": "Tint",
+"lg_spec": "Brillantor de la vora",
+"lg_sat": "Saturació",
+"lg_cards": "Aplica a les targetes de contingut",
+"lg_chart": "Aplica a les cases de la carta",
+"lg_reset": "Restableix Liquid Glass",
+"s_glass": "Liquid Glass"
+}

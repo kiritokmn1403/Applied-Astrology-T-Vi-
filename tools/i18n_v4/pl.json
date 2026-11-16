@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efekt ciekłego szkła załamującego światło (w stylu iOS 26) dla paska tytułu, paska kart, okien dialogowych i kart – rysowany natywnie, działa także na Androidzie 6 i Windows 7.",
+"lg_mode": "Tryb szkła",
+"lg_off": "Wyłączony (płaski)",
+"lg_frost": "Szkło matowe (lekkie, oszczędza baterię)",
+"lg_liquid": "Płynne załamanie (pełne)",
+"lg_bg": "Tło za szkłem",
+"lg_bg_nebula": "Mgławica",
+"lg_bg_aurora": "Zorza",
+"lg_bg_plain": "Jednolite",
+"lg_blur": "Rozmycie",
+"lg_refr": "Załamanie",
+"lg_bezel": "Szerokość fazy",
+"lg_tint": "Odcień",
+"lg_spec": "Połysk krawędzi",
+"lg_sat": "Nasycenie",
+"lg_cards": "Zastosuj do kart treści",
+"lg_chart": "Zastosuj do domów horoskopu",
+"lg_reset": "Przywróć Liquid Glass",
+"s_glass": "Liquid Glass"
+}

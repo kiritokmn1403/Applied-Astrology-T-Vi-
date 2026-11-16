@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Effetto vetro liquido rifrangente (stile iOS 26) per barra del titolo, barra delle schede, finestre di dialogo e schede – disegnato in modo nativo, funziona anche su Android 6 e Windows 7.",
+"lg_mode": "Modalità vetro",
+"lg_off": "Disattivato (piatto)",
+"lg_frost": "Vetro smerigliato (leggero, risparmia batteria)",
+"lg_liquid": "Rifrazione liquida (completa)",
+"lg_bg": "Sfondo dietro il vetro",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Semplice",
+"lg_blur": "Sfocatura",
+"lg_refr": "Rifrazione",
+"lg_bezel": "Larghezza smussatura",
+"lg_tint": "Tinta",
+"lg_spec": "Riflesso del bordo",
+"lg_sat": "Saturazione",
+"lg_cards": "Applica alle schede dei contenuti",
+"lg_chart": "Applica alle case del tema",
+"lg_reset": "Ripristina Liquid Glass",
+"s_glass": "Liquid Glass"
+}

@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Refractive liquid-glass effect (iOS 26 style) for the title bar, tab bar, dialogs and cards – drawn natively, also works on Android 6 and Windows 7.",
+"lg_mode": "Glass mode",
+"lg_off": "Off (flat)",
+"lg_frost": "Frosted (light, saves battery)",
+"lg_liquid": "Liquid refraction (full)",
+"lg_bg": "Background behind the glass",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Plain",
+"lg_blur": "Blur",
+"lg_refr": "Refraction",
+"lg_bezel": "Bezel width",
+"lg_tint": "Tint",
+"lg_spec": "Edge highlight",
+"lg_sat": "Saturation",
+"lg_cards": "Apply to content cards",
+"lg_chart": "Apply to chart palaces",
+"lg_reset": "Reset Liquid Glass",
+"s_glass": "Liquid Glass"
+}

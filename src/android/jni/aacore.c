@@ -73,15 +73,14 @@ static void load_chapter(AAssetManager *am, int no) {
     if (c->loaded) return;
     c->loaded = 1;
     char path[64];
-    snprintf(path, sizeof path, "web/data/lib_%02d.js", no);
+    /* v0.0.4: dữ liệu native dùng chung data/lib/NN.json = [["tiêu đề","nội dung"], ...] */
+    snprintf(path, sizeof path, "data/lib/%02d.json", no);
     AAsset *as = AAssetManager_open(am, path, AASSET_MODE_BUFFER);
     if (!as) return;
     const char *buf = (const char *)AAsset_getBuffer(as);
     off_t len = AAsset_getLength(as);
     const char *p = buf, *end = buf + len;
-    /* bỏ qua tham số đầu tiên ("id") rồi tới mảng bài viết */
-    p = memchr(p, ',', end - p);
-    if (!p) { AAsset_close(as); return; }
+    /* v0.0.4: tệp JSON bắt đầu ngay bằng mảng bài viết (bản 0.0.3 là AALib.register("id",[...]) nên phải bỏ tham số đầu) */
     int cap = 64;
     c->a = (Article *)calloc(cap, sizeof(Article));
     int expectTitle = 1;

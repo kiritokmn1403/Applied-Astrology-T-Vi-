@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Lichtbrekend vloeibaar-glaseffect (in iOS 26-stijl) voor de titelbalk, tabbalk, dialoogvensters en kaarten – native getekend, werkt ook op Android 6 en Windows 7.",
+"lg_mode": "Glasmodus",
+"lg_off": "Uit (plat)",
+"lg_frost": "Matglas (licht, bespaart batterij)",
+"lg_liquid": "Vloeibare breking (volledig)",
+"lg_bg": "Achtergrond achter het glas",
+"lg_bg_nebula": "Nevel",
+"lg_bg_aurora": "Poollicht",
+"lg_bg_plain": "Effen",
+"lg_blur": "Vervaging",
+"lg_refr": "Breking",
+"lg_bezel": "Breedte afschuining",
+"lg_tint": "Tint",
+"lg_spec": "Randglans",
+"lg_sat": "Verzadiging",
+"lg_cards": "Toepassen op inhoudskaarten",
+"lg_chart": "Toepassen op huizen van de horoscoop",
+"lg_reset": "Liquid Glass herstellen",
+"s_glass": "Liquid Glass"
+}

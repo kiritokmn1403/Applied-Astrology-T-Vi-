@@ -1,0 +1,21 @@
+{
+"s_glass_d": "为标题栏、标签栏、对话框和卡片提供折射光线的液态玻璃效果（iOS 26 风格）– 原生绘制，在 Android 6 和 Windows 7 上同样可用。",
+"lg_mode": "玻璃模式",
+"lg_off": "关闭（扁平）",
+"lg_frost": "磨砂玻璃（轻量，省电）",
+"lg_liquid": "液态折射（完整）",
+"lg_bg": "玻璃后的背景",
+"lg_bg_nebula": "星云",
+"lg_bg_aurora": "极光",
+"lg_bg_plain": "纯色",
+"lg_blur": "模糊",
+"lg_refr": "折射",
+"lg_bezel": "斜边宽度",
+"lg_tint": "着色",
+"lg_spec": "边缘高光",
+"lg_sat": "饱和度",
+"lg_cards": "应用于内容卡片",
+"lg_chart": "应用于命盘各宫",
+"lg_reset": "重置 Liquid Glass",
+"s_glass": "Liquid Glass"
+}

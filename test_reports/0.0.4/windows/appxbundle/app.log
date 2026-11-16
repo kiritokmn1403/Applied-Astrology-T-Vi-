@@ -1,0 +1,72 @@
+﻿22:54:50 start v0.0.4 native os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=setup compat= selftest=True
+22:54:51 SELFTEST start 44 steps
+22:54:52 build solar,15,8,1995,6
+22:54:52 SELFTEST PASS 01_chart_build lunar=20/7/1995 cuc=Thổ Ngũ Cục menh=Dần
+22:54:54 SELFTEST PASS 02_palace_detail related=4
+22:54:56 build lunar,1,2,2023,3
+22:54:56 SELFTEST PASS 03_lunar_input solar=22/3/2023
+22:54:59 SELFTEST PASS 04_qr size=29
+22:55:02 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.4\windows\appxbundle\exports\LaSo-Nguyễn_Văn_An-2023.png
+22:55:02 SELFTEST PASS 05_png bytes=203705
+22:55:05 toast Đã lưu lá số.
+22:55:06 SELFTEST PASS 06_save_profile saved=21
+22:55:08 SELFTEST PASS 07_library_home chapters=13 articles=611
+22:55:09 SELFTEST PASS 08_library_chapter items=10
+22:55:11 SELFTEST PASS 09_reader chars=21432
+22:55:14 search Hóa Kỵ
+22:55:16 SELFTEST PASS 10_search results=599 2987ms
+22:55:18 search thien phu
+22:55:20 SELFTEST PASS 11_search_noaccent results=604
+22:55:22 SELFTEST PASS 12_assistant_overview chars=1379
+22:55:24 SELFTEST PASS 13_assistant_question chars=1322
+22:55:25 SELFTEST PASS 14_assistant_year chars=2330
+22:55:28 SELFTEST PASS 15_settings_theme ivory-light
+22:55:29 setting lang=en
+22:55:30 SELFTEST PASS 16_settings_language_en Settings
+22:55:31 setting lang=ja
+22:55:32 SELFTEST PASS 17_settings_language_ja ライブラリ
+22:55:34 SELFTEST PASS 18_settings_font_layout 
+22:55:36 SELFTEST PASS 19_chart_list_layout 
+22:55:38 SELFTEST PASS 20_desktop_dex desktop=True
+22:55:41 saved D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.4\windows\appxbundle\exports\AppliedAstrology-backup-2026-11-16.json
+22:55:41 toast バックアップを書き出し: D:\A.I Project\A.I Project - Applied Astrology (Tử Vi Ứng Dụng)\Applied Astrology (Tử Vi)\Applied Astrology (Tử Vi)\test_reports\0.0.4\windows\appxbundle\exports\AppliedAstrology-backup-2026-11-16.json
+22:55:41 SELFTEST PASS 21_backup_export 
+22:55:43 toast データを復元しました
+22:55:43 SELFTEST PASS 22_backup_import royal-gold
+22:55:46 net 259ms ip=2001:ee0:4965:4170:e924:4417:2e45:3644 warp=off
+22:55:53 SELFTEST PASS 23_network_check 接続済み · 遅延: 259 ms
+IP: 2001:ee0:4965:4170:e924:4417:2e45:3644 · 場所: VN · PoP HKG · WARP は検出されません
+22:55:55 SELFTEST PASS 24_calendar_view days=30 today=16/11
+22:55:58 SELFTEST PASS 25_calendar_tet_2026 1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán
+22:55:59 SELFTEST PASS 26_calendar_convert Tet2027=6/2/2027 3/11/2026->25/9/2026
+22:56:01 SELFTEST PASS 27_calendar_sixty rows=60 1995=Ất Hợi Sơn Đầu Hỏa
+22:56:03 SELFTEST PASS 28_paper_background paper=vangchanh
+22:56:06 SELFTEST PASS 29_about_view current=about
+22:56:08 update check https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest
+22:56:08 update latest=0.0.3 current=0.0.4 newer=False asset=AppliedAstrology-0.0.3-windows-Setup.exe
+22:56:08 SELFTEST PASS 30_update_check latest=0.0.3 current=0.0.4 newer=False assets=16 asset=AppliedAstrology-0.0.3-windows-Setup.exe
+22:56:12 update downloaded C:\Users\nguye\AppData\Local\Temp\AppliedAstrology-update\AppliedAstrology-0.0.3-windows-Setup.exe 3189136
+22:56:12 SELFTEST PASS 31_update_download AppliedAstrology-0.0.3-windows-Setup.exe done 3189136/3189136 1395ms 
+22:56:13 SELFTEST-LOG-639304665739131667
+22:56:13 SELFTEST PASS 32_app_logs native=126312 chars
+22:56:15 CRASH SELFTEST SELFTEST synthetic error
+22:56:15 SELFTEST PASS 33_error_report crash files=1 url=1181 chars
+22:56:18 SELFTEST PASS 34_safe_area client={Width=1264, Height=821} header={X=8,Y=6,Width=1248,Height=87} nav={X=8,Y=97,Width=1248,Height=52} content={X=0,Y=153,Width=1264,Height=668}
+22:56:20 setting lang=fr
+22:56:20 SELFTEST PASS 35_language_fr_new Calendrier
+22:56:22 build solar,15,8,1995,6
+22:56:22 SELFTEST PASS 36_restore_defaults 
+22:56:25 SELFTEST PASS 37_glass_liquid blur=316x205 header={Width=1248, Height=78}
+22:56:27 SELFTEST PASS 38_glass_frost frost
+22:56:30 SELFTEST PASS 39_glass_off off
+22:56:32 SELFTEST PASS 40_glass_sliders blur=30 refr=0,9 spec=0,8
+22:56:35 SELFTEST PASS 41_glass_bg_aurora aurora
+22:56:38 toast Khôi phục Liquid Glass mặc định
+22:56:38 SELFTEST PASS 42_glass_reset bg=nebula blur=18
+22:56:40 SELFTEST PASS 43_native_no_webview webview assemblies=0 WebBrowser=0 msedgewebview2 children=0 engine=Native WinForms + GDI+ (no WebView2/IE) process=AppliedAstrology
+22:56:42 SELFTEST PASS 44_lang_all_68 68/68 
+22:56:43 SELFTEST_DONE 44/44
+23:21:54 start v0.0.4 native os=Microsoft Windows NT 10.0.26300.0 arch=x64 install=setup compat= selftest=True
+23:21:55 SELFTEST start 44 steps
+23:21:56 build solar,15,8,1995,6
+23:21:56 SELFTEST PASS 01_chart_build lunar=20/7/1995 cuc=Thổ Ngũ Cục menh=Dần

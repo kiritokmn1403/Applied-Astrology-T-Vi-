@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Beira likido errefraktatzailearen efektua (iOS 26 estiloa) izenburu-barrarako, fitxa-barrarako, elkarrizketa-koadroetarako eta txarteletarako – jatorrizko moduan marraztua, Android 6 eta Windows 7-n ere badabil.",
+"lg_mode": "Beira modua",
+"lg_off": "Desaktibatuta (laua)",
+"lg_frost": "Beira lausotua (arina, bateria aurrezten du)",
+"lg_liquid": "Errefrakzio likidoa (osoa)",
+"lg_bg": "Beiraren atzeko atzealdea",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Laua",
+"lg_blur": "Lausotzea",
+"lg_refr": "Errefrakzioa",
+"lg_bezel": "Ertzaren zabalera",
+"lg_tint": "Kolorea",
+"lg_spec": "Ertzaren distira",
+"lg_sat": "Saturazioa",
+"lg_cards": "Aplikatu eduki-txarteletan",
+"lg_chart": "Aplikatu kartako etxeetan",
+"lg_reset": "Berrezarri Liquid Glass",
+"s_glass": "Liquid Glass"
+}

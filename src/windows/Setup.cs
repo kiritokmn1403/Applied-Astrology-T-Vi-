@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.3 - Bộ cài đặt .exe (một tệp cho x86 / x64 / ARM64, Windows 7 SP1+)
+// Applied Astrology v0.0.4 - Bộ cài đặt .exe (ứng dụng native, không WebView) (một tệp cho x86 / x64 / ARM64, Windows 7 SP1+)
 // Cài theo người dùng (không cần quyền Administrator) vào %LOCALAPPDATA%\Programs\Applied Astrology,
 // tạo lối tắt, đăng ký "Apps & features" (HKCU) và tự làm trình gỡ cài đặt (uninstall.exe /uninstall).
 // Dòng lệnh: /S (cài im lặng)  /D=<thư mục>  /uninstall  /uninstall /S
@@ -14,15 +14,15 @@ using Microsoft.Win32;
 [assembly: AssemblyTitle("Applied Astrology Setup")]
 [assembly: AssemblyProduct("Applied Astrology (Tử Vi Ứng Dụng)")]
 [assembly: AssemblyCompany("Applied Astrology")]
-[assembly: AssemblyVersion("0.0.3.0")]
-[assembly: AssemblyFileVersion("0.0.3.0")]
+[assembly: AssemblyVersion("0.0.4.0")]
+[assembly: AssemblyFileVersion("0.0.4.0")]
 
 namespace AppliedAstrologySetup
 {
     static class Program
     {
         internal const string AppName = "Applied Astrology";
-        internal const string Version = "0.0.3";
+        internal const string Version = "0.0.4";
         internal const string RegKey = @"Software\Microsoft\Windows\CurrentVersion\Uninstall\AppliedAstrology";
         internal static string DefaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", AppName);
 
@@ -51,6 +51,10 @@ namespace AppliedAstrologySetup
         internal static void Install(string target, bool desktop, bool startMenu, Action<int, string> progress)
         {
             Directory.CreateDirectory(target);
+            // v0.0.4: ứng dụng native – dọn phần còn lại của bản WebView2/IE11 (0.0.2–0.0.3) khi cài đè; giữ nguyên dữ liệu người dùng
+            try { string w = Path.Combine(target, "web"); if (Directory.Exists(w)) Directory.Delete(w, true); } catch { }
+            try { string r = Path.Combine(target, "runtimes"); if (Directory.Exists(r)) Directory.Delete(r, true); } catch { }
+            try { foreach (var f in Directory.GetFiles(target, "Microsoft.Web.WebView2.*.dll")) File.Delete(f); } catch { }
             using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("AppPayload"))
             using (var zip = new ZipArchive(s, ZipArchiveMode.Read))
             {

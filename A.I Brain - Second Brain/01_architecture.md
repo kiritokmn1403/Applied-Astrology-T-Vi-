@@ -1,0 +1,29 @@
+# Kiến trúc (từ v0.0.4)
+
+- **Native hoàn toàn.** Không dùng WebView, WebView2 hay IE. Lý do: người dùng muốn hệ thống (Task Manager, SmartScreen, Android) không nhận nhầm app là trình duyệt.
+  - Android: Java Views dựng bằng code, không AndroidX, không XML layout.
+    - Gói `com.appliedastrology.tuvi`, minSdk 23, targetSdk 35.
+    - `libaacore.so` (C/NDK) dùng để tìm kiếm thư viện.
+  - Windows: C# WinForms + GDI+ trên .NET Framework 4.5, **chỉ dùng API có từ 4.5** (Windows 7 SP1).
+    - Không dùng `DateTimeOffset.ToUnixTimeMilliseconds`; dùng `Host.NowMs/FromMs`.
+- **Lõi giống hệt nhau ở 2 nền tảng:**
+  - Java: `src/android/java/.../core/`
+  - C#: `src/windows/Core.cs`, `Core2.cs`
+  - Lõi gồm: Lunar (Hồ Ngọc Đức), Engine, Cal, Json, Fold, Library, I18n, Assistant, Theme, Glass.
+  - Khi sửa một bên **phải sửa bên kia**. Bước `01b_native_crosscheck` trong build sẽ báo lỗi nếu lệch.
+- **Chuẩn đối chiếu** là engine JS gốc ở `src/web/js` (bản 0.0.3, đã khớp SWF 98,18%). Không xóa `src/web`.
+- **Dữ liệu dùng chung** `src/shared/data` được sinh lúc build bởi `tools/build_native_data.js` (đã ghi trong .gitignore):
+  - Nguồn: `src/web/data` + `tools/i18n_v4/*.json` + `tools/changelog_v4.json`
+  - Kết quả: `lib/index.json`, `lib/NN.json` (`[[title, body], ...]`), `lang/<code>.json`, `langs.json`, `changelog.json`
+  - Thêm chuỗi giao diện mới: sửa `tools/i18n_v4/make_i18n_v4.py` (đủ 68 ngôn ngữ) rồi chạy lại.
+- **Lưu trữ tương thích 0.0.3** (không đổi tên khóa, để nâng cấp không mất dữ liệu):
+  - Android: SharedPreferences `aa_store`.
+  - Windows: `%APPDATA%\AppliedAstrology\store.json`; bản portable dùng `userdata\`.
+  - Các khóa: `aa.settings`, `aa.saved`, `aa.bookmarks`, `aa.recent`, `aa.last`, `aa.readerFont`, `aa.lastUpdateCheck`.
+- **Liquid Glass:**
+  - Thanh tiêu đề, thanh tab và hộp thoại dùng bitmap khúc xạ thật (profile Snell trên mặt squircle, SDF hình hộp bo góc, viền phản sáng). Bitmap được cache.
+  - Thẻ dùng kính mờ (blur nền + tint + viền gradient), vì khúc xạ thật cho từng thẻ quá nặng khi cuộn.
+  - Chế độ: `off` / `frost` / `liquid`.
+- **Phiên bản:**
+  - Android versionCode = `<ver>00<n>`: 0.0.4 → 4001 (v7a), 4002 (x86_64), 4003 (arm64).
+  - Bản sau **phải lớn hơn** và dùng **cùng khóa ký**, nếu không sẽ không cài đè được.

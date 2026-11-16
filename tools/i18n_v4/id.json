@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efek kaca cair yang membiaskan cahaya (gaya iOS 26) untuk bilah judul, bilah tab, dialog, dan kartu – digambar secara native, juga berjalan di Android 6 dan Windows 7.",
+"lg_mode": "Mode kaca",
+"lg_off": "Mati (datar)",
+"lg_frost": "Kaca buram (ringan, hemat baterai)",
+"lg_liquid": "Pembiasan cair (penuh)",
+"lg_bg": "Latar di balik kaca",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Polos",
+"lg_blur": "Keburaman",
+"lg_refr": "Pembiasan",
+"lg_bezel": "Lebar bevel",
+"lg_tint": "Rona",
+"lg_spec": "Kilau tepi",
+"lg_sat": "Saturasi",
+"lg_cards": "Terapkan ke kartu konten",
+"lg_chart": "Terapkan ke istana bagan",
+"lg_reset": "Atur ulang Liquid Glass",
+"s_glass": "Liquid Glass"
+}

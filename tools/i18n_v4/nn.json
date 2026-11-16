@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Lysbrytande flytande glas-effekt (i iOS 26-stil) for tittellinja, fanelinja, dialogar og kort – teikna nativt, fungerer òg på Android 6 og Windows 7.",
+"lg_mode": "Glasmodus",
+"lg_off": "Av (flatt)",
+"lg_frost": "Frosta (lett, sparar batteri)",
+"lg_liquid": "Flytande lysbryting (full)",
+"lg_bg": "Bakgrunn bak glaset",
+"lg_bg_nebula": "Tåke",
+"lg_bg_aurora": "Nordlys",
+"lg_bg_plain": "Einsfarga",
+"lg_blur": "Uskarpheit",
+"lg_refr": "Lysbryting",
+"lg_bezel": "Kantbreidd",
+"lg_tint": "Fargetone",
+"lg_spec": "Kantglans",
+"lg_sat": "Metting",
+"lg_cards": "Bruk på innhaldskort",
+"lg_chart": "Bruk på husa i horoskopet",
+"lg_reset": "Tilbakestill Liquid Glass",
+"s_glass": "Liquid Glass"
+}

@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Başlık çubuğu, sekme çubuğu, iletişim kutuları ve kartlar için ışığı kıran sıvı cam efekti (iOS 26 tarzı) – yerel olarak çizilir, Android 6 ve Windows 7'de de çalışır.",
+"lg_mode": "Cam modu",
+"lg_off": "Kapalı (düz)",
+"lg_frost": "Buzlu cam (hafif, pil tasarrufu)",
+"lg_liquid": "Sıvı kırılma (tam)",
+"lg_bg": "Camın arkasındaki arka plan",
+"lg_bg_nebula": "Bulutsu",
+"lg_bg_aurora": "Kutup ışığı",
+"lg_bg_plain": "Düz",
+"lg_blur": "Bulanıklık",
+"lg_refr": "Kırılma",
+"lg_bezel": "Pah genişliği",
+"lg_tint": "Renk tonu",
+"lg_spec": "Kenar parlaklığı",
+"lg_sat": "Doygunluk",
+"lg_cards": "İçerik kartlarına uygula",
+"lg_chart": "Harita evlerine uygula",
+"lg_reset": "Liquid Glass'ı sıfırla",
+"s_glass": "Liquid Glass"
+}

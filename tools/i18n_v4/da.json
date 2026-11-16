@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Brydende flydende glas-effekt (iOS 26-stil) til titellinjen, fanebjælken, dialoger og kort – tegnet nativt, virker også på Android 6 og Windows 7.",
+"lg_mode": "Glastilstand",
+"lg_off": "Fra (flad)",
+"lg_frost": "Frostet (let, sparer batteri)",
+"lg_liquid": "Flydende brydning (fuld)",
+"lg_bg": "Baggrund bag glasset",
+"lg_bg_nebula": "Tåge",
+"lg_bg_aurora": "Nordlys",
+"lg_bg_plain": "Ensfarvet",
+"lg_blur": "Sløring",
+"lg_refr": "Brydning",
+"lg_bezel": "Kantbredde",
+"lg_tint": "Farvetone",
+"lg_spec": "Kantglans",
+"lg_sat": "Mætning",
+"lg_cards": "Anvend på indholdskort",
+"lg_chart": "Anvend på horoskopets huse",
+"lg_reset": "Nulstil Liquid Glass",
+"s_glass": "Liquid Glass"
+}

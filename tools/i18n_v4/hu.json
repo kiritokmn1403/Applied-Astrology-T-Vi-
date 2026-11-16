@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Fénytörő folyékony üveg effektus (iOS 26 stílusban) a címsorhoz, a lapsávhoz, a párbeszédablakokhoz és a kártyákhoz – natívan rajzolva, Android 6-on és Windows 7-en is működik.",
+"lg_mode": "Üveg mód",
+"lg_off": "Ki (lapos)",
+"lg_frost": "Matt üveg (könnyű, kíméli az akkut)",
+"lg_liquid": "Folyékony fénytörés (teljes)",
+"lg_bg": "Háttér az üveg mögött",
+"lg_bg_nebula": "Köd",
+"lg_bg_aurora": "Sarki fény",
+"lg_bg_plain": "Egyszerű",
+"lg_blur": "Elmosás",
+"lg_refr": "Fénytörés",
+"lg_bezel": "Élszélesség",
+"lg_tint": "Árnyalat",
+"lg_spec": "Élfény",
+"lg_sat": "Telítettség",
+"lg_cards": "Alkalmazás a tartalomkártyákra",
+"lg_chart": "Alkalmazás a horoszkóp házaira",
+"lg_reset": "Liquid Glass visszaállítása",
+"s_glass": "Liquid Glass"
+}

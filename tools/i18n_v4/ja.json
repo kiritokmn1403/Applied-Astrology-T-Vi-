@@ -1,0 +1,21 @@
+{
+"s_glass_d": "タイトルバー、タブバー、ダイアログ、カードに光を屈折させるリキッドグラス効果（iOS 26 風）– ネイティブ描画で、Android 6 や Windows 7 でも動作します。",
+"lg_mode": "ガラスモード",
+"lg_off": "オフ（フラット）",
+"lg_frost": "すりガラス（軽量・省電力）",
+"lg_liquid": "リキッド屈折（フル）",
+"lg_bg": "ガラスの背景",
+"lg_bg_nebula": "星雲",
+"lg_bg_aurora": "オーロラ",
+"lg_bg_plain": "無地",
+"lg_blur": "ぼかし",
+"lg_refr": "屈折",
+"lg_bezel": "ベゼル幅",
+"lg_tint": "色合い",
+"lg_spec": "縁のハイライト",
+"lg_sat": "彩度",
+"lg_cards": "コンテンツカードに適用",
+"lg_chart": "命盤の宮に適用",
+"lg_reset": "Liquid Glass をリセット",
+"s_glass": "Liquid Glass"
+}

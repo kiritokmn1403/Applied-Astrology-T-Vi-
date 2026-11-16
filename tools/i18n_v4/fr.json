@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Effet de verre liquide réfractant (style iOS 26) pour la barre de titre, la barre d'onglets, les boîtes de dialogue et les cartes – dessiné en natif, fonctionne aussi sous Android 6 et Windows 7.",
+"lg_mode": "Mode verre",
+"lg_off": "Désactivé (plat)",
+"lg_frost": "Verre dépoli (léger, économise la batterie)",
+"lg_liquid": "Réfraction liquide (complète)",
+"lg_bg": "Arrière-plan derrière le verre",
+"lg_bg_nebula": "Nébuleuse",
+"lg_bg_aurora": "Aurore",
+"lg_bg_plain": "Uni",
+"lg_blur": "Flou",
+"lg_refr": "Réfraction",
+"lg_bezel": "Largeur du biseau",
+"lg_tint": "Teinte",
+"lg_spec": "Reflet des bords",
+"lg_sat": "Saturation",
+"lg_cards": "Appliquer aux cartes de contenu",
+"lg_chart": "Appliquer aux maisons du thème",
+"lg_reset": "Réinitialiser Liquid Glass",
+"s_glass": "Liquid Glass"
+}

@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Epekto sa likido nga bildo nga nagbali sa kahayag (estilo iOS 26) alang sa title bar, tab bar, mga dialog ug mga kard – gidrowing nga native, mogana usab sa Android 6 ug Windows 7.",
+"lg_mode": "Mode sa bildo",
+"lg_off": "Gipalong (patag)",
+"lg_frost": "Frosted (gaan, makadaginot sa baterya)",
+"lg_liquid": "Likido nga pagbali (bug-os)",
+"lg_bg": "Background sa luyo sa bildo",
+"lg_bg_nebula": "Nebula",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Yano",
+"lg_blur": "Kalabo",
+"lg_refr": "Pagbali sa kahayag",
+"lg_bezel": "Gilapdon sa ngilit",
+"lg_tint": "Kolor",
+"lg_spec": "Kasanag sa ngilit",
+"lg_sat": "Kadagaya sa kolor",
+"lg_cards": "Ibutang sa mga kard sa sulod",
+"lg_chart": "Ibutang sa mga palasyo sa tsart",
+"lg_reset": "I-reset ang Liquid Glass",
+"s_glass": "Liquid Glass"
+}

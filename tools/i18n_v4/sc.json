@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Efetu de bidru lìcuidu chi ispàrghet sa lughe (istile iOS 26) pro sa barra de su tìtulu, sa barra de is ischedas, is diàlogos e is cartas – disinnadu in manera nativa, funtzionat fintzas in Android 6 e Windows 7.",
+"lg_mode": "Modalidade bidru",
+"lg_off": "Disativadu (pranu)",
+"lg_frost": "Bidru opacu (lèvìu, ispàrgiat bateria)",
+"lg_liquid": "Rifratzione lìcuida (cumpleta)",
+"lg_bg": "Isfundu a palas de su bidru",
+"lg_bg_nebula": "Nebulosa",
+"lg_bg_aurora": "Aurora",
+"lg_bg_plain": "Simple",
+"lg_blur": "Isfocadura",
+"lg_refr": "Rifratzione",
+"lg_bezel": "Largària de s'oru",
+"lg_tint": "Tinta",
+"lg_spec": "Lugore de s'oru",
+"lg_sat": "Saturatzione",
+"lg_cards": "Àplica a is cartas de cuntenutu",
+"lg_chart": "Àplica a is domos de sa carta",
+"lg_reset": "Torra a impostare Liquid Glass",
+"s_glass": "Liquid Glass"
+}

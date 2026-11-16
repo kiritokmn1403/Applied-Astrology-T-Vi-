@@ -1,0 +1,21 @@
+{
+"s_glass_d": "Lichtbrechender Liquid-Glass-Effekt (im Stil von iOS 26) für Titelleiste, Tableiste, Dialoge und Karten – nativ gezeichnet, läuft auch unter Android 6 und Windows 7.",
+"lg_mode": "Glasmodus",
+"lg_off": "Aus (flach)",
+"lg_frost": "Milchglas (leicht, spart Akku)",
+"lg_liquid": "Flüssige Lichtbrechung (voll)",
+"lg_bg": "Hintergrund hinter dem Glas",
+"lg_bg_nebula": "Nebel",
+"lg_bg_aurora": "Polarlicht",
+"lg_bg_plain": "Schlicht",
+"lg_blur": "Unschärfe",
+"lg_refr": "Brechung",
+"lg_bezel": "Fasenbreite",
+"lg_tint": "Tönung",
+"lg_spec": "Kantenglanz",
+"lg_sat": "Sättigung",
+"lg_cards": "Auf Inhaltskarten anwenden",
+"lg_chart": "Auf Paläste des Horoskops anwenden",
+"lg_reset": "Liquid Glass zurücksetzen",
+"s_glass": "Liquid Glass"
+}
