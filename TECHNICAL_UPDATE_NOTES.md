@@ -637,3 +637,42 @@ Dung lượng (0.0.3 → 0.0.4):
 | Tự kiểm thử | 36 bước | **44 bước** |
 | Đối chiếu engine | – | Java/C# vs JS (3000 lá số, 4000 ngày, 1608 Âm→Dương) |
 | Phụ thuộc Windows | WebView2 SDK, Runtime | Không (chỉ .NET 4.5) |
+
+### Lượt 2 – KẾT QUẢ CUỐI (16/11/2026 22:58–23:29, BUILD đầy đủ + phát hành) – bản được phát hành
+Lượt này đã có đủ các bản sửa #9 (fitLabel) và #10 (bài test 34).
+
+| Đích | Kết quả |
+|---|---|
+| Samsung Galaxy Note 9 (Android 10, USB), nâng cấp 0.0.3 → 0.0.4 | **44/44** |
+| Emulator Android 17 (API 37), nâng cấp OK | **44/44** (34_safe_area đã PASS) |
+| Emulator Android 6.0 (API 23), nâng cấp OK | **44/44** |
+| Windows portable | **44/44** |
+| Windows portable `--compat win7` | **44/44** |
+| Windows: không nạp DLL trình duyệt (56 module) | PASS |
+| Windows Setup.exe: nâng cấp 0.0.3 → 0.0.4, dọn tệp WebView2 cũ, gỡ sạch | **44/44** |
+| Windows MSI x64 | **44/44** |
+| Windows appxbundle | Cài OK (đăng ký layout x64). Kết quả 44/44 hiển thị ở lượt này thực ra là `results.json` **của lượt 1** còn sót trong thư mục; lượt 1 đã chạy thật và đạt 44/44. Script đã được sửa để xóa thư mục kết quả appx trước khi chạy (lỗi #13). |
+
+**Phát hành:**
+- GitHub Release v0.0.4 có **16 tệp**: 12 tệp trong `output/0.0.4` và 4 video kiểm thử. Tất cả đã được xác minh kích thước và digest SHA-256 trên GitHub.
+- Link: https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.4
+
+| # | Lỗi | Cách sửa |
+|---|---|---|
+| 13 | Bước test appx đọc `results.json` cũ, báo kết quả ngay lập tức | Xóa thư mục `test_reports/<ver>/windows/appxbundle` trước khi chạy |
+| 14 | `git push` bị từ chối (non-fast-forward). Trên GitHub có commit mới `68f4560 Add Scala CI workflow` được thêm qua giao diện web | Không force-push. Bước 30 nay chạy `git fetch` rồi `git rebase origin/main` trước khi push; nếu xung đột thì hủy rebase. Chạy lại bằng `PUBLISH_v0.0.4.bat` |
+
+### SHA-256 (`output/0.0.4/SHA256SUMS-0.0.4.txt`)
+```
+36e6efa5ee4e99c139e618b0fb82c2f2a6cb207f137591d5d9640c36d3a154d1 *AppliedAstrology-0.0.4-arm64-v8a.apk
+715de03662cadcbe4cefa87ecf44b2f785cbcc54b5df3aa6a48e8298dc85dba2 *AppliedAstrology-0.0.4-armeabi-v7a.apk
+b0225670b29cf7be92920f4851d9963c8645bc5d3012e328991fad79952affb7 *AppliedAstrology-0.0.4-x86_64.apk
+5ed5b833183794f679f6efd82d84bbe0bd371ad6a7a41b868c6579e8487ad680 *AppliedAstrology-0.0.4-windows-Setup.exe
+addf712c0826c87a985ec68fec24370e4dc92ddf342298a2170cd8bf20e949cb *AppliedAstrology-0.0.4-windows-portable.zip
+edefd4ac9c2082acac0772b617f7c2e47bb5d8b8a0ef8b8bb6c0710a65854fb4 *AppliedAstrology-0.0.4-windows.appxbundle
+ac28d58f8013722d61717c57683aa083211c7413bf13cc95ef074a556257f353 *AppliedAstrology-0.0.4-windows-x64.msi
+84c43ba2e1ea9e6f343f722de84df53d18265d11278ec428639cf18c808035db *AppliedAstrology-0.0.4-windows-x86.msi
+49897726c93c5f0de305191896106844731f515e62c57df61d3b6582eb23f6c1 *AppliedAstrology-0.0.4-windows-arm64.msi
+fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26 *AppliedAstrology-0.0.4-windows-appx-install.bat
+2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73 *AppliedAstrology-0.0.4-signing-certificate.cer
+```

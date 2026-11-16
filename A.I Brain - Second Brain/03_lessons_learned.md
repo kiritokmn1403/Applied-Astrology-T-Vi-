@@ -20,6 +20,8 @@
 - Khi nâng cấp từ bản WebView2, Setup.exe phải xóa `web/`, `runtimes/` và `Microsoft.Web.WebView2.*.dll` cũ.
 
 ## Git / GitHub
+- Người dùng có thể commit thẳng trên github.com (vd. 16/11/2026: `Add Scala CI workflow`). Khi đó push bị từ chối (non-fast-forward). **Không force-push**: `git fetch` + `git rebase origin/main` rồi mới push (bước 30 của script 0.0.4 đã tự làm).
+- Bước test nào đọc `results.json` thì phải xóa thư mục kết quả trước khi chạy, nếu không sẽ đọc phải kết quả cũ.
 - `git credential fill` qua pipe PowerShell lỗi "missing protocol". Phải ghi thẳng vào stdin của tiến trình.
 - Push lớn qua mạng yếu: đặt `http.postBuffer 524288000` và thử lại 5 lần.
 - Tải asset lên Release: bỏ qua chỉ khi **digest sha256** trùng (cùng kích thước là chưa đủ). Upload hỏng giữa chừng thì xóa asset trước khi thử lại.

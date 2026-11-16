@@ -629,7 +629,7 @@ if ($Phase -in @("all", "test")) {
                 }
                 $pkg = Get-AppxPackage -Name "AppliedAstrology.TuViUngDung"
                 Say "  appx installed: $($pkg.PackageFullName)"
-                $dir = Join-Path $Reports "windows\appxbundle"; New-Item -ItemType Directory -Force $dir | Out-Null
+                $dir = Join-Path $Reports "windows\appxbundle"; if (Test-Path $dir) { Remove-Item $dir -Recurse -Force }; New-Item -ItemType Directory -Force $dir | Out-Null   # v0.0.4: clear old results.json (a stale file made a re-run report instantly)
                 New-Item -ItemType Directory -Force "$env:APPDATA\AppliedAstrology" | Out-Null
                 [IO.File]::WriteAllText("$env:APPDATA\AppliedAstrology\selftest.flag", $dir, $Utf8)
                 Start-Process "shell:AppsFolder\$($pkg.PackageFamilyName)!AppliedAstrology"
@@ -677,6 +677,15 @@ if ($Phase -in @("all", "publish") -and -not $NoPublish) {
             # v0.0.3: large push (test screenshots) over an unstable connection -> bigger buffer + retries
             Run $T.git @("config", "http.postBuffer", "524288000") "git" | Out-Null
             Run $T.git @("config", "http.lowSpeedLimit", "0") "git" | Out-Null
+            # v0.0.4: the remote may have commits made on github.com (e.g. a workflow file) -> rebase our release commit on top
+            # (never force-push main). Conflicts abort the rebase and stop the step.
+            Run $T.git @("fetch", "origin", "main") "git fetch" -IgnoreExit | Out-Null
+            $behind = ((Run $T.git @("rev-list", "--count", "HEAD..origin/main") "git rev-list" -IgnoreExit) -join "").Trim()
+            if ($behind -match '^[0-9]+$' -and [int]$behind -gt 0) {
+                Say "  local branch is $behind commit(s) behind origin/main - rebasing"
+                try { Run $T.git @("-c", "user.name=kiritokmn1403", "-c", "user.email=kietnguyenworking1403@gmail.com", "rebase", "origin/main") "git rebase" | Out-Null }
+                catch { Run $T.git @("rebase", "--abort") "git rebase --abort" -IgnoreExit | Out-Null; throw }
+            }
             $pushed = $false
             for ($try = 1; $try -le 5 -and -not $pushed; $try++) {
                 try { Run $T.git @("push", "origin", "HEAD:main") "git push" | Out-Null; $pushed = $true }
