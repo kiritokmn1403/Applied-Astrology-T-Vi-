@@ -1,5 +1,6 @@
-// Applied Astrology v0.0.4 – bộ điều khiển giao diện native Windows (GDI+): khung kính Liquid Glass, bố cục, chữ, nút, lá số, lịch tháng.
+// Applied Astrology v0.0.5 – bộ điều khiển giao diện native Windows (GDI+): khung kính Liquid Glass, bố cục, chữ, nút, lá số, lịch tháng.
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -27,6 +28,14 @@ namespace AppliedAstrology
             var b = new Bitmap(w, h, PixelFormat.Format32bppArgb); var d = b.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             for (int y = 0; y < h; y++) Marshal.Copy(px, y * w, d.Scan0 + y * d.Stride, w); b.UnlockBits(d); return b;
         }
+        /// <summary>Vẽ ảnh nguồn (phủ khung vẽ cw×ch) vào bitmap PArgb đúng kích thước w×h, góc trên-trái trùng nhau</summary>
+        public static Bitmap Scaled(Bitmap src, int cw, int ch, int w, int h)
+        {
+            var b = new Bitmap(w, h, PixelFormat.Format32bppPArgb);
+            using (var g = Graphics.FromImage(b)) { g.InterpolationMode = InterpolationMode.HighQualityBilinear; g.PixelOffsetMode = PixelOffsetMode.HighQuality; g.DrawImage(src, new Rectangle(0, 0, cw, ch), new Rectangle(0, 0, src.Width, src.Height), GraphicsUnit.Pixel); }
+            return b;
+        }
+        public static Bitmap ToPArgb(Bitmap src) { var b = new Bitmap(src.Width, src.Height, PixelFormat.Format32bppPArgb); using (var g = Graphics.FromImage(b)) g.DrawImageUnscaled(src, 0, 0); return b; }
         public static int[] ToArgb(Bitmap b)
         {
             int w = b.Width, h = b.Height; var px = new int[w * h]; var d = b.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
@@ -34,24 +43,65 @@ namespace AppliedAstrology
         }
     }
 
-    /// <summary>Cấu hình kính + nền tinh vân dùng chung cho cả cửa sổ</summary>
+    /// <summary>
+    /// Cấu hình kính + nền tinh vân dùng chung cho cả cửa sổ.
+    /// v0.0.5 (sửa lag): tinh vân dựng 1 lần trên "khung vẽ" phủ cả màn hình (đổi cỡ/phóng to cửa sổ không dựng lại);
+    /// Full/BlurBmp là ảnh ĐÃ co giãn đúng kích thước vùng khách, định dạng 32bppPArgb → mọi lần vẽ đều là DrawImageUnscaled (nhanh nhất của GDI+).
+    /// 0.0.4 vẽ DrawImage CÓ co giãn (nội suy) cho mỗi lần một điều khiển trong suốt cần nền → cuộn rất giật.
+    /// </summary>
     sealed class GlassCtx
     {
         public string Mode = "liquid", BgStyle = "nebula"; public bool Cards = true, ChartGlass; public readonly Glass.Params P = new Glass.Params(); public Theme Th = Theme.CELESTIAL; public int Version;
-        public Bitmap Full, BlurBmp; public int[] Blur; public int Bw, Bh; public const int SCALE = 4; int builtV = -1, bW, bH;
+        public Bitmap Full, BlurBmp; public int[] Blur; public int Bw, Bh; public const int SCALE = 4; public string BlurKey = "";
+        Bitmap neb, blurSmall; int[] small; int cw, ch, clientW = -1, clientH = -1; string nebKey;
+        public static long LastNebulaMs = -1, LastScaleMs = -1, Builds;
         public bool On { get { return Mode != "off"; } }
         public void Ensure(Size client)
         {
             int w = Math.Max(4, client.Width), h = Math.Max(4, client.Height);
-            if (builtV == Version && bW == w && bH == h && Full != null) return;
-            builtV = Version; bW = w; bH = h;
-            int hw = Math.Max(2, w / 2), hh = Math.Max(2, h / 2);
-            var px = Glass.Nebula(hw, hh, Th, On ? BgStyle : "plain", 20261116);
-            if (Full != null) Full.Dispose(); Full = Gfx.FromArgb(px, hw, hh);
-            Bw = Math.Max(2, w / SCALE); Bh = Math.Max(2, h / SCALE);
-            using (var sm = new Bitmap(Bw, Bh, PixelFormat.Format32bppArgb)) { using (var g = Graphics.FromImage(sm)) { g.InterpolationMode = InterpolationMode.HighQualityBilinear; g.DrawImage(Full, new Rectangle(0, 0, Bw, Bh)); } Blur = Gfx.ToArgb(sm); }
-            Glass.BoxBlur(Blur, Bw, Bh, Math.Max(1, (int)Math.Round(P.Blur / SCALE)));
-            if (BlurBmp != null) BlurBmp.Dispose(); BlurBmp = Gfx.FromArgb(Blur, Bw, Bh);
+            string style = On ? BgStyle : "plain"; int radius = Math.Max(1, (int)Math.Round(P.Blur / SCALE));
+            if (neb == null || w > cw || h > ch)
+            {
+                Rectangle scr; try { scr = Screen.PrimaryScreen.Bounds; } catch { scr = new Rectangle(0, 0, 1920, 1080); }
+                cw = (Math.Max(w, scr.Width) + 63) / 64 * 64; ch = (Math.Max(h, scr.Height) + 63) / 64 * 64; nebKey = null;
+            }
+            string nk = cw + "x" + ch + "/" + Th.Id + "/" + style;
+            if (nk != nebKey)
+            {
+                var sw = Stopwatch.StartNew(); int hw = cw / 2, hh = ch / 2;
+                var px = Glass.Nebula(hw, hh, Th, style, 20261116);
+                if (neb != null) neb.Dispose(); neb = Gfx.FromArgb(px, hw, hh);
+                small = Downsample(px, hw, hh, cw / SCALE, ch / SCALE); nebKey = nk; BlurKey = ""; clientW = -1; Builds++;
+                LastNebulaMs = sw.ElapsedMilliseconds;
+            }
+            string bk = nk + "/" + radius;
+            if (bk != BlurKey)
+            {
+                Bw = cw / SCALE; Bh = ch / SCALE; var bl = (int[])small.Clone(); Glass.BoxBlur(bl, Bw, Bh, radius); Blur = bl;
+                if (blurSmall != null) blurSmall.Dispose(); blurSmall = Gfx.FromArgb(bl, Bw, Bh); BlurKey = bk; clientW = -1;
+            }
+            if (clientW != w || clientH != h)
+            {
+                var sw = Stopwatch.StartNew();
+                var f2 = Gfx.Scaled(neb, cw, ch, w, h); var b2 = Gfx.Scaled(blurSmall, cw, ch, w, h);
+                if (Full != null) Full.Dispose(); if (BlurBmp != null) BlurBmp.Dispose(); Full = f2; BlurBmp = b2; clientW = w; clientH = h;
+                LastScaleMs = sw.ElapsedMilliseconds;
+            }
+        }
+        static int[] Downsample(int[] px, int w, int h, int ow, int oh)
+        {
+            var o = new int[ow * oh];
+            for (int y = 0; y < oh; y++)
+            {
+                int y0 = y * h / oh, y1 = Math.Max(y0 + 1, (y + 1) * h / oh);
+                for (int x = 0; x < ow; x++)
+                {
+                    int x0 = x * w / ow, x1 = Math.Max(x0 + 1, (x + 1) * w / ow); long r = 0, g = 0, b = 0; int n = 0;
+                    for (int yy = y0; yy < y1 && yy < h; yy++) for (int xx = x0; xx < x1 && xx < w; xx++) { int c = px[yy * w + xx]; r += (c >> 16) & 255; g += (c >> 8) & 255; b += c & 255; n++; }
+                    if (n == 0) n = 1; o[y * ow + x] = unchecked((int)0xFF000000) | ((int)(r / n) << 16) | ((int)(g / n) << 8) | (int)(b / n);
+                }
+            }
+            return o;
         }
     }
 
@@ -103,39 +153,71 @@ namespace AppliedAstrology
             else { int lineH = 0; foreach (var c in vis) { var sz = WrapSize(c, inner); if (x > Pad.Left && x - Pad.Left + sz.Width > inner) { x = Pad.Left; y += lineH + Gap; lineH = 0; } c.SetBounds(x, y, sz.Width, sz.Height); x += sz.Width + Gap; lineH = Math.Max(lineH, sz.Height); } }
             foreach (var b in vis.OfType<Box>()) b.PerformLayout();
         }
+        /// <summary>
+        /// v0.0.5: nền của mỗi khung kính (gồm phần nền phía sau ở góc bo + kính) được dựng MỘT lần vào bộ đệm PArgb theo khóa
+        /// (kích thước, vị trí, phiên bản cấu hình, ảnh nền, màu, bán kính). Các điều khiển con trong suốt (chữ, nút) khi vẽ lại chỉ chép
+        /// vùng tương ứng từ bộ đệm. Tối đa 48 bộ đệm (LRU) để không tốn RAM khi danh sách dài.
+        /// </summary>
+        static readonly LinkedList<Box> bgLru = new LinkedList<Box>(); const int BG_MAX = 48; public static long BgBuilds, LiquidBuilds;
+        Bitmap bgCache; string bgKey; LinkedListNode<Box> lruNode;
+        void Touch()
+        {
+            if (lruNode != null) bgLru.Remove(lruNode); else lruNode = new LinkedListNode<Box>(this);
+            bgLru.AddLast(lruNode);
+            while (bgLru.Count > BG_MAX) { var old = bgLru.First.Value; bgLru.RemoveFirst(); old.lruNode = null; if (old.bgCache != null) { old.bgCache.Dispose(); old.bgCache = null; old.bgKey = null; } }
+        }
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             if (GlassKind == 0 || G == null) { base.OnPaintBackground(e); return; }
-            var gr = e.Graphics; gr.SmoothingMode = SmoothingMode.AntiAlias; var th = G.Th; var r = new RectangleF(0, 0, Width - 1, Height - 1);
-            int baseC = Solid != 0 ? Solid : (GlassKind == 2 ? th.Bg2 : th.Card);
-            bool glass = G.On && (GlassKind == 2 || G.Cards) && G.BlurBmp != null;
-            var form = FindForm();
-            if (!glass || form == null)
+            if (Width <= 0 || Height <= 0) return;
+            var form = FindForm(); Point o = form == null ? Point.Empty : form.PointToClient(PointToScreen(Point.Empty));
+            var th = G.Th; int baseC = Solid != 0 ? Solid : (GlassKind == 2 ? th.Bg2 : th.Card);
+            bool glass = G.On && (GlassKind == 2 || G.Cards) && G.BlurBmp != null && form != null;
+            string key = Width + "x" + Height + "@" + o.X + "," + o.Y + "/" + G.Version + "/" + G.BlurKey + "/" + baseC + "/" + Radius + "/" + Selected + "/" + glass + "/" + (Parent == null ? 0 : Parent.GetHashCode());
+            if (key != bgKey || bgCache == null)
             {
-                if (Parent != null && Radius > 0) InvokePaintBackground(Parent, e);
-                using (var p = Gfx.Round(r, Radius)) { using (var b = new SolidBrush(Gfx.C(baseC))) gr.FillPath(b, p); using (var pen = new Pen(Gfx.C(Selected ? th.Gold : th.Line), Selected ? 2 : 1)) gr.DrawPath(pen, p); }
-                return;
+                if (bgCache == null || bgCache.Width != Width || bgCache.Height != Height) { if (bgCache != null) bgCache.Dispose(); bgCache = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb); }
+                using (var g = Graphics.FromImage(bgCache))
+                {
+                    g.Clear(Color.Transparent);
+                    // nền phía sau (cha) – để góc bo hòa vào nền
+                    if (Parent != null && Radius > 0)
+                    {
+                        var st0 = g.Save(); g.TranslateTransform(-Left, -Top);
+                        try { using (var pe = new PaintEventArgs(g, new Rectangle(Left, Top, Width, Height))) { InvokePaintBackground(Parent, pe); } } catch { }
+                        g.Restore(st0);
+                    }
+                    PaintGlass(g, o, baseC, glass);
+                }
+                bgKey = key; BgBuilds++;
             }
-            Point o = form.PointToClient(PointToScreen(Point.Empty));
-            if (Parent != null) InvokePaintBackground(Parent, e);
+            Touch();
+            e.Graphics.DrawImageUnscaled(bgCache, 0, 0);
+        }
+        void PaintGlass(Graphics gr, Point o, int baseC, bool glass)
+        {
+            gr.SmoothingMode = SmoothingMode.AntiAlias; var th = G.Th; var r = new RectangleF(0, 0, Width - 1, Height - 1);
             using (var p = Gfx.Round(r, Radius))
             {
-                if (GlassKind == 2 && G.Mode == "liquid" && Width * Height <= 1600000)
+                if (!glass)
                 {
-                    string key = Width + "x" + Height + "@" + o.X + "," + o.Y + "/" + G.Version + "/" + G.P.Key() + "/" + baseC + "/" + Radius;
+                    using (var b = new SolidBrush(Gfx.C(baseC))) gr.FillPath(b, p); using (var pen = new Pen(Gfx.C(Selected ? th.Gold : th.Line), Selected ? 2 : 1)) gr.DrawPath(pen, p);
+                    return;
+                }
+                if (GlassKind == 2 && G.Mode == "liquid" && (long)Width * Height <= 4000000L)
+                {
+                    string key = Width + "x" + Height + "@" + o.X + "," + o.Y + "/" + G.Version + "/" + G.P.Key() + "/" + baseC + "/" + Radius + "/" + G.BlurKey;
                     if (key != cacheKey)
                     {
                         var mp = Glass.GetMaps(Width, Height, (int)Radius, G.P); var buf = new int[Width * Height];
                         Glass.Render(G.Blur, G.Bw, G.Bh, GlassCtx.SCALE, o.X, o.Y, mp, G.P, baseC, buf);
-                        if (cache != null) cache.Dispose(); cache = Gfx.FromArgb(buf, Width, Height); cacheKey = key;
+                        if (cache != null) cache.Dispose(); using (var raw = Gfx.FromArgb(buf, Width, Height)) cache = Gfx.ToPArgb(raw); cacheKey = key; LiquidBuilds++;
                     }
                     gr.DrawImageUnscaled(cache, 0, 0);
                 }
                 else
                 {
-                    var st = gr.Save(); gr.SetClip(p); gr.InterpolationMode = InterpolationMode.Bilinear;
-                    gr.DrawImage(G.BlurBmp, new RectangleF(-o.X, -o.Y, G.Bw * GlassCtx.SCALE, G.Bh * GlassCtx.SCALE), new RectangleF(0, 0, G.Bw, G.Bh), GraphicsUnit.Pixel);
-                    gr.Restore(st);
+                    var st = gr.Save(); gr.SetClip(p); gr.DrawImageUnscaled(G.BlurBmp, -o.X, -o.Y); gr.Restore(st);
                     using (var b = new SolidBrush(Gfx.A(baseC, (int)(255 * Math.Min(0.92, G.P.Tint + 0.12))))) gr.FillPath(b, p);
                     using (var lg = new LinearGradientBrush(new RectangleF(0, 0, Math.Max(2, Width * 0.6f), Math.Max(2, Height)), Gfx.A(unchecked((int)0xFFFFFFFF), (int)(230 * G.P.Specular)), Gfx.A(unchecked((int)0xFFFFFFFF), (int)(40 * G.P.Specular)), 60f))
                     using (var pen = new Pen(lg, 1f)) gr.DrawPath(pen, p);
@@ -143,8 +225,9 @@ namespace AppliedAstrology
                 if (Selected) using (var pen = new Pen(Gfx.C(th.Gold), 2)) gr.DrawPath(pen, p);
             }
         }
+        public bool HasLiquidCache { get { return cache != null && cacheKey != null; } }
         protected override void OnPaint(PaintEventArgs e) { }
-        protected override void Dispose(bool d) { if (d && cache != null) cache.Dispose(); base.Dispose(d); }
+        protected override void Dispose(bool d) { if (d) { if (cache != null) cache.Dispose(); if (lruNode != null) { bgLru.Remove(lruNode); lruNode = null; } if (bgCache != null) { bgCache.Dispose(); bgCache = null; } } base.Dispose(d); }
     }
     interface IPref { int PrefHeight(int width); int PrefWidth(); }
 

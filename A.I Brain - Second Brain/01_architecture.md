@@ -1,4 +1,4 @@
-# Kiến trúc (từ v0.0.4)
+# Kiến trúc (từ v0.0.4, cập nhật v0.0.5)
 
 - **Native hoàn toàn.** Không dùng WebView, WebView2 hay IE. Lý do: người dùng muốn hệ thống (Task Manager, SmartScreen, Android) không nhận nhầm app là trình duyệt.
   - Android: Java Views dựng bằng code, không AndroidX, không XML layout.
@@ -10,20 +10,23 @@
   - Java: `src/android/java/.../core/`
   - C#: `src/windows/Core.cs`, `Core2.cs`
   - Lõi gồm: Lunar (Hồ Ngọc Đức), Engine, Cal, Json, Fold, Library, I18n, Assistant, Theme, Glass.
-  - Khi sửa một bên **phải sửa bên kia**. Bước `01b_native_crosscheck` trong build sẽ báo lỗi nếu lệch.
+  - Khi sửa một bên **phải sửa bên kia** (và cả `src/web/js` nếu là Lunar/Engine – đó là chuẩn đối chiếu). Bước `01b_native_crosscheck` sẽ báo lỗi nếu lệch; từ 0.0.5 có thêm đối chiếu engine kính (`GlassDumpJ.java` ↔ `GlassDumpCs.cs`, phải trùng từng byte).
 - **Chuẩn đối chiếu** là engine JS gốc ở `src/web/js` (bản 0.0.3, đã khớp SWF 98,18%). Không xóa `src/web`.
 - **Dữ liệu dùng chung** `src/shared/data` được sinh lúc build bởi `tools/build_native_data.js` (đã ghi trong .gitignore):
-  - Nguồn: `src/web/data` + `tools/i18n_v4/*.json` + `tools/changelog_v4.json`
+  - Nguồn: `src/web/data` + `tools/i18n_v4/*.json` + `tools/i18n_v5/*.json` + `tools/changelog_v4.json` + `tools/changelog_v5.json`
   - Kết quả: `lib/index.json`, `lib/NN.json` (`[[title, body], ...]`), `lang/<code>.json`, `langs.json`, `changelog.json`
-  - Thêm chuỗi giao diện mới: sửa `tools/i18n_v4/make_i18n_v4.py` (đủ 68 ngôn ngữ) rồi chạy lại.
+  - Thêm chuỗi giao diện mới: tạo `tools/i18n_v<N>/make_i18n_v<N>.py` (đủ 68 ngôn ngữ, script tự báo nếu thiếu ngôn ngữ), chạy lại, rồi thêm thư mục vào vòng lặp trong `build_native_data.js`. Kiểm tra dòng log `(272 keys, 0 filled from en/vi)`: số "filled" phải bằng 0.
 - **Lưu trữ tương thích 0.0.3** (không đổi tên khóa, để nâng cấp không mất dữ liệu):
   - Android: SharedPreferences `aa_store`.
   - Windows: `%APPDATA%\AppliedAstrology\store.json`; bản portable dùng `userdata\`.
   - Các khóa: `aa.settings`, `aa.saved`, `aa.bookmarks`, `aa.recent`, `aa.last`, `aa.readerFont`, `aa.lastUpdateCheck`.
-- **Liquid Glass:**
-  - Thanh tiêu đề, thanh tab và hộp thoại dùng bitmap khúc xạ thật (profile Snell trên mặt squircle, SDF hình hộp bo góc, viền phản sáng). Bitmap được cache.
-  - Thẻ dùng kính mờ (blur nền + tint + viền gradient), vì khúc xạ thật cho từng thẻ quá nặng khi cuộn.
-  - Chế độ: `off` / `frost` / `liquid`.
+  - Cài đặt Liquid Glass (trong `aa.settings`): `lgOn` (0.0.5, công tắc), `lgMode` (`frost`/`liquid`; giá trị cũ `off` được chuyển thành `lgOn=false`), `lgBg`, `lgBlur`, `lgRefr`, `lgBezel`, `lgTint`, `lgSpec`, `lgSat`, `lgCards`, `lgChart`.
+- **Liquid Glass (viết lại ở 0.0.5 để hết lag):**
+  - Lõi `Glass`: bản đồ khúc xạ **thưa** – chỉ lưu điểm ảnh trong dải viền vát (`Maps.idx/dx/dy/mask/spec`, `rowL[y]` = độ rộng dải viền mỗi hàng). `render()` = lõi + dải (Windows), `renderBand()` = chỉ dải (Android). Lấy mẫu song tuyến tính. Cache tối đa 12 mục.
+  - Android `GlassViews`: một luồng nền `aa-glass` (ưu tiên thấp) dựng tinh vân/làm mờ/dải viền; khi chưa xong khung vẽ tạm bằng kính mờ. Lõi kính = `BitmapShader` (nền mờ) + `ColorMatrixColorFilter` (bão hòa) + lớp phủ màu, do GPU vẽ. Cuộn: `Bg.onScroll()` gộp bằng `postOnAnimation`, chỉ vẽ lại thẻ đang gắn vào cửa sổ **và đổi vị trí**. Khung đăng ký/hủy theo `onAttachedToWindow/onDetachedFromWindow`. `kind`: 0 thẻ (không elevation), 1 thanh/hộp thoại, 2 khối màu đặc (toast).
+  - Windows `GlassCtx`: tinh vân dựng 1 lần trên khung vẽ phủ cả màn hình (bội 64 px) → đổi cỡ cửa sổ chỉ cắt/co giãn 1 lần; `Full`/`BlurBmp` là bitmap **PArgb đúng kích thước vùng khách**, luôn vẽ bằng `DrawImageUnscaled`. `Box` có bộ đệm nền (`bgCache`, LRU 48) gồm cả nền phía sau góc bo; con trong suốt chỉ chép lại.
+  - Máy yếu (Android: `isLowRamDevice`, heap ≤ 128 MB, hoặc API < 26) lần chạy đầu dùng `frost`.
+- **Đóng gói (0.0.5):** `tools/zip_recompress.js` (Node + zopfli WebAssembly vendored ở `tools/zopfli_vendor`) nén lại APK (trước zipalign), portable.zip và payload của Setup.exe – deflate chuẩn, nhỏ hơn ~6%.
 - **Phiên bản:**
-  - Android versionCode = `<ver>00<n>`: 0.0.4 → 4001 (v7a), 4002 (x86_64), 4003 (arm64).
+  - Android versionCode = `<ver>00<n>`: 0.0.4 → 4001/4002/4003; **0.0.5 → 5001 (v7a), 5002 (x86_64), 5003 (arm64)**.
   - Bản sau **phải lớn hơn** và dùng **cùng khóa ký**, nếu không sẽ không cài đè được.

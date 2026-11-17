@@ -1,0 +1,11 @@
+[{"v": "0.0.5", "d": "2026-11-17",
+ "vi": ["Sửa lỗi ứng dụng lag, hình ảnh giật và treo: Liquid Glass được viết lại – khúc xạ chỉ tính ở dải viền vát (ít hơn ~10 lần điểm ảnh), lõi kính do GPU vẽ; mọi phép tính ảnh chạy ở luồng nền nên mở hộp thoại, đổi cài đặt không còn đứng hình.",
+        "Cuộn mượt: chỉ vẽ lại các thẻ đang hiển thị và thật sự đổi vị trí (tối đa 1 lần mỗi khung hình); bỏ bóng đổ của từng thẻ; không còn tạo đối tượng vẽ mới mỗi khung hình. Windows: nền và kính được dựng sẵn đúng kích thước, vẽ không co giãn, có bộ đệm cho từng khung; mở hộp thoại không còn chụp lại toàn cửa sổ.",
+        "Mới: công tắc Bật/Tắt Liquid Glass trong Cài Đặt (tắt = giao diện phẳng, nhẹ nhất); máy cấu hình thấp (RAM ít, Android 6–7) lần đầu tự dùng chế độ Kính mờ. Dịch đủ 68 ngôn ngữ.",
+        "Kính lỏng sắc nét hơn: lấy mẫu song tuyến tính, tăng bão hòa bằng ColorMatrix; bản đồ khúc xạ dạng thưa giảm bộ nhớ ~10 lần (hộp thoại lớn: ~24 MB → ~2,4 MB).",
+        "Tự kiểm thử 51 bước (thêm công tắc Liquid Glass, đo khung hình khi cuộn, thời gian mở hộp thoại, đổi tab, đổi cài đặt, độ ổn định kính, bộ nhớ). Engine kính Java và C# cho kết quả giống hệt từng byte."],
+ "en": ["Fixed lag, stutter and freezes: Liquid Glass was rewritten – refraction is computed only on the bezel band (~10× fewer pixels), the glass core is drawn by the GPU, and all image work runs on a background thread so opening dialogs and changing settings no longer freezes the app.",
+        "Smooth scrolling: only visible cards that actually moved are redrawn (at most once per frame); per-card shadows removed; no more new drawing objects every frame. Windows: background and glass are pre-scaled to the window size, drawn unscaled and cached per frame; opening a dialog no longer re-renders the whole window.",
+        "New: Liquid Glass On/Off switch in Settings (off = flat, lightest interface); low-end devices (little RAM, Android 6–7) start in Frosted mode. Translated into all 68 languages.",
+        "Sharper liquid glass: bilinear sampling and ColorMatrix saturation; sparse refraction maps use ~10× less memory (large dialog: ~24 MB → ~2.4 MB).",
+        "51-step self-test (adds the Liquid Glass switch, scroll frame timing, dialog open time, tab switching, settings changes, glass stability and memory). Java and C# glass engines produce byte-identical output."]}]

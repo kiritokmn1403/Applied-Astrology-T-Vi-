@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – cửa sổ chính native Windows: khung, thanh tab, 7 màn hình, hộp thoại, thông báo.
+// Applied Astrology v0.0.5 – cửa sổ chính native Windows: khung, thanh tab, 7 màn hình, hộp thoại, thông báo.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,7 +25,7 @@ namespace AppliedAstrology
         internal static Dictionary<string, object> Defaults()
         {
             return Json.Map("lang", "vi", "theme", "celestial-dark", "font", "normal", "layout", "auto", "desktop", null, "ts", true, "bs", false, "tt", true, "luu", true, "leap", "same", "paper", "none", "autoUpdate", true, "autoInstall", true, "logs", true,
-                "lgMode", "liquid", "lgBg", "nebula", "lgBlur", 18L, "lgRefr", 60L, "lgBezel", 18L, "lgTint", 35L, "lgSpec", 55L, "lgSat", 135L, "lgCards", true, "lgChart", false);
+                "lgOn", true, "lgMode", "liquid", "lgBg", "nebula", "lgBlur", 18L, "lgRefr", 60L, "lgBezel", 18L, "lgTint", 35L, "lgSpec", 55L, "lgSat", 135L, "lgCards", true, "lgChart", false);
         }
         internal string S(string k) { object v; return St.TryGetValue(k, out v) && v != null ? System.Convert.ToString(v) : null; }
         internal bool B(string k) { object v; return St.TryGetValue(k, out v) && v is bool && (bool)v; }
@@ -42,6 +42,8 @@ namespace AppliedAstrology
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
             Font = new Font("Segoe UI", 9.5f);
             St = new Dictionary<string, object>(Defaults()); var saved = Json.Obj(Host.Get("aa.settings")); if (saved != null) foreach (var kv in saved) St[kv.Key] = kv.Value;
+            // v0.0.5: Liquid Glass có công tắc riêng (lgOn); bản cũ lưu lgMode = "off" → lgOn = false
+            if (saved != null && saved.ContainsKey("lgMode") && System.Convert.ToString(saved["lgMode"]) == "off") { St["lgOn"] = false; St["lgMode"] = "liquid"; }
             Host.LogEnabled = B("logs");
             var src = new Host.Src(); Lib = new Library(src); I18n = new I18n(src); I18n.SetLang(S("lang")); Asst = new Assistant(Lib, I18n);
             Form0 = new ChartInput { Name = "Nguyễn Văn An", Gender = "Nam", Day = 15, Month = 8, Year = 1995, HourChi = 6 };
@@ -51,8 +53,9 @@ namespace AppliedAstrology
             var n = DateTime.Now; CalY = n.Year; CalM = n.Month; CalD = n.Day;
             Header = new Box { G = G, GlassKind = 2 }; Nav = new NavBar(this); Scroll = new DBPanel { AutoScroll = true, BackColor = Color.Transparent }; Ov = new Overlay(this) { Visible = false };
             Controls.Add(Ov); Controls.Add(Scroll); Controls.Add(Nav); Controls.Add(Header);
-            Scroll.Scroll += (s, e) => { Scroll.Invalidate(true); };
-            Scroll.MouseWheel += (s, e) => { Scroll.Invalidate(true); };
+            // v0.0.5: gộp yêu cầu vẽ lại khi cuộn (nhiều sự kiện bánh xe → 1 lần vẽ)
+            Scroll.Scroll += (s, e) => QueueScrollPaint();
+            Scroll.MouseWheel += (s, e) => QueueScrollPaint();
             Resize += (s, e) => { DoLayout(); };
             ApplySettings();
             Shown += (s, e) =>
@@ -67,6 +70,12 @@ namespace AppliedAstrology
                 }
             };
         }
+        bool scrollPaintQueued; internal static long ScrollPaints;
+        void QueueScrollPaint()
+        {
+            if (scrollPaintQueued || !IsHandleCreated) return; scrollPaintQueued = true;
+            BeginInvoke((Action)(() => { scrollPaintQueued = false; ScrollPaints++; Scroll.Invalidate(true); Scroll.Update(); }));
+        }
         internal static string DumpTree(Control c, int depth) { var sb = new StringBuilder(); if (depth < 7) { sb.Append(new string(' ', depth * 2) + c.GetType().Name + " " + c.Tag + " " + c.Bounds + (c.Visible ? "" : " HIDDEN") + "\n"); foreach (Control k in c.Controls) sb.Append(DumpTree(k, depth + 1)); } return sb.ToString(); }
         internal void Delay(int ms, Action a) { var t = new System.Windows.Forms.Timer { Interval = Math.Max(1, ms) }; t.Tick += (s, e) => { t.Stop(); t.Dispose(); a(); }; t.Start(); }
         internal int D(float v) { return (int)Math.Round(v * Dpi); }
@@ -76,7 +85,7 @@ namespace AppliedAstrology
         // ---------------- cài đặt → giao diện ----------------
         internal void ApplyGlass()
         {
-            G.Th = Theme.ById(S("theme")); G.Mode = S("lgMode") ?? "liquid"; G.BgStyle = S("lgBg") ?? "nebula"; G.Cards = B("lgCards"); G.ChartGlass = B("lgChart");
+            G.Th = Theme.ById(S("theme")); G.Mode = B("lgOn") ? (S("lgMode") ?? "liquid") : "off"; if (G.Mode != "frost" && G.Mode != "liquid") G.Mode = "off"; G.BgStyle = S("lgBg") ?? "nebula"; G.Cards = B("lgCards"); G.ChartGlass = B("lgChart");
             G.P.Blur = N("lgBlur"); G.P.Refraction = N("lgRefr") / 100.0; G.P.Bezel = N("lgBezel") * Dpi; G.P.Tint = N("lgTint") / 100.0; G.P.Specular = N("lgSpec") / 100.0; G.P.Saturation = N("lgSat") / 100.0; G.P.Thickness = 40 * Dpi;
             G.Version++;
         }
@@ -89,8 +98,7 @@ namespace AppliedAstrology
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             G.Ensure(ClientSize);
-            e.Graphics.InterpolationMode = InterpolationMode.Bilinear;
-            if (G.Full != null) e.Graphics.DrawImage(G.Full, new Rectangle(0, 0, ClientSize.Width, ClientSize.Height)); else e.Graphics.Clear(Gfx.C(G.Th.Bg));
+            if (G.Full != null) e.Graphics.DrawImageUnscaled(G.Full, 0, 0); else e.Graphics.Clear(Gfx.C(G.Th.Bg));   // v0.0.5: không co giãn
         }
         void BuildHeader()
         {
@@ -101,15 +109,17 @@ namespace AppliedAstrology
         }
         internal void DoLayout()
         {
-            if (Header == null) return; G.Ensure(ClientSize);
-            Wide = ClientSize.Width >= D(720) || IsDesktop;
-            int m = G.On ? D(8) : 0, w = ClientSize.Width - m * 2, hh = Header.PrefHeight(w), nh = D(Wide ? 52 : 58);
+            if (Header == null) return;
+            int cw = Math.Max(D(720), ClientSize.Width), ch = Math.Max(D(520), ClientSize.Height);
+            G.Ensure(new Size(cw, ch));
+            Wide = cw >= D(720) || IsDesktop;
+            int m = G.On ? D(8) : 0, w = cw - m * 2, hh = Header.PrefHeight(w), nh = D(Wide ? 52 : 58);
             Header.SetBounds(m, G.On ? D(6) : 0, w, hh);
             int top = Header.Bottom + (G.On ? D(4) : 0);
-            if (Wide) { Nav.SetBounds(m, top, w, nh); Scroll.SetBounds(0, Nav.Bottom + (G.On ? D(4) : 0), ClientSize.Width, ClientSize.Height - Nav.Bottom - (G.On ? D(4) : 0)); }
-            else { Nav.SetBounds(m, ClientSize.Height - nh - m, w, nh); Scroll.SetBounds(0, top, ClientSize.Width, Nav.Top - top - (G.On ? D(4) : 0)); }
+            if (Wide) { Nav.SetBounds(m, top, w, nh); Scroll.SetBounds(0, Nav.Bottom + (G.On ? D(4) : 0), cw, ch - Nav.Bottom - (G.On ? D(4) : 0)); }
+            else { Nav.SetBounds(m, ch - nh - m, w, nh); Scroll.SetBounds(0, top, cw, Nav.Top - top - (G.On ? D(4) : 0)); }
             Nav.Radius = G.On ? D(22) : 0; LayoutRoot(); Header.PerformLayout(); Invalidate(true);
-            if (Ov.Visible) Ov.SetBounds(0, 0, ClientSize.Width, ClientSize.Height);
+            if (Ov.Visible) Ov.SetBounds(0, 0, cw, ch);
         }
         internal void LayoutRoot()
         {
@@ -251,9 +261,17 @@ namespace AppliedAstrology
         public void Open(string title, Control body)
         {
             Close();
-            try { shot = new Bitmap(f.ClientSize.Width, f.ClientSize.Height); f.DrawToBitmap(shot, new Rectangle(0, 0, shot.Width, shot.Height)); } catch { shot = null; }
-            SetBounds(0, 0, f.ClientSize.Width, f.ClientSize.Height); Visible = true; BringToFront();
-            int w = Math.Min(f.ClientSize.Width - f.D(28), f.D(620));
+            // v0.0.5: chụp nhanh bằng BitBlt màn hình (DrawToBitmap toàn cửa sổ mất hàng trăm ms khi có nhiều điều khiển)
+            int cw = Math.Max(f.D(720), f.ClientSize.Width), ch = Math.Max(f.D(520), f.ClientSize.Height);
+            try
+            {
+                shot = new Bitmap(cw, ch, PixelFormat.Format32bppPArgb); bool ok = false;
+                try { if (f.Visible && f.WindowState != FormWindowState.Minimized && Form.ActiveForm == f) { using (var g = Graphics.FromImage(shot)) g.CopyFromScreen(f.PointToScreen(Point.Empty), Point.Empty, shot.Size); ok = true; } } catch { ok = false; }
+                if (!ok) f.DrawToBitmap(shot, new Rectangle(0, 0, shot.Width, shot.Height));
+            }
+            catch { shot = null; }
+            SetBounds(0, 0, cw, ch); Visible = true; BringToFront();
+            int w = Math.Min(cw - f.D(28), f.D(620));
             BoxCtl = new Box { G = f.G, GlassKind = 2, Radius = f.D(16), Pad = new Padding(f.D(16), f.D(14), f.D(16), f.D(12)), Gap = f.D(8), Tag = "modal" };
             if (title != null) BoxCtl.Add(f.H2(title));
             sc = new Panel { AutoScroll = true, BackColor = Gfx.C(Theme.Mix(f.G.Th.Card, f.G.Th.Bg, 0.2)) };
@@ -268,7 +286,7 @@ namespace AppliedAstrology
         public void Close() { if (BoxCtl != null) { Controls.Remove(BoxCtl); BoxCtl.Dispose(); BoxCtl = null; } if (shot != null) { shot.Dispose(); shot = null; } Visible = false; }
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            var f2 = f.G; if (f2.Full != null) e.Graphics.DrawImage(f2.Full, new Rectangle(0, 0, Width, Height));
+            var f2 = f.G; if (f2.Full != null) e.Graphics.DrawImageUnscaled(f2.Full, 0, 0);
             if (shot != null) e.Graphics.DrawImageUnscaled(shot, 0, 0);
             using (var b = new SolidBrush(Color.FromArgb(150, 0, 0, 0))) e.Graphics.FillRectangle(b, ClientRectangle);
         }

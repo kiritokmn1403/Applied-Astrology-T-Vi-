@@ -44,9 +44,12 @@ const I = ictx.AAI18n;
 const D = I.dict;
 for (const f of fs.readdirSync(path.join(WEB, 'data', 'lang'))) vm.runInContext(fs.readFileSync(path.join(WEB, 'data', 'lang', f), 'utf8'), ictx);
 // khóa mới của v0.0.4 (Liquid Glass, native) – tools/i18n_v4/<mã>.json
-const extraDir = path.join(ROOT, 'tools', 'i18n_v4');
+// v0.0.5: thêm tools/i18n_v5/<mã>.json (công tắc Liquid Glass) – gộp sau v4
 const extra = {};
-if (fs.existsSync(extraDir)) for (const f of fs.readdirSync(extraDir)) if (f.endsWith('.json')) extra[f.replace(/\.json$/, '')] = JSON.parse(fs.readFileSync(path.join(extraDir, f), 'utf8'));
+for (const dirName of ['i18n_v4', 'i18n_v5']) {
+  const extraDir = path.join(ROOT, 'tools', dirName);
+  if (fs.existsSync(extraDir)) for (const f of fs.readdirSync(extraDir)) if (f.endsWith('.json')) { const c = f.replace(/\.json$/, ''); extra[c] = Object.assign(extra[c] || {}, JSON.parse(fs.readFileSync(path.join(extraDir, f), 'utf8'))); }
+}
 const keysVi = Object.keys(Object.assign({}, D.vi, extra.vi || {}));
 let missing = 0;
 const langs = [];
@@ -62,9 +65,10 @@ fs.writeFileSync(path.join(OUT, 'langs.json'), JSON.stringify(langs));
 // ---- Có gì mới ----
 const cctx = sandbox();
 vm.runInContext(fs.readFileSync(path.join(WEB, 'data', 'changelog.js'), 'utf8') + '\nwindow.__cl = AA_CHANGELOG;', cctx);
-const v4 = path.join(ROOT, 'tools', 'changelog_v4.json');
+const v4 = path.join(ROOT, 'tools', 'changelog_v4.json'), v5 = path.join(ROOT, 'tools', 'changelog_v5.json');
 let cl = cctx.__cl;
 if (fs.existsSync(v4)) cl = JSON.parse(fs.readFileSync(v4, 'utf8')).concat(cl.filter(x => x.v !== '0.0.4'));
+if (fs.existsSync(v5)) cl = JSON.parse(fs.readFileSync(v5, 'utf8')).concat(cl.filter(x => x.v !== '0.0.5'));
 fs.writeFileSync(path.join(OUT, 'changelog.json'), JSON.stringify(cl));
 
 console.log('library: ' + idx.chapters.length + ' chapters, ' + total + ' articles; langs: ' + langs.length + ' (' + keysVi.length + ' keys, ' + missing + ' filled from en/vi); changelog: ' + cl.length);

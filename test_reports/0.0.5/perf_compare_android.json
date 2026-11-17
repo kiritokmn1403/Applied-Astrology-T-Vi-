@@ -1,0 +1,71 @@
+﻿{
+    "device_SM-N960N":  {
+                            "device":  "device_SM-N960N",
+                            "prev":  {
+                                         "what":  "0.0.4",
+                                         "frames":  672,
+                                         "janky":  7,
+                                         "jankyPct":  1.04,
+                                         "p50":  7,
+                                         "p90":  11,
+                                         "p95":  12,
+                                         "p99":  17
+                                     },
+                            "new":  {
+                                        "what":  "0.0.5",
+                                        "frames":  673,
+                                        "janky":  11,
+                                        "jankyPct":  1.63,
+                                        "p50":  7,
+                                        "p90":  12,
+                                        "p95":  14,
+                                        "p99":  17
+                                    }
+                        },
+    "emulator_Medium_Phone_API_37.0":  {
+                                           "device":  "emulator_Medium_Phone_API_37.0",
+                                           "prev":  {
+                                                        "what":  "0.0.4",
+                                                        "frames":  149,
+                                                        "janky":  148,
+                                                        "jankyPct":  99.33,
+                                                        "p50":  125,
+                                                        "p90":  150,
+                                                        "p95":  150,
+                                                        "p99":  200
+                                                    },
+                                           "new":  {
+                                                       "what":  "0.0.5",
+                                                       "frames":  214,
+                                                       "janky":  211,
+                                                       "jankyPct":  98.6,
+                                                       "p50":  81,
+                                                       "p90":  125,
+                                                       "p95":  150,
+                                                       "p99":  200
+                                                   }
+                                       },
+    "emulator_OOS_Android6_API23":  {
+                                        "device":  "emulator_OOS_Android6_API23",
+                                        "prev":  {
+                                                     "what":  "0.0.4",
+                                                     "frames":  337,
+                                                     "janky":  319,
+                                                     "jankyPct":  94.66,
+                                                     "p50":  null,
+                                                     "p90":  125,
+                                                     "p95":  129,
+                                                     "p99":  133
+                                                 },
+                                        "new":  {
+                                                    "what":  "0.0.5",
+                                                    "frames":  0,
+                                                    "janky":  null,
+                                                    "jankyPct":  null,
+                                                    "p50":  null,
+                                                    "p90":  133,
+                                                    "p95":  133,
+                                                    "p99":  133
+                                                }
+                                    }
+}

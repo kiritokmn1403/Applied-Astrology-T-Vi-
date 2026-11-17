@@ -81,6 +81,7 @@
     var k = INT((dayNumber - 2415021.076998695) / 29.530588853);
     var monthStart = getNewMoonDay(k + 1, tz);
     if (monthStart > dayNumber) monthStart = getNewMoonDay(k, tz);
+    while (monthStart > dayNumber) { k--; monthStart = getNewMoonDay(k, tz); }   // v0.0.5: tránh "mùng 0"
     var a11 = getLunarMonth11(yy, tz), b11 = a11, lunarYear;
     if (a11 >= monthStart) { lunarYear = yy; a11 = getLunarMonth11(yy - 1, tz); }
     else { lunarYear = yy + 1; b11 = getLunarMonth11(yy + 1, tz); }

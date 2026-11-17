@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – tự kiểm thử Windows (--selftest --out <thư mục>): 44 bước, ảnh chụp từng bước, results.json (cùng giao thức 0.0.3).
+// Applied Astrology v0.0.5 – tự kiểm thử Windows (--selftest --out <thư mục>): 52 bước (44 + công tắc Liquid Glass + 6 bước hiệu năng + toàn dải Âm Lịch), ảnh chụp từng bước, results.json (cùng giao thức 0.0.3).
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -70,15 +70,17 @@ namespace AppliedAstrology
             });
             Step("32_app_logs", done => { string mk = "SELFTEST-LOG-" + DateTime.Now.Ticks; Host.Log(mk); var l = Host.ReadLog(); Rec("32_app_logs", l.Contains(mk), "native=" + l.Length + " chars"); done(); });
             Step("33_error_report", done => { Host.WriteCrash("SELFTEST", new InvalidOperationException("SELFTEST synthetic error")); f.Show("about"); var cr = Host.CrashList(); bool ok = cr.Count > 0 && cr[0][1].Contains("SELFTEST synthetic error") && Updater.ReportUrl(f).Contains("/issues/new") && Updater.DebugInfo(f).Contains(Program.Version); Rec("33_error_report", ok, "crash files=" + cr.Count + " url=" + Updater.ReportUrl(f).Length + " chars"); Host.ClearCrash(); done(); });
-            Step("34_safe_area", done => { Set("desktop", null); f.ApplySettings(); f.Show("chart"); var cr = f.ClientRectangle; bool ok = cr.Contains(f.Nav.Bounds) && cr.Contains(f.Header.Bounds) && !f.Nav.Bounds.IntersectsWith(f.Scroll.Bounds); Rec("34_safe_area", ok, "client=" + cr.Size + " header=" + f.Header.Bounds + " nav=" + f.Nav.Bounds + " content=" + f.Scroll.Bounds); done(); });
+            Step("34_safe_area", done => {
+                if (f.WindowState == FormWindowState.Minimized) { f.WindowState = FormWindowState.Normal; Application.DoEvents(); }
+                Set("desktop", null); f.ApplySettings(); f.Show("chart"); var cr = f.ClientRectangle; bool ok = cr.Contains(f.Nav.Bounds) && cr.Contains(f.Header.Bounds) && !f.Nav.Bounds.IntersectsWith(f.Scroll.Bounds); Rec("34_safe_area", ok, "client=" + cr.Size + " header=" + f.Header.Bounds + " nav=" + f.Nav.Bounds + " content=" + f.Scroll.Bounds); done(); });
             Step("35_language_fr_new", done => { f.SetLang("fr"); var s = f.Nav.TabText("calendar"); Rec("35_language_fr_new", s.Length > 0 && s != f.I18n.TIn("en", "tab_calendar") && s != f.I18n.TIn("vi", "tab_calendar"), s); done(); });
             Step("36_restore_defaults", done => { f.ResetDefaults(); f.Form0 = In("solar", 15, 8, 1995, 6, "Nam", false); f.Show("chart"); f.BuildChart(); Rec("36_restore_defaults", f.S("theme") == "celestial-dark" && f.S("lang") == "vi" && f.S("paper") == "none" && f.S("lgMode") == "liquid", ""); done(); });
-            Step("37_glass_liquid", done => { Set("lgMode", "liquid"); f.ApplySettings(); f.Show("settings"); Rec("37_glass_liquid", f.G.Mode == "liquid" && f.G.BlurBmp != null && Find(f, "glassSettings") != null, "blur=" + (f.G.BlurBmp == null ? "-" : f.G.Bw + "x" + f.G.Bh) + " header=" + f.Header.Size); done(); });
+            Step("37_glass_liquid", done => { Set("lgOn", true); Set("lgMode", "liquid"); f.ApplySettings(); f.Show("settings"); Rec("37_glass_liquid", f.G.Mode == "liquid" && f.G.BlurBmp != null && Find(f, "glassSettings") != null, "blur=" + (f.G.BlurBmp == null ? "-" : f.G.Bw + "x" + f.G.Bh) + " header=" + f.Header.Size); done(); });
             Step("38_glass_frost", done => { Set("lgMode", "frost"); f.ApplySettings(); f.ScrollTo(Find(f, "glassSettings")); Rec("38_glass_frost", f.G.Mode == "frost", f.G.Mode); done(); });
-            Step("39_glass_off", done => { Set("lgMode", "off"); f.ApplySettings(); f.Show("chart"); Rec("39_glass_off", f.G.Mode == "off" && !f.G.On, f.G.Mode); done(); });
-            Step("40_glass_sliders", done => { Set("lgMode", "liquid"); Set("lgBlur", 30L); Set("lgRefr", 90L); Set("lgSpec", 80L); f.ApplySettings(); f.Show("calendar"); Rec("40_glass_sliders", f.G.P.Blur == 30 && Math.Abs(f.G.P.Refraction - 0.9) < 1e-6 && Math.Abs(f.G.P.Specular - 0.8) < 1e-6, "blur=" + f.G.P.Blur + " refr=" + f.G.P.Refraction + " spec=" + f.G.P.Specular); done(); });
+            Step("39_glass_off", done => { Set("lgOn", false); f.ApplySettings(); f.Show("chart"); Rec("39_glass_off", f.G.Mode == "off" && !f.G.On, f.G.Mode); done(); });
+            Step("40_glass_sliders", done => { Set("lgOn", true); Set("lgMode", "liquid"); Set("lgBlur", 30L); Set("lgRefr", 90L); Set("lgSpec", 80L); f.ApplySettings(); f.Show("calendar"); Rec("40_glass_sliders", f.G.P.Blur == 30 && Math.Abs(f.G.P.Refraction - 0.9) < 1e-6 && Math.Abs(f.G.P.Specular - 0.8) < 1e-6, "blur=" + f.G.P.Blur + " refr=" + f.G.P.Refraction + " spec=" + f.G.P.Specular); done(); });
             Step("41_glass_bg_aurora", done => { Set("lgBg", "aurora"); Set("lgChart", true); f.ApplySettings(); f.Show("chart"); Rec("41_glass_bg_aurora", f.G.BgStyle == "aurora" && f.G.ChartGlass, f.G.BgStyle); done(); });
-            Step("42_glass_reset", done => { f.Show("settings"); f.ResetGlass(); Rec("42_glass_reset", f.S("lgBg") == "nebula" && f.N("lgBlur") == 18 && f.S("lgMode") == "liquid" && !f.B("lgChart"), "bg=" + f.S("lgBg") + " blur=" + f.N("lgBlur")); done(); });
+            Step("42_glass_reset", done => { f.Show("settings"); f.ResetGlass(); Rec("42_glass_reset", f.S("lgBg") == "nebula" && f.N("lgBlur") == 18 && f.S("lgMode") == "liquid" && f.B("lgOn") && !f.B("lgChart"), "bg=" + f.S("lgBg") + " blur=" + f.N("lgBlur")); done(); });
             Step("43_native_no_webview", done =>
             {
                 f.Show("chart"); var asm = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetName().Name).Where(n => n.IndexOf("WebView", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("mshtml", StringComparison.OrdinalIgnoreCase) >= 0).ToList();
@@ -86,6 +88,77 @@ namespace AppliedAstrology
                 Rec("43_native_no_webview", asm.Count == 0 && wb == 0 && child == 0, "webview assemblies=" + asm.Count + " WebBrowser=" + wb + " msedgewebview2 children=" + child + " engine=" + Host.Engine() + " process=" + Process.GetCurrentProcess().ProcessName); done();
             });
             Step("44_lang_all_68", done => { int full = 0; var miss = new StringBuilder(); foreach (var l in f.I18n.Langs) { bool ok = f.I18n.TIn(l.Code, "s_glass") != null && f.I18n.TIn(l.Code, "lg_liquid") != null && f.I18n.TIn(l.Code, "tab_calendar") != null && f.I18n.TIn(l.Code, "ab_report") != null; if (ok) full++; else miss.Append(l.Code + " "); } Rec("44_lang_all_68", full == f.I18n.Langs.Count && full == 68, full + "/" + f.I18n.Langs.Count + " " + miss); done(); });
+            // ---- v0.0.5 ----
+            Step("45_glass_toggle", done =>
+            {
+                f.Show("settings"); f.SetS("lgOn", false); f.ApplySettings(); f.Show("settings");
+                bool offOk = f.G.Mode == "off" && Find(f, "sLgOn") != null && Find(f, "sLgMode") == null;
+                var st = Json.Obj(Host.Get("aa.settings")); bool saved = st != null && st.ContainsKey("lgOn") && false.Equals(st["lgOn"]);
+                f.SetS("lgOn", true); f.ApplySettings(); f.Show("settings"); bool onOk = f.G.Mode != "off" && Find(f, "sLgMode") != null;
+                bool words = f.I18n.Langs.All(l => f.I18n.TIn(l.Code, "lg_enable") != null && f.I18n.TIn(l.Code, "lg_enable_d") != null);
+                f.ScrollTo(Find(f, "glassSettings"));
+                Rec("45_glass_toggle", offOk && saved && onOk && words, "off=" + offOk + " saved=" + saved + " on=" + onOk + " i18n68=" + words + " mode=" + f.G.Mode); done();
+            });
+            Step("46_perf_scroll", done =>
+            {
+                f.Show("library"); f.Search("Hóa Kỵ"); Application.DoEvents();
+                var times = new List<double>(); long p0 = MainForm.ScrollPaints, b0 = Box.BgBuilds; int max = Math.Max(0, f.Scroll.DisplayRectangle.Height - f.Scroll.ClientSize.Height);
+                for (int i = 0; i < 60; i++)
+                {
+                    var sw = Stopwatch.StartNew(); int y = (i < 30 ? i : 60 - i) * Math.Max(1, max / 30);
+                    f.Scroll.AutoScrollPosition = new Point(0, y); f.Scroll.Invalidate(true); f.Scroll.Update(); times.Add(sw.Elapsed.TotalMilliseconds);
+                }
+                times.Sort(); double avg = times.Average(), p90 = times[(int)(times.Count * 0.9)], mx = times.Max();
+                Rec("46_perf_scroll", avg < 60 && mx < 800, string.Format(System.Globalization.CultureInfo.InvariantCulture, "frames=60 avg={0:0.0}ms p90={1:0.0}ms max={2:0.0}ms bgBuilds={3} range={4}px", avg, p90, mx, Box.BgBuilds - b0, max));
+                f.Scroll.AutoScrollPosition = new Point(0, 0); done();
+            });
+            Step("47_perf_modal", done =>
+            {
+                if (f.WindowState == FormWindowState.Minimized) { f.WindowState = FormWindowState.Normal; Application.DoEvents(); }
+                Set("lgOn", true); Set("lgMode", "liquid"); f.ApplySettings(); f.Show("chart"); Application.DoEvents();
+                var sb = new StringBuilder(); for (int i = 0; i < 40; i++) sb.Append("Liquid Glass " + i + " – Tử Vi Ứng Dụng Bửu Đình\n");
+                var sw = Stopwatch.StartNew(); f.Modal("Liquid Glass", f.Txt(sb.ToString(), 9.5f, f.G.Th.Text, false)); Application.DoEvents(); f.Refresh(); long ms = sw.ElapsedMilliseconds;
+                var box = Find(f, "modal") as Box;
+                Rec("47_perf_modal", box != null && ms < 1500 && box.HasLiquidCache, "open+paint=" + ms + "ms size=" + (box == null ? "-" : box.Width + "x" + box.Height) + " liquid=" + (box != null && box.HasLiquidCache));
+                Later(done, true);
+            });
+            Step("48_perf_tabs", done =>
+            {
+                var tabs = new[] { "chart", "calendar", "library", "assistant", "saved", "settings", "about" }; var sb = new StringBuilder(); long max = 0;
+                foreach (var t in tabs) { var sw = Stopwatch.StartNew(); f.Show(t); f.Refresh(); long ms = sw.ElapsedMilliseconds; max = Math.Max(max, ms); sb.Append(t + "=" + ms + "ms "); }
+                f.Show("chart"); Rec("48_perf_tabs", max < 2500, "max=" + max + "ms " + sb); done();
+            });
+            Step("49_perf_settings", done =>
+            {
+                f.Show("settings"); var sw = Stopwatch.StartNew(); Set("lgTint", 40L); f.ApplySettings(); f.Refresh(); long a1 = sw.ElapsedMilliseconds;
+                sw.Restart(); Set("lgTint", 35L); f.ApplySettings(); f.Refresh(); long a2 = sw.ElapsedMilliseconds;
+                sw.Restart(); var old = f.Size; f.Size = new Size(old.Width - f.D(60), old.Height - f.D(40)); Application.DoEvents(); f.Refresh(); f.Size = old; Application.DoEvents(); f.Refresh(); long rz = sw.ElapsedMilliseconds;
+                Rec("49_perf_settings", a1 < 2500 && a2 < 2500 && rz < 2500, "applySettings=" + a1 + "ms/" + a2 + "ms resize=" + rz + "ms nebula=" + GlassCtx.LastNebulaMs + "ms builds=" + GlassCtx.Builds); done();
+            });
+            Step("50_glass_stability", done =>
+            {
+                var modes = new[] { "liquid", "frost", "liquid" }; var bgs = new[] { "nebula", "aurora", "plain" }; int errs = 0;
+                for (int i = 0; i < 6; i++) { try { Set("lgOn", i != 3); Set("lgMode", modes[i % 3]); Set("lgBg", bgs[i % 3]); f.ApplySettings(); f.Show(i % 2 == 0 ? "chart" : "settings"); f.Refresh(); } catch (Exception e) { errs++; Host.WriteCrash("glass stability", e); } }
+                f.ResetGlass(); f.Show("chart"); f.Refresh();
+                Rec("50_glass_stability", errs == 0 && f.G.BlurBmp != null && f.G.Mode == "liquid" && Host.CrashList().Count == 0, "errors=" + errs + " mode=" + f.G.Mode + " crashes=" + Host.CrashList().Count + " liquidBuilds=" + Box.LiquidBuilds); done();
+            });
+            Step("51_perf_memory", done =>
+            {
+                GC.Collect(); GC.WaitForPendingFinalizers(); long managed = GC.GetTotalMemory(true) / 1048576; long ws = Process.GetCurrentProcess().WorkingSet64 / 1048576; long priv = Process.GetCurrentProcess().PrivateMemorySize64 / 1048576;
+                Rec("51_perf_memory", ws < 900, "managed=" + managed + "MB workingSet=" + ws + "MB private=" + priv + "MB bgBuilds=" + Box.BgBuilds); done();
+            });
+            Step("52_lunar_full_range", done =>
+            {
+                var sw = Stopwatch.StartNew(); int n = 0, bad = 0, rt = 0;
+                for (int jd = Lunar.JdFromDate(1, 2, 1900); jd <= Lunar.JdFromDate(31, 12, 2099); jd++)
+                {
+                    var q = Lunar.JdToDate(jd); var l = Lunar.Solar2Lunar(q[0], q[1], q[2]); n++;
+                    if (l.Day < 1 || l.Day > 30) bad++;
+                    var b = Lunar.Lunar2Solar(l.Day, l.Month, l.Year, l.Leap); if (b == null || b[0] != q[0] || b[1] != q[1] || b[2] != q[2]) rt++;
+                }
+                var x = Lunar.Solar2Lunar(7, 5, 2054); bool fix = x.Day == 30 && x.Month == 3;
+                Rec("52_lunar_full_range", bad == 0 && rt == 0 && fix, "days=" + n + " invalid=" + bad + " roundtripFail=" + rt + " 7/5/2054=" + x.Day + "/" + x.Month + "/" + x.Year + " " + sw.ElapsedMilliseconds + "ms"); done();
+            });
         }
         static int CountType(Control c, Type t) { int n = t.IsInstanceOfType(c) ? 1 : 0; foreach (Control k in c.Controls) n += CountType(k, t); return n; }
         static int ParentOf(Process p) { return 0; }
@@ -102,12 +175,14 @@ namespace AppliedAstrology
         {
             try
             {
+                if (f.WindowState == FormWindowState.Minimized) { f.WindowState = FormWindowState.Normal; Application.DoEvents(); }
+                int bw = Math.Max(f.D(720), f.ClientSize.Width), bh = Math.Max(f.D(520), f.ClientSize.Height);
                 Application.DoEvents();
-                using (var b = new Bitmap(f.ClientSize.Width, f.ClientSize.Height))
+                using (var b = new Bitmap(bw, bh))
                 {
                     bool ok = false;
                     // Ảnh thật trên màn hình (giống người dùng thấy); cửa sổ được giữ trên cùng trong lúc kiểm thử
-                    try { if (f.Visible && f.WindowState != FormWindowState.Minimized && Environment.OSVersion.Platform == PlatformID.Win32NT) { f.TopMost = true; f.Activate(); Application.DoEvents(); using (var g = Graphics.FromImage(b)) g.CopyFromScreen(f.PointToScreen(Point.Empty), Point.Empty, b.Size); ok = true; } } catch { }
+                    try { if (f.Visible && f.WindowState != FormWindowState.Minimized && Environment.OSVersion.Platform == PlatformID.Win32NT) { f.TopMost = true; f.Activate(); Application.DoEvents(); using (var g = Graphics.FromImage(b)) g.CopyFromScreen(f.PointToScreen(Point.Empty), Point.Empty, new Size(Math.Min(bw, f.ClientSize.Width), Math.Min(bh, f.ClientSize.Height))); ok = true; } } catch { }
                     if (!ok) f.DrawToBitmap(b, new Rectangle(0, 0, b.Width, b.Height));
                     b.Save(Path.Combine(Program.TestOut, name + ".png"), ImageFormat.Png);
                 }

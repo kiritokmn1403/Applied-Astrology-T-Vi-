@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – lõi native C# (Windows 7+ x86/x64/ARM64, .NET Framework 4.x).
+// Applied Astrology v0.0.5 – lõi native C# (Windows 7+ x86/x64/ARM64, .NET Framework 4.x).
 // Bản dịch 1:1 của lõi Java (src/android/java/.../core) – kiểm thử chéo với bản JS gốc trong tools/tests/native.
 using System;
 using System.Collections.Generic;
@@ -80,6 +80,7 @@ namespace AppliedAstrology.Core
             int dayNumber = JdFromDate(dd, mm, yy), k = INT((dayNumber - 2415021.076998695) / 29.530588853);
             int monthStart = GetNewMoonDay(k + 1, tz);
             if (monthStart > dayNumber) monthStart = GetNewMoonDay(k, tz);
+            while (monthStart > dayNumber) { k--; monthStart = GetNewMoonDay(k, tz); }   // v0.0.5: tránh "mùng 0"
             int a11 = GetLunarMonth11(yy, tz), b11 = a11, lunarYear;
             if (a11 >= monthStart) { lunarYear = yy; a11 = GetLunarMonth11(yy - 1, tz); }
             else { lunarYear = yy + 1; b11 = GetLunarMonth11(yy + 1, tz); }

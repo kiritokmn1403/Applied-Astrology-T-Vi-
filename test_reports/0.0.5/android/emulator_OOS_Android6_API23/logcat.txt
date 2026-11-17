@@ -1,0 +1,30 @@
+﻿--------- beginning of system
+
+--------- beginning of main
+
+11-17 11:11:33.421  5252  5252 D AndroidRuntime: Shutting down VM
+
+11-17 11:11:34.175  5261  5261 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-17 11:11:34.177  5261  5261 D AndroidRuntime: CheckJNI is OFF
+
+11-17 11:11:34.209  5261  5261 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+
+11-17 11:11:34.471  5261  5261 D AndroidRuntime: Shutting down VM
+
+11-17 11:11:35.239  5270  5270 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-17 11:11:35.240  5270  5270 D AndroidRuntime: CheckJNI is OFF
+
+11-17 11:11:35.269  5270  5270 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+
+11-17 11:11:35.531  5270  5270 D AndroidRuntime: Shutting down VM
+
+11-17 11:11:37.750  5289  5289 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-17 11:11:37.752  5289  5289 D AndroidRuntime: CheckJNI is OFF
+
+11-17 11:11:37.802  5289  5289 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+
+11-17 11:11:37.816  5289  5289 D AndroidRuntime: Shutting down VM
+

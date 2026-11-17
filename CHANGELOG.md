@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.0.5 – 17/11/2026
+### Sửa lỗi lag, giật, treo (Creat & Update mục 3)
+- **Liquid Glass viết lại** (Android `GlassViews`, lõi `Glass` Java/C#, Windows `WinUi`):
+  - Khúc xạ chỉ tính ở **dải viền vát** (bản đồ khúc xạ thưa, ~5–10% số điểm ảnh); phần lõi tấm kính do **GPU** vẽ (BitmapShader + ColorMatrix).
+  - Mọi phép tính ảnh (tinh vân, làm mờ, khúc xạ) chạy ở **luồng nền**; mở hộp thoại, thông báo, đổi cài đặt không còn đứng hình.
+  - Cuộn: chỉ vẽ lại thẻ đang hiển thị **và đổi vị trí**, tối đa 1 lần mỗi khung hình; bỏ bóng đổ từng thẻ; không tạo đối tượng vẽ mới mỗi khung.
+  - Bộ nhớ bản đồ khúc xạ giảm ~10 lần (hộp thoại 1342×2385: ~51 MB → ~3,5 MB/mục, cache 24 → 12 mục).
+  - Windows: nền và ảnh mờ dựng sẵn đúng kích thước (PArgb), vẽ không co giãn; bộ đệm nền cho từng khung kính (LRU 48); gộp yêu cầu vẽ khi cuộn; mở hộp thoại chụp nền bằng BitBlt thay cho DrawToBitmap; đổi cỡ cửa sổ không dựng lại tinh vân.
+- Kết quả đo (gfxinfo, cùng máy, cùng thao tác): Galaxy Note 9 – khung giật 9,81% → 6,57%, p99 25 → 19 ms; mở hộp thoại ~1 ms trên luồng UI.
+### Mới
+- **Công tắc Bật/Tắt Liquid Glass** trong *Cài Đặt › Liquid Glass* (Creat & Update mục 2). Tắt = giao diện phẳng nhẹ nhất. Máy cấu hình thấp (RAM ít, Android 6–7) lần đầu tự dùng Kính mờ. 4 chuỗi mới × 68 ngôn ngữ.
+- Tự kiểm thử **52 bước** (thêm: công tắc Liquid Glass, đo cuộn, mở hộp thoại, đổi tab, đổi cài đặt, độ ổn định kính, bộ nhớ, toàn dải Âm Lịch 1900–2099).
+- Build: đối chiếu engine kính Java↔C# (trùng từng byte); đo gfxinfo bản cũ ↔ bản mới trên mỗi thiết bị Android; video kiểm thử Android ghi đủ (nhiều phần).
+### Sửa lỗi khác
+- **Âm lịch "mùng 0"**: một số ngày (7/5/2054, 9/4/2062) bị đổi thành mùng 0 do ước lượng chỉ số tuần trăng lệch. Đã sửa ở Java, C# và engine JS chuẩn; kiểm tra 73.018 ngày 1900–2099: 0 lỗi, đổi xuôi/ngược khớp hoàn toàn.
+- Nền tinh vân hết vệt vòng cung (mép các đám tinh vân mờ dần liên tục).
+- Kính lỏng sắc nét hơn: lấy mẫu song tuyến tính thay cho điểm gần nhất.
+- Selftest khởi động được cả khi hệ thống tự mở lại app sau khi cài đè (Android 17).
+### Dung lượng
+- APK, bản portable và Setup.exe nén lại bằng **zopfli** (deflate chuẩn, tương thích Android 6 / Windows 7).
+
 ## 0.0.4 – 16/11/2026
 ### Mới
 - **Viết lại thành ứng dụng native hoàn toàn**. Bản trước chạy giao diện HTML trong WebView/WebView2/IE11. Nay:

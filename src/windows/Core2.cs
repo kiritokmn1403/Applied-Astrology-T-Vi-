@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – lõi native C# (phần 2): Thư viện, Đa ngôn ngữ, Trợ lý luận giải, Bảng màu, Liquid Glass.
+// Applied Astrology v0.0.5 – lõi native C# (phần 2): Thư viện, Đa ngôn ngữ, Trợ lý luận giải, Bảng màu, Liquid Glass.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -263,8 +263,14 @@ namespace AppliedAstrology.Core
             }
             return prof;
         }
-        public sealed class Maps { public int W, H, Radius; public float[] Dx, Dy, Mask, Spec; public double MaxDisp; }
+        /// <summary>v0.0.5: bản đồ khúc xạ THƯA (chỉ dải viền vát), bản dịch 1:1 của Glass.java. RowL[y] = độ rộng dải viền bên trái hàng y.</summary>
+        public sealed class Maps { public int W, H, Radius, N; public int[] Idx, RowL; public float[] Dx, Dy, Mask, Spec; public double MaxDisp; }
         static readonly Dictionary<string, Maps> cache = new Dictionary<string, Maps>(); static readonly LinkedList<string> order = new LinkedList<string>();
+        static double Sdf(double px, double py, int w, int h, int r)
+        {
+            double qx = Math.Abs(px - w / 2.0) - (w / 2.0 - r), qy = Math.Abs(py - h / 2.0) - (h / 2.0 - r);
+            double ox = Math.Max(qx, 0), oy = Math.Max(qy, 0); return Math.Sqrt(ox * ox + oy * oy) + Math.Min(Math.Max(qx, qy), 0) - r;
+        }
         public static Maps GetMaps(int w, int h, int radius, Params p)
         {
             string key = w + "x" + h + "r" + radius + "/" + p.Bezel + "/" + p.Thickness + "/" + p.Ior;
@@ -273,14 +279,20 @@ namespace AppliedAstrology.Core
                 Maps m; if (cache.TryGetValue(key, out m)) return m;
                 int r = Math.Max(1, Math.Min(radius, Math.Min(w, h) / 2)); double bezel = Math.Max(1, Math.Min(p.Bezel, Math.Min(w, h) / 2.0 - 1));
                 var prof = Profile(p.Thickness, bezel, p.Ior, 128); double maxDisp = prof.Max(v => Math.Abs(v)); if (maxDisp == 0) maxDisp = 1;
-                m = new Maps { W = w, H = h, Radius = r, Dx = new float[w * h], Dy = new float[w * h], Mask = new float[w * h], Spec = new float[w * h], MaxDisp = maxDisp };
-                double ang = Math.PI / 3, sx = Math.Cos(ang), sy = Math.Sin(ang); int S = prof.Length;
-                for (int y1 = 0; y1 < h; y1++) for (int x1 = 0; x1 < w; x1++)
+                m = new Maps { W = w, H = h, Radius = r, MaxDisp = maxDisp, RowL = new int[h] };
+                int total = 0, half = (w + 1) / 2;
+                for (int y = 0; y < h; y++) { int xl = 0; while (xl < half && Sdf(xl + 0.5, y + 0.5, w, h, r) > -bezel) xl++; m.RowL[y] = xl; total += xl >= half ? w : 2 * xl; }
+                m.Idx = new int[total]; m.Dx = new float[total]; m.Dy = new float[total]; m.Mask = new float[total]; m.Spec = new float[total];
+                double ang = Math.PI / 3, sx = Math.Cos(ang), sy = Math.Sin(ang); int S = prof.Length, n = 0;
+                for (int y1 = 0; y1 < h; y1++)
+                {
+                    int xl = m.RowL[y1];
+                    for (int x1 = 0; x1 < w; x1++)
                     {
-                        int i = y1 * w + x1;
+                        if (x1 == xl && xl < half) { x1 = w - xl - 1; continue; }
                         double qx = Math.Abs(x1 + 0.5 - w / 2.0) - (w / 2.0 - r), qy = Math.Abs(y1 + 0.5 - h / 2.0) - (h / 2.0 - r);
                         double ox = Math.Max(qx, 0), oy = Math.Max(qy, 0), sd = Math.Sqrt(ox * ox + oy * oy) + Math.Min(Math.Max(qx, qy), 0) - r;
-                        double a = sd >= 0.5 ? 0 : sd <= -0.5 ? 1 : 0.5 - sd; m.Mask[i] = (float)a; if (a <= 0) continue;
+                        double a = sd >= 0.5 ? 0 : sd <= -0.5 ? 1 : 0.5 - sd; int i = n++; m.Idx[i] = y1 * w + x1; m.Mask[i] = (float)a; if (a <= 0) continue;
                         double fromSide = -sd; if (fromSide >= bezel) continue;
                         double gx, gy;
                         if (qx > 0 && qy > 0) { double l = Math.Sqrt(qx * qx + qy * qy); gx = qx / l; gy = qy / l; } else if (qx > qy) { gx = 1; gy = 0; } else { gx = 0; gy = 1; }
@@ -290,7 +302,9 @@ namespace AppliedAstrology.Core
                         double dot = Math.Abs(gx * sx - gy * sy), rim = Math.Exp(-fromSide / 1.4), bevel = Math.Exp(-fromSide / (bezel * 0.45)) * 0.28;
                         m.Spec[i] = (float)(Math.Min(1, Math.Pow(dot, 1.3) * (rim + bevel)) * a);
                     }
-                cache[key] = m; order.AddLast(key); if (order.Count > 24) { cache.Remove(order.First.Value); order.RemoveFirst(); }
+                }
+                m.N = n;
+                cache[key] = m; order.AddLast(key); if (order.Count > 12) { cache.Remove(order.First.Value); order.RemoveFirst(); }
                 return m;
             }
         }
@@ -316,21 +330,44 @@ namespace AppliedAstrology.Core
             }
         }
         static int Clamp(double v) { return v < 0 ? 0 : v > 255 ? 255 : (int)v; }
+        static int Shade(int[] bl, int bw, int bh, double fx, double fy, double sat, double ta, int tr, int tg, int tb, double s, double a)
+        {
+            if (fx < 0) fx = 0; else if (fx > bw - 1) fx = bw - 1; if (fy < 0) fy = 0; else if (fy > bh - 1) fy = bh - 1;
+            int x0 = (int)fx, y0 = (int)fy, x1 = x0 + 1 < bw ? x0 + 1 : x0, y1 = y0 + 1 < bh ? y0 + 1 : y0; double tx = fx - x0, ty = fy - y0;
+            int c00 = bl[y0 * bw + x0], c10 = bl[y0 * bw + x1], c01 = bl[y1 * bw + x0], c11 = bl[y1 * bw + x1];
+            double w00 = (1 - tx) * (1 - ty), w10 = tx * (1 - ty), w01 = (1 - tx) * ty, w11 = tx * ty;
+            double r = ((c00 >> 16) & 255) * w00 + ((c10 >> 16) & 255) * w10 + ((c01 >> 16) & 255) * w01 + ((c11 >> 16) & 255) * w11;
+            double g = ((c00 >> 8) & 255) * w00 + ((c10 >> 8) & 255) * w10 + ((c01 >> 8) & 255) * w01 + ((c11 >> 8) & 255) * w11;
+            double b = (c00 & 255) * w00 + (c10 & 255) * w10 + (c01 & 255) * w01 + (c11 & 255) * w11;
+            double l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            r = l + (r - l) * sat; g = l + (g - l) * sat; b = l + (b - l) * sat;
+            r = r * (1 - ta) + tr * ta; g = g * (1 - ta) + tg * ta; b = b * (1 - ta) + tb * ta;
+            r += (255 - r) * s; g += (255 - g) * s; b += (255 - b) * s;
+            int A = (int)(a * 255 + 0.5); return (A << 24) | (Clamp(r) << 16) | (Clamp(g) << 8) | Clamp(b);
+        }
+        /// <summary>Dựng toàn bộ tấm kính (lõi + dải viền)</summary>
         public static void Render(int[] blurred, int bw, int bh, double scale, int ox, int oy, Maps m, Params p, int tint, int[] outp)
         {
-            double amp = m.MaxDisp * p.Refraction; int tr = (tint >> 16) & 255, tg = (tint >> 8) & 255, tb = tint & 255; double ta = p.Tint, sat = p.Saturation;
-            for (int y = 0; y < m.H; y++) for (int x = 0; x < m.W; x++)
-                {
-                    int i = y * m.W + x; float a = m.Mask[i]; if (a <= 0) { outp[i] = 0; continue; }
-                    int ix = (int)((ox + x + m.Dx[i] * amp) / scale), iy = (int)((oy + y + m.Dy[i] * amp) / scale);
-                    if (ix < 0) ix = 0; else if (ix >= bw) ix = bw - 1; if (iy < 0) iy = 0; else if (iy >= bh) iy = bh - 1;
-                    int c = blurred[iy * bw + ix]; double r = (c >> 16) & 255, g = (c >> 8) & 255, b = c & 255, l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                    r = l + (r - l) * sat; g = l + (g - l) * sat; b = l + (b - l) * sat;
-                    r = r * (1 - ta) + tr * ta; g = g * (1 - ta) + tg * ta; b = b * (1 - ta) + tb * ta;
-                    double s = m.Spec[i] * p.Specular; r += (255 - r) * s; g += (255 - g) * s; b += (255 - b) * s;
-                    int A = (int)(a * 255 + 0.5); outp[i] = (A << 24) | (Clamp(r) << 16) | (Clamp(g) << 8) | Clamp(b);
-                }
+            int tr = (tint >> 16) & 255, tg = (tint >> 8) & 255, tb = tint & 255; double ta = p.Tint, sat = p.Saturation; int w = m.W, half = (w + 1) / 2;
+            for (int y = 0; y < m.H; y++)
+            {
+                int xl = m.RowL[y]; if (xl >= half) continue; double fy = (oy + y + 0.5) / scale - 0.5;
+                for (int x = xl; x < w - xl; x++) outp[y * w + x] = Shade(blurred, bw, bh, (ox + x + 0.5) / scale - 0.5, fy, sat, ta, tr, tg, tb, 0, 1);
+            }
+            RenderBand(blurred, bw, bh, scale, ox, oy, m, p, tint, outp);
         }
+        /// <summary>Chỉ dựng dải viền vát khúc xạ</summary>
+        public static void RenderBand(int[] blurred, int bw, int bh, double scale, int ox, int oy, Maps m, Params p, int tint, int[] outp)
+        {
+            double amp = m.MaxDisp * p.Refraction; int tr = (tint >> 16) & 255, tg = (tint >> 8) & 255, tb = tint & 255; double ta = p.Tint, sat = p.Saturation, spec = p.Specular; int w = m.W;
+            for (int i = 0; i < m.N; i++)
+            {
+                int k = m.Idx[i]; float a = m.Mask[i]; if (a <= 0) { outp[k] = 0; continue; }
+                int x = k % w, y = k / w;
+                outp[k] = Shade(blurred, bw, bh, (ox + x + 0.5 + m.Dx[i] * amp) / scale - 0.5, (oy + y + 0.5 + m.Dy[i] * amp) / scale - 0.5, sat, ta, tr, tg, tb, m.Spec[i] * spec, a);
+            }
+        }
+        static readonly double EDGE = Math.Exp(-1.6 * 2.2);
         public static int[] Nebula(int w, int h, Theme th, string style, long seed)
         {
             var px = new int[w * h];
@@ -348,7 +385,7 @@ namespace AppliedAstrology.Core
                     foreach (var bl in blobs)
                     {
                         double ddx = (fx - bl[0]) * (w > h ? (double)w / h : 1), ddy = (fy - bl[1]) * (h > w ? (double)h / w : 1), d2 = (ddx * ddx + ddy * ddy) / (bl[2] * bl[2]);
-                        if (d2 > 1.6) continue; double k = Math.Exp(-d2 * 2.2) * inten; int cc = cols[(int)bl[3]];
+                        if (d2 > 1.6) continue; double k = (Math.Exp(-d2 * 2.2) - EDGE) / (1 - EDGE) * inten; int cc = cols[(int)bl[3]];
                         r += (((cc >> 16) & 255) - r) * k; g += (((cc >> 8) & 255) - g) * k; b += ((cc & 255) - b) * k;
                     }
                     px[y * w + x] = unchecked((int)0xFF000000) | (Clamp(r) << 16) | (Clamp(g) << 8) | Clamp(b);

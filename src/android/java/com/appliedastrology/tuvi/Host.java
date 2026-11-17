@@ -39,14 +39,14 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Applied Astrology v0.0.4 – dịch vụ nền tảng Android (thay cho cầu nối JS ↔ native của bản WebView 0.0.3):
+ * Applied Astrology v0.0.5 – dịch vụ nền tảng Android (thay cho cầu nối JS ↔ native của bản WebView 0.0.3):
  * lưu trữ (SharedPreferences "aa_store", cùng khóa với 0.0.3 → nâng cấp giữ nguyên hồ sơ/cài đặt), nhật ký, báo cáo lỗi,
  * HTTP (TlsCompat cho Android 6), tải & cài bản cập nhật, lưu tệp, chia sẻ, sao chép, mở liên kết.
  */
 public final class Host implements Library.Source {
     public static final String TAG = "AppliedAstrology";
-    public static final String VERSION = "0.0.4";
-    public static final String BUILD_DATE = "2026-11-16";
+    public static final String VERSION = "0.0.5";
+    public static final String BUILD_DATE = "2026-11-17";
     final Activity act; final SharedPreferences prefs;
     public Host(Activity a) { act = a; prefs = a.getSharedPreferences("aa_store", Context.MODE_PRIVATE); }
 

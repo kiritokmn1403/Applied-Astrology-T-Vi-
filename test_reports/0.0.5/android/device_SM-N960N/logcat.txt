@@ -1,0 +1,202 @@
+﻿--------- beginning of main
+--------- beginning of system
+11-17 10:55:52.158 25316 25316 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:55:52.163 25316 25316 I AndroidRuntime: Using default boot image
+11-17 10:55:52.163 25316 25316 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:55:52.165 25316 25316 D AndroidRuntime: addProductProperty
+11-17 10:55:52.165 25316 25316 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:55:52.165 25316 25316 D AndroidRuntime: addProductProperty: else
+11-17 10:55:52.273 25316 25316 D AndroidRuntime: Calling main entry com.android.commands.svc.Svc
+11-17 10:55:52.640 25316 25316 D AndroidRuntime: Shutting down VM
+11-17 10:55:53.028 25368 25368 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:55:53.033 25368 25368 I AndroidRuntime: Using default boot image
+11-17 10:55:53.033 25368 25368 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:55:53.035 25368 25368 D AndroidRuntime: addProductProperty
+11-17 10:55:53.035 25368 25368 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:55:53.035 25368 25368 D AndroidRuntime: addProductProperty: else
+11-17 10:55:53.168 25368 25368 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:55:53.183 25368 25368 D AndroidRuntime: Shutting down VM
+11-17 10:55:53.575 25435 25435 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:55:53.579 25435 25435 I AndroidRuntime: Using default boot image
+11-17 10:55:53.579 25435 25435 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:55:53.582 25435 25435 D AndroidRuntime: addProductProperty
+11-17 10:55:53.582 25435 25435 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:55:53.582 25435 25435 D AndroidRuntime: addProductProperty: else
+11-17 10:55:53.726 25435 25435 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:55:53.739 25435 25435 D AndroidRuntime: Shutting down VM
+11-17 10:55:56.732 18532 18532 I AppliedAstrology: start v0.0.5 native abi=arm64-v8a sdk=29 device=samsung SM-N960N selftest=true
+11-17 10:55:58.254 18532 18532 I AppliedAstrology: SELFTEST start 52 steps
+11-17 10:55:58.420 18532 18532 I AppliedAstrology: build solar,15,8,1995,6
+11-17 10:55:58.450 18532 18532 I AppliedAstrology: SELFTEST PASS 01_chart_build lunar=20/7/1995 cuc=Thổ Ngũ Cục menh=Dần
+11-17 10:56:01.278 18532 18532 I AppliedAstrology: SELFTEST PASS 02_palace_detail related=4
+11-17 10:56:04.086 18532 18532 I AppliedAstrology: build lunar,1,2,2023,3
+11-17 10:56:04.130 18532 18532 I AppliedAstrology: SELFTEST PASS 03_lunar_input solar=22/3/2023
+11-17 10:56:06.966 18532 18532 I AppliedAstrology: SELFTEST PASS 04_qr size=29
+11-17 10:56:12.490 18532 18532 I AppliedAstrology: saved Download/AppliedAstrology/LaSo-Nguyễn_Văn_An-2023.png
+11-17 10:56:12.541 18532 18532 I AppliedAstrology: SELFTEST PASS 05_png bytes=399630
+11-17 10:56:17.656 18532 18532 I AppliedAstrology: toast Đã lưu lá số.
+11-17 10:56:17.673 18532 18532 I AppliedAstrology: SELFTEST PASS 06_save_profile saved=1
+11-17 10:56:20.498 18532 18532 I AppliedAstrology: SELFTEST PASS 07_library_home chapters=13 articles=611
+11-17 10:56:23.340 18532 18532 I AppliedAstrology: SELFTEST PASS 08_library_chapter items=10
+11-17 10:56:26.318 18532 18532 I AppliedAstrology: SELFTEST PASS 09_reader chars=21432
+11-17 10:56:29.128 18532 18532 I AppliedAstrology: search Hóa Kỵ
+11-17 10:56:29.590 18532 18532 I AppliedAstrology: SELFTEST PASS 10_search results=300 native=true 511ms
+11-17 10:56:32.352 18532 18532 I AppliedAstrology: search thien phu
+11-17 10:56:32.533 18532 18532 I AppliedAstrology: SELFTEST PASS 11_search_noaccent results=300
+11-17 10:56:35.401 18532 18532 I AppliedAstrology: SELFTEST PASS 12_assistant_overview chars=1379
+11-17 10:56:38.243 18532 18532 I AppliedAstrology: SELFTEST PASS 13_assistant_question chars=1322
+11-17 10:56:41.206 18532 18532 I AppliedAstrology: SELFTEST PASS 14_assistant_year chars=2330
+11-17 10:56:44.221 18532 18532 I AppliedAstrology: SELFTEST PASS 15_settings_theme ivory-light
+11-17 10:56:46.994 18532 18532 I AppliedAstrology: setting lang=en
+11-17 10:56:47.147 18532 18532 I AppliedAstrology: SELFTEST PASS 16_settings_language_en Settings
+11-17 10:56:49.816 18532 18532 I AppliedAstrology: setting lang=ja
+11-17 10:56:49.933 18532 18532 I AppliedAstrology: SELFTEST PASS 17_settings_language_ja ライブラリ
+11-17 10:56:52.770 18532 18532 I AppliedAstrology: SELFTEST PASS 18_settings_font_layout 
+11-17 10:56:55.696 18532 18532 I AppliedAstrology: SELFTEST PASS 19_chart_list_layout 
+11-17 10:56:58.506 18532 18532 I AppliedAstrology: SELFTEST PASS 20_desktop_dex wide=true dex=false
+11-17 10:57:01.469 18532 18532 I AppliedAstrology: saved Download/AppliedAstrology/AppliedAstrology-backup-2026-11-17.json
+11-17 10:57:01.471 18532 18532 I AppliedAstrology: toast バックアップを書き出し: Download/AppliedAstrology/AppliedAstrology-backup-2026-11-17.json
+11-17 10:57:01.472 18532 18532 I AppliedAstrology: SELFTEST PASS 21_backup_export 
+11-17 10:57:04.292 18532 18532 I AppliedAstrology: toast データを復元しました
+11-17 10:57:04.292 18532 18532 I AppliedAstrology: SELFTEST PASS 22_backup_import royal-gold
+11-17 10:57:07.660 18532 18532 I AppliedAstrology: net 374ms ip=14.163.142.75 warp=off
+11-17 10:57:14.283 18532 18532 I AppliedAstrology: SELFTEST PASS 23_network_check 接続済み · 遅延: 374 ms
+11-17 10:57:14.283 18532 18532 I AppliedAstrology: IP: 14.163.142.75 · 場所: VN · PoP HKG · WARP は検出されません
+11-17 10:57:17.250 18532 18532 I AppliedAstrology: SELFTEST PASS 24_calendar_view days=30 today=17/11
+11-17 10:57:20.286 18532 18532 I AppliedAstrology: SELFTEST PASS 25_calendar_tet_2026 1/1/2026 Nhâm Tuất | Canh Dần | Bính Ngọ tiet=Lập Xuân Tư Mệnh truc=Thành ev=Tết Nguyên Đán
+11-17 10:57:23.175 18532 18532 I AppliedAstrology: SELFTEST PASS 26_calendar_convert Tet2027=6/2/2027 3/11/2026->25/9/2026
+11-17 10:57:26.039 18532 18532 I AppliedAstrology: SELFTEST PASS 27_calendar_sixty rows=60 1995=Ất Hợi Sơn Đầu Hỏa
+11-17 10:57:29.294 18532 18532 I AppliedAstrology: SELFTEST PASS 28_paper_background paper=vangchanh
+11-17 10:57:32.509 18532 18532 I AppliedAstrology: SELFTEST PASS 29_about_view current=about
+11-17 10:57:35.589 18532 18532 I AppliedAstrology: update check https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest
+11-17 10:57:36.548 18532 18532 I AppliedAstrology: update latest=0.0.4 current=0.0.5 newer=false asset=AppliedAstrology-0.0.4-arm64-v8a.apk
+11-17 10:57:36.550 18532 18532 I AppliedAstrology: SELFTEST PASS 30_update_check latest=0.0.4 current=0.0.5 newer=false assets=16 asset=AppliedAstrology-0.0.4-arm64-v8a.apk
+11-17 10:57:46.934 18532 25915 I AppliedAstrology: update downloaded /storage/emulated/0/Android/data/com.appliedastrology.tuvi/cache/updates/AppliedAstrology-0.0.4-arm64-v8a.apk 3010273
+11-17 10:57:47.396 18532 18532 I AppliedAstrology: SELFTEST PASS 31_update_download AppliedAstrology-0.0.4-arm64-v8a.apk done 3010273/3010273 7711ms 
+11-17 10:57:50.253 18532 18532 I AppliedAstrology: SELFTEST-LOG-1794887870253
+11-17 10:57:50.255 18532 18532 I AppliedAstrology: SELFTEST PASS 32_app_logs native=3843 chars
+11-17 10:57:53.212 18532 18532 I AppliedAstrology: SELFTEST PASS 33_error_report crash files=1 url=1742 chars
+11-17 10:57:57.009 18532 18532 I AppliedAstrology: SELFTEST PASS 34_safe_area nav 2475-2680 / root 2708 insets t=0 b=0 header.top=21 sdk=29
+11-17 10:57:59.845 18532 18532 I AppliedAstrology: setting lang=fr
+11-17 10:57:59.969 18532 18532 I AppliedAstrology: SELFTEST PASS 35_language_fr_new Calendrier
+11-17 10:58:02.917 18532 18532 I AppliedAstrology: build solar,15,8,1995,6
+11-17 10:58:02.943 18532 18532 I AppliedAstrology: SELFTEST PASS 36_restore_defaults 
+11-17 10:58:06.060 18532 18532 I AppliedAstrology: SELFTEST PASS 37_glass_liquid blur=360x677 band=1384x211 a=255 ready=141ms render=8ms
+11-17 10:58:09.085 18532 18532 I AppliedAstrology: SELFTEST PASS 38_glass_frost frost
+11-17 10:58:12.066 18532 18532 I AppliedAstrology: SELFTEST PASS 39_glass_off off
+11-17 10:58:14.925 18532 18532 I AppliedAstrology: SELFTEST PASS 40_glass_sliders blur=30.0 refr=0.9 spec=0.8
+11-17 10:58:17.910 18532 18532 I AppliedAstrology: SELFTEST PASS 41_glass_bg_aurora aurora
+11-17 10:58:20.975 18532 18532 I AppliedAstrology: toast Khôi phục Liquid Glass mặc định
+11-17 10:58:20.976 18532 18532 I AppliedAstrology: SELFTEST PASS 42_glass_reset bg=nebula blur=18
+11-17 10:58:23.923 18532 18532 I AppliedAstrology: SELFTEST PASS 43_native_no_webview webviews=0 engine=Native Android Views (no WebView)
+11-17 10:58:26.781 18532 18532 I AppliedAstrology: SELFTEST PASS 44_lang_all_68 68/68 
+11-17 10:58:29.562 18532 18532 I AppliedAstrology: setting lgOn=false
+11-17 10:58:29.630 18532 18532 I AppliedAstrology: setting lgOn=true
+11-17 10:58:29.715 18532 18532 I AppliedAstrology: SELFTEST PASS 45_glass_toggle off=true saved=true on=true i18n68=true mode=liquid
+11-17 10:58:32.813 18532 18532 I AppliedAstrology: search Hóa Kỵ
+11-17 10:58:35.959 18532 18532 I AppliedAstrology: SELFTEST PASS 46_perf_scroll frames=179 avg=16.9ms p90=16.7ms max=50.9ms jank(>33ms)=0% cards=124 redraws=1291/ticks=175
+11-17 10:58:38.985 18532 18532 I AppliedAstrology: SELFTEST PASS 47_perf_modal open=1ms (UI) bandReady=122ms render=88ms size=1342x2385
+11-17 10:58:44.416 18532 18532 I AppliedAstrology: SELFTEST PASS 48_perf_tabs max=77ms chart=56ms calendar=77ms library=74ms assistant=10ms saved=3ms settings=23ms about=12ms 
+11-17 10:58:47.342 18532 18532 I AppliedAstrology: SELFTEST PASS 49_perf_settings applySettings=48ms / 31ms bgBuild=170ms (luồng nền)
+11-17 10:58:50.841 18532 18532 I AppliedAstrology: toast Khôi phục Liquid Glass mặc định
+11-17 10:58:51.256 18532 18532 I AppliedAstrology: SELFTEST PASS 50_glass_stability errors=0 bgReady=true band=true crashes=0 settle=389ms
+11-17 10:58:54.046 18532 18532 I AppliedAstrology: SELFTEST PASS 51_perf_memory heap=91/256 MB bands=58 frames=15
+11-17 10:58:57.322 18532 18532 I AppliedAstrology: SELFTEST PASS 52_lunar_full_range days=73018 invalid=0 roundtripFail=0 7/5/2054=30/3/2054 429ms
+11-17 10:59:00.024 18532 18532 I AppliedAstrology: SELFTEST_DONE 52/52
+11-17 10:59:18.380 24612 24612 I AppliedAstrology: start v0.0.5 native abi=arm64-v8a sdk=29 device=samsung SM-N960N selftest=false
+11-17 10:59:25.984 26392 26392 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:25.987 26392 26392 I AndroidRuntime: Using default boot image
+11-17 10:59:25.987 26392 26392 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:25.989 26392 26392 D AndroidRuntime: addProductProperty
+11-17 10:59:25.989 26392 26392 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:25.989 26392 26392 D AndroidRuntime: addProductProperty: else
+11-17 10:59:26.106 26392 26392 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:26.377 26392 26392 D AndroidRuntime: Shutting down VM
+11-17 10:59:27.148 26407 26407 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:27.151 26407 26407 I AndroidRuntime: Using default boot image
+11-17 10:59:27.151 26407 26407 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:27.153 26407 26407 D AndroidRuntime: addProductProperty
+11-17 10:59:27.153 26407 26407 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:27.153 26407 26407 D AndroidRuntime: addProductProperty: else
+11-17 10:59:27.257 26407 26407 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:27.530 26407 26407 D AndroidRuntime: Shutting down VM
+11-17 10:59:28.280 26421 26421 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:28.285 26421 26421 I AndroidRuntime: Using default boot image
+11-17 10:59:28.285 26421 26421 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:28.287 26421 26421 D AndroidRuntime: addProductProperty
+11-17 10:59:28.287 26421 26421 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:28.287 26421 26421 D AndroidRuntime: addProductProperty: else
+11-17 10:59:28.392 26421 26421 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:28.668 26421 26421 D AndroidRuntime: Shutting down VM
+11-17 10:59:29.428 26435 26435 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:29.431 26435 26435 I AndroidRuntime: Using default boot image
+11-17 10:59:29.431 26435 26435 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:29.433 26435 26435 D AndroidRuntime: addProductProperty
+11-17 10:59:29.433 26435 26435 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:29.433 26435 26435 D AndroidRuntime: addProductProperty: else
+11-17 10:59:29.535 26435 26435 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:29.800 26435 26435 D AndroidRuntime: Shutting down VM
+11-17 10:59:30.562 26449 26449 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:30.565 26449 26449 I AndroidRuntime: Using default boot image
+11-17 10:59:30.566 26449 26449 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:30.567 26449 26449 D AndroidRuntime: addProductProperty
+11-17 10:59:30.567 26449 26449 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:30.567 26449 26449 D AndroidRuntime: addProductProperty: else
+11-17 10:59:30.670 26449 26449 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:30.938 26449 26449 D AndroidRuntime: Shutting down VM
+11-17 10:59:31.694 26463 26463 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:31.697 26463 26463 I AndroidRuntime: Using default boot image
+11-17 10:59:31.697 26463 26463 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:31.699 26463 26463 D AndroidRuntime: addProductProperty
+11-17 10:59:31.699 26463 26463 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:31.699 26463 26463 D AndroidRuntime: addProductProperty: else
+11-17 10:59:31.800 26463 26463 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:32.076 26463 26463 D AndroidRuntime: Shutting down VM
+11-17 10:59:32.840 26478 26478 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:32.843 26478 26478 I AndroidRuntime: Using default boot image
+11-17 10:59:32.843 26478 26478 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:32.844 26478 26478 D AndroidRuntime: addProductProperty
+11-17 10:59:32.845 26478 26478 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:32.845 26478 26478 D AndroidRuntime: addProductProperty: else
+11-17 10:59:32.945 26478 26478 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:33.229 26478 26478 D AndroidRuntime: Shutting down VM
+11-17 10:59:33.993 26492 26492 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:33.997 26492 26492 I AndroidRuntime: Using default boot image
+11-17 10:59:33.997 26492 26492 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:33.999 26492 26492 D AndroidRuntime: addProductProperty
+11-17 10:59:33.999 26492 26492 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:33.999 26492 26492 D AndroidRuntime: addProductProperty: else
+11-17 10:59:34.101 26492 26492 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:34.381 26492 26492 D AndroidRuntime: Shutting down VM
+11-17 10:59:35.146 26506 26506 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:35.150 26506 26506 I AndroidRuntime: Using default boot image
+11-17 10:59:35.150 26506 26506 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:35.151 26506 26506 D AndroidRuntime: addProductProperty
+11-17 10:59:35.151 26506 26506 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:35.151 26506 26506 D AndroidRuntime: addProductProperty: else
+11-17 10:59:35.251 26506 26506 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:35.534 26506 26506 D AndroidRuntime: Shutting down VM
+11-17 10:59:36.283 26520 26520 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:36.285 26520 26520 I AndroidRuntime: Using default boot image
+11-17 10:59:36.285 26520 26520 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:36.287 26520 26520 D AndroidRuntime: addProductProperty
+11-17 10:59:36.287 26520 26520 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:36.287 26520 26520 D AndroidRuntime: addProductProperty: else
+11-17 10:59:36.393 26520 26520 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:36.670 26520 26520 D AndroidRuntime: Shutting down VM
+11-17 10:59:37.446 26535 26535 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:37.448 26535 26535 I AndroidRuntime: Using default boot image
+11-17 10:59:37.449 26535 26535 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:37.450 26535 26535 D AndroidRuntime: addProductProperty
+11-17 10:59:37.450 26535 26535 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:37.450 26535 26535 D AndroidRuntime: addProductProperty: else
+11-17 10:59:37.558 26535 26535 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:37.840 26535 26535 D AndroidRuntime: Shutting down VM
+11-17 10:59:38.596 26549 26549 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-17 10:59:38.600 26549 26549 I AndroidRuntime: Using default boot image
+11-17 10:59:38.600 26549 26549 I AndroidRuntime: Leaving lock profiling enabled
+11-17 10:59:38.602 26549 26549 D AndroidRuntime: addProductProperty
+11-17 10:59:38.602 26549 26549 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+11-17 10:59:38.602 26549 26549 D AndroidRuntime: addProductProperty: else
+11-17 10:59:38.705 26549 26549 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-17 10:59:38.977 26549 26549 D AndroidRuntime: Shutting down VM

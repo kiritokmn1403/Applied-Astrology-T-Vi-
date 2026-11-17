@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – các màn hình native Windows: Lá Số, Âm Lịch, Thư Viện, Luận Giải, Hồ Sơ, Cài Đặt (+ Liquid Glass), Giới Thiệu.
+// Applied Astrology v0.0.5 – các màn hình native Windows: Lá Số, Âm Lịch, Thư Viện, Luận Giải, Hồ Sơ, Cài Đặt (+ Liquid Glass), Giới Thiệu.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -371,8 +371,12 @@ namespace AppliedAstrology
         void GlassSettings(Box p)
         {
             var f = Setting(p, T("s_glass"), T("s_glass_d"), "glassSettings");
-            var modes = new[] { "off", "frost", "liquid" }; f.Add(Txt(T("lg_mode"), 9, G.Th.Muted, false));
-            f.Add(Combo(new[] { T("lg_off"), T("lg_frost"), T("lg_liquid") }, IdxOf(modes, S("lgMode")), i => { SetS("lgMode", modes[i]); ApplySettings(); }, "sLgMode"));
+            // v0.0.5: công tắc bật/tắt Liquid Glass (Creat & Update mục 2)
+            f.Add(Check(T("lg_enable"), B("lgOn"), v => { SetS("lgOn", v); ApplySettings(); Toast(T(v ? "lg_enabled" : "lg_disabled")); }, "sLgOn"));
+            f.Add(Hint(T("lg_enable_d")));
+            if (!B("lgOn")) { f.Add(Flow(Btn(T("lg_reset"), false, ResetGlass, "sLgReset", true))); return; }
+            var modes = new[] { "frost", "liquid" }; f.Add(Txt(T("lg_mode"), 9, G.Th.Muted, false));
+            f.Add(Combo(new[] { T("lg_frost"), T("lg_liquid") }, Math.Max(0, IdxOf(modes, S("lgMode"))), i => { SetS("lgMode", modes[i]); ApplySettings(); }, "sLgMode"));
             var bgs = new[] { "nebula", "aurora", "plain" }; f.Add(Txt(T("lg_bg"), 9, G.Th.Muted, false));
             f.Add(Combo(new[] { T("lg_bg_nebula"), T("lg_bg_aurora"), T("lg_bg_plain") }, IdxOf(bgs, S("lgBg")), i => { SetS("lgBg", bgs[i]); ApplySettings(); }, "sLgBg"));
             f.Add(Slider(T("lg_blur"), 0, 40, N("lgBlur"), "", v => { SetS("lgBlur", (long)v); ApplySettings(); }, "sLgBlur"));

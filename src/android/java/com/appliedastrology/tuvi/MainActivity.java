@@ -32,7 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Applied Astrology v0.0.4 – ứng dụng Android NATIVE (Java + Android Views, không dùng WebView).
+ * Applied Astrology v0.0.5 – ứng dụng Android NATIVE (Java + Android Views, không dùng WebView).
  * Giao diện, lá số, Âm Lịch, thư viện, luận giải, cài đặt, Liquid Glass đều vẽ bằng View native → hệ thống nhận diện là
  * ứng dụng bình thường, khởi động nhanh, không phụ thuộc phiên bản Android System WebView.
  * Vùng an toàn: đệm WindowInsets (thanh trạng thái, thanh điều hướng, tai thỏ, bàn phím) trên mọi phiên bản 6.0 → 17.
@@ -51,7 +51,14 @@ public class MainActivity extends Activity {
         return Json.map("lang", "vi", "theme", "celestial-dark", "font", "normal", "layout", "auto", "desktop", null, "ts", true, "bs", false, "tt", true, "luu", true,
             "leap", "same", "paper", "none", "autoUpdate", true, "autoInstall", true, "logs", true,
             // v0.0.4 – Liquid Glass
-            "lgMode", "liquid", "lgBg", "nebula", "lgBlur", 18L, "lgRefr", 60L, "lgBezel", 18L, "lgTint", 35L, "lgSpec", 55L, "lgSat", 135L, "lgCards", true, "lgChart", false);
+            "lgOn", true, "lgMode", "liquid", "lgBg", "nebula", "lgBlur", 18L, "lgRefr", 60L, "lgBezel", 18L, "lgTint", 35L, "lgSpec", 55L, "lgSat", 135L, "lgCards", true, "lgChart", false);
+    }
+    /** Máy yếu: ActivityManager báo low-RAM, hạn mức heap ≤ 128 MB, hoặc Android 6/7 */
+    boolean lowEnd() {
+        try {
+            android.app.ActivityManager am = (android.app.ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            return am.isLowRamDevice() || am.getMemoryClass() <= 128 || Build.VERSION.SDK_INT < 26;
+        } catch (Throwable e) { return false; }
     }
     String s(String k) { Object v = S.get(k); return v == null ? null : v.toString(); }
     boolean b(String k) { Object v = S.get(k); return v instanceof Boolean && (Boolean) v; }
@@ -63,6 +70,10 @@ public class MainActivity extends Activity {
         host = new Host(this); host.installCrashHandler();
         S = new LinkedHashMap<String, Object>(defaults());
         Map<String, Object> st = Json.obj(host.get("aa.settings")); if (st != null) S.putAll(st);
+        // v0.0.5: Liquid Glass có công tắc riêng (lgOn). Bản cũ lưu lgMode = "off" → chuyển thành lgOn = false (giữ kiểu kính mặc định)
+        if (st != null && "off".equals(String.valueOf(st.get("lgMode")))) { S.put("lgOn", false); S.put("lgMode", "liquid"); }
+        // máy cấu hình thấp (RAM ít / Android 6–7): lần đầu chạy dùng Kính mờ thay vì khúc xạ thật
+        if (st == null || !st.containsKey("lgMode")) { if (lowEnd()) S.put("lgMode", "frost"); }
         for (Map.Entry<String, Object> e : defaults().entrySet()) if (!S.containsKey(e.getKey())) S.put(e.getKey(), e.getValue());
         lib = new Library(host);
         lib.setNativeSearch(new Library.NativeSearch() { public String search(String f, int max) { return NativeCore.search(getAssets(), f, max); } });
@@ -87,6 +98,14 @@ public class MainActivity extends Activity {
             long at = lc == null ? 0 : (long) Json.dbl(lc.get("at"), 0);
             if (System.currentTimeMillis() - at > 12 * 3600 * 1000L) h.postDelayed(new Runnable() { public void run() { sc.updates.check(true, null); } }, 4000);
         }
+    }
+
+    /** v0.0.5: app đã chạy sẵn (vd. Android 17 tự mở lại sau khi cài đè) mà nhận intent mới có cờ selftest/tab */
+    @Override protected void onNewIntent(Intent it) {
+        super.onNewIntent(it); setIntent(it);
+        if (it == null) return;
+        if (it.getBooleanExtra("selftest", false) && selftest == null) { selftest = new SelfTest(this); h.postDelayed(new Runnable() { public void run() { selftest.start(); } }, 1500); }
+        else if (it.getStringExtra("tab") != null) show(it.getStringExtra("tab"));
     }
 
     // ---------------- vùng an toàn ----------------
@@ -128,7 +147,7 @@ public class MainActivity extends Activity {
 
     // ---------------- cài đặt → giao diện ----------------
     void applyGlassCfg() {
-        gcfg.th = Theme.byId(s("theme")); gcfg.mode = s("lgMode"); gcfg.bg = s("lgBg"); gcfg.cards = b("lgCards"); gcfg.chart = b("lgChart");
+        gcfg.th = Theme.byId(s("theme")); gcfg.mode = b("lgOn") ? s("lgMode") : "off"; if (!"frost".equals(gcfg.mode) && !"liquid".equals(gcfg.mode)) gcfg.mode = "off"; gcfg.bg = s("lgBg"); gcfg.cards = b("lgCards"); gcfg.chart = b("lgChart");
         gcfg.p.blur = n("lgBlur"); gcfg.p.refraction = n("lgRefr") / 100.0; gcfg.p.bezel = n("lgBezel") * getResources().getDisplayMetrics().density / 2;
         gcfg.p.tint = n("lgTint") / 100.0; gcfg.p.specular = n("lgSpec") / 100.0; gcfg.p.saturation = n("lgSat") / 100.0;
         gcfg.p.thickness = 40 * getResources().getDisplayMetrics().density / 2;
@@ -200,9 +219,8 @@ public class MainActivity extends Activity {
         final ScrollView sv = new ScrollView(this); sv.setFillViewport(true); sv.setTag("scroll");
         LinearLayout pad = ui.col(); pad.setPadding(ui.dp(8), ui.dp(6), ui.dp(8), ui.dp(16)); pad.addView(v, Ui.fill());
         sv.addView(pad);
-        sv.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() { public void onScrollChanged() { bg.invalidateFrames(); } });
+        sv.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() { public void onScrollChanged() { bg.onScroll(); } });   // v0.0.5: gộp theo khung hình, chỉ vẽ lại thẻ đổi vị trí
         content.addView(sv, new FrameLayout.LayoutParams(-1, -1));
-        bg.invalidateFrames();
     }
     ScrollView scroller() { return content.getChildCount() > 0 ? (ScrollView) content.getChildAt(0) : null; }
     void scrollTo(final View v) { final ScrollView s = scroller(); if (s != null && v != null) s.post(new Runnable() { public void run() { int[] a = new int[2], b = new int[2]; v.getLocationInWindow(a); s.getChildAt(0).getLocationInWindow(b); s.smoothScrollTo(0, a[1] - b[1] - ui.dp(8)); } }); }
@@ -242,7 +260,7 @@ public class MainActivity extends Activity {
 
     void toast(String msg) {
         if (toastBox != null) root.removeView(toastBox);
-        toastBox = new GlassViews.Frame(this, bg, gcfg, 1, 14); toastBox.solidColor = Theme.alpha(gcfg.th.gold, 255);
+        toastBox = new GlassViews.Frame(this, bg, gcfg, 2, 14); toastBox.solidColor = Theme.alpha(gcfg.th.gold, 255);
         TextView t = ui.text(msg, 14, 0xFF1A1205, true); t.setGravity(Gravity.CENTER); t.setPadding(ui.dp(14), ui.dp(9), ui.dp(14), ui.dp(9));
         toastBox.addView(t);
         FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL); p.bottomMargin = insetB + ui.dp(wide ? 24 : 92);

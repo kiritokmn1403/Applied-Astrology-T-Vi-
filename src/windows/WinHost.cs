@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.4 – Windows NATIVE (C# WinForms, .NET Framework 4.x; Windows 7 SP1 → 11; x86 / x64 / ARM64).
+// Applied Astrology v0.0.5 – Windows NATIVE (C# WinForms, .NET Framework 4.x; Windows 7 SP1 → 11; x86 / x64 / ARM64).
 // Không dùng Edge WebView2 / IE11 / MSHTML: toàn bộ giao diện vẽ bằng GDI+ → Task Manager chỉ hiện "Applied Astrology",
 // không có tiến trình msedgewebview2.exe, SmartScreen/antivirus không coi là vỏ trình duyệt.
 using System;
@@ -20,15 +20,15 @@ using Microsoft.Win32;
 [assembly: AssemblyDescription("Applied Astrology - Tử Vi Ứng Dụng (Bửu Đình) - native Windows app")]
 [assembly: AssemblyCompany("Applied Astrology")]
 [assembly: AssemblyCopyright("Applied Astrology contributors (GPL-3.0)")]
-[assembly: AssemblyVersion("0.0.4.0")]
-[assembly: AssemblyFileVersion("0.0.4.0")]
+[assembly: AssemblyVersion("0.0.5.0")]
+[assembly: AssemblyFileVersion("0.0.5.0")]
 [assembly: ComVisible(false)]
 
 namespace AppliedAstrology
 {
     static class Program
     {
-        internal const string Version = "0.0.4", BuildDate = "2026-11-16";
+        internal const string Version = "0.0.5", BuildDate = "2026-11-17";
         internal static string BaseDir = AppDomain.CurrentDomain.BaseDirectory, DataDir, TestOut, Compat = "";
         internal static bool SelfTest;
         [STAThread]

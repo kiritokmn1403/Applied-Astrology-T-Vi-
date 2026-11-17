@@ -1,0 +1,6 @@
+{
+"lg_enable": "Enable Liquid Glass",
+"lg_enable_d": "Turn off for a flat, lightest interface (recommended on low-end devices).",
+"lg_enabled": "Liquid Glass on",
+"lg_disabled": "Liquid Glass off"
+}

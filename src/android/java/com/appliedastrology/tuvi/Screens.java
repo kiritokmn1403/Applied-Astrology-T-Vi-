@@ -680,9 +680,13 @@ public final class Screens {
     }
     void glassSettings(LinearLayout p) {
         Frame f = setting(p, t("s_glass"), t("s_glass_d")); f.setTag("glassSettings");
-        final String[] modes = {"off", "frost", "liquid"};
-        f.addView(ui.text(t("lg_mode"), 12.5f, th().muted, false));
-        f.addView(tag(ui.spinner(Arrays.asList(t("lg_off"), t("lg_frost"), t("lg_liquid")), idxOf(modes, a.s("lgMode")), new Ui.OnPick() { public void pick(int pos) { setS("lgMode", modes[pos]); a.applySettings(); } }), "sLgMode"), Ui.fill());
+        // v0.0.5: công tắc bật/tắt Liquid Glass (Creat & Update mục 2)
+        f.addView(tag(ui.toggle(t("lg_enable"), a.b("lgOn"), new Ui.OnBool() { public void set(boolean v) { setS("lgOn", v); a.applySettings(); a.toast(t(v ? "lg_enabled" : "lg_disabled")); } }), "sLgOn"));
+        f.addView(ui.hint(t("lg_enable_d")));
+        if (!a.b("lgOn")) { f.addView(tag(ui.small(t("lg_reset"), new View.OnClickListener() { public void onClick(View v) { resetGlass(); } }), "sLgReset"), ui.margins(Ui.wrap(), 0, 6, 0, 0)); return; }
+        final String[] modes = {"frost", "liquid"};
+        f.addView(ui.text(t("lg_mode"), 12.5f, th().muted, false), ui.margins(Ui.fill(), 0, 6, 0, 0));
+        f.addView(tag(ui.spinner(Arrays.asList(t("lg_frost"), t("lg_liquid")), Math.max(0, idxOf(modes, a.s("lgMode"))), new Ui.OnPick() { public void pick(int pos) { setS("lgMode", modes[pos]); a.applySettings(); } }), "sLgMode"), Ui.fill());
         final String[] bgs = {"nebula", "aurora", "plain"};
         f.addView(ui.text(t("lg_bg"), 12.5f, th().muted, false), ui.margins(Ui.fill(), 0, 6, 0, 0));
         f.addView(tag(ui.spinner(Arrays.asList(t("lg_bg_nebula"), t("lg_bg_aurora"), t("lg_bg_plain")), idxOf(bgs, a.s("lgBg")), new Ui.OnPick() { public void pick(int pos) { setS("lgBg", bgs[pos]); a.applySettings(); } }), "sLgBg"), Ui.fill());
