@@ -1,0 +1,23 @@
+﻿{
+    "device":  "emulator_OOS_Android6_API23",
+    "prev":  {
+                 "what":  "0.0.5",
+                 "frames":  612,
+                 "janky":  91,
+                 "jankyPct":  14.87,
+                 "p50":  null,
+                 "p90":  19,
+                 "p95":  36,
+                 "p99":  38
+             },
+    "new":  {
+                "what":  "0.0.6",
+                "frames":  616,
+                "janky":  0,
+                "jankyPct":  0,
+                "p50":  null,
+                "p90":  7,
+                "p95":  8,
+                "p99":  10
+            }
+}

@@ -53,3 +53,30 @@
 - **Android 17 Emulator tự mở lại app sau `install -r`:** Trên Android 17, sau khi cập nhật gói apk hệ điều hành tự kích hoạt lại tiến trình cũ. Lệnh `am start` thông thường chỉ đưa task cũ lên trước mà không gọi `onCreate` làm mất cờ selftest. Phải dùng `am start -S -W` kết hợp gửi broadcast `android.intent.action.CLOSE_SYSTEM_DIALOGS` để đóng các hộp thoại hệ thống bị treo.
 - **Máy ảo Android 6.0 chạy GPU phần mềm:** Trình giả lập cũ dùng SwiftShader CPU tạo tinh vân mất nhiều thời gian, khiến `requestBand` bị trễ. Cần đặt timeout tự kiểm thử tối thiểu 15 giây cho các bước Liquid Glass trên môi trường giả lập.
 - **Tối ưu hóa dung lượng với Zopfli:** Nén 10 vòng Deflate bằng Zopfli WebAssembly trước khi ký và zipalign giúp giảm kích thước tệp APK và ZIP từ 6–7% mà vẫn đảm bảo tính tương thích tuyệt đối với mọi trình giải nén tiêu chuẩn.
+
+## Bài học v0.0.6 (18/11/2026)
+
+### Windows – lag còn sót ở 0.0.5 (đo bằng selftest 46/48/10)
+- `DBPanel` (khung cuộn) vẽ ảnh nền bằng `DrawImage(img, Rectangle)` **có co giãn** + gọi nền form cha → mỗi khung vẽ nền 2 lần, có nội suy. Luôn `DrawImageUnscaled(G.Full, -Left, -Top)`.
+- Form và bố cục phải dùng **cùng một kích thước** cho `G.Ensure` (`GlassSize`), nếu không ảnh nền bị co giãn lại liên tục.
+- Không `Scroll.Invalidate(true)` cả cây: chỉ `Invalidate` điều khiển giao với khung nhìn (`InvalidateVisible`). Chú ý selftest phải đi **đúng đường vẽ** người dùng dùng (`ScrollStep`), nếu không số đo không phản ánh thực tế.
+- Khóa bộ đệm nền có **vị trí** ⇒ cuộn = dựng lại mọi thẻ đang hiện. Cách sửa: khi đang cuộn dùng lại nền cũ nếu chỉ khác vị trí, dừng cuộn 220 ms vẽ lại chính xác (`ScrollStep/ScrollSettle`, `Box.Scrolling`). Selftest đo cả `settle`.
+- Danh sách dài = hàng trăm HWND → phân trang 40 mục + "Xem thêm". Tìm kiếm lần đầu chậm vì nạp + bỏ dấu trên luồng UI → `Library.Warm()` ở luồng nền (cache có `lock`).
+- Kết quả (cùng máy): tìm kiếm 2312 → 597 ms, tab chậm nhất 2251 → 821 ms (lượt 1).
+
+### Android / emulator
+- `svc power stayon usb` **không** giữ màn hình emulator (không có nguồn USB). Dùng `stayon true` + `settings put system screen_off_timeout 1800000`; app tự `FLAG_KEEP_SCREEN_ON | SHOW_WHEN_LOCKED | DISMISS_KEYGUARD | TURN_SCREEN_ON` khi `selftest`. Dấu hiệu màn hình tắt: hộp thoại 0x0, `ticks=0`, kính "pending" 15 s.
+- `-gpu swiftshader_indirect` = vẽ bằng CPU → mọi bản (kể cả bản cũ) giật 98–100% trên emulator; **không** dùng số đo emulator đó để kết luận lag. Script 0.0.6 có `-EmuGpu auto` (mặc định).
+- Selftest 54 bước: thêm `53_results_paging`, `54_library_warm`; bước 46 mở rộng danh sách tới 120 thẻ để so sánh công bằng với 0.0.5.
+
+### Làm việc cùng Google Antigravity (/swarm)
+- Antigravity đang chạy thì tin nhắn mới vào **hàng đợi** ("Queued Messages") và tự gửi khi nó xong lượt – không cần chờ.
+- Luôn chia rõ **tệp nào ai sửa** (Claude: `src/`, `tools/`, script build, TECHNICAL_UPDATE_NOTES, WORK_PROGRESS; Antigravity: `docs/`, `AG_REPORT_v<ver>.md`, `translations/`) để không ghi đè nhau.
+- **Rà lại nội dung Antigravity viết** trước khi phát hành: bản nháp trang chủ có câu sai ("108 tinh tú", "chỉ mục nhị phân", "60 FPS", "không gửi IP"). Đối chiếu với mã nguồn (`grep` URL trong `src/`) để trang quyền riêng tư nêu đủ mọi kết nối mạng.
+- Dịch thư viện 611 bài × 67 ngôn ngữ: Antigravity làm dần vào `translations/lib/<mã>/NN.json` + `translations/glossary.json` + `translations/PROGRESS.md`. **Không nhúng hết vào APK** (thư viện ≈ 80% gói ⇒ hàng trăm MB) – tích hợp kiểu tải theo nhu cầu ở bản sau.
+
+### Phiên AI
+- Quyền điều khiển máy (computer use) **hết hạn sau 30 phút không dùng** → phải `computer_resolve_access` + `computer_request_access` lại.
+- Không ghi email người dùng vào script/tài liệu; danh tính git lấy từ cấu hình máy (GitHub Desktop), thiếu thì dùng `<owner>@users.noreply.github.com`. Bộ lọc riêng tư của phiên Claude chặn đọc/sửa tệp chứa email.
+- `device_commit_files` chỉ nhận tệp nằm trong `/mnt/user-data/outputs/` (hoặc fileUuid đã gửi).
+- Ghi tiến độ 5 phút/lần bằng `D:\yh\aa006_progress.sh "<ghi chú>" [trạng thái]` (tự kèm bước build hiện tại từ `build_logs/status.json`).

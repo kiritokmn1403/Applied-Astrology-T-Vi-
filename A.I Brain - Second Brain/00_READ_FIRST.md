@@ -19,4 +19,6 @@ Thứ tự làm việc chuẩn của một bản cập nhật:
 5. `BUILD_TEST_v<ver>.bat` (lượt 1) → sửa lỗi → `BUILD_v<ver>.bat` (lượt cuối: build + test + phát hành).
 6. Ghi `TECHNICAL_UPDATE_NOTES.md`, README, CHANGELOG, RELEASE_NOTES, cập nhật thư mục này.
 
-Cập nhật lần cuối: 17/11/2026 (v0.0.5).
+Cập nhật lần cuối: 18/11/2026 (v0.0.6).
+
+**Từ v0.0.6:** có thể chia việc cho Google Antigravity bằng `/swarm` (xem `03_lessons_learned.md` › "Làm việc cùng Google Antigravity"); ghi tiến độ 5 phút/lần bằng `D:\yh\aa006_progress.sh`; luôn rà nội dung do agent khác viết trước khi phát hành.

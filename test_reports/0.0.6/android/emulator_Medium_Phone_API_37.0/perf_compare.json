@@ -1,0 +1,23 @@
+﻿{
+    "device":  "emulator_Medium_Phone_API_37.0",
+    "prev":  {
+                 "what":  "0.0.5",
+                 "frames":  495,
+                 "janky":  36,
+                 "jankyPct":  7.27,
+                 "p50":  23,
+                 "p90":  34,
+                 "p95":  38,
+                 "p99":  48
+             },
+    "new":  {
+                "what":  "0.0.6",
+                "frames":  529,
+                "janky":  42,
+                "jankyPct":  7.94,
+                "p50":  28,
+                "p90":  38,
+                "p95":  46,
+                "p99":  53
+            }
+}

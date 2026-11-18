@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chính Sách Quyền Riêng Tư - Applied Astrology</title>
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 20% 20%, #1a1b35 0%, #0c0d1a 60%, #05060b 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --glass-blur: blur(16px);
+      --accent: #e5b567;
+      --accent-glow: rgba(229, 181, 103, 0.35);
+      --accent-cyan: #4ecdc4;
+      --text-main: #f0f2f5;
+      --text-sub: #9ba3b4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    .cosmic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle at 75% 20%, rgba(100, 70, 240, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 15% 80%, rgba(229, 181, 103, 0.10) 0%, transparent 40%);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      background: rgba(12, 13, 26, 0.8);
+      border-bottom: 1px solid var(--card-border);
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #d48b28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-toggle {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--accent);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .policy-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 40px;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .policy-meta {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .policy-section {
+      margin-bottom: 2rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.35rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-section p {
+      color: var(--text-main);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-section ul {
+      list-style-position: inside;
+      color: var(--text-sub);
+      margin-left: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .policy-section li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      background: rgba(229, 181, 103, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+      color: #fce8c8;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(8, 9, 18, 0.85);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 1rem;
+    }
+
+    [lang="vi"] .en-only { display: none !important; }
+    [lang="en"] .vi-only { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="cosmic-bg"></div>
+
+  <header>
+    <a href="index.html" class="logo">
+      <div class="logo-badge">☯</div>
+      <span>Applied Astrology</span>
+    </a>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLanguage()">
+        <span class="vi-only">English</span>
+        <span class="en-only">Tiếng Việt</span>
+      </button>
+      <a href="index.html" class="lang-toggle" style="text-decoration:none;">
+        <span class="vi-only">Trang chủ</span>
+        <span class="en-only">Home</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="policy-container">
+      <h1>
+        <span class="vi-only">Chính Sách Quyền Riêng Tư</span>
+        <span class="en-only">Privacy Policy</span>
+      </h1>
+
+      <div class="policy-meta">
+        <span class="vi-only">Áp dụng cho ứng dụng <strong>Tử Vi Ứng Dụng (Applied Astrology)</strong> • Cập nhật lần cuối: Tháng 11/2026</span>
+        <span class="en-only">Applicable to <strong>Applied Astrology (Tử Vi Ứng Dụng)</strong> • Last updated: November 2026</span>
+      </div>
+
+      <div class="highlight-box">
+        <span class="vi-only">🛡️ <strong>Tuyên bố cốt lõi:</strong> Ứng dụng hoạt động theo nguyên tắc Ngoại Tuyến (Offline-First), tôn trọng quyền riêng tư tối thượng. Chúng tôi không bao giờ thu thập, lưu trữ hay gửi bất kỳ dữ liệu cá nhân nào của bạn lên máy chủ bên ngoài.</span>
+        <span class="en-only">🛡️ <strong>Core Principle:</strong> Applied Astrology is designed as an Offline-First application with utmost respect for user privacy. We never collect, transmit, or store any personal data on external servers.</span>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">1. Hoạt Động Ngoại Tuyến 100% (Offline-First)</span>
+          <span class="en-only">1. 100% Offline-First Architecture</span>
+        </h2>
+        <p>
+          <span class="vi-only">Tất cả các thuật toán tính toán an sao Tử Vi, tra cứu chuyển đổi Âm - Dương lịch, cơ sở dữ liệu thư viện 611 bài luận Bửu Đình và công cụ trợ lý đều được lưu trữ trực tiếp và xử lý hoàn toàn cục bộ trên thiết bị của bạn. Ứng dụng không yêu cầu tài khoản, không cần đăng nhập và không cần kết nối mạng để sử dụng mọi chức năng.</span>
+          <span class="en-only">All calculations for astrological charts, lunar-solar conversions, the 611-article Bửu Đình research library, and search assistants reside and compute entirely on your local device. The application requires no account, no login, and no internet connection for regular usage.</span>
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">2. Lưu Trữ Dữ Liệu Cục Bộ (Local Storage)</span>
+          <span class="en-only">2. Local Data Storage Only</span>
+        </h2>
+        <p>
+          <span class="vi-only">Mọi thông tin bạn nhập (như hồ sơ lá số ngày giờ sinh, danh sách đánh dấu, lịch sử tra cứu, tùy chọn giao diện Liquid Glass) chỉ được ghi vào bộ nhớ cục bộ của máy:</span>
+          <span class="en-only">All user input (such as birth data profiles, bookmarks, reading history, and Liquid Glass appearance preferences) is stored strictly in your device's private storage:</span>
+        </p>
+        <ul>
+          <li><span class="vi-only"><strong>Android:</strong> Lưu trong bộ nhớ bảo mật SharedPreferences riêng tư của ứng dụng (không chia sẻ cho app khác).</span><span class="en-only"><strong>Android:</strong> Stored within private SharedPreferences sandbox, inaccessible to other apps.</span></li>
+          <li><span class="vi-only"><strong>Windows:</strong> Lưu trong tệp <code>%APPDATA%\AppliedAstrology\store.json</code> (đối với bản cài đặt) hoặc thư mục <code>userdata\</code> (đối với bản Portable).</span><span class="en-only"><strong>Windows:</strong> Stored in <code>%APPDATA%\AppliedAstrology\store.json</code> or the portable <code>userdata\</code> directory.</span></li>
+        </ul>
+        <p>
+          <span class="vi-only">Dữ liệu này hoàn toàn thuộc quyền sở hữu của bạn và sẽ bị xóa sạch khi bạn gỡ cài đặt ứng dụng hoặc xóa dữ liệu ứng dụng.</span>
+          <span class="en-only">This data remains entirely under your control and is completely removed upon uninstalling the application or clearing app data.</span>
+        </p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">3. Kết Nối Mạng Tự Động Duy Nhất: Kiểm Tra Cập Nhật</span>
+          <span class="en-only">3. The Only Automatic Connection: Update Checking</span>
+        </h2>
+        <p>
+          <span class="vi-only">Kết nối mạng duy nhất mà ứng dụng thực hiện là gọi tới giao thức an toàn công khai của GitHub: <code>https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases</code>.</span>
+          <span class="en-only">The only network connection performed by the application is a secure read query to GitHub's public API endpoint: <code>https://api.github.com/repos/kiritokmn1403/Applied-Astrology-T-Vi-/releases</code>.</span>
+        </p>
+        <ul>
+          <li><span class="vi-only">Chỉ xảy ra khi bạn chủ động nhấn "Kiểm Tra Cập Nhật" hoặc khởi chạy app (nếu bạn bật tùy chọn tự kiểm tra).</span><span class="en-only">Triggered only when you manually click "Check for Updates" or upon launch (if update checking is enabled).</span></li>
+          <li><span class="vi-only">Ứng dụng chỉ đọc thông tin phiên bản mới nhất; khi bạn đồng ý cập nhật, tệp cài đặt được tải từ GitHub Releases. Ứng dụng không gửi kèm mã nhận dạng thiết bị, tài khoản hay dữ liệu lá số. Như mọi máy chủ web, GitHub nhận được địa chỉ IP của kết nối và tuân theo chính sách quyền riêng tư của GitHub.</span><span class="en-only">The app only reads the latest version information; when you accept an update, the installer is downloaded from GitHub Releases. No device identifier, account or chart data is sent. Like any web server, GitHub sees the IP address of the connection and handles it under GitHub's own privacy policy.</span></li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">3b. Kết nối chỉ khi bạn bấm</span>
+          <span class="en-only">3b. Connections only when you tap them</span>
+        </h2>
+        <ul>
+          <li><span class="vi-only"><b>Kiểm tra mạng &amp; VPN</b> (Cài Đặt): gửi một yêu cầu tới <code>https://www.cloudflare.com/cdn-cgi/trace</code> để hiển thị địa chỉ IP công khai và vị trí máy chủ mà kết nối của bạn đang dùng (giúp kiểm tra VPN). Kết quả chỉ hiển thị trên máy, không được lưu hay gửi đi nơi khác.</span><span class="en-only"><b>Network &amp; VPN check</b> (Settings): sends one request to <code>https://www.cloudflare.com/cdn-cgi/trace</code> to show the public IP address and server location your connection uses (to check a VPN). The result is only shown on the device, never stored or sent elsewhere.</span></li>
+          <li><span class="vi-only"><b>Dịch</b> (khi đọc bài ở ngôn ngữ khác tiếng Việt): mở Google Dịch trong trình duyệt kèm nội dung bài đang đọc; việc xử lý khi đó theo chính sách của Google.</span><span class="en-only"><b>Translate</b> (when reading an article in a language other than Vietnamese): opens Google Translate in your browser with the article text; Google's policy applies there.</span></li>
+          <li><span class="vi-only"><b>Chia sẻ, mở liên kết, báo lỗi</b>: chỉ dùng ứng dụng/trình duyệt bạn chọn; ứng dụng không tự gửi báo cáo lỗi.</span><span class="en-only"><b>Share, open links, report a bug</b>: only through the app or browser you pick; the app never sends crash reports by itself.</span></li>
+        </ul>
+        <h2>
+          <span class="vi-only">4. Không Quảng Cáo & Không Theo Dõi (Zero Tracking)</span>
+          <span class="en-only">4. Zero Advertising & Zero Telemetry</span>
+        </h2>
+        <p>
+          <span class="vi-only">Applied Astrology cam kết:</span>
+          <span class="en-only">Applied Astrology guarantees:</span>
+        </p>
+        <ul>
+          <li><span class="vi-only">Không tích hợp bất kỳ mạng lưới quảng cáo nào (AdMob, Unity Ads, Facebook Audience Network, v.v.).</span><span class="en-only">No third-party ad networks (AdMob, Unity, Facebook, etc.).</span></li>
+          <li><span class="vi-only">Không sử dụng thư viện theo dõi phân tích hành vi (Google Analytics, Firebase Analytics, Flurry, v.v.).</span><span class="en-only">No analytics or user behavior tracking SDKs (Google Analytics, Firebase, etc.).</span></li>
+          <li><span class="vi-only">Không thu thập vị trí GPS, danh bạ, micro, camera hay quyền riêng tư nhạy cảm trên thiết bị.</span><span class="en-only">No access to GPS location, contacts, microphone, camera, or sensitive device sensors.</span></li>
+        </ul>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">5. Tính Năng Xuất Dữ Liệu & Mã QR</span>
+          <span class="en-only">5. Image Export & QR Code Sharing</span>
+        </h2>
+        <p>
+          <span class="vi-only">Khi bạn sử dụng tính năng xuất ảnh lá số PNG hoặc tạo mã QR chia sẻ, toàn bộ hình ảnh và mã hóa QR đều được sinh trực tiếp bằng thuật toán nội bộ trên thiết bị của bạn. Quá trình chia sẻ hoàn toàn do hệ điều hành của bạn xử lý theo lựa chọn của bạn.</span>
+          <span class="en-only">When exporting chart PNG images or generating QR codes, everything is generated on-device using local algorithms. Sharing actions are handled exclusively through your operating system's native share sheet.</span>
+        </p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="policy-section">
+        <h2>
+          <span class="vi-only">6. Mã Nguồn Mở & Minh Bạch</span>
+          <span class="en-only">6. Open Source Transparency</span>
+        </h2>
+        <p>
+          <span class="vi-only">Dự án được phát triển minh bạch. Mã nguồn của ứng dụng công khai tại <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-" target="_blank" style="color:var(--accent);">GitHub Repository</a>. Bạn và cộng đồng lập trình viên có thể kiểm tra toàn bộ mã nguồn bất kỳ lúc nào để xác minh tính minh bạch của các cam kết bảo mật này.</span>
+          <span class="en-only">Applied Astrology is developed with full transparency. The complete source code is publicly inspectable at the <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-" target="_blank" style="color:var(--accent);">GitHub Repository</a>. Anyone may review the code to verify our strict privacy practices.</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html"><span class="vi-only">Trang chủ</span><span class="en-only">Home</span></a>
+      <a href="privacy.html"><span class="vi-only">Chính sách quyền riêng tư</span><span class="en-only">Privacy Policy</span></a>
+      <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases"><span class="vi-only">Tải về trên GitHub</span><span class="en-only">GitHub Releases</span></a>
+    </div>
+    <p>© 2026 Applied Astrology (Tử Vi Ứng Dụng). Dự án mã nguồn mở phục vụ nghiên cứu & ứng dụng tri thức cổ học.</p>
+  </footer>
+
+  <script>
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const current = html.getAttribute('lang') || 'vi';
+      const target = current === 'vi' ? 'en' : 'vi';
+      html.setAttribute('lang', target);
+      localStorage.setItem('aa_landing_lang', target);
+    }
+
+    (function() {
+      const saved = localStorage.getItem('aa_landing_lang');
+      if (saved) {
+        document.documentElement.setAttribute('lang', saved);
+      }
+    })();
+  </script>
+</body>
+</html>

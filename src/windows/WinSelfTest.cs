@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.5 – tự kiểm thử Windows (--selftest --out <thư mục>): 52 bước (44 + công tắc Liquid Glass + 6 bước hiệu năng + toàn dải Âm Lịch), ảnh chụp từng bước, results.json (cùng giao thức 0.0.3).
+// Applied Astrology v0.0.6 – tự kiểm thử Windows (--selftest --out <thư mục>): 52 bước (44 + công tắc Liquid Glass + 6 bước hiệu năng + toàn dải Âm Lịch), ảnh chụp từng bước, results.json (cùng giao thức 0.0.3).
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -101,15 +101,16 @@ namespace AppliedAstrology
             });
             Step("46_perf_scroll", done =>
             {
-                f.Show("library"); f.Search("Hóa Kỵ"); Application.DoEvents();
-                var times = new List<double>(); long p0 = MainForm.ScrollPaints, b0 = Box.BgBuilds; int max = Math.Max(0, f.Scroll.DisplayRectangle.Height - f.Scroll.ClientSize.Height);
+                f.Show("library"); f.Search("Hóa Kỵ"); int items = f.ExpandResults(120); Application.DoEvents();   // v0.0.6: phân trang → mở rộng tới 120 thẻ như điều kiện đo 0.0.5
+                var times = new List<double>(); long p0 = MainForm.ScrollPaints, b0 = Box.BgBuilds, h0 = Box.HeldPaints; int max = Math.Max(0, f.Scroll.DisplayRectangle.Height - f.Scroll.ClientSize.Height);
                 for (int i = 0; i < 60; i++)
                 {
                     var sw = Stopwatch.StartNew(); int y = (i < 30 ? i : 60 - i) * Math.Max(1, max / 30);
-                    f.Scroll.AutoScrollPosition = new Point(0, y); f.Scroll.Invalidate(true); f.Scroll.Update(); times.Add(sw.Elapsed.TotalMilliseconds);
+                    f.Scroll.AutoScrollPosition = new Point(0, y); f.ScrollStep(); times.Add(sw.Elapsed.TotalMilliseconds);   // v0.0.6: cùng đường vẽ như khi người dùng cuộn
                 }
+                var swS = Stopwatch.StartNew(); f.ScrollSettle(); double settle = swS.Elapsed.TotalMilliseconds;   // vẽ lại chính xác khi dừng cuộn
                 times.Sort(); double avg = times.Average(), p90 = times[(int)(times.Count * 0.9)], mx = times.Max();
-                Rec("46_perf_scroll", avg < 60 && mx < 800, string.Format(System.Globalization.CultureInfo.InvariantCulture, "frames=60 avg={0:0.0}ms p90={1:0.0}ms max={2:0.0}ms bgBuilds={3} range={4}px", avg, p90, mx, Box.BgBuilds - b0, max));
+                Rec("46_perf_scroll", avg < 60 && mx < 800 && settle < 800, string.Format(System.Globalization.CultureInfo.InvariantCulture, "frames=60 avg={0:0.0}ms p90={1:0.0}ms max={2:0.0}ms settle={6:0.0}ms bgBuilds={3} held={7} range={4}px cards={5}", avg, p90, mx, Box.BgBuilds - b0, max, items, settle, Box.HeldPaints - h0));
                 f.Scroll.AutoScrollPosition = new Point(0, 0); done();
             });
             Step("47_perf_modal", done =>
@@ -158,6 +159,21 @@ namespace AppliedAstrology
                 }
                 var x = Lunar.Solar2Lunar(7, 5, 2054); bool fix = x.Day == 30 && x.Month == 3;
                 Rec("52_lunar_full_range", bad == 0 && rt == 0 && fix, "days=" + n + " invalid=" + bad + " roundtripFail=" + rt + " 7/5/2054=" + x.Day + "/" + x.Month + "/" + x.Year + " " + sw.ElapsedMilliseconds + "ms"); done();
+            });
+            // v0.0.6: kết quả tìm kiếm phân trang (40 mục/lần) + nút "Xem thêm"
+            Step("53_results_paging", done =>
+            {
+                f.Show("library"); var res = f.Search("Hóa Kỵ"); Application.DoEvents();
+                var card = Find(f, "results") as Box; int first = card == null ? -1 : f.ResultItems(card); bool more = card != null && Find(card, "showMore") != null;
+                int after = f.ExpandResults(80); int total = Math.Min(MainForm.RESULT_MAX, res.Count);
+                Rec("53_results_paging", res.Count > 40 && first == MainForm.RESULT_PAGE && more && after >= 80 && after <= total, "results=" + res.Count + " firstPage=" + first + " showMore=" + more + " afterMore=" + after); done();
+            });
+            // v0.0.6: thư viện nạp sẵn ở luồng nền → tìm kiếm lần đầu nhanh (0.0.5: ~2,3 s)
+            Step("54_library_warm", done =>
+            {
+                var sw0 = Stopwatch.StartNew(); while (sw0.ElapsedMilliseconds < 8000 && !f.LibWarm) { Application.DoEvents(); System.Threading.Thread.Sleep(20); }
+                var sw = Stopwatch.StartNew(); var r = f.Lib.Search("Thiên Lương Văn Xương"); long ms = sw.ElapsedMilliseconds;
+                Rec("54_library_warm", f.LibWarm && ms < 1200, "warm=" + f.LibWarm + " search=" + ms + "ms results=" + r.Count); done();
             });
         }
         static int CountType(Control c, Type t) { int n = t.IsInstanceOfType(c) ? 1 : 0; foreach (Control k in c.Controls) n += CountType(k, t); return n; }

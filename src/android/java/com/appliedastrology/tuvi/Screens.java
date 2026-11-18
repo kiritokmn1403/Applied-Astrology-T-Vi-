@@ -21,6 +21,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -524,12 +525,30 @@ public final class Screens {
         hr.addView(ui.text("  " + t("lib_results", "n", lastResults == null ? 0 : lastResults.size()), 15, th().text, true));
         f.addView(hr);
         if (lastResults == null) return;
-        String fq = Fold.fold(lastQuery).trim();
-        for (int k = 0; k < Math.min(120, lastResults.size()); k++) {
+        addResults(f, 0);
+    }
+    /** v0.0.6: kết quả hiện theo trang (40 mục) + nút "Xem thêm" – 0.0.5 dựng ngay 120 thẻ kính, mở tab Thư viện chậm */
+    static final int RESULT_PAGE = 40, RESULT_MAX = 300;
+    void addResults(final Frame f, final int from) {
+        String fq = Fold.fold(lastQuery).trim(); final int total = Math.min(RESULT_MAX, lastResults.size()), end = Math.min(total, from + RESULT_PAGE);
+        for (int k = from; k < end; k++) {
             Library.Hit h = lastResults.get(k);
             f.addView(listItem(h.title, a.i18n.chapterName(a.lib, h.ch), highlight(h.snippet == null ? "" : h.snippet, fq), open(h.ch, h.i)), ui.margins(Ui.fill(), 0, 5, 0, 0));
         }
+        if (end < total) {
+            final View[] more = new View[1];
+            more[0] = ui.small(t("show_more", "n", total - end), new View.OnClickListener() { public void onClick(View v) { f.removeView(more[0]); addResults(f, end); } });
+            more[0].setTag("showMore"); f.addView(more[0], ui.margins(Ui.wrap(), 0, 8, 0, 0));
+        }
     }
+    /** selftest: mở rộng danh sách tới ít nhất n mục (để đo cuộn giống điều kiện 0.0.5 = 120 thẻ) */
+    int expandResults(int n) {
+        View r = a.root.findViewWithTag("results"); if (!(r instanceof Frame)) return 0; Frame f = (Frame) r;
+        for (int guard = 0; guard < 20; guard++) { View m = f.findViewWithTag("showMore"); if (m == null || resultItems(f) >= n) break; m.performClick(); }
+        return resultItems(f);
+    }
+    /** số thẻ kết quả trong khung (trừ hàng tiêu đề và nút "Xem thêm") */
+    static int resultItems(ViewGroup f) { return f.getChildCount() - 1 - (f.findViewWithTag("showMore") != null ? 1 : 0); }
     CharSequence highlight(String sn, String fq) {
         SpannableStringBuilder sb = new SpannableStringBuilder(sn); if (fq.isEmpty()) return sb;
         int pp = Fold.fold(sn).indexOf(fq);

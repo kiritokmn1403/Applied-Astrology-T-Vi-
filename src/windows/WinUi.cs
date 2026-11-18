@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.5 – bộ điều khiển giao diện native Windows (GDI+): khung kính Liquid Glass, bố cục, chữ, nút, lá số, lịch tháng.
+// Applied Astrology v0.0.6 – bộ điều khiển giao diện native Windows (GDI+): khung kính Liquid Glass, bố cục, chữ, nút, lá số, lịch tháng.
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -159,29 +159,61 @@ namespace AppliedAstrology
         /// vùng tương ứng từ bộ đệm. Tối đa 48 bộ đệm (LRU) để không tốn RAM khi danh sách dài.
         /// </summary>
         static readonly LinkedList<Box> bgLru = new LinkedList<Box>(); const int BG_MAX = 48; public static long BgBuilds, LiquidBuilds;
-        Bitmap bgCache; string bgKey; LinkedListNode<Box> lruNode;
+        Bitmap bgCache; string bgKey, bgKeyNoPos; LinkedListNode<Box> lruNode;
+        /// <summary>v0.0.6: thời điểm (Environment.TickCount) hết "đang cuộn"; MainForm đặt lại mỗi lần cuộn</summary>
+        internal static int ScrollHoldUntil; internal static long HeldPaints;
+        internal static bool Scrolling { get { return unchecked(Environment.TickCount - ScrollHoldUntil) < 0; } }
         void Touch()
         {
             if (lruNode != null) bgLru.Remove(lruNode); else lruNode = new LinkedListNode<Box>(this);
             bgLru.AddLast(lruNode);
             while (bgLru.Count > BG_MAX) { var old = bgLru.First.Value; bgLru.RemoveFirst(); old.lruNode = null; if (old.bgCache != null) { old.bgCache.Dispose(); old.bgCache = null; old.bgKey = null; } }
         }
+        /// <summary>
+        /// v0.0.6: true khi mọi khung cha (tới khung cuộn hoặc form) đều trong suốt, không vẽ kính → nền ngay sau điều khiển này
+        /// chính là ảnh tinh vân G.Full tại vị trí của nó trong form. Khi đó vẽ thẳng ảnh (1 lần chép, không co giãn) thay cho
+        /// cơ chế "nền trong suốt" của WinForms (gọi lần lượt nền của từng khung cha → rất chậm khi cuộn).
+        /// </summary>
+        internal static bool PlainChain(Control c)
+        {
+            for (var p = c; p != null; p = p.Parent)
+            {
+                if (p is DBPanel || p is Form) return true;
+                var b = p as Box; if (b == null || (b.GlassKind != 0 && b.G != null)) return false;
+            }
+            return false;
+        }
+        internal static bool PaintFull(Control c, Graphics g, GlassCtx G)
+        {
+            if (G == null || G.Full == null) return false; var form = c.FindForm(); if (form == null) return false;
+            var o = form.PointToClient(c.PointToScreen(Point.Empty)); g.DrawImageUnscaled(G.Full, -o.X, -o.Y); return true;
+        }
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            if (GlassKind == 0 || G == null) { base.OnPaintBackground(e); return; }
+            if (GlassKind == 0 || G == null)
+            {
+                var gc = G ?? FindG(); if (gc != null && PlainChain(this) && PaintFull(this, e.Graphics, gc)) return;
+                base.OnPaintBackground(e); return;
+            }
             if (Width <= 0 || Height <= 0) return;
             var form = FindForm(); Point o = form == null ? Point.Empty : form.PointToClient(PointToScreen(Point.Empty));
             var th = G.Th; int baseC = Solid != 0 ? Solid : (GlassKind == 2 ? th.Bg2 : th.Card);
             bool glass = G.On && (GlassKind == 2 || G.Cards) && G.BlurBmp != null && form != null;
-            string key = Width + "x" + Height + "@" + o.X + "," + o.Y + "/" + G.Version + "/" + G.BlurKey + "/" + baseC + "/" + Radius + "/" + Selected + "/" + glass + "/" + (Parent == null ? 0 : Parent.GetHashCode());
-            if (key != bgKey || bgCache == null)
+            string keyNoPos = Width + "x" + Height + "/" + G.Version + "/" + G.BlurKey + "/" + baseC + "/" + Radius + "/" + Selected + "/" + glass + "/" + (Parent == null ? 0 : Parent.GetHashCode());
+            string key = keyNoPos + "@" + o.X + "," + o.Y;
+            // v0.0.6: ĐANG CUỘN → dùng lại nền kính đã dựng nếu chỉ khác vị trí (nền phía sau đã làm mờ mạnh + phủ màu nên lệch vài
+            // điểm ảnh không thấy được); cuộn dừng ~0,2 s thì MainForm vẽ lại 1 lần với vị trí chính xác. 0.0.5 dựng lại ~8 thẻ mỗi khung.
+            bool hold = bgCache != null && key != bgKey && keyNoPos == bgKeyNoPos && Scrolling;
+            if (hold) HeldPaints++;
+            else if (key != bgKey || bgCache == null)
             {
                 if (bgCache == null || bgCache.Width != Width || bgCache.Height != Height) { if (bgCache != null) bgCache.Dispose(); bgCache = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb); }
                 using (var g = Graphics.FromImage(bgCache))
                 {
                     g.Clear(Color.Transparent);
                     // nền phía sau (cha) – để góc bo hòa vào nền
-                    if (Parent != null && Radius > 0)
+                    if (Parent != null && Radius > 0 && PlainChain(Parent) && G.Full != null) g.DrawImageUnscaled(G.Full, -o.X, -o.Y);   // v0.0.6: nhanh
+                    else if (Parent != null && Radius > 0)
                     {
                         var st0 = g.Save(); g.TranslateTransform(-Left, -Top);
                         try { using (var pe = new PaintEventArgs(g, new Rectangle(Left, Top, Width, Height))) { InvokePaintBackground(Parent, pe); } } catch { }
@@ -189,7 +221,7 @@ namespace AppliedAstrology
                     }
                     PaintGlass(g, o, baseC, glass);
                 }
-                bgKey = key; BgBuilds++;
+                bgKey = key; bgKeyNoPos = keyNoPos; BgBuilds++;
             }
             Touch();
             e.Graphics.DrawImageUnscaled(bgCache, 0, 0);
@@ -225,6 +257,7 @@ namespace AppliedAstrology
                 if (Selected) using (var pen = new Pen(Gfx.C(th.Gold), 2)) gr.DrawPath(pen, p);
             }
         }
+        GlassCtx FindG() { var f = FindForm() as MainForm; return f == null ? null : f.G; }
         public bool HasLiquidCache { get { return cache != null && cacheKey != null; } }
         protected override void OnPaint(PaintEventArgs e) { }
         protected override void Dispose(bool d) { if (d) { if (cache != null) cache.Dispose(); if (lruNode != null) { bgLru.Remove(lruNode); lruNode = null; } if (bgCache != null) { bgCache.Dispose(); bgCache = null; } } base.Dispose(d); }

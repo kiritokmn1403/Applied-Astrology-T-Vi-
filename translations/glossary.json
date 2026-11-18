@@ -1,0 +1,138 @@
+{
+  "version": "1.0",
+  "description": "Bảng thuật ngữ chuẩn Tử Vi Đẩu Số (Zi Wei Dou Shu) - Thư viện Bửu Đình",
+  "note": "Khi dịch sang các ngôn ngữ khác, lần đầu xuất hiện thuật ngữ trong bài sẽ ghi kèm tên gốc tiếng Việt trong ngoặc đơn, ví dụ: 'Zi Wei (Tử Vi)' hoặc 'Hua Ji (Hóa Kỵ)'",
+  "categories": {
+    "chinh_tinh": [
+      { "vi": "Tử Vi", "pinyin": "Zǐ Wēi", "hanzi": "紫微", "en": "Zi Wei (Emperor Star)", "nature": "Dương Thổ (Đế Tinh)" },
+      { "vi": "Thiên Cơ", "pinyin": "Tiān Jī", "hanzi": "天機", "en": "Tian Ji (Heavenly Secret / Intelligence Star)", "nature": "Âm Mộc (Thiện Tinh)" },
+      { "vi": "Thái Dương", "pinyin": "Tài Yáng", "hanzi": "太陽", "en": "Tai Yang (The Sun)", "nature": "Dương Hỏa (Quang Tinh)" },
+      { "vi": "Vũ Khúc", "pinyin": "Wǔ Qū", "hanzi": "武曲", "en": "Wu Qu (Military Fortune / Wealth Star)", "nature": "Âm Kim (Tài Tinh)" },
+      { "vi": "Thiên Đồng", "pinyin": "Tiān Tóng", "hanzi": "天同", "en": "Tian Tong (Heavenly Child / Harmony Star)", "nature": "Dương Thủy (Phúc Tinh)" },
+      { "vi": "Liêm Trinh", "pinyin": "Lián Zhēn", "hanzi": "廉貞", "en": "Lian Zhen (Chastity / Pure Incorruptible Star)", "nature": "Âm Hỏa (Tù Tinh)" },
+      { "vi": "Thiên Phủ", "pinyin": "Tiān Fǔ", "hanzi": "天府", "en": "Tian Fu (Heavenly Treasury / Empress Star)", "nature": "Dương Thổ (Lệnh Tinh)" },
+      { "vi": "Thái Âm", "pinyin": "Tài Yīn", "hanzi": "太陰", "en": "Tai Yin (The Moon)", "nature": "Âm Thủy (Phú Tinh)" },
+      { "vi": "Tham Lang", "pinyin": "Tān Láng", "hanzi": "貪狼", "en": "Tan Lang (Greedy Wolf / Passion Star)", "nature": "Dương Mộc / Thủy (Đào Hoa Tinh)" },
+      { "vi": "Cự Môn", "pinyin": "Jù Mén", "hanzi": "巨門", "en": "Ju Men (Giant Gate / Eloquence Star)", "nature": "Âm Thủy (Ám Tinh)" },
+      { "vi": "Thiên Tướng", "pinyin": "Tiān Xiàng", "hanzi": "天相", "en": "Tian Xiang (Heavenly General / Minister Star)", "nature": "Dương Thủy (Ấn Tinh)" },
+      { "vi": "Thiên Lương", "pinyin": "Tiān Liáng", "hanzi": "天梁", "en": "Tian Liang (Heavenly Beam / Patriarch Star)", "nature": "Dương Thổ (Ấm Tinh)" },
+      { "vi": "Thất Sát", "pinyin": "Qī Shā", "hanzi": "七殺", "en": "Qi Sha (Seven Killings / Marshal Star)", "nature": "Dương Kim / Hỏa (Dũng Tinh)" },
+      { "vi": "Phá Quân", "pinyin": "Pò Jūn", "hanzi": "破軍", "en": "Po Jun (Army Breaker / Pioneer Star)", "nature": "Âm Thủy (Hao Tinh)" }
+    ],
+    "tu_hoa": [
+      { "vi": "Hóa Lộc", "pinyin": "Huà Lù", "hanzi": "化祿", "en": "Hua Lu (Transformation of Prosperity / Wealth Flow)", "type": "Tài lộc, nhân duyên, khởi phát" },
+      { "vi": "Hóa Quyền", "pinyin": "Huà Quán", "hanzi": "化權", "en": "Hua Quan (Transformation of Authority / Power Flow)", "type": "Quyền lực, vị thế, kiểm soát" },
+      { "vi": "Hóa Khoa", "pinyin": "Huà Kē", "hanzi": "化科", "en": "Hua Ke (Transformation of Fame / Intellect Flow)", "type": "Danh tiếng, học vấn, quý nhân cứu giải" },
+      { "vi": "Hóa Kỵ", "pinyin": "Huà Jì", "hanzi": "化忌", "en": "Hua Ji (Transformation of Clouded Obstacle / Conflict Flow)", "type": "Trở ngại, thi phi, thử thách, dồn nén" }
+    ],
+    "cung_vi": [
+      { "vi": "Cung Mệnh", "pinyin": "Mìng Gōng", "hanzi": "命宮", "en": "Life Palace (Destiny Palace)", "desc": "Bản mệnh, tính cách, diện mạo, xu hướng cuộc đời" },
+      { "vi": "Cung Thân", "pinyin": "Shēn Gōng", "hanzi": "身宮", "en": "Body Palace (Later-Life / Action Palace)", "desc": "Hậu vận từ trung niên, hành động thực tế, nơi an trú" },
+      { "vi": "Cung Phụ Mẫu", "pinyin": "Fù Mǔ Gōng", "hanzi": "父母宮", "en": "Parents Palace", "desc": "Cha mẹ, nguồn gốc gia đình, cấp trên" },
+      { "vi": "Cung Phúc Đức", "pinyin": "Fú Dé Gōng", "hanzi": "福德宮", "en": "Karma & Virtue Palace (Ancestral Fortune)", "desc": "Đời sống tinh thần, phúc phận tổ tiên, tư tưởng" },
+      { "vi": "Cung Điền Trạch", "pinyin": "Tián Zhái Gōng", "hanzi": "田宅宮", "en": "Property & Real Estate Palace", "desc": "Nhà cửa, đất đai, sản nghiệp bất động sản" },
+      { "vi": "Cung Quan Lộc", "pinyin": "Guān Lù Gōng", "hanzi": "官祿宮", "en": "Career & Vocation Palace", "desc": "Sự nghiệp, học tập, con đường công danh" },
+      { "vi": "Cung Nô Bộc", "pinyin": "Nú Pú Gōng", "hanzi": "奴僕宮", "en": "Friends & Associates Palace (Servants Palace)", "desc": "Bạn bè, đồng nghiệp, cấp dưới, mạng lưới xã hội" },
+      { "vi": "Cung Thiên Di", "pinyin": "Qiān Yí Gōng", "hanzi": "遷移宮", "en": "Travel & Migration Palace", "desc": "Hoạt động đối ngoại, đi lại xa, cơ hội bên ngoài" },
+      { "vi": "Cung Tật Ách", "pinyin": "Jí È Gōng", "hanzi": "疾厄宮", "en": "Health & Calamity Palace", "desc": "Sức khỏe, thể trạng, bệnh tật, tai ách" },
+      { "vi": "Cung Tài Bạch", "pinyin": "Cái Bó Gōng", "hanzi": "財帛宮", "en": "Wealth & Finance Palace", "desc": "Tiền tài, khả năng kiếm tiền, quản lý tài chính" },
+      { "vi": "Cung Tử Tức", "pinyin": "Zǐ Sì Gōng", "hanzi": "子女宮", "en": "Children & Offspring Palace", "desc": "Con cái, quan hệ thế hệ sau, khả năng sinh sản" },
+      { "vi": "Cung Phu Thê", "pinyin": "Fū Qī Gōng", "hanzi": "夫妻宮", "en": "Spouse & Marriage Palace", "desc": "Hôn nhân, vợ chồng, nhân duyên đôi lứa" },
+      { "vi": "Cung Huynh Đệ", "pinyin": "Xiōng Dì Gōng", "hanzi": "兄弟宮", "en": "Siblings Palace", "desc": "Anh chị em ruột, bạn bè thân thiết" }
+    ],
+    "luc_cat_tinh": [
+      { "vi": "Tả Phù", "pinyin": "Zuǒ Fǔ", "hanzi": "左輔", "en": "Zuo Fu (Left Assistant)", "role": "Quý nhân phò tá, trợ lực bên ngoài" },
+      { "vi": "Hữu Bật", "pinyin": "Yòu Bì", "hanzi": "右弼", "en": "You Bi (Right Assistant)", "role": "Quý nhân nội ứng, mưu lược đồng hành" },
+      { "vi": "Văn Xương", "pinyin": "Wén Chāng", "hanzi": "文昌", "en": "Wen Chang (Literary Star)", "role": "Khoa bảng, văn bằng, tư duy logic" },
+      { "vi": "Văn Khúc", "pinyin": "Wén Qū", "hanzi": "文曲", "en": "Wen Qu (Eloquence Star)", "role": "Tài hoa nghệ thuật, giao tiếp, trực giác" },
+      { "vi": "Thiên Khôi", "pinyin": "Tiān Kuí", "hanzi": "天魁", "en": "Tian Kui (Heavenly Leader / Yang Noble)", "role": "Quý nhân bề trên công khai nâng đỡ" },
+      { "vi": "Thiên Việt", "pinyin": "Tiān Yuè", "hanzi": "天鉞", "en": "Tian Yue (Heavenly Noble / Yin Noble)", "role": "Quý nhân ngầm hỗ trợ, cơ hội bất ngờ" },
+      { "vi": "Lộc Tồn", "pinyin": "Lù Cún", "hanzi": "祿存", "en": "Lu Cun (Treasury Wealth Star)", "role": "Lộc trời ban, bảo tồn tài lộc, thận trọng" },
+      { "vi": "Thiên Mã", "pinyin": "Tiān Mǎ", "hanzi": "天馬", "en": "Tian Ma (Heavenly Steed / Traveling Horse)", "role": "Năng động, di chuyển, thăng tiến nhanh" }
+    ],
+    "luc_sat_tinh": [
+      { "vi": "Kình Dương", "pinyin": "Qíng Yáng", "hanzi": "擎羊", "en": "Qing Yang (Sheep Blade / Piercing Dagger)", "role": "Xung đột trực diện, sắc bén, thương tật" },
+      { "vi": "Đà La", "pinyin": "Tuó Luó", "hanzi": "陀羅", "en": "Tuo Luo (Twisting Shrewdness / Entanglement)", "role": "Dây dưa, ngấm ngầm, trì hoãn, mưu tính" },
+      { "vi": "Hỏa Tinh", "pinyin": "Huǒ Xīng", "hanzi": "火星", "en": "Huo Xing (Fire Star / Blazing Spark)", "role": "Bộc phát nhanh, nóng nảy, bất ngờ" },
+      { "vi": "Linh Tinh", "pinyin": "Líng Xīng", "hanzi": "鈴星", "en": "Ling Xing (Bell Star / Siren)", "role": "Âm ỉ, thâm sâu, bền bỉ, tính toán" },
+      { "vi": "Địa Không", "pinyin": "Dì Kōng", "hanzi": "地空", "en": "Di Kong (Void / Ground Null)", "role": "Trống rỗng, mất mát bất ngờ, giác ngộ triết lý" },
+      { "vi": "Địa Kiếp", "pinyin": "Dì Jié", "hanzi": "地劫", "en": "Di Jie (Plunder / Sudden Calamity)", "role": "Sóng gió trắc trở, cướp đoạt, đột biến lớn" }
+    ],
+    "sao_quan_trong_khac": [
+      { "vi": "Thái Tuế", "pinyin": "Tài Suì", "hanzi": "太歲", "en": "Tai Sui (Year Sovereign / Age Star)" },
+      { "vi": "Đào Hoa", "pinyin": "Táo Huā", "hanzi": "桃花", "en": "Dao Hua (Peach Blossom / Charm Star)" },
+      { "vi": "Hồng Loan", "pinyin": "Hóng Luán", "hanzi": "紅鸞", "en": "Hong Luan (Red Phoenix / Marriage Star)" },
+      { "vi": "Thiên Hỷ", "pinyin": "Tiān Xǐ", "hanzi": "天喜", "en": "Tian Xi (Heavenly Joy)" },
+      { "vi": "Cô Thần", "pinyin": "Gū Chén", "hanzi": "孤辰", "en": "Gu Chen (Solitary Lord)" },
+      { "vi": "Quả Tú", "pinyin": "Guǎ Sù", "hanzi": "寡宿", "en": "Gua Su (Lonely Widow)" },
+      { "vi": "Thiên Khốc", "pinyin": "Tiān Kū", "hanzi": "天哭", "en": "Tian Ku (Heavenly Wailing)" },
+      { "vi": "Thiên Hư", "pinyin": "Tiān Xū", "hanzi": "天虛", "en": "Tian Xu (Heavenly Emptiness)" },
+      { "vi": "Long Trì", "pinyin": "Lóng Chí", "hanzi": "龍池", "en": "Long Chi (Dragon Pool)" },
+      { "vi": "Phượng Các", "pinyin": "Fèng Gé", "hanzi": "鳳閣", "en": "Feng Ge (Phoenix Pavilion)" },
+      { "vi": "Bạch Hổ", "pinyin": "Bái Hǔ", "hanzi": "白虎", "en": "Bai Hu (White Tiger)" },
+      { "vi": "Hoa Cái", "pinyin": "Huá Gài", "hanzi": "華蓋", "en": "Hua Gai (Canopy / Mystical Seal)" },
+      { "vi": "Tuần Không", "pinyin": "Xún Kōng", "hanzi": "旬空", "en": "Tuan (Ten-day Void)" },
+      { "vi": "Triệt Không", "pinyin": "Jié Kōng", "hanzi": "截空", "en": "Triet (Intercepting Void)" },
+      { "vi": "Trường Sinh", "pinyin": "Cháng Shēng", "hanzi": "長生", "en": "Chang Sheng (Long Life Cycle)" }
+    ],
+    "thien_can": [
+      { "vi": "Giáp", "pinyin": "Jiǎ", "hanzi": "甲", "en": "Jia (Yang Wood)", "element": "Dương Mộc" },
+      { "vi": "Ất", "pinyin": "Yǐ", "hanzi": "乙", "en": "Yi (Yin Wood)", "element": "Âm Mộc" },
+      { "vi": "Bính", "pinyin": "Bǐng", "hanzi": "丙", "en": "Bing (Yang Fire)", "element": "Dương Hỏa" },
+      { "vi": "Đinh", "pinyin": "Dīng", "hanzi": "丁", "en": "Ding (Yin Fire)", "element": "Âm Hỏa" },
+      { "vi": "Mậu", "pinyin": "Wù", "hanzi": "戊", "en": "Wu (Yang Earth)", "element": "Dương Thổ" },
+      { "vi": "Kỷ", "pinyin": "Jǐ", "hanzi": "己", "en": "Ji (Yin Earth)", "element": "Âm Thổ" },
+      { "vi": "Canh", "pinyin": "Gēng", "hanzi": "庚", "en": "Geng (Yang Metal)", "element": "Dương Kim" },
+      { "vi": "Tân", "pinyin": "Xīn", "hanzi": "辛", "en": "Xin (Yin Metal)", "element": "Âm Kim" },
+      { "vi": "Nhâm", "pinyin": "Rén", "hanzi": "壬", "en": "Ren (Yang Water)", "element": "Dương Thủy" },
+      { "vi": "Quý", "pinyin": "Guǐ", "hanzi": "癸", "en": "Gui (Yin Water)", "element": "Âm Thủy" }
+    ],
+    "dia_chi": [
+      { "vi": "Tý", "pinyin": "Zǐ", "hanzi": "子", "en": "Zi (Rat)", "zodiac": "Chuột" },
+      { "vi": "Sửu", "pinyin": "Chǒu", "hanzi": "丑", "en": "Chou (Ox)", "zodiac": "Trâu" },
+      { "vi": "Dần", "pinyin": "Yín", "hanzi": "寅", "en": "Yin (Tiger)", "zodiac": "Hổ" },
+      { "vi": "Mão", "pinyin": "Mǎo", "hanzi": "卯", "en": "Mao (Cat / Rabbit)", "zodiac": "Mèo / Thỏ" },
+      { "vi": "Thìn", "pinyin": "Chén", "hanzi": "辰", "en": "Chen (Dragon)", "zodiac": "Rồng" },
+      { "vi": "Tỵ", "pinyin": "Sì", "hanzi": "巳", "en": "Si (Snake)", "zodiac": "Rắn" },
+      { "vi": "Ngọ", "pinyin": "Wǔ", "hanzi": "午", "en": "Wu (Horse)", "zodiac": "Ngựa" },
+      { "vi": "Mùi", "pinyin": "Wèi", "hanzi": "未", "en": "Wei (Goat / Sheep)", "zodiac": "Dê" },
+      { "vi": "Thân", "pinyin": "Shēn", "hanzi": "申", "en": "Shen (Monkey)", "zodiac": "Khỉ" },
+      { "vi": "Dậu", "pinyin": "Yǒu", "hanzi": "酉", "en": "You (Rooster)", "zodiac": "Gà" },
+      { "vi": "Tuất", "pinyin": "Xū", "hanzi": "戌", "en": "Xu (Dog)", "zodiac": "Chó" },
+      { "vi": "Hợi", "pinyin": "Hài", "hanzi": "亥", "en": "Hai (Pig / Boar)", "zodiac": "Lợn" }
+    ],
+    "ngu_hanh_va_cuc": [
+      { "vi": "Kim", "pinyin": "Jīn", "hanzi": "金", "en": "Metal" },
+      { "vi": "Mộc", "pinyin": "Mù", "hanzi": "木", "en": "Wood" },
+      { "vi": "Thủy", "pinyin": "Shuǐ", "hanzi": "水", "en": "Water" },
+      { "vi": "Hỏa", "pinyin": "Huǒ", "hanzi": "火", "en": "Fire" },
+      { "vi": "Thổ", "pinyin": "Tǔ", "hanzi": "土", "en": "Earth" },
+      { "vi": "Thủy Nhị Cục", "pinyin": "Shuǐ Èr Jú", "hanzi": "水二局", "en": "Water 2nd Bureau (Start age 2)" },
+      { "vi": "Mộc Tam Cục", "pinyin": "Mù Sān Jú", "hanzi": "木三局", "en": "Wood 3rd Bureau (Start age 3)" },
+      { "vi": "Kim Tứ Cục", "pinyin": "Jīn Sì Jú", "hanzi": "金四局", "en": "Metal 4th Bureau (Start age 4)" },
+      { "vi": "Thổ Ngũ Cục", "pinyin": "Tǔ Wǔ Jú", "hanzi": "土五局", "en": "Earth 5th Bureau (Start age 5)" },
+      { "vi": "Hỏa Lục Cục", "pinyin": "Huǒ Liù Jú", "hanzi": "火六局", "en": "Fire 6th Bureau (Start age 6)" }
+    ],
+    "cach_cuc_tieu_bieu": [
+      { "vi": "Tử Phủ Vũ Tướng", "pinyin": "Zǐ Fǔ Wǔ Xiàng", "hanzi": "紫府武相", "en": "Zi Fu Wu Xiang (Imperial Governance Formation)" },
+      { "vi": "Sát Phá Tham", "pinyin": "Shā Pò Tān", "hanzi": "殺破貪", "en": "Sha Po Lang (Warrior Vanguard Formation)" },
+      { "vi": "Cơ Nguyệt Đồng Lương", "pinyin": "Jī Yuè Tóng Liáng", "hanzi": "機月同梁", "en": "Ji Yue Tong Liang (Scholarly Civil Service Formation)" },
+      { "vi": "Cự Nhật", "pinyin": "Jù Rì", "hanzi": "巨日", "en": "Ju Ri (Giant Sun / Illuminating Voice Formation)" },
+      { "vi": "Nhật Nguyệt Tịnh Minh", "pinyin": "Rì Yuè Bìng Míng", "hanzi": "日月並明", "en": "Sun and Moon in Dual Splendor" },
+      { "vi": "Minh Châu Xuất Hải", "pinyin": "Míng Zhū Chū Hǎi", "hanzi": "明珠出海", "en": "Bright Pearl Emerging from the Ocean" },
+      { "vi": "Thạch Trung Ẩn Ngọc", "pinyin": "Shí Zhōng Yǐn Yù", "hanzi": "石中隱玉", "en": "Jade Concealed in Rough Stone" },
+      { "vi": "Mệnh Vô Chính Diệu", "pinyin": "Mìng Wú Zhèng Yào", "hanzi": "命無正曜", "en": "Life Palace without Major Star" }
+    ],
+    "thuat_ngu_khac": [
+      { "vi": "Đại Hạn", "pinyin": "Dà Xiàn", "hanzi": "大限", "en": "Major 10-Year Cycle (Decade Period)" },
+      { "vi": "Tiểu Hạn", "pinyin": "Xiǎo Xiàn", "hanzi": "小限", "en": "Minor Yearly Cycle (Annual Period)" },
+      { "vi": "Lưu Niên", "pinyin": "Liú Nián", "hanzi": "流年", "en": "Transiting Year Influence" },
+      { "vi": "Nguyệt Hạn", "pinyin": "Yuè Xiàn", "hanzi": "月限", "en": "Monthly Influence" },
+      { "vi": "Thời Hạn", "pinyin": "Shí Xiàn", "hanzi": "時限", "en": "Hourly Influence" },
+      { "vi": "Tam Hợp", "pinyin": "Sān Hé", "hanzi": "三合", "en": "Trine Palace Interaction (Triple Harmony)" },
+      { "vi": "Xung Chiếu", "pinyin": "Chōng Zhào", "hanzi": "衝照", "en": "Direct Opposite Palace Influence" },
+      { "vi": "Nhị Hợp", "pinyin": "Èr Hé", "hanzi": "二合", "en": "Branch Pair Affinity (Binary Harmony)" },
+      { "vi": "Giáp Cung", "pinyin": "Jiá Gōng", "hanzi": "夾宮", "en": "Flanking Palaces Influence" }
+    ]
+  }
+}

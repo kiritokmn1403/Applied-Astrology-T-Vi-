@@ -1,0 +1,13 @@
+[{"v": "0.0.6", "d": "2026-11-18",
+ "vi": ["Windows hết lag khi cuộn: khung cuộn vẽ nền không co giãn, chỉ vẽ lại những gì đang hiện trên màn hình; khung không có kính vẽ thẳng nền từ ảnh có sẵn.",
+        "Kết quả tìm kiếm hiện theo trang 40 mục với nút \"Xem thêm\" (68 ngôn ngữ) – mở tab Thư viện và cuộn nhanh hơn nhiều.",
+        "Thư viện 611 bài được nạp và bỏ dấu sẵn ở luồng nền ngay khi mở app – lần tìm kiếm đầu tiên không còn phải chờ.",
+        "Android: giữ màn hình sáng khi tự kiểm thử (sửa lỗi Liquid Glass không dựng xong trên Android 6 khi màn hình tắt).",
+        "Trang chủ và trang Chính sách quyền riêng tư của ứng dụng trên GitHub Pages.",
+        "Tự kiểm thử 54 bước (thêm kiểm tra phân trang và nạp sẵn thư viện); bảng so sánh hiệu năng Windows 0.0.5 ↔ 0.0.6."],
+ "en": ["Windows: no more scroll lag – the scroll area paints its background without scaling and only repaints what is on screen; non-glass panels draw the background image directly.",
+        "Search results are paged (40 at a time) with a \"Show more\" button (68 languages) – the Library tab opens and scrolls much faster.",
+        "The 611-article library is loaded and accent-folded on a background thread at startup – the first search no longer waits.",
+        "Android: the screen is kept on during the self-test (fixes Liquid Glass never finishing on Android 6 when the screen turned off).",
+        "Home page and Privacy Policy page on GitHub Pages.",
+        "54-step self-test (adds paging and library warm-up checks); Windows 0.0.5 vs 0.0.6 performance table."]}]

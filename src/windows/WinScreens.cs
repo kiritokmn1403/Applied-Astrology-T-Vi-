@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.5 – các màn hình native Windows: Lá Số, Âm Lịch, Thư Viện, Luận Giải, Hồ Sơ, Cài Đặt (+ Liquid Glass), Giới Thiệu.
+// Applied Astrology v0.0.6 – các màn hình native Windows: Lá Số, Âm Lịch, Thư Viện, Luận Giải, Hồ Sơ, Cài Đặt (+ Liquid Glass), Giới Thiệu.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -276,7 +276,34 @@ namespace AppliedAstrology
         {
             var f = Card(p, "results"); f.Add(Flow(Btn("← " + T("btn_back"), false, () => { LibMode = "home"; Show("library"); }, null, true), Txt(T("lib_results", "n", LastResults == null ? 0 : LastResults.Count), 11, G.Th.Text, true, false)));
             if (LastResults == null) return;
-            foreach (var h in LastResults.Take(120)) { var hh = h; f.Add(Item(h.Title, I18n.ChapterName(Lib, h.Ch), h.Snippet, () => OpenArticle(hh.Ch, hh.I))); }
+            AddResults(f, 0);
+        }
+        /// <summary>v0.0.6: kết quả hiện theo trang (40 mục) + nút "Xem thêm" – 0.0.5 dựng ngay 120 thẻ (hàng trăm cửa sổ con) → mở tab Thư viện ~1,9 s, cuộn giật</summary>
+        internal const int RESULT_PAGE = 40, RESULT_MAX = 300;
+        void AddResults(Box f, int from)
+        {
+            int total = Math.Min(RESULT_MAX, LastResults.Count), end = Math.Min(total, from + RESULT_PAGE);
+            f.SuspendLayout();
+            for (int k = from; k < end; k++) { var h = LastResults[k]; f.Add(Item(h.Title, I18n.ChapterName(Lib, h.Ch), h.Snippet, () => OpenArticle(h.Ch, h.I))); }
+            if (end < total)
+            {
+                Box row = null; row = Flow(Btn(T("show_more", "n", total - end), false, () => { f.Controls.Remove(row); row.Dispose(); AddResults(f, end); }, "showMore", true)); row.Tag = "showMoreRow"; f.Add(row);
+            }
+            f.ResumeLayout(false); f.Dirty(); LayoutRoot(); Scroll.Invalidate(true);
+        }
+        /// <summary>selftest: mở rộng danh sách tới ít nhất n mục (đo cuộn cùng điều kiện 0.0.5 = 120 thẻ)</summary>
+        internal int ExpandResults(int n)
+        {
+            var f = FindTag(Root, "results") as Box; if (f == null) return 0;
+            for (int guard = 0; guard < 20 && ResultItems(f) < n; guard++) { var m = FindTag(f, "showMore") as GButton; if (m == null) break; m.PerformClickPublic(); }
+            return ResultItems(f);
+        }
+        internal int ResultItems(Box f) { return f.Controls.Count - 1 - (FindTag(f, "showMoreRow") != null ? 1 : 0); }
+        internal static Control FindTag(Control c, string tag)
+        {
+            if (c == null) return null; if (tag.Equals(c.Tag as string)) return c;
+            foreach (Control k in c.Controls) { var r = FindTag(k, tag); if (r != null) return r; }
+            return null;
         }
         internal bool IsBookmarked(string ch, int i) { return Host.List("aa.bookmarks").Any(o => Json.Str(Json.Obj(o)["k"], "") == ch + ":" + i); }
         internal bool ToggleBookmark(string ch, int i)

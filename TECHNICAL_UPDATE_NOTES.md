@@ -766,3 +766,113 @@ b0c19cff8652783d9a52a9bb195d34e741b9b472944d226696e974c0f9e16213 *AppliedAstrolo
 fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26 *AppliedAstrology-0.0.5-windows-appx-install.bat
 2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73 *AppliedAstrology-0.0.5-signing-certificate.cer
 ```
+
+
+---
+
+# CẬP NHẬT v0.0.6 – Applied Astrology (Tử Vi Ứng Dụng) – SỬA LAG WINDOWS, PHÂN TRANG, ANDROID 6, TRANG CHỦ & CHÍNH SÁCH QUYỀN RIÊNG TƯ
+
+Thực hiện: 18/11/2026 (GMT+7). Claude (mã nguồn, build, kiểm thử, phát hành) phối hợp Google Antigravity qua `/swarm` (kiểm tra Release 0.0.5, Trang chủ + Chính sách quyền riêng tư, quét repo tham chiếu, kiểm tra thiết bị, dịch dần thư viện). Nhật ký chi tiết theo thời gian: `WORK_PROGRESS_v0.0.6.md`; báo cáo của Antigravity: `AG_REPORT_v0.0.6.md`.
+
+## 1. Phạm vi (Project – Applied Astrology.xlsx, sheet Feature Check + Creat & Update)
+
+| # | Yêu cầu | Kết quả v0.0.6 |
+|---|---|---|
+| C&U-1 | Nội dung, cài đặt, phím bấm không bị thanh thông báo / thanh điều hướng che (Android) | Giữ cơ chế đệm `systemBars | displayCutout | ime` (0.0.3+); selftest `34_safe_area` PASS trên Note 9, Android 17, Android 6 |
+| C&U-2 | Liquid Glass bật/tắt trong cài đặt | Có từ 0.0.5; selftest `45_glass_toggle` PASS mọi nền tảng |
+| C&U-3 | Trang chủ + Chính sách quyền riêng tư, đưa vào About trên GitHub | `docs/index.html`, `docs/privacy.html` (song ngữ Việt/Anh, Antigravity soạn, Claude rà và sửa câu chưa đúng); bước 32 bật GitHub Pages (main /docs), đặt Website + mô tả + topics của repo |
+| C&U-4 | Ứng dụng lag, giật, treo | Windows: sửa nguyên nhân gốc (mục 2); Android: Note 9 giật 7,17% → 1,35% |
+| FC-1 | Thực hiện sheet Creat & Update | Như trên |
+| FC-2 | Rà project trong sheet Project GitHub, tối ưu code | Liquid Glass (archisvaze, rdev, dashersw, gist leiniaozl229) – đối chiếu hướng "dựng 1 lần, GPU/bitmap vẽ, gộp theo khung hình" → áp dụng cho Windows (giữ nền kính khi cuộn). Antigravity clone nông các repo vào `D:\yh\aa006_refs` |
+| FC-3 | Độ ổn định các tính năng ("App Feature Set") | Sheet "App Feature Set" không có trong tệp Excel → dùng danh sách tính năng của selftest (54 bước) làm chuẩn |
+| FC-4 | Quét Flash Player / Runtime Native-Hybrid / Trình duyệt / Aniyomi / Mangayomi / Nekoyomi / SWF | Đã quét ở 0.0.4–0.0.5 (kiến trúc native, không WebView); 0.0.6 kiểm lại: không nạp module trình duyệt (Windows `windows_no_browser_modules` 1/1, Android bước 43) |
+| FC-5 | Đa ngôn ngữ + đổi ngôn ngữ | 68 ngôn ngữ; khóa mới `show_more` × 68 (i18n_v6) → 273 khóa, 0 khóa thiếu. Thư viện 611 bài: Antigravity dịch dần → `translations/lib/<mã>/NN.json` (chưa đóng gói vào app vì dung lượng – xem mục 6) |
+| FC-6 | Đủ nội dung SWF | 604/604 bài dài + 322/322 ô chữ ngắn (0.0.5) – không đổi |
+| FC-7 | Âm Lịch ổn định | `52_lunar_full_range` 73.018 ngày 1900–2099: 0 ngày lỗi, 0 lỗi đổi ngược; calendar_test 18/18 |
+| FC-8 | Kiểm tra cập nhật tự động | Bước 30/31 PASS (tìm Release mới, tải gói đúng ABI); bản 0.0.5 sẽ thấy 0.0.6 khi Release được tạo |
+| FC-9 | Liquid Glass ổn định | Android 6: 37/47/50 FAIL (0.0.5) → PASS; `50_glass_stability` PASS mọi nền tảng |
+
+## 2. Lỗi phát hiện & cách sửa
+
+| Lỗi (đo được) | Nguyên nhân | Sửa (tệp) |
+|---|---|---|
+| Windows cuộn 109–144 ms/khung (0.0.5, mọi gói FAIL `46_perf_scroll`) | `DBPanel.OnPaintBackground` vẽ ảnh tinh vân bằng `DrawImage` **có co giãn** (Bilinear) mỗi khung + gọi thêm nền form cha (vẽ 2 lần) | `WinMain.cs` `DBPanel`: `DrawImageUnscaled(G.Full, -Left, -Top)` |
+| | Form và bố cục gọi `G.Ensure` với 2 kích thước khác nhau (ClientSize vs tối thiểu 720×520) → có thể co giãn lại ảnh nền liên tục | `WinMain.cs` `GlassSize` dùng chung |
+| | Mỗi lần cuộn `Scroll.Invalidate(true)` cho **cả cây** điều khiển (kể cả hàng trăm điều khiển ngoài màn hình) | `ScrollPaintNow()` + `InvalidateVisible()` chỉ vẽ lại điều khiển giao với khung nhìn |
+| | Khung không kính (`Box GlassKind 0`) và chữ trong suốt đi qua cơ chế "nền trong suốt" của WinForms – gọi nền từng khung cha | `WinUi.cs` `Box.PlainChain/PaintFull`: vẽ thẳng ảnh nền tại vị trí trong form; góc bo của thẻ cũng lấy thẳng từ ảnh |
+| | Khóa bộ đệm nền thẻ kính gồm **vị trí** → khi cuộn ~8 thẻ dựng lại mỗi khung (466 lần/60 khung, lượt 1 vẫn 97 ms/khung) | `WinUi.cs` `bgKeyNoPos` + `Box.Scrolling`: đang cuộn thì dùng lại nền đã dựng; `WinMain.cs` `ScrollStep/ScrollSettle`: dừng cuộn 220 ms vẽ lại 1 lần với vị trí chính xác |
+| Mở tab Thư viện 1,8–2,3 s (Windows) | Dựng ngay 120 thẻ kết quả (hàng trăm cửa sổ con) | Phân trang 40 mục + nút "Xem thêm ({n})" (`WinScreens.cs` `AddResults/ExpandResults`, Android `Screens.addResults`), tối đa 300 |
+| Tìm kiếm lần đầu 2,3 s (Windows) | Nạp JSON + bỏ dấu 611 bài trên luồng UI ở lần tìm đầu | `Library.Warm()` (C#) / `warm()` (Java) ở luồng nền lúc khởi động; cache bỏ dấu có khóa đồng bộ (`Core2.cs`, `core/Library.java`, `WinMain.cs`, `MainActivity.java`) |
+| Android 6 emulator: 37/47/50 FAIL, hộp thoại 0x0, ticks=0 (0.0.5) | Máy ảo tắt màn hình giữa selftest (`svc power stayon usb` không áp dụng cho emulator; `wm dismiss-keyguard` không có ở API 23) → cửa sổ không được bố cục/vẽ | App: `MainActivity.keepAwakeForSelftest()` (FLAG_KEEP_SCREEN_ON / SHOW_WHEN_LOCKED / DISMISS_KEYGUARD / TURN_SCREEN_ON); script: `svc power stayon true` + `screen_off_timeout` 30 phút |
+| Emulator đo cuộn 80–150 ms/khung với **mọi** bản (0.0.4/0.0.5/0.0.6) | Script ép `-gpu swiftshader_indirect` (vẽ bằng CPU) | Tham số `-EmuGpu` (mặc định `auto` = GPU thật, tự lùi về phần mềm) |
+| Script lưu cứng danh tính git (email) | – | Danh tính lấy từ cấu hình git của máy (GitHub Desktop); thiếu thì dùng `<owner>@users.noreply.github.com` |
+| Trang web (bản nháp) có câu sai/phóng đại | "108 tinh tú", "chỉ mục nhị phân", "60 FPS", "không gửi IP" | Sửa theo tính năng thật; thêm mục 3b: Kiểm tra mạng & VPN (cloudflare.com/cdn-cgi/trace), Dịch (Google Dịch), chia sẻ/báo lỗi – chỉ khi người dùng bấm |
+
+## 3. Dòng lệnh / công cụ
+
+- Công cụ: Claude (cloud: `javac` + `android.jar` API 35, Node `build_native_data.js`, Python), `device_bash` (máy ảo trên máy Kiệt), điều khiển màn hình (File Explorer → `.bat`, Antigravity), Google Antigravity (Gemini 3.8 Flash, `/swarm`), Android SDK/NDK/emulator, VS 2022 Build Tools (Roslyn `csc`), WiX 3.14, Windows SDK, ffmpeg, Git/Git Credential Manager (GitHub Desktop).
+- `node tools/build_native_data.js` → `library: 13 chapters, 611 articles; langs: 68 (273 keys, 0 filled from en/vi)`.
+- `javac -source 8 -target 8 -bootclasspath android-35/android.jar` toàn bộ `src/android/java` → 0 lỗi.
+- `BUILD_ONLY_v0.0.6.bat` (17:09–17:17): 01b JS↔Java 3000/3000 lá số, 4000/4000 ngày, 1608/1608; C#↔Java trùng byte; kính Java↔C# trùng byte (8.828.016 byte).
+- `BUILD_TEST_v0.0.6.bat` lượt 1 (17:19–18:01), lượt 2 (18:04–…).
+- `PUBLISH_v0.0.6.bat`: bước 30 (git), 31 (Release + SHA-256), 32 (Pages + About).
+
+## 4. Kết quả kiểm thử
+
+### Lượt 1 (18/11/2026 17:19–18:01, BUILD_TEST, mã trước khi thêm "giữ nền kính khi cuộn")
+| Nền tảng | Kết quả | Ghi chú |
+|---|---|---|
+| Galaxy Note 9 (Android 10, USB), nâng cấp 0.0.5→0.0.6 | 54/54 | gfx janky 7,17% → 1,35%; tìm kiếm 511 → 313 ms |
+| Emulator Android 17 (swiftshader) | 53/54 | 46_perf_scroll 84 ms – GPU phần mềm (0.0.5 cùng emulator giật 99,55%) |
+| Emulator Android 6.0 | 54/54 | 0.0.5: 49/52 – kính dựng xong 135 ms, hộp thoại 1006x1659 |
+| Windows portable / win7 / Setup / MSI / appx | 53/54 mỗi gói | 46_perf_scroll 94–97 ms (0.0.5 cùng máy 109 ms) – bgBuilds 466 |
+
+### Lượt 2 – KẾT QUẢ CUỐI (18/11/2026 18:04–18:40, BUILD_TEST, emulator `-gpu auto`) – bản được phát hành
+| Nền tảng | Kết quả |
+|---|---|
+| Samsung Galaxy Note 9 SM-N960N (Android 10, USB) – nâng cấp 0.0.5→0.0.6 | **54/54** |
+| Emulator Android 17 (API 37) – nâng cấp | **54/54** (cuộn avg 17,4 ms, p90 16,7 ms, 0% > 33 ms) |
+| Emulator Android 6.0 (API 23) – nâng cấp | **54/54** |
+| Windows portable (native) | **54/54** |
+| Windows portable `--compat win7` | **54/54** |
+| Windows Setup.exe (cài 0.0.5 rồi nâng cấp, FileVersion 0.0.6.0) | **54/54** |
+| Windows MSI x64 | **54/54** |
+| Windows appxbundle | **54/54** |
+| Không nạp module trình duyệt (59 module) | 1/1 |
+
+Hiệu năng (cùng máy, cùng lượt):
+
+| Chỉ số | 0.0.5 | 0.0.6 |
+|---|---|---|
+| Windows 46_perf_scroll (avg / p90 / max) | 94,6 / 102,7 / 111,8 ms – FAIL | **39,2 / 46,8 / 58,7 ms**, settle 99,6 ms – PASS |
+| Windows bgBuilds khi cuộn 60 khung | 469 | 194 (held 1044) |
+| Windows 10_search | 2342 ms | **506 ms** |
+| Windows 48_perf_tabs (max) | 1955 ms (Thư viện) | **745 ms** (Âm Lịch), Thư viện 346 ms |
+| Windows 47_perf_modal | 367 ms | 444 ms (chậm hơn một chút, vẫn < 1500 ms – theo dõi ở bản sau) |
+| Windows 51_perf_memory (working set) | 142 MB | 139 MB |
+| Note 9 gfxinfo Cài Đặt (janky / p90 / p99) | 12,67% / 17 / 23 ms | **5,69% / 14 / 19 ms** |
+| Emulator Android 17 GPU thật (janky) | 7,27% | 7,94% (tương đương) |
+| Emulator Android 6.0 GPU thật (janky / p90) | 14,87% / 19 ms | **0% / 7 ms** |
+
+Ảnh chụp từng bước: `test_reports/0.0.6/android/<thiết bị>/selftest/*.png`, `test_reports/0.0.6/windows/<gói>/*.png`; video: `android_test_video*.mp4`, `windows_test_video.mp4` (đính kèm Release). Báo cáo lượt 1 lưu ở `test_reports/0.0.6_round1/`.
+
+## 5. So sánh với v0.0.5
+
+| Hạng mục | v0.0.5 | v0.0.6 |
+|---|---|---|
+| Selftest | 52 bước | 54 bước (+ phân trang, nạp sẵn thư viện) |
+| Kết quả kiểm thử | Note 9 52/52; Android 17 51/52; Android 6 49/52; Windows 51/52 (cả 5 gói) | **54/54 trên cả 9 cấu hình** |
+| Lag Windows khi cuộn | FAIL (95–145 ms/khung) | PASS (39 ms/khung) |
+| Kết quả tìm kiếm | Dựng ngay 120 thẻ | Phân trang 40 + "Xem thêm", tối đa 300 |
+| Tìm kiếm lần đầu (Windows) | ~2,3 s | ~0,5 s (thư viện nạp sẵn) |
+| Chuỗi giao diện | 272 khóa × 68 | 273 khóa × 68 (0 thiếu) |
+| Trang chủ / Chính sách quyền riêng tư | Không có | GitHub Pages + mục About |
+| Đo emulator | GPU phần mềm (sai lệch) | GPU thật (`-EmuGpu auto`) |
+| Dịch thư viện | Chỉ tiếng Việt | Đang dịch dần sang 67 ngôn ngữ (`translations/`, chưa đóng gói) |
+
+## 6. Giới hạn / việc tiếp theo
+- **Dịch thư viện 611 bài × 67 ngôn ngữ** (Antigravity làm dần, tiến độ ở `translations/PROGRESS.md`). Không nhúng vào APK/zip vì thư viện ≈ 80% gói; bản sau: tải gói ngôn ngữ theo nhu cầu từ Release + kiểm tra SHA-256.
+- SmartScreen vẫn cảnh báo exe/msi (chứng chỉ tự ký) – không phải lỗi ứng dụng.
+- Windows 7 không có bản ARM (Microsoft không phát hành Windows 7 ARM); ARM64 = MSI arm64 + appxbundle cho Windows 10/11.
+- VPN: ứng dụng có công cụ *Kiểm tra mạng & VPN* (bước 23_network_check PASS trên mọi nền tảng). **Chưa** kiểm thử với một VPN thật bật bên ngoài ứng dụng trong phiên này (máy không bật VPN) – việc còn lại: bật VPN trên Windows/Note 9 rồi chạy lại bước 23, 30, 31.
+- 47_perf_modal Windows chậm hơn ~80 ms so với 0.0.5 – xem lại ở bản sau.

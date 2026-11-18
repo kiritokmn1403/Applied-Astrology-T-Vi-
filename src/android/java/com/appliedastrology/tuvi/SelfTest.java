@@ -674,6 +674,7 @@ public final class SelfTest {
             public void run(final Done d) {
                 a.show("library");
                 sc().search("Hóa Kỵ");
+                sc().expandResults(120);   // v0.0.6: danh sách phân trang → mở rộng tới 120 thẻ như điều kiện đo của 0.0.5
                 final android.widget.ScrollView sv = a.scroller();
                 final long r0 = GlassViews.scrollRedraws, k0 = GlassViews.scrollTicks;
                 final List<Long> gaps = new ArrayList<Long>();
@@ -852,6 +853,31 @@ public final class SelfTest {
                 rec("52_lunar_full_range", bad == 0 && rt == 0 && fix,
                         "days=" + n + " invalid=" + bad + " roundtripFail=" + rt + " 7/5/2054=" + x.day + "/" + x.month
                                 + "/" + x.year + " " + (System.nanoTime() - t0) / 1000000 + "ms");
+                d.done();
+            }
+        });
+        // v0.0.6: kết quả tìm kiếm phân trang (40 mục/lần) + nút "Xem thêm"
+        step("53_results_paging", new Step() {
+            public void run(Done d) {
+                a.show("library");
+                List<com.appliedastrology.tuvi.core.Library.Hit> res = sc().search("Hóa Kỵ");
+                View r = find(a.root, "results");
+                int first = r instanceof ViewGroup ? Screens.resultItems((ViewGroup) r) : -1;
+                boolean hasMore = r != null && find(r, "showMore") != null;
+                int after = sc().expandResults(80);
+                int total = Math.min(Screens.RESULT_MAX, res.size());
+                rec("53_results_paging", res.size() > 40 && first == Screens.RESULT_PAGE && hasMore && after >= 80 && after <= total,
+                        "results=" + res.size() + " firstPage=" + first + " showMore=" + hasMore + " afterMore=" + after);
+                d.done();
+            }
+        });
+        // v0.0.6: thư viện được nạp sẵn ở luồng nền → mở bài bất kỳ lần đầu phải nhanh
+        step("54_library_warm", new Step() {
+            public void run(Done d) {
+                long t0 = System.nanoTime(); int n = 0;
+                for (com.appliedastrology.tuvi.core.Library.Chapter c : a.lib.chapters) { if (a.lib.get(c.id, c.count - 1) != null) n++; }
+                long ms = (System.nanoTime() - t0) / 1000000L;
+                rec("54_library_warm", n == a.lib.chapters.size() && ms < 1500, "chapters=" + n + "/" + a.lib.chapters.size() + " lastArticleOfEach=" + ms + "ms");
                 d.done();
             }
         });

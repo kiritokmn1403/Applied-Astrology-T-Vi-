@@ -20,15 +20,15 @@ using Microsoft.Win32;
 [assembly: AssemblyDescription("Applied Astrology - Tử Vi Ứng Dụng (Bửu Đình) - native Windows app")]
 [assembly: AssemblyCompany("Applied Astrology")]
 [assembly: AssemblyCopyright("Applied Astrology contributors (GPL-3.0)")]
-[assembly: AssemblyVersion("0.0.5.0")]
-[assembly: AssemblyFileVersion("0.0.5.0")]
+[assembly: AssemblyVersion("0.0.6.0")]
+[assembly: AssemblyFileVersion("0.0.6.0")]
 [assembly: ComVisible(false)]
 
 namespace AppliedAstrology
 {
     static class Program
     {
-        internal const string Version = "0.0.5", BuildDate = "2026-11-17";
+        internal const string Version = "0.0.6", BuildDate = "2026-11-18";
         internal static string BaseDir = AppDomain.CurrentDomain.BaseDirectory, DataDir, TestOut, Compat = "";
         internal static bool SelfTest;
         [STAThread]

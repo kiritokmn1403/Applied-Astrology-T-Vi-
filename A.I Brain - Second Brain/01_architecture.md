@@ -30,3 +30,4 @@
 - **Phiên bản:**
   - Android versionCode = `<ver>00<n>`: 0.0.4 → 4001/4002/4003; **0.0.5 → 5001 (v7a), 5002 (x86_64), 5003 (arm64)**.
   - Bản sau **phải lớn hơn** và dùng **cùng khóa ký**, nếu không sẽ không cài đè được.
+- **0.0.6:** versionCode **6001 (v7a), 6002 (x86_64), 6003 (arm64)**. Windows: `DBPanel` vẽ nền không co giãn; `Box.PlainChain/PaintFull`; `ScrollStep/ScrollSettle` + `Box.Scrolling` (giữ nền kính khi cuộn); `Library.Warm()/warm()` ở luồng nền; kết quả tìm kiếm phân trang (`RESULT_PAGE=40`, `RESULT_MAX=300`, khóa `show_more` ở `tools/i18n_v6`). Bản dịch thư viện (chưa đóng gói): `translations/lib/<mã>/NN.json`.

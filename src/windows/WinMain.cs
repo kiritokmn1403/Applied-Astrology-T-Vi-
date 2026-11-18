@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.5 – cửa sổ chính native Windows: khung, thanh tab, 7 màn hình, hộp thoại, thông báo.
+// Applied Astrology v0.0.6 – cửa sổ chính native Windows: khung, thanh tab, 7 màn hình, hộp thoại, thông báo.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -61,6 +61,8 @@ namespace AppliedAstrology
             Shown += (s, e) =>
             {
                 DoLayout();
+                // v0.0.6: nạp + bỏ dấu sẵn 611 bài ở luồng nền → lần tìm kiếm đầu không còn đứng ~2 s
+                ThreadPool.QueueUserWorkItem(_ => { try { var sw = System.Diagnostics.Stopwatch.StartNew(); Lib.Warm(); LibWarm = true; Host.Log("library warm " + sw.ElapsedMilliseconds + "ms"); } catch (Exception ex) { Host.WriteCrash("library warm", ex); } });
                 if (Environment.GetEnvironmentVariable("AA_DUMP") != null) Delay(3000, () => Host.Log("TREE\n" + DumpTree(this, 0)));
                 if (Program.SelfTest) { Test = new SelfTestWin(this); Test.Start(); }
                 else if (B("autoUpdate"))
@@ -70,11 +72,34 @@ namespace AppliedAstrology
                 }
             };
         }
-        bool scrollPaintQueued; internal static long ScrollPaints;
+        bool scrollPaintQueued; internal static long ScrollPaints; internal volatile bool LibWarm;
         void QueueScrollPaint()
         {
             if (scrollPaintQueued || !IsHandleCreated) return; scrollPaintQueued = true;
-            BeginInvoke((Action)(() => { scrollPaintQueued = false; ScrollPaints++; Scroll.Invalidate(true); Scroll.Update(); }));
+            BeginInvoke((Action)(() => { scrollPaintQueued = false; ScrollStep(); }));
+        }
+        System.Windows.Forms.Timer settleTimer;
+        /// <summary>v0.0.6: 1 bước cuộn – giữ nền kính cũ trong lúc cuộn, hẹn vẽ lại chính xác khi cuộn dừng 220 ms</summary>
+        internal void ScrollStep()
+        {
+            Box.ScrollHoldUntil = unchecked(Environment.TickCount + 200);
+            ScrollPaintNow();
+            if (settleTimer == null) { settleTimer = new System.Windows.Forms.Timer { Interval = 220 }; settleTimer.Tick += (s, e) => { settleTimer.Stop(); ScrollSettle(); }; }
+            settleTimer.Stop(); settleTimer.Start();
+        }
+        /// <summary>cuộn đã dừng: vẽ lại các thẻ đang hiện với vị trí chính xác</summary>
+        internal void ScrollSettle() { Box.ScrollHoldUntil = unchecked(Environment.TickCount - 1); ScrollPaintNow(); }
+        /// <summary>v0.0.6: chỉ vẽ lại các điều khiển ĐANG NẰM TRONG khung nhìn (0.0.5 gọi Invalidate(true) cho cả cây – hàng trăm điều khiển ngoài màn hình)</summary>
+        internal void ScrollPaintNow()
+        {
+            ScrollPaints++; var vis = Scroll.RectangleToScreen(Scroll.ClientRectangle);
+            Scroll.Invalidate(false); if (Root != null) InvalidateVisible(Root, vis); Scroll.Update();
+        }
+        internal static void InvalidateVisible(Control c, Rectangle vis)
+        {
+            if (c == null || !c.Visible || c.Width <= 0 || c.Height <= 0) return;
+            if (!c.RectangleToScreen(c.ClientRectangle).IntersectsWith(vis)) return;
+            c.Invalidate(false); foreach (Control k in c.Controls) InvalidateVisible(k, vis);
         }
         internal static string DumpTree(Control c, int depth) { var sb = new StringBuilder(); if (depth < 7) { sb.Append(new string(' ', depth * 2) + c.GetType().Name + " " + c.Tag + " " + c.Bounds + (c.Visible ? "" : " HIDDEN") + "\n"); foreach (Control k in c.Controls) sb.Append(DumpTree(k, depth + 1)); } return sb.ToString(); }
         internal void Delay(int ms, Action a) { var t = new System.Windows.Forms.Timer { Interval = Math.Max(1, ms) }; t.Tick += (s, e) => { t.Stop(); t.Dispose(); a(); }; t.Start(); }
@@ -95,9 +120,11 @@ namespace AppliedAstrology
             RightToLeft = I18n.Rtl ? RightToLeft.Yes : RightToLeft.No;
             BuildHeader(); Nav.Invalidate(); DoLayout(); Show(Current);
         }
+        /// <summary>v0.0.6: kích thước nền dùng chung cho form và bố cục (0.0.5 dùng 2 kích thước khác nhau → có thể co giãn lại ảnh nền liên tục)</summary>
+        internal Size GlassSize { get { return new Size(Math.Max(D(720), ClientSize.Width), Math.Max(D(520), ClientSize.Height)); } }
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            G.Ensure(ClientSize);
+            G.Ensure(GlassSize);
             if (G.Full != null) e.Graphics.DrawImageUnscaled(G.Full, 0, 0); else e.Graphics.Clear(Gfx.C(G.Th.Bg));   // v0.0.5: không co giãn
         }
         void BuildHeader()
@@ -110,8 +137,8 @@ namespace AppliedAstrology
         internal void DoLayout()
         {
             if (Header == null) return;
-            int cw = Math.Max(D(720), ClientSize.Width), ch = Math.Max(D(520), ClientSize.Height);
-            G.Ensure(new Size(cw, ch));
+            var gs = GlassSize; int cw = gs.Width, ch = gs.Height;
+            G.Ensure(gs);
             Wide = cw >= D(720) || IsDesktop;
             int m = G.On ? D(8) : 0, w = cw - m * 2, hh = Header.PrefHeight(w), nh = D(Wide ? 52 : 58);
             Header.SetBounds(m, G.On ? D(6) : 0, w, hh);
@@ -223,7 +250,17 @@ namespace AppliedAstrology
         }
     }
 
-    class DBPanel : Panel { public DBPanel() { SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true); } protected override void OnPaintBackground(PaintEventArgs e) { if (Parent != null) InvokePaintBackground(Parent, new PaintEventArgs(e.Graphics, new Rectangle(Left, Top, Width, Height))); var st = e.Graphics.Save(); e.Graphics.TranslateTransform(-Left, -Top); var f = FindForm() as MainForm; if (f != null && f.G.Full != null) { e.Graphics.InterpolationMode = InterpolationMode.Bilinear; e.Graphics.DrawImage(f.G.Full, new Rectangle(0, 0, f.ClientSize.Width, f.ClientSize.Height)); } e.Graphics.Restore(st); } }
+    /// <summary>v0.0.6: khung cuộn – nền tinh vân vẽ KHÔNG co giãn (DrawImageUnscaled) theo vị trí trong form; 0.0.5 vẽ DrawImage co giãn + vẽ nền form 2 lần mỗi khung → cuộn ~144 ms/khung</summary>
+    class DBPanel : Panel
+    {
+        public DBPanel() { SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true); }
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            var f = FindForm() as MainForm;
+            if (f != null && f.G.Full != null) e.Graphics.DrawImageUnscaled(f.G.Full, -Left, -Top);
+            else e.Graphics.Clear(f != null ? f.BackColor : SystemColors.Control);
+        }
+    }
     class LogoCtl : Control { public LogoCtl() { SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true); BackColor = Color.Transparent; } protected override void OnPaint(PaintEventArgs e) { Icons.Logo(e.Graphics, new RectangleF(0, 0, Width - 1, Height - 1)); } }
     class ToastCtl : Control
     {

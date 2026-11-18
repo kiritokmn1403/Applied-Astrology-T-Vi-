@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.0.6 – 18/11/2026
+### Sửa lỗi lag Windows (Creat & Update mục 4) – đo trên cùng máy, bản 0.0.5 ↔ 0.0.6
+- **Cuộn**: 94,6 ms/khung → **39,2 ms/khung** (bản portable, 120 thẻ kết quả, 60 khung).
+  - Khung cuộn vẽ nền tinh vân không co giãn (0.0.5 vẽ `DrawImage` có nội suy + vẽ nền form 2 lần mỗi khung).
+  - Chỉ vẽ lại điều khiển đang nằm trong khung nhìn (0.0.5 vẽ lại cả cây, kể cả hàng trăm điều khiển ngoài màn hình).
+  - Đang cuộn: thẻ kính dùng lại nền đã dựng; dừng cuộn 220 ms mới vẽ lại chính xác (~100 ms, 1 lần).
+  - Khung không kính và chữ trong suốt vẽ thẳng ảnh nền thay cho cơ chế nền trong suốt nhiều tầng của WinForms.
+  - Form và bố cục dùng chung một kích thước ảnh nền (không co giãn lại liên tục).
+- **Tìm kiếm**: 2342 ms → 506 ms – thư viện 611 bài được nạp và bỏ dấu sẵn ở luồng nền khi mở app.
+- **Mở tab**: tab chậm nhất 1955 ms → 745 ms – kết quả tìm kiếm phân trang.
+- Android: Galaxy Note 9 khung giật 12,67% → 5,69%; Android 6.0 14,87% → 0%.
+- Kiểm thử: 54/54 trên Note 9, Android 17, Android 6.0, Windows portable/Win7/Setup.exe/MSI/appxbundle.
+### Mới
+- **Kết quả tìm kiếm phân trang** 40 mục/lần + nút **"Xem thêm (n)"** (Android & Windows), tối đa 300 kết quả; chuỗi mới `show_more` × 68 ngôn ngữ.
+- **Trang chủ** (`docs/index.html`) và **Chính sách quyền riêng tư** (`docs/privacy.html`) song ngữ trên GitHub Pages, gắn vào mục About của repo.
+- Tự kiểm thử **54 bước** (thêm `53_results_paging`, `54_library_warm`); báo cáo có bảng hiệu năng Windows 0.0.5 ↔ 0.0.6 (chạy selftest bản 0.0.5 trên cùng máy).
+- Bắt đầu dịch thư viện 611 bài sang 67 ngôn ngữ (`translations/`, bảng thuật ngữ thống nhất) – sẽ tích hợp vào app theo kiểu tải khi cần ở bản sau.
+### Sửa lỗi khác
+- **Android 6**: Liquid Glass không dựng xong / hộp thoại kích thước 0 khi màn hình tắt giữa chừng – app giữ màn hình sáng khi tự kiểm thử; script giữ emulator luôn sáng (`stayon true`).
+- Emulator kiểm thử dùng GPU thật (`-EmuGpu auto`); trước đây GPU phần mềm làm mọi bản đều "giật" 98–100% trên emulator.
+- Script phát hành không còn lưu email; danh tính git lấy từ cấu hình máy.
+
 ## 0.0.5 – 17/11/2026
 ### Sửa lỗi lag, giật, treo (Creat & Update mục 3)
 - **Liquid Glass viết lại** (Android `GlassViews`, lõi `Glass` Java/C#, Windows `WinUi`):

@@ -79,6 +79,9 @@ public class MainActivity extends Activity {
         lib.setNativeSearch(new Library.NativeSearch() { public String search(String f, int max) { return NativeCore.search(getAssets(), f, max); } });
         i18n = new I18n(host); i18n.setLang(s("lang"));
         asst = new Assistant(lib, i18n);
+        // v0.0.6: nạp sẵn thư viện ở luồng nền ưu tiên thấp (mở chương / bài liên quan lần đầu không phải chờ đọc JSON)
+        Thread warm = new Thread(new Runnable() { public void run() { try { android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND); long t0 = System.currentTimeMillis(); lib.warm(); host.log("library warm " + (System.currentTimeMillis() - t0) + "ms"); } catch (Throwable e) { host.log("library warm failed " + e); } } }, "aa-warm");
+        warm.setDaemon(true); warm.start();
         ui = new Ui(this);
         root = new FrameLayout(this);
         bg = new GlassViews.Bg(this, gcfg);
@@ -92,7 +95,7 @@ public class MainActivity extends Activity {
         applySettings();
         host.log("start v" + Host.VERSION + " native abi=" + NativeCore.abi() + " sdk=" + Build.VERSION.SDK_INT + " device=" + host.device() + " selftest=" + st0);
         if (it != null && it.getStringExtra("tab") != null) show(it.getStringExtra("tab"));
-        if (st0) { selftest = new SelfTest(this); h.postDelayed(new Runnable() { public void run() { selftest.start(); } }, 1500); }
+        if (st0) { keepAwakeForSelftest(); selftest = new SelfTest(this); h.postDelayed(new Runnable() { public void run() { selftest.start(); } }, 1500); }
         else if (b("autoUpdate")) {
             Map<String, Object> lc = Json.obj(host.get("aa.lastUpdateCheck"));
             long at = lc == null ? 0 : (long) Json.dbl(lc.get("at"), 0);
@@ -100,11 +103,23 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * v0.0.6: khi tự kiểm thử, giữ màn hình sáng và hiện trên màn hình khóa. Emulator Android 6 tắt màn hình giữa chừng (0.0.5):
+     * cửa sổ không còn được bố cục/vẽ → hộp thoại 0x0, kính không bao giờ dựng xong (bước 37/47/50 FAIL).
+     */
+    @SuppressWarnings("deprecation")
+    void keepAwakeForSelftest() {
+        try {
+            getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                    | android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        } catch (Throwable ignored) { }
+    }
+
     /** v0.0.5: app đã chạy sẵn (vd. Android 17 tự mở lại sau khi cài đè) mà nhận intent mới có cờ selftest/tab */
     @Override protected void onNewIntent(Intent it) {
         super.onNewIntent(it); setIntent(it);
         if (it == null) return;
-        if (it.getBooleanExtra("selftest", false) && selftest == null) { selftest = new SelfTest(this); h.postDelayed(new Runnable() { public void run() { selftest.start(); } }, 1500); }
+        if (it.getBooleanExtra("selftest", false) && selftest == null) { keepAwakeForSelftest(); selftest = new SelfTest(this); h.postDelayed(new Runnable() { public void run() { selftest.start(); } }, 1500); }
         else if (it.getStringExtra("tab") != null) show(it.getStringExtra("tab"));
     }
 

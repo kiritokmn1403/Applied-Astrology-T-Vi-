@@ -69,9 +69,18 @@ public final class Library {
         return r;
     }
     private String folded(String id, String k, String text) {
-        String key = id + ":" + k; String f = foldCache.get(key);
-        if (f == null) { f = Fold.fold(text); foldCache.put(key, f); }
+        String key = id + ":" + k; String f;
+        synchronized (foldCache) { f = foldCache.get(key); }
+        if (f == null) { f = Fold.fold(text); synchronized (foldCache) { foldCache.put(key, f); } }
         return f;
+    }
+
+    /** v0.0.6: nạp mọi chương ở luồng nền lúc khởi động (giống Library.Warm bên C#) → mở chương/tìm kiếm lần đầu không chờ đọc JSON */
+    public void warm() {
+        for (Chapter c : new ArrayList<Chapter>(chapters)) {
+            List<Object> arr = load(c.id); if (arr == null) continue;
+            if (nativeSearch == null) for (int k = 0; k < arr.size(); k++) { List<Object> x = Json.arr(arr.get(k)); folded(c.id, "t" + k, Json.str(x.get(0), "")); folded(c.id, String.valueOf(k), Json.str(x.get(1), "")); }
+        }
     }
 
     /** Tìm kiếm toàn văn (có dấu hoặc không dấu). */

@@ -26,3 +26,4 @@
 - **Khi đổi phiên bản:** sao chép script cũ rồi đổi `$Ver`/`$PrevVer`/`$Work`, versionCode (`$Abis`), AppxManifest `Version`, `app.manifest`, `Setup.cs`, `WinHost.cs` (`Version`, `BuildDate`, AssemblyVersion), `Host.VERSION`/`BUILD_DATE`, AndroidManifest `versionName`, `tools/changelog_vN.json`, thông điệp commit ở bước 30.
 - **Release:** installer để trong `output/<ver>/` và đính kèm vào GitHub Release. Video test (*.mp4) chỉ đính kèm Release, không đưa vào git (giới hạn 100 MB).
 - **README** phải có bảng link `releases/download/v<ver>/...`.
+- **0.0.6:** thư mục build `D:\yh\aa006`; `build_release_0.0.6.ps1` thêm `-EmuGpu` (mặc định `auto`; trước đây ép `swiftshader_indirect` → số đo emulator sai), chạy selftest bản portable trước để có bảng hiệu năng Windows cũ↔mới, bước **32_github_pages_about** (Pages main `/docs`, Website/mô tả/topics của repo). Danh tính git lấy từ cấu hình máy, KHÔNG ghi email vào script. Commit thêm `translations/`, `AG_REPORT_v<ver>.md`.

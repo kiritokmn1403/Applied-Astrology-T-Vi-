@@ -1,4 +1,4 @@
-// Applied Astrology v0.0.5 – lõi native C# (phần 2): Thư viện, Đa ngôn ngữ, Trợ lý luận giải, Bảng màu, Liquid Glass.
+// Applied Astrology v0.0.6 – lõi native C# (phần 2): Thư viện, Đa ngôn ngữ, Trợ lý luận giải, Bảng màu, Liquid Glass.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,20 @@ namespace AppliedAstrology.Core
             var a = Load(id); if (a == null || i < 0 || i >= a.Count) return null;
             var x = Json.Arr(a[i]); return new Article { Ch = id, I = i, Title = Json.Str(x[0], ""), Body = Json.Str(x[1], "") };
         }
-        string Folded(string id, string k, string text) { string key = id + ":" + k, f; if (!foldCache.TryGetValue(key, out f)) { f = Fold.Do(text); foldCache[key] = f; } return f; }
+        string Folded(string id, string k, string text)
+        {
+            string key = id + ":" + k, f; lock (foldCache) { if (foldCache.TryGetValue(key, out f)) return f; }
+            f = Fold.Do(text); lock (foldCache) foldCache[key] = f; return f;
+        }
+        /// <summary>v0.0.6: nạp mọi chương và bỏ dấu sẵn (gọi ở luồng nền lúc khởi động) → tìm kiếm lần đầu nhanh như các lần sau</summary>
+        public void Warm()
+        {
+            foreach (var c in Chapters.ToArray())
+            {
+                var arr = Load(c.Id); if (arr == null) continue;
+                for (int k = 0; k < arr.Count; k++) { var x = Json.Arr(arr[k]); Folded(c.Id, "t" + k, Json.Str(x[0], "")); Folded(c.Id, k.ToString(), Json.Str(x[1], "")); }
+            }
+        }
         public List<Hit> Search(string q)
         {
             string fq = Regex.Replace(Fold.Do(q), "\\s+", " ").Trim(); var res = new List<Hit>(); if (fq.Length < 2) return res;

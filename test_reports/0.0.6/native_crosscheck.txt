@@ -1,0 +1,4 @@
+charts: 3000 compared, 3000 identical, 0 different
+calendar days: 4000 compared, 4000 identical
+lunar2solar: 1608 compared, 1608 identical
+C# vs Java: charts=identical, cal=identical, l2s=identical, glass=identical

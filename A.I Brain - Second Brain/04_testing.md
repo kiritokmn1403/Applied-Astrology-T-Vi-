@@ -16,3 +16,4 @@
 - **Đối chiếu engine:** bước `01b`. Java vs JS: 3000 lá số / 4000 ngày / 1608 lần Âm→Dương. C# phải trùng từng byte với Java; kính Java↔C# trùng từng byte.
 - Video: Android dùng `screenrecord` (tối đa 180 s → script ghi nhiều phần `android_test_video_partN.mp4`), Windows dùng ffmpeg gdigrab. Video được đính kèm vào Release.
 - Mono (cloud) chạy được selftest Windows để bắt lỗi logic, nhưng `DrawToBitmap` của Mono chỉ vẽ nền form → ảnh chụp không đại diện; phải xem ảnh trên Windows thật.
+- **0.0.6:** selftest **54 bước** (+`53_results_paging`, `54_library_warm`; bước 46 mở rộng danh sách tới 120 thẻ, Windows đo cả `settle`). Emulator chạy với GPU thật (`-gpu auto`); emulator được giữ sáng (`svc power stayon true`, `screen_off_timeout`), app tự `FLAG_KEEP_SCREEN_ON` khi selftest. Kết quả cuối: 54/54 trên Note 9, Android 17, Android 6, Windows portable/win7/Setup/MSI/appx.

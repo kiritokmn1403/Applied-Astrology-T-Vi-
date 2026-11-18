@@ -14,15 +14,15 @@ using Microsoft.Win32;
 [assembly: AssemblyTitle("Applied Astrology Setup")]
 [assembly: AssemblyProduct("Applied Astrology (Tử Vi Ứng Dụng)")]
 [assembly: AssemblyCompany("Applied Astrology")]
-[assembly: AssemblyVersion("0.0.5.0")]
-[assembly: AssemblyFileVersion("0.0.5.0")]
+[assembly: AssemblyVersion("0.0.6.0")]
+[assembly: AssemblyFileVersion("0.0.6.0")]
 
 namespace AppliedAstrologySetup
 {
     static class Program
     {
         internal const string AppName = "Applied Astrology";
-        internal const string Version = "0.0.5";
+        internal const string Version = "0.0.6";
         internal const string RegKey = @"Software\Microsoft\Windows\CurrentVersion\Uninstall\AppliedAstrology";
         internal static string DefaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", AppName);
 
