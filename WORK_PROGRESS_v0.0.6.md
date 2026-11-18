@@ -47,3 +47,6 @@ Mặc định do chưa có trả lời: thiếu sheet "App Feature Set" → dùn
 - Còn tiếp (Antigravity, chạy dần): dịch thư viện 611 bài × 67 ngôn ngữ → `translations/` (xem `translations/PROGRESS.md`).
 - Chưa làm: kiểm thử với VPN thật bật bên ngoài ứng dụng (máy không bật VPN trong phiên này).
 | 18/11/2026 19:36 | Kiệt yêu cầu: thêm link tải các phiên bản + biểu tượng tải vào Trang chủ → mục #download (12 thẻ, link releases/download/v0.0.6, 12/12 link trả 206), nút hero trỏ tới #download, sửa bảng thông số (Setup.exe native; appx x86/x64/arm64). Chạy PUBLISH để đẩy lên Pages | Đang làm |
+| 18/11/2026 19:39 | Trang chủ có mục Tải về đã lên GitHub Pages (19:37, HTTP 200, 37.968 byte); mở trang thật kiểm tra: 12 thẻ có biểu tượng tải hiển thị đúng | Xong |
+| 18/11/2026 21:31 | Viết lại A.I Brain thành 11 tệp theo yêu cầu của Kiệt (00 bắt buộc đọc, 01 kiến trúc, 02 quy trình, 03 phát hành, 04 bài học kỹ thuật, 05 kiểm tra, 06 công cụ, 07 quy tắc, 08 mẹo phiên AI, 09 điều phối tác nhân, 10 cấu trúc thư mục); gộp 03_lessons_learned.md cũ vào 04 rồi xóa | Xong |
+| 18/11/2026 21:46 | A.I Brain mở rộng thành 13 tệp: thêm 11 quy trình bàn giao, 12 nhật ký phiên (tóm tắt mọi phiên 0.0.1→0.0.6); cập nhật tham chiếu ở 00/02/07/08/10 | Xong |
