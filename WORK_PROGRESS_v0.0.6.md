@@ -50,3 +50,4 @@ Mặc định do chưa có trả lời: thiếu sheet "App Feature Set" → dùn
 | 18/11/2026 19:39 | Trang chủ có mục Tải về đã lên GitHub Pages (19:37, HTTP 200, 37.968 byte); mở trang thật kiểm tra: 12 thẻ có biểu tượng tải hiển thị đúng | Xong |
 | 18/11/2026 21:31 | Viết lại A.I Brain thành 11 tệp theo yêu cầu của Kiệt (00 bắt buộc đọc, 01 kiến trúc, 02 quy trình, 03 phát hành, 04 bài học kỹ thuật, 05 kiểm tra, 06 công cụ, 07 quy tắc, 08 mẹo phiên AI, 09 điều phối tác nhân, 10 cấu trúc thư mục); gộp 03_lessons_learned.md cũ vào 04 rồi xóa | Xong |
 | 18/11/2026 21:46 | A.I Brain mở rộng thành 13 tệp: thêm 11 quy trình bàn giao, 12 nhật ký phiên (tóm tắt mọi phiên 0.0.1→0.0.6); cập nhật tham chiếu ở 00/02/07/08/10 | Xong |
+| 18/11/2026 22:11 | Kiệt yêu cầu đẩy hết lên GitHub: PUBLISH_v0.0.6.bat 22:08–22:11 → push `53425b0..bfc92cb` (33 tệp: A.I Brain 13 tệp, tài liệu, translations chương 07 × 12 ngôn ngữ); Release 18/18 trùng SHA-256 (bỏ qua); Pages HTTP 200 | Xong |

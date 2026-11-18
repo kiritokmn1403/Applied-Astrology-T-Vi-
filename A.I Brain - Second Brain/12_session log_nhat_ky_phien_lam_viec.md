@@ -19,7 +19,7 @@ Chi tiết theo phút nằm trong `WORK_PROGRESS_v<ver>.md`; chi tiết kỹ thu
   - 07 quy tắc, 08 mẹo phiên AI, 09 điều phối tác nhân, 10 cấu trúc thư mục, **11 bàn giao, 12 nhật ký**.
   - Gộp `03_lessons_learned.md` cũ vào 04 rồi xóa (Kiệt cấp quyền xóa).
 - Kết quả: 13 tệp. Đường dẫn công cụ lấy từ log `00_probe_tools`; cấu trúc thư mục lấy từ `ls` thật.
-- Còn dở: các thay đổi A.I Brain mới ở trên máy; cần chạy `PUBLISH_v0.0.6.bat` để đẩy lên GitHub (nếu Kiệt muốn).
+- Đã đẩy lên GitHub lúc 22:09 (PUBLISH_v0.0.6.bat): commit `53425b0..bfc92cb`, 33 tệp; Release giữ nguyên (18/18 trùng SHA-256, bỏ qua); Pages HTTP 200. Cùng commit có bản dịch chương 07 của 12 ngôn ngữ (en, zh-CN, zh-TW, ja, ko, fr, de, es, ru, pt-BR, th, id).
 - Ghi chú: trong `D:\yh\aa006_refs` có `translate_en_07.js` của Antigravity, nên có thể nó đang dịch bằng script. Chưa kiểm tra.
 
 ## 18/11/2026 19:33–19:40 · Claude · v0.0.6 · Mục Tải về trên Trang chủ
