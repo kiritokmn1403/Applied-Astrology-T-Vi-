@@ -38,3 +38,11 @@ Mặc định do chưa có trả lời: thiếu sheet "App Feature Set" → dùn
 | 18/11/2026 18:36 | Lượt 2 – Windows: Setup.exe nâng cấp 0.0.5→0.0.6 OK **54/54**; baseline 0.0.5 cùng máy cuộn 94,6 ms (FAIL) ↔ 0.0.6 39,2 ms (PASS); không nạp module trình duyệt · _build: 21_windows_tests RUN_ | Đang làm |
 | 18/11/2026 18:42 | Lượt 2 XONG 18:40: **54/54 trên cả 9 cấu hình**. Cập nhật README (bảng tải v0.0.6 + Trang chủ/Chính sách), CHANGELOG, docs/RELEASE_NOTES_0.0.6.md, TECHNICAL_UPDATE_NOTES (phần v0.0.6), A.I Brain (00/01/02/03/04). Chuẩn bị PUBLISH_v0.0.6.bat · _build: 22_test_report OK (xong 18:40)_ | Xong |
 | 18/11/2026 18:52 | Sửa script: tên video Release kèm tên tệp (part2 không còn bị ghi đè). Chạy PUBLISH_v0.0.6.bat (18:51): git commit/push → Release v0.0.6 → tải lên + SHA-256 → GitHub Pages/About · _build: 00_probe_tools RUN_ | Đang làm |
+| 18/11/2026 18:58 | PUBLISH xong 18:57: push main 096180b + tag v0.0.6; Release 18/18 tệp xác minh SHA-256; GitHub Pages build xong, Trang chủ + Chính sách HTTP 200; About Website/mô tả/topics đã đặt. Kiểm tra độc lập: README trên GitHub có bảng tải v0.0.6 + link Trang chủ/Chính sách; trang privacy có mục 3b · _build: 32_github_pages_about OK (xong 18:57)_ | Xong |
+| 18/11/2026 18:58 | Chạy PUBLISH lần 2 để đẩy TECHNICAL_UPDATE_NOTES (mục 7–8) + WORK_PROGRESS cuối lên GitHub (tệp Release đã khớp SHA-256 sẽ được bỏ qua) · _build: 32_github_pages_about OK (xong 18:57)_ | Đang làm |
+
+## HOÀN THÀNH v0.0.6 (18/11/2026 ~19:00) – dừng ghi tiến độ 5 phút/lần theo yêu cầu
+- Kết quả cuối: **54/54** trên Note 9, emulator Android 17 + Android 6.0, Windows portable / win7 / Setup.exe / MSI / appxbundle; không nạp module trình duyệt.
+- Release v0.0.6: 12 tệp cài đặt + 6 video, 18/18 khớp SHA-256. Trang chủ + Chính sách quyền riêng tư trên GitHub Pages, gắn vào About.
+- Còn tiếp (Antigravity, chạy dần): dịch thư viện 611 bài × 67 ngôn ngữ → `translations/` (xem `translations/PROGRESS.md`).
+- Chưa làm: kiểm thử với VPN thật bật bên ngoài ứng dụng (máy không bật VPN trong phiên này).

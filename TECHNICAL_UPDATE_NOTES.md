@@ -876,3 +876,23 @@ Hiệu năng (cùng máy, cùng lượt):
 - Windows 7 không có bản ARM (Microsoft không phát hành Windows 7 ARM); ARM64 = MSI arm64 + appxbundle cho Windows 10/11.
 - VPN: ứng dụng có công cụ *Kiểm tra mạng & VPN* (bước 23_network_check PASS trên mọi nền tảng). **Chưa** kiểm thử với một VPN thật bật bên ngoài ứng dụng trong phiên này (máy không bật VPN) – việc còn lại: bật VPN trên Windows/Note 9 rồi chạy lại bước 23, 30, 31.
 - 47_perf_modal Windows chậm hơn ~80 ms so với 0.0.5 – xem lại ở bản sau.
+
+## 7. Phát hành (18/11/2026 18:51–18:57, PUBLISH_v0.0.6.bat)
+- Bước 30: commit + push `a8eb2e8..096180b main` (danh tính git từ cấu hình máy), tag `v0.0.6`.
+- Bước 31: Release https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.6 – 12 tệp cài đặt + 6 video kiểm thử, **18/18 xác minh** (kích thước + digest SHA-256 của GitHub trùng tệp máy). Sửa tên video (kèm tên tệp) để phần 2 không ghi đè phần 1.
+- Bước 32: GitHub Pages (main /docs) build xong 18:57; Trang chủ HTTP 200 (21.837 byte), Chính sách quyền riêng tư HTTP 200 (17.978 byte); About: Website = Trang chủ, mô tả có link Trang chủ + Chính sách, topics: android, astrology, liquid-glass, lunar-calendar, tu-vi, vietnamese, windows.
+
+## 8. Bảng băm SHA-256 v0.0.6 (`output/0.0.6/SHA256SUMS-0.0.6.txt`)
+```
+34e668d45b6300f381c77c5e98f5bd5ca80225473778f578baa5ee869f29d8fd *AppliedAstrology-0.0.6-arm64-v8a.apk
+527552dcaa75ceb61edf395ea14a8757e455b5947b8de1e1060929af60930bba *AppliedAstrology-0.0.6-armeabi-v7a.apk
+2d208698cad1bf9672284d91571c0f74d5dafd93ad7fecef3b0d86f75a52fe73 *AppliedAstrology-0.0.6-signing-certificate.cer
+dfbcef6c390717727ceaed59c3c27238bc9fa9bd9b7339f8ff101379295646fa *AppliedAstrology-0.0.6-windows.appxbundle
+fa5766e204c963515546f1ec93c847b162511f7cdf188245501420c73c264a26 *AppliedAstrology-0.0.6-windows-appx-install.bat
+edebb0d905f6c2fd7b94b22eb3fdbda602337d497393d84d154d2f76792bf9e6 *AppliedAstrology-0.0.6-windows-arm64.msi
+a654b48b533af124913f26ed5df1c2b07fbc489670f30474e21d36d7a9e3702f *AppliedAstrology-0.0.6-windows-portable.zip
+634aae09e622b3040f1eed321dd7bcfcdd01146faa530c9598422f03ef89714d *AppliedAstrology-0.0.6-windows-Setup.exe
+dde7d8e34152af3d17eb0a880f8cce4d85efd69db18b8d6aaf0a43e507bde0f6 *AppliedAstrology-0.0.6-windows-x64.msi
+93162c292114a9e85682a33c42a58b600d345dad34941ce30039d698118f25e9 *AppliedAstrology-0.0.6-windows-x86.msi
+43b1162a92be3f996b3b550904bc2eaaa3d71107c3ec513095dc20fb44562b9d *AppliedAstrology-0.0.6-x86_64.apk
+```
