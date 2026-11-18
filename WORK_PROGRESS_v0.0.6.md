@@ -46,3 +46,4 @@ Mặc định do chưa có trả lời: thiếu sheet "App Feature Set" → dùn
 - Release v0.0.6: 12 tệp cài đặt + 6 video, 18/18 khớp SHA-256. Trang chủ + Chính sách quyền riêng tư trên GitHub Pages, gắn vào About.
 - Còn tiếp (Antigravity, chạy dần): dịch thư viện 611 bài × 67 ngôn ngữ → `translations/` (xem `translations/PROGRESS.md`).
 - Chưa làm: kiểm thử với VPN thật bật bên ngoài ứng dụng (máy không bật VPN trong phiên này).
+| 18/11/2026 19:36 | Kiệt yêu cầu: thêm link tải các phiên bản + biểu tượng tải vào Trang chủ → mục #download (12 thẻ, link releases/download/v0.0.6, 12/12 link trả 206), nút hero trỏ tới #download, sửa bảng thông số (Setup.exe native; appx x86/x64/arm64). Chạy PUBLISH để đẩy lên Pages | Đang làm |

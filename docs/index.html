@@ -316,6 +316,22 @@
     }
 
     /* Release Specs Table */
+
+    /* v0.0.6: download section */
+    .dl-section { scroll-margin-top: 90px; }
+    .dl-group { color: var(--accent); font-size: 1.15rem; margin: 1.8rem 0 0.8rem; }
+    .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+    .dl-card { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; color: var(--text-main); text-decoration: none; backdrop-filter: var(--glass-blur); transition: border-color .2s, transform .2s, background .2s; }
+    .dl-card:hover, .dl-card:focus-visible { border-color: var(--accent); background: rgba(229,181,103,0.08); transform: translateY(-2px); outline: none; }
+    .dl-btn { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #1a1205; box-shadow: 0 0 18px var(--accent-glow); }
+    .dl-card:hover .dl-btn { transform: scale(1.06); }
+    .dl-text { font-size: 0.92rem; line-height: 1.5; min-width: 0; }
+    .dl-text code { font-size: 0.78rem; color: var(--accent-cyan); word-break: break-all; }
+    .dl-sub { color: var(--text-sub); }
+    .dl-rec { margin-left: 6px; font-size: 0.72rem; padding: 1px 7px; border-radius: 999px; background: rgba(78,205,196,0.15); color: var(--accent-cyan); border: 1px solid rgba(78,205,196,0.3); vertical-align: middle; }
+    .dl-more, .dl-note { color: var(--text-sub); font-size: 0.9rem; margin-top: 1.2rem; text-align: center; }
+    .dl-more a { color: var(--accent); }
+
     .specs-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -436,7 +452,7 @@
       </p>
 
       <div class="hero-buttons">
-        <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases" class="btn-primary">
+        <a href="#download" class="btn-primary">
           <span class="vi-only">Tải Bản Phát Hành Mới Nhất</span>
           <span class="en-only">Download Latest Release</span>
         </a>
@@ -545,6 +561,81 @@
       </div>
     </div>
 
+
+    <!-- v0.0.6: Download section (direct links to GitHub Releases) - update VER/links on every release -->
+    <section id="download" class="dl-section">
+      <div class="section-title">
+        <h2><span class="vi-only">⬇️ Tải Về Applied Astrology v0.0.6</span><span class="en-only">⬇️ Download Applied Astrology v0.0.6</span></h2>
+        <p><span class="vi-only">Bấm biểu tượng tải xuống để tải trực tiếp từ GitHub Releases. Đã cài bản cũ? Cài đè trực tiếp, dữ liệu được giữ nguyên.</span><span class="en-only">Click a download icon to get the file straight from GitHub Releases. Already installed an older version? Install over it; your data is kept.</span></p>
+      </div>
+      <h3 class="dl-group"><span class="vi-only">🤖 Android 6.0+</span><span class="en-only">🤖 Android 6.0+</span></h3>
+      <div class="dl-grid">
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-arm64-v8a.apk" download title="AppliedAstrology-0.0.6-arm64-v8a.apk">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>ARM 64-bit (arm64-v8a)</strong> <span class="dl-rec"><span class="vi-only">Khuyên dùng</span><span class="en-only">Recommended</span></span><br><span class="dl-sub"><span class="vi-only">Hầu hết điện thoại từ 2016</span><span class="en-only">Most phones since 2016</span></span><br><code>AppliedAstrology-0.0.6-arm64-v8a.apk</code> · 2,71 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-armeabi-v7a.apk" download title="AppliedAstrology-0.0.6-armeabi-v7a.apk">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>ARM 32-bit (armeabi-v7a)</strong><br><span class="dl-sub"><span class="vi-only">Máy cũ / máy giá rẻ</span><span class="en-only">Older / budget phones</span></span><br><code>AppliedAstrology-0.0.6-armeabi-v7a.apk</code> · 2,71 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-x86_64.apk" download title="AppliedAstrology-0.0.6-x86_64.apk">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>x86_64</strong><br><span class="dl-sub"><span class="vi-only">Emulator, Chromebook, máy Intel</span><span class="en-only">Emulators, Chromebooks, Intel devices</span></span><br><code>AppliedAstrology-0.0.6-x86_64.apk</code> · 2,71 MB</span>
+        </a>
+      </div>
+      <h3 class="dl-group"><span class="vi-only">🪟 Windows 7 SP1 → 11</span><span class="en-only">🪟 Windows 7 SP1 → 11</span></h3>
+      <div class="dl-grid">
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-Setup.exe" download title="AppliedAstrology-0.0.6-windows-Setup.exe">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>Setup.exe · x86 / x64 / ARM64</strong> <span class="dl-rec"><span class="vi-only">Khuyên dùng</span><span class="en-only">Recommended</span></span><br><span class="dl-sub"><span class="vi-only">Bộ cài khuyên dùng, không cần quyền Admin, có trình gỡ</span><span class="en-only">Recommended installer, no admin rights, with uninstaller</span></span><br><code>AppliedAstrology-0.0.6-windows-Setup.exe</code> · 2,58 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-portable.zip" download title="AppliedAstrology-0.0.6-windows-portable.zip">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>Portable .zip</strong><br><span class="dl-sub"><span class="vi-only">Không cần cài: giải nén rồi chạy AppliedAstrology.exe</span><span class="en-only">No install: unzip and run AppliedAstrology.exe</span></span><br><code>AppliedAstrology-0.0.6-windows-portable.zip</code> · 2,56 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-x64.msi" download title="AppliedAstrology-0.0.6-windows-x64.msi">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>MSI x64</strong><br><span class="dl-sub"><span class="vi-only">Windows Installer 64-bit</span><span class="en-only">Windows Installer 64-bit</span></span><br><code>AppliedAstrology-0.0.6-windows-x64.msi</code> · 2,04 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-x86.msi" download title="AppliedAstrology-0.0.6-windows-x86.msi">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>MSI x86</strong><br><span class="dl-sub"><span class="vi-only">Windows Installer 32-bit</span><span class="en-only">Windows Installer 32-bit</span></span><br><code>AppliedAstrology-0.0.6-windows-x86.msi</code> · 2,04 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-arm64.msi" download title="AppliedAstrology-0.0.6-windows-arm64.msi">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>MSI ARM64</strong><br><span class="dl-sub"><span class="vi-only">Windows 10/11 trên ARM</span><span class="en-only">Windows 10/11 on ARM</span></span><br><code>AppliedAstrology-0.0.6-windows-arm64.msi</code> · 2,05 MB</span>
+        </a>
+      </div>
+      <h3 class="dl-group"><span class="vi-only">🧩 Windows 10/11 – gói AppX</span><span class="en-only">🧩 Windows 10/11 – AppX package</span></h3>
+      <div class="dl-grid">
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows.appxbundle" download title="AppliedAstrology-0.0.6-windows.appxbundle">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>.appxbundle · x86 / x64 / ARM64</strong><br><span class="dl-sub"><span class="vi-only">Tải cả 3 tệp của nhóm này vào cùng thư mục</span><span class="en-only">Download all 3 files of this group into one folder</span></span><br><code>AppliedAstrology-0.0.6-windows.appxbundle</code> · 9,06 MB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-windows-appx-install.bat" download title="AppliedAstrology-0.0.6-windows-appx-install.bat">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>Trình cài appx (.bat)</strong><br><span class="dl-sub"><span class="vi-only">Chạy tệp này: tự cài chứng chỉ rồi cài gói</span><span class="en-only">Run this: installs the certificate, then the package</span></span><br><code>AppliedAstrology-0.0.6-windows-appx-install.bat</code> · 2 KB</span>
+        </a>
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/AppliedAstrology-0.0.6-signing-certificate.cer" download title="AppliedAstrology-0.0.6-signing-certificate.cer">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>Chứng chỉ ký (.cer)</strong><br><span class="dl-sub"><span class="vi-only">Chứng chỉ tự ký dùng cho gói appx</span><span class="en-only">Self-signed certificate for the appx package</span></span><br><code>AppliedAstrology-0.0.6-signing-certificate.cer</code> · 1 KB</span>
+        </a>
+      </div>
+      <h3 class="dl-group"><span class="vi-only">🔐 Kiểm tra toàn vẹn</span><span class="en-only">🔐 Integrity check</span></h3>
+      <div class="dl-grid">
+        <a class="dl-card" href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/download/v0.0.6/SHA256SUMS-0.0.6.txt" download title="SHA256SUMS-0.0.6.txt">
+          <span class="dl-btn"><svg class="dl-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="dl-text"><strong>SHA-256</strong><br><span class="dl-sub"><span class="vi-only">Mã băm SHA-256 của mọi tệp</span><span class="en-only">SHA-256 hashes of every file</span></span><br><code>SHA256SUMS-0.0.6.txt</code> · 1 KB</span>
+        </a>
+      </div>
+      <p class="dl-more">
+        <span class="vi-only">Trang phát hành:</span><span class="en-only">Release page:</span>
+        <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.6">v0.0.6</a> · <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/latest"><span class="vi-only">bản mới nhất</span><span class="en-only">latest</span></a> ·
+        <span class="vi-only">Phiên bản cũ:</span><span class="en-only">Older versions:</span> <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.5">v0.0.5</a> · <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.4">v0.0.4</a> · <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.3">v0.0.3</a> · <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases/tag/v0.0.2">v0.0.2</a> · <a href="https://github.com/kiritokmn1403/Applied-Astrology-T-Vi-/releases"><span class="vi-only">tất cả</span><span class="en-only">all</span></a>
+      </p>
+      <p class="dl-note"><span class="vi-only">Windows 7 chỉ có bản x86/x64 và cần .NET Framework 4.5 trở lên. Bộ cài dùng chứng chỉ tự ký nên SmartScreen có thể cảnh báo: bấm <em>More info › Run anyway</em>.</span><span class="en-only">Windows 7 has x86/x64 builds only and needs .NET Framework 4.5+. Installers use a self-signed certificate, so SmartScreen may warn: click <em>More info › Run anyway</em>.</span></p>
+    </section>
+
     <!-- Technical Specs -->
     <div class="specs-card">
       <h3>
@@ -569,8 +660,8 @@
           </tr>
           <tr>
             <td><strong>Windows (Setup)</strong></td>
-            <td>Setup.exe (Inno/WiX/Native installer)</td>
-            <td><span class="tag-arch">x64 / x86</span></td>
+            <td>Setup.exe (bộ cài native / native installer)</td>
+            <td><span class="tag-arch">x86</span> <span class="tag-arch">x64</span> <span class="tag-arch">arm64</span></td>
             <td>Windows 7 SP1, Windows 8, 10, 11 (.NET 4.5+)</td>
           </tr>
           <tr>
@@ -582,7 +673,7 @@
           <tr>
             <td><strong>Windows (Store/AppX)</strong></td>
             <td>.appxbundle (Modern Package)</td>
-            <td><span class="tag-arch">Neutral / Universal</span></td>
+            <td><span class="tag-arch">x86</span> <span class="tag-arch">x64</span> <span class="tag-arch">arm64</span></td>
             <td>Windows 10, Windows 11 (Kèm chứng chỉ tự ký)</td>
           </tr>
           <tr>
